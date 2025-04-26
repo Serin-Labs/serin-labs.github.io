@@ -1,61 +1,51 @@
-# Serin: Open Source Mitsubishi HVAC Controller
+# Serin – Mitsubishi HVAC Controller
 
-Serin is an ESP32-based device that connects to Mitsubishi mini split HVAC units via the CN105 port, enabling local control and monitoring using open source software. With Serin, you can:
+This package aims to make it simpler to make your Mitsubishi HVAC unit smarter, more private, and easier to control. This package brings local, cloud-free control to your HVAC system using community driven open source software.
 
-- Integrate your Mitsubishi HVAC with Home Assistant for automation and remote access
-- Use the built-in web interface for direct local control
-- Maintain privacy and reliability with no cloud dependency
-- Easily update and configure the device using ESPHome and Improv
+## Why?
+- **100% Local Control** – No cloud, no fees, no privacy worries.
+- **Open Source** – Powered by ESPHome and the community. 
+- **Compact & Clean** – Installs inside your Mitsubishi HVAC unit for a seamless look.
+- **DIY or Pre-Assembled** – Build it yourself or order a ready-to-go kit.
 
-## Features
-- Plug-and-play connection to Mitsubishi mini splits (CN105)
-- Local API and web UI
-- Home Assistant auto-discovery
-- Secure, open source firmware
-- No cloud required
+## What You’ll Need
 
-## Setup
+### Option A: Purchase Parts Individually
+- **Device:**
+  - [M5Stack Atom S3 Lite](https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/C124/18070571) or [NanoC6](https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/C125/22571399)
+- **Cable:**
+  - [JST PAP-05V-S connector](https://www.digikey.com/en/products/detail/jst-sales-america-inc/pap-05v-s/759977) (CN105 port on the HVAC unit)
+  - [Grove HY2.0-4P connector](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/110990027/5482567) (ESP32 side)
 
-See the [setup guide](setup.html) for step-by-step instructions and firmware installation using Improv.
+### Option B: Preassembled Kit
+- **Ready-to-go kit** including the device, custom cable, and pre-flashed firmware — [order here](#).
 
-## Example ESPHome Configuration
+*If you purchase the kit, you can skip wiring and firmware flashing. It's ready to connect to your Wi-Fi and Mitsubishi HVAC unit.*
 
-A minimal configuration for Serin (ESP32):
-```yaml
-esphome:
-  name: serin
-  friendly_name: Serin
-esp32:
-  board: esp32doit-devkit-v1
-  framework:
-    type: esp-idf
-uart:
-  id: HP_UART
-  baud_rate: 2400
-  tx_pin: GPIO17
-  rx_pin: GPIO16
-external_components:
-  - source: github://echavet/MitsubishiCN105ESPHome
-climate:
-  - platform: cn105
-    name: "My Heat Pump"
-    update_interval: 2s
-logger:
-  level: INFO
-api:
-  encryption:
-    key: !secret api_key
-ota:
-  platform: esphome
-  password: !secret ota_password
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-  ap:
-    ssid: "Serin Fallback Hotspot"
-    password: !secret fallback_password
-captive_portal:
-```
+## Setup Guide
 
-## Disclaimer
-Serin is not affiliated with Mitsubishi. Use at your own risk. Setup may void your equipment warranty.
+See the [setup guide](https://serin-labs.github.io/setup.html) for step-by-step instructions.
+
+## Wiring Reference
+
+For detailed pinouts and cable assembly, see the [wiring reference](https://serin-labs.github.io/wiring.html).
+
+## YAML Generator
+
+Use the [YAML config generator](https://serin-labs.github.io/generate-yaml.html) to create a ready-to-use ESPHome configuration for your device, including options for remote temperature sensors, vane control, and advanced diagnostics.
+
+## Gratitude
+
+Special thanks to [echavet](https://github.com/echavet/MitsubishiCN105ESPHome), the ESPHome community, [SwiCago](https://github.com/SwiCago/HeatPump), [geoffdavis](https://github.com/geoffdavis/esphome-mitsubishiheatpump), and all contributors whose work made this guide possible.
+
+## References
+- [SwiCago/HeatPump](https://github.com/SwiCago/HeatPump)
+- [Hacking a Mitsubishi Heat Pump (chrdavis)](https://chrdavis.github.io/hacking-a-mitsubishi-heat-pump-Part-1/)
+- [CN105 Connector (casualhacker.net)](https://casualhacker.net/post/2017-10-24-CN105_Connector)
+- [geoffdavis/esphome-mitsubishiheatpump](https://github.com/geoffdavis/esphome-mitsubishiheatpump)
+- [echavet/MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome)
+- [muart-group](https://github.com/muart-group)
+
+## Disclaimer & Safety
+
+Modifying HVAC systems may void warranties and carries risks. Always turn off power to your HVAC unit before connecting or disconnecting any cables. This project is provided as-is, with no warranties or liability. Proceed with care.

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>serin labs: Mitsubishi HVAC Controller | Serin Heat Pump Controller Kit</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">serin labs</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/setup">Setup</a></li>
+          <li><a href="/wiring">Wiring</a></li>
+          <li><a href="/generate-yaml">Generate YAML</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="home">
+<!-- Main Heading and Description -->
+<h1>Mitsubishi HVAC Controller YAML</h1>
+<p>Select your choices below to create a ready-to-use ESPHome configuration to use with your Mitsubishi unit.</p>
+
+
+<!-- YAML Generator Form -->
+<form id="dynamic-yaml-form" style="margin-bottom:2rem;">
+    <!-- Device Hardware Section -->
+    <fieldset class="form-card">
+        <legend><span>🛠️</span> Device</legend>
+        <label for="devicename">Name:</label><br>
+        <input type="text" name="devicename" id="devicename" placeholder="serin-cn105"><br>
+        <label for="friendlyname">Friendly Name:</label><br>
+        <input type="text" name="friendlyname" id="friendlyname" placeholder="Serin Heat Pump Controller"><br>
+        <label>Which board?</label><br>
+        <input type="radio" name="board" value="esp32-s3" id="board-s3" checked> <label for="board-s3">M5Stack Atom S3 Lite (ESP32-S3)</label><br>
+        <input type="radio" name="board" value="esp32-c6" id="board-c6"> <label for="board-c6">M5Stack NanoC6 (ESP32-C6)</label><br>
+    </fieldset>
+
+    <!-- Airflow Features Section -->
+    <fieldset class="form-card">
+        <legend><span>🌀</span> Indoor HVAC Unit Features</legend>
+        <label>Which of the following features does your indoor unit support?</label><br>
+        <input type="checkbox" name="vane_vertical" id="vane-vertical" checked> <label for="vane-vertical">Vertical Vanes</label><br>
+        <input type="checkbox" name="vane_horizontal" id="vane-horizontal"> <label for="vane-horizontal">Horizontal Vanes</label><br>
+        <input type="checkbox" name="isee" id="isee-sensor"> <label for="isee-sensor">i-See Sensor</label><br>
+    </fieldset>
+
+    <!-- Sensor Options Section -->
+    <fieldset class="form-card">
+        <legend><span>🌡️</span> Sensor Options</legend>
+        <label>Would you like to use a remote temperature sensor from Home Assistant?</label><br>
+        <input type="radio" name="sensor" value="no" id="sensor-no" checked> <label for="sensor-no">No</label><br>
+        <input type="radio" name="sensor" value="yes" id="sensor-yes"> <label for="sensor-yes">Yes</label><br>
+        <div id="sensor-entity-input" style="display:none;">
+            <label for="sensor-entity">Sensor entity name in Home Assistant:</label><br>
+            <input type="text" id="sensor-entity" name="sensor-entity" placeholder="e.g. sensor.living_room_temp"><br>
+        </div>
+    </fieldset>
+
+    <!-- Advanced Options Section -->
+    <fieldset class="form-card">
+        <legend><span>🧪</span> Advanced Options</legend>
+        <label>Enable any optional features below:</label><br>
+        <input type="checkbox" name="diagnostic" id="diagnostic" value="yes"> <label for="diagnostic">Enable advanced diagnostic sensors?</label><br>
+        <input type="checkbox" name="web_server" id="web_server" value="yes" checked> <label for="web_server">Enable local web server?</label><br>
+        <input type="checkbox" name="bluetooth_proxy" id="bluetooth_proxy" value="yes"> <label for="bluetooth_proxy">Enable Bluetooth proxy?</label><br>
+    </fieldset>
+</form>
+
+<!-- Action Buttons and Toast -->
+<div id="yaml-action-bar" style="display:flex; align-items: center; margin-bottom: 0.5em;">
+    <strong style="margin-right:auto;">Live YAML Preview:</strong>
+    <span class="action-btn-group">
+      <button id="copy-yaml-btn" type="button" class="action-btn">Copy to Clipboard</button>
+      <button id="download-yaml-btn" type="button" class="action-btn">Download .yaml</button>
+    </span>
+</div>
+<div id="copy-toast">✅ YAML copied!</div>
+
+<!-- YAML Output -->
+<textarea id="dynamic-yaml-output" rows="22" readonly></textarea>
+
+<!-- Styles -->
+<style>
+.form-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75em 1.5em 1em 1.5em;
+  background: #f3f3f3;
+  margin-bottom: 1.5em;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 0 0.5em;
+}
+input[type="radio"] {
+  margin-right: 0.5em;
+}
+input[type="radio"] + label {
+  display: inline-block;
+  margin-bottom: 0.3em;
+}
+textarea#dynamic-yaml-output {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  line-height: 1.4;
+  white-space: pre;
+  overflow: auto;
+  width: 100%;
+  font-family: monospace;
+  font-size: 1em;
+}
+#copy-toast {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4CAF50;
+  color: #fff;
+  padding: 0.75em 1.5em;
+  border-radius: 6px;
+  font-size: 1.1em;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  opacity: 0;
+  pointer-events: none;
+}
+#copy-toast.show {
+  display: block;
+  animation: fadeInOut 2s ease-in-out;
+  opacity: 1;
+}
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
+  width: 80%;
+  padding: 0.75em 1em;
+  border: 1.5px solid #bfc9d1;
+  border-radius: 7px;
+  background: #f7fafd;
+  font-size: 1.08em;
+  color: #222;
+  margin-bottom: 0.7em;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus {
+  border-color: #2196F3;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+}
+#sensor-entity-input input[type="text"] {
+  margin-top: 0.4em;
+}
+
+/* Move action buttons to the right side of the line */
+.action-btn-group {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+}
+
+.action-btn-group button {
+  margin-left: 0;
+}
+
+/* Remove old flex from the parent div */
+#yaml-action-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+#yaml-action-bar strong {
+  margin-right: auto;
+}
+</style>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script>
+    // Show/hide remote sensor entity input
+    document.querySelectorAll('input[name="sensor"]').forEach(el => {
+        el.addEventListener('change', function () {
+            document.getElementById('sensor-entity-input').style.display = (this.value === 'yes') ? 'block' : 'none';
+        });
+    });
+
+    // Helper: debounce function to limit update frequency
+    function debounce(fn, delay) {
+        let timer = null;
+        return function(...args) {
+            clearTimeout(timer);
+            timer = setTimeout(() => fn.apply(this, args), delay);
+        };
+    }
+
+    async function fetchRawYAML(url) {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error('Failed to fetch ' + url);
+        return await resp.text();
+    }
+
+    function randomKey() {
+        // 32 bytes, base64 encoded
+        const arr = new Uint8Array(32);
+        window.crypto.getRandomValues(arr);
+        // Convert to base64
+        let binary = '';
+        for (let i = 0; i < arr.length; i++) binary += String.fromCharCode(arr[i]);
+        return btoa(binary);
+    }
+
+    async function generateDynamicYAML() {
+        let devicename = document.getElementById('devicename').value.trim();
+        let friendlyname = document.getElementById('friendlyname').value.trim();
+        if (!devicename) devicename = 'serin-cn105';
+        if (!friendlyname) friendlyname = 'Serin Heat Pump Controller';
+        // New vane and i-See logic
+        const vaneVertical = document.getElementById('vane-vertical').checked;
+        const vaneHorizontal = document.getElementById('vane-horizontal').checked;
+        const isee = document.getElementById('isee-sensor').checked ? 'yes' : 'no';
+        // Determine which YAML to use for vanes
+        let vane;
+        if (vaneVertical && vaneHorizontal) {
+            vane = 'both';
+        } else if (vaneVertical) {
+            vane = 'vertical';
+        } else {
+            vane = 'none';
+        }
+        const board = document.querySelector('input[name="board"]:checked').value;
+        const sensor = document.querySelector('input[name="sensor"]:checked').value;
+        const sensorEntity = document.getElementById('sensor-entity').value.trim();
+        const diagnostic = document.getElementById('diagnostic').checked;
+        const webServer = document.getElementById('web_server').checked;
+        const bluetoothProxy = document.getElementById('bluetooth_proxy').checked;
+
+        // URLs for YAML fragments
+        const urls = {
+            'vertical': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105_nh.yaml',
+            'both': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105.yaml',
+            'none': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105_nv_nh.yaml',
+            'esp32-c6': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/esp32c6.yaml',
+            'esp32-s3': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/esp32s3.yaml',
+            'remote_temp': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/remote_temp.yaml',
+            'wifi': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/wifi.yaml',
+            'web_server': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/web_server.yaml',
+        };
+
+        // Fetch YAML fragments
+        let [climateYaml, boardYaml, wifiYaml, webServerYaml, remoteTempYaml] = await Promise.all([
+            fetchRawYAML(urls[vane]),
+            fetchRawYAML(urls[board]),
+            fetchRawYAML(urls['wifi']),
+            webServer ? fetchRawYAML(urls['web_server']) : Promise.resolve(''),
+            (sensor === 'yes' && sensorEntity) ? fetchRawYAML(urls['remote_temp']) : Promise.resolve('')
+        ]);
+
+        // Bluetooth proxy: uncomment if enabled
+        if (bluetoothProxy) {
+            boardYaml = boardYaml.replace(/# ?bluetooth_proxy:\s*#?\s*\n#\s+id:\s+bluetooth_proxy/, 'bluetooth_proxy:\n  id: bluetooth_proxy');
+        }        
+        // Remove isee_sensor if not needed or if diagnostic is enabled
+        if (isee === 'no') {
+            climateYaml = climateYaml.replace(/(^|\n)\s*isee_sensor:[\s\S]*?(?=\n\s*#|$)/, '');
+        }
+        // Enable diagnostic sensors if checked
+        if (diagnostic) {
+            // Uncomment all lines between '# compressor_frequency_sensor:' and the next non-comment line or end of block
+            climateYaml = climateYaml.replace(/# (compressor_frequency_sensor:[\s\S]*?)(?=\n[^#\s]|\n\s*\n|$)/g, (match) => {
+                return match.replace(/# ?/g, '');
+            });
+        }
+        // Remove 'disabled_by_default: true' if present
+        climateYaml = climateYaml.replace(/\n\s*disabled_by_default:\s*true/g, '');
+
+        // Parse YAML fragments
+        const docList = [boardYaml, climateYaml, wifiYaml, webServerYaml, remoteTempYaml]
+            .filter(Boolean)
+            .map(y => jsyaml.load(y));
+
+        // Merge YAML objects, combining arrays for duplicate keys
+        function deepMerge(target, source) {
+            for (const key in source) {
+                if (Array.isArray(source[key])) {
+                    if (!target[key]) target[key] = [];
+                    target[key] = target[key].concat(source[key]);
+                } else if (typeof source[key] === 'object' && source[key] !== null) {
+                    if (!target[key]) target[key] = {};
+                    deepMerge(target[key], source[key]);
+                } else {
+                    target[key] = source[key];
+                }
+            }
+            return target;
+        }
+
+        // Start with the first doc, merge the rest
+        let merged = docList[0] || {};
+        for (let i = 1; i < docList.length; ++i) {
+            merged = deepMerge(merged, docList[i]);
+        }
+
+        // Add substitutions, wifi, and api encryption at the top
+        let substitutions = `substitutions:\n  name: ${devicename}\n  friendly_name: \"${friendlyname}\"`;
+        if (sensor === 'yes' && sensorEntity) {
+            substitutions += `\n  remote_temp_sensor: ${sensorEntity}`;
+        }
+        // Add wifi and api encryption key after substitutions
+        const apiKey = randomKey();
+        let wifiBlock = `\nwifi:\n  ssid: !secret wifi_ssid\n  password: !secret wifi_password\n  ap:\n    ssid: \"Serin Setup\"\n    password: \"serinsetup\"`;
+        let apiBlock = `\napi:\n  encryption:\n    key: ${apiKey}`;
+
+        // Add logger, ota, external_components if not present
+        merged.logger = merged.logger || { level: 'INFO' };
+        merged.ota = merged.ota || [{ platform: 'esphome' }];
+        merged.external_components = merged.external_components || [
+            { source: 'github://akifbayram/MitsubishiCN105ESPHome' }
+        ];
+        // Remove wifi, api, captive_portal, improv_serial from merged if present (to avoid duplicate keys)
+        delete merged.wifi;
+        delete merged.api;
+        delete merged.captive_portal;
+        delete merged.improv_serial;
+
+        // Dump merged YAML with blank lines between top-level keys
+        let yamlOut = substitutions + '\n' + wifiBlock + '\n' + apiBlock + '\n\ncaptive_portal:\nimprov_serial:\n\n';
+        const yamlStr = jsyaml.dump(merged);
+        yamlOut += yamlStr.replace(/\n(\w)/g, '\n\n$1');
+        document.getElementById('dynamic-yaml-output').value = yamlOut;
+    }
+
+    // Debounced version for live preview
+    const debouncedGenerate = debounce(generateDynamicYAML, 200);
+
+    // Attach live update listeners
+    document.querySelectorAll('#dynamic-yaml-form input, #dynamic-yaml-form select').forEach(el => {
+        el.addEventListener('input', debouncedGenerate);
+        el.addEventListener('change', debouncedGenerate);
+    });
+
+    // Initial preview on page load
+    window.addEventListener('DOMContentLoaded', generateDynamicYAML);
+
+    document.getElementById('copy-yaml-btn').onclick = function () {
+        const textarea = document.getElementById('dynamic-yaml-output');
+        textarea.select();
+        document.execCommand('copy');
+        // Show toast
+        const toast = document.getElementById('copy-toast');
+        toast.classList.remove('show');
+        void toast.offsetWidth; // Force reflow to restart animation
+        toast.classList.add('show');
+        // Remove .show after animation so it can be retriggered
+        setTimeout(() => { toast.classList.remove('show'); }, 2000);
+        // Button feedback (optional)
+        this.textContent = 'Copied!';
+        setTimeout(() => { this.textContent = 'Copy to Clipboard'; }, 1200);
+    };
+
+    document.getElementById('download-yaml-btn').onclick = function () {
+        const yaml = document.getElementById('dynamic-yaml-output').value;
+        const blob = new Blob([yaml], { type: 'text/yaml' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'serin-controller.yaml';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }, 100);
+    };
+</script>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>serin labs. </p>
+    </div>
+  </footer>

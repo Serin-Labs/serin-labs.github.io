@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="icon" type="image/png" href="{{ '/assets/img/logo.png' | relative_url }}">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="{{ '/' | relative_url }}">serin labs</a></h1>
+      <nav>
+        <ul>
+          <li><a href="{{ '/' | relative_url }}">Home</a></li>
+          <li><a href="{{ '/setup' | relative_url }}">Setup</a></li>
+          <li><a href="{{ '/wiring' | relative_url }}">Wiring</a></li>
+          <li><a href="{{ '/generate-yaml' | relative_url }}">Generate YAML</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content }}
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>serin labs. </p>
+    </div>
+  </footer>
+</body>
+</html>

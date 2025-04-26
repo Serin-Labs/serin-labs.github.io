@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>serin labs: Mitsubishi HVAC Controller | Serin Heat Pump Controller Kit</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">serin labs</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/setup">Setup</a></li>
+          <li><a href="/wiring">Wiring</a></li>
+          <li><a href="/generate-yaml">Generate YAML</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="home">
+      <h1 id="serin-mitsubishi-esp32-wifi-adapter">Mitsubishi HVAC Controller</h1>
+      <p><strong>This package aims to make it simpler to make your Mitsubishi HVAC unit smarter, more private, and easier to control.</strong> This package brings local, cloud-free control to your HVAC system using community driven open source software.</p>
+
+      <h2 id="why-serin">Why?</h2>
+      <ul>
+        <li><strong>100% Local Control</strong> – Your data stays in your home. No cloud, no fees, no privacy worries.</li>
+        <li><strong>Open Source</strong> – Powered by ESPHome and the community. Inspect, modify, and contribute.</li>
+        <li><strong>Compact & Clean</strong> – Installs inside your mini-split for a seamless look.</li>
+        <li><strong>DIY or Pre-Assembled</strong> – Build it yourself or order a ready-to-go kit from the <a href="#">shop</a>.</li>
+      </ul>
+      <p>Find full <a href="/setup/">setup guides</a> and a <a href="/generate-yaml/">YAML config generator</a> so you can customize your device for features like remote temperature sensors, vane control, and advanced diagnostics.</p>
+
+      <h2 id="get-started">Quick Start</h2>
+      <ol>
+        <li><strong>Pick Your Hardware:</strong> Choose from <a href="https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit" target="_blank">M5Stack Atom S3 Lite</a>, <a href="https://shop.m5stack.com/products/m5stack-nanoc6-dev-kit" target="_blank">NanoC6</a>, or <a href="#">order a kit</a> with cable and pre-flashed firmware.</li>
+        <li><strong>Optional: Flash the Firmware:</strong> Use the <a href="/generate-yaml/">YAML generator</a> and ESPHome Dashboard, or flash a <a href="#">pre-built firmware</a> with <a href="https://web.esphome.io/" target="_blank">ESPHome Web</a>. This step is optional if the kit was purchased from the shop.</li>
+        <li><strong>Connect to Wi-Fi:</strong> Plug in via USB-C and use the <a href="/setup/">Wi-Fi setup tool</a>, or join the device’s Wi-Fi and visit <a href="http://192.168.4.1" target="_blank">192.168.4.1</a>. Enter your Wi-Fi credentials.</li>
+        <li><strong>Install in Your HVAC:</strong> Power off, connect the CN105-to-Grove cable, tuck the device inside, and restore power.</li>
+        <li><strong>Web UI:</strong> Access the device’s local IP for direct control. If you don't desire further integration, you can stop here!</li>
+        <li><strong>Integrate with Home Assistant:</strong> The device will appear in ESPHome and be auto-discovered by Home Assistant.</li>
+      </ol>
+
+      For more detailed instructions, visit the <a href="/setup/">setup guide</a>.
+      
+      <h2 id="disclaimer">Disclaimer & Safety</h2>
+      <p>Working on HVAC systems can be risky and may void warranties. Proceed only if you’re confident. This project is provided as-is, without warranty or liability.</p>
+
+      <h2 id="gratitude">Gratitude</h2>
+      <p>Special thanks to <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">echavet</a>, the ESPHome community, <a href="https://github.com/SwiCago/HeatPump" target="_blank">SwiCago</a>, and <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank">geoffdavis</a> for their foundational work.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>serin labs. </p>
+    </div>
+  </footer>
+</body>
+</html>

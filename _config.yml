@@ -1,0 +1,28 @@
+title: Serin Heat Pump Controller Kit
+email: akifbayram+serin@gmail.com
+description: >-
+  A simple and easy-to-use kit for Mitsubishi heat pumps.
+  The kit is packaged to be user-friendly and easy to install, making it accessible for anyone looking to improve access to their Mitsubishi HVAC system.
+baseurl: ""  # the subpath of your site, e.g. /blog
+url: ""  # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: username
+github_username:  username
+
+# Build settings
+markdown: GFM
+theme: minima
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

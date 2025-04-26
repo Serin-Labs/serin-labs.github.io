@@ -1,0 +1,89 @@
+---
+layout: default
+title: Setting Up Your Device
+permalink: /setup/
+---
+
+<h1>Setting Up Your Device</h1>
+
+<p>You can control your Mitsubishi mini split HVAC with this device either standalone via a built-in web interface, or integrate it into your smart home setup using ESPHome and Home Assistant.</p>
+<hr>
+
+<h2>1. What You’ll Need</h2>
+
+<h3>Option A: Purchase Parts Individually</h3>
+<ul>
+  <li><strong>Device:</strong> 
+    <ul>
+      <li><a href="https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/C124/18070571" target="_blank">M5Stack Atom S3 Lite</a> or <a href="https://www.digikey.com/en/products/detail/m5stack-technology-co-ltd/C125/22571399" target="_blank">NanoC6</a></li>
+    </ul>
+  </li>
+  <li><strong>Cable:</strong> 
+    <ul>
+      <li><a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/pap-05v-s/759977" target="_blank">JST PAP-05V-S connector</a> (CN105 port on the HVAC unit)</li>
+      <li><a href="https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/110990027/5482567" target="_blank">Grove HY2.0-4P connector</a> (ESP32 side)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Option B: Preassembled Kit</h3>
+<ul>
+  <li><strong>Ready-to-go kit</strong> including the device, custom cable, and pre-flashed firmware — <a href="#">order here</a>.</li>
+</ul>
+
+<p><em>If you purchase the kit, you can skip wiring and firmware flashing — it's all ready to connect to your Wi-Fi and Mitsubishi HVAC unit.</em></p>
+
+<hr>
+
+<h2>2. Flash the Firmware</h2>
+<strong>Note:</strong> Firmware is already flashed if using the preassembled kit.
+
+<ul>
+  <li>Use the <a href="/generate-yaml/">YAML generator</a> with ESPHome Dashboard</li>
+  <li>Or flash a pre-built firmware via <a href="https://web.esphome.io/">ESPHome Web</a></li>
+</ul>
+
+<hr>
+
+<h2>3. Connect to Wi-Fi</h2>
+<p>After flashing (or if pre-flashed), power up the device and connect it to your Wi-Fi network using either method below:</p>
+
+<h3>Option A: USB C</h3>
+<ol>
+  <li>Plug the device into your computer.</li>
+  <li>Click the button below to launch browser-based Wi-Fi setup.</li>
+</ol>
+<script type="module" src="https://cdn.jsdelivr.net/npm/improv-wifi-serial-sdk/dist/web/serial-launch-button.js"></script>
+<div style="display: flex; justify-content: center; margin: 1em 0;">
+  <improv-wifi-serial-launch-button learnMoreUrl="https://www.esphome.io/components/improv_serial.html"></improv-wifi-serial-launch-button>
+</div>
+
+<h3>Option B: Wi-Fi Access Point</h3>
+<ol>
+  <li>Plug the device into USB power.</li>
+  <li>Connect to the temporary Wi-Fi network (<code>serin-cn105-XXXX</code>).</li>
+  <li>If not automatically prompted, go to <a href="http://192.168.4.1">http://192.168.4.1</a>.</li>
+  <li>Enter your Wi-Fi credentials.</li>
+</ol>
+
+<p>Once connected, the device should appear in your ESPHome dashboard, ready to adopt. </p>
+
+<hr>
+
+<h2>4. Connect to the Mitsubishi HVAC Unit</h2>
+<ol>
+  <li>Turn off power to your HVAC unit and open the cover to locate the red <strong>CN105 connector</strong>.</li>
+  <li>Plug the <a href="/wiring.html">CN105 connector into the HVAC unit and Grove connector</a> into the device.</li>
+  <li>Place the device safely inside the unit if needed, reinstall the cover, and restore power.</li>
+</ol>
+
+<hr>
+
+<h2>5. Access Web Control</h2>
+<ul>
+  <li>Visit the device’s IP address in a browser.</li>
+  <li>Monitor and control your system through the built-in interface.</li>
+</ul>
+
+<h2>Disclaimer</h2>
+<p>Modifying HVAC systems may void warranties and carries risks. Proceed with care. This project is provided as-is, with no warranties or liability.</p>

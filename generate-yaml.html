@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>serin labs: Mitsubishi HVAC Controller | Serin Heat Pump Controller Kit</title>
   <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌡️</text></svg>">
 </head>
 <body>
   <header>
@@ -16,7 +16,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/setup">Setup</a></li>
           <li><a href="/wiring">Wiring</a></li>
-          <li><a href="/generate-yaml">Generate YAML</a></li>
+          <li><a href="/generate-yaml" class="active">Generate YAML</a></li>
         </ul>
       </nav>
     </div>
@@ -29,8 +29,11 @@
 <p>Select your choices below to create a ready-to-use ESPHome configuration to use with your Mitsubishi unit.</p>
 
 
+<!-- Error message container -->
+<div id="error-container" class="error-message" style="display: none;" role="alert" aria-live="polite"></div>
+
 <!-- YAML Generator Form -->
-<form id="dynamic-yaml-form" style="margin-bottom:2rem;">
+<form id="dynamic-yaml-form">
     <!-- Device Hardware Section -->
     <fieldset class="form-card">
         <legend><span>🛠️</span> Device</legend>
@@ -58,9 +61,10 @@
         <label>Would you like to use a remote temperature sensor from Home Assistant?</label><br>
         <input type="radio" name="sensor" value="no" id="sensor-no" checked> <label for="sensor-no">No</label><br>
         <input type="radio" name="sensor" value="yes" id="sensor-yes"> <label for="sensor-yes">Yes</label><br>
-        <div id="sensor-entity-input" style="display:none;">
-            <label for="sensor-entity">Sensor entity name in Home Assistant:</label><br>
-            <input type="text" id="sensor-entity" name="sensor-entity" placeholder="e.g. sensor.living_room_temp"><br>
+        <div id="sensor-entity-input" class="hidden-field">
+            <label for="sensor-entity">Sensor entity name in Home Assistant:</label>
+            <input type="text" id="sensor-entity" name="sensor-entity" placeholder="e.g. sensor.living_room_temp" aria-describedby="sensor-help">
+            <small id="sensor-help">Enter the full entity ID from Home Assistant</small>
         </div>
     </fieldset>
 
@@ -75,126 +79,22 @@
 </form>
 
 <!-- Action Buttons and Toast -->
-<div id="yaml-action-bar" style="display:flex; align-items: center; margin-bottom: 0.5em;">
-    <strong style="margin-right:auto;">Live YAML Preview:</strong>
+<div id="yaml-action-bar">
+    <strong>Live YAML Preview:</strong>
     <span class="action-btn-group">
-      <button id="copy-yaml-btn" type="button" class="action-btn">Copy to Clipboard</button>
-      <button id="download-yaml-btn" type="button" class="action-btn">Download .yaml</button>
+      <button id="copy-yaml-btn" type="button" class="action-btn" aria-label="Copy YAML configuration to clipboard">Copy to Clipboard</button>
+      <button id="download-yaml-btn" type="button" class="action-btn" aria-label="Download YAML configuration file">Download .yaml</button>
     </span>
 </div>
 <div id="copy-toast">✅ YAML copied!</div>
 
 <!-- YAML Output -->
-<textarea id="dynamic-yaml-output" rows="22" readonly></textarea>
+<textarea id="dynamic-yaml-output" rows="22" readonly aria-label="Generated YAML configuration"></textarea>
 
-<!-- Styles -->
 <style>
-.form-card {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 0.75em 1.5em 1em 1.5em;
-  background: #f3f3f3;
-  margin-bottom: 1.5em;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-}
-legend {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  font-size: 1.1em;
-  font-weight: bold;
-  padding: 0 0.5em;
-}
-input[type="radio"] {
-  margin-right: 0.5em;
-}
-input[type="radio"] + label {
-  display: inline-block;
-  margin-bottom: 0.3em;
-}
-textarea#dynamic-yaml-output {
-  background: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-  line-height: 1.4;
-  white-space: pre;
-  overflow: auto;
-  width: 100%;
-  font-family: monospace;
-  font-size: 1em;
-}
-#copy-toast {
-  display: none;
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #4CAF50;
-  color: #fff;
-  padding: 0.75em 1.5em;
-  border-radius: 6px;
-  font-size: 1.1em;
-  z-index: 9999;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  opacity: 0;
-  pointer-events: none;
-}
-#copy-toast.show {
-  display: block;
-  animation: fadeInOut 2s ease-in-out;
-  opacity: 1;
-}
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(10px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(10px); }
-}
-input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
-  width: 80%;
-  padding: 0.75em 1em;
-  border: 1.5px solid #bfc9d1;
-  border-radius: 7px;
-  background: #f7fafd;
-  font-size: 1.08em;
-  color: #222;
-  margin-bottom: 0.7em;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-}
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus {
-  border-color: #2196F3;
-  outline: none;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(33,150,243,0.08);
-}
-#sensor-entity-input input[type="text"] {
-  margin-top: 0.4em;
-}
-
-/* Move action buttons to the right side of the line */
-.action-btn-group {
-  display: flex;
-  gap: 0.5em;
-  align-items: center;
-  margin-bottom: 0.5em;
-  margin-left: auto;
-}
-
-.action-btn-group button {
-  margin-left: 0;
-}
-
-/* Remove old flex from the parent div */
-#yaml-action-bar {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5em;
-}
-#yaml-action-bar strong {
-  margin-right: auto;
-}
+.hidden-field { display: none; }
+.hidden-field.visible { display: block; margin-top: 0.5em; }
+.hidden-field small { display: block; color: #666; font-size: 0.85em; margin-top: 0.25em; }
 </style>
 
 <!-- Scripts -->
@@ -203,7 +103,12 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     // Show/hide remote sensor entity input
     document.querySelectorAll('input[name="sensor"]').forEach(el => {
         el.addEventListener('change', function () {
-            document.getElementById('sensor-entity-input').style.display = (this.value === 'yes') ? 'block' : 'none';
+            const sensorInput = document.getElementById('sensor-entity-input');
+            if (this.value === 'yes') {
+                sensorInput.classList.add('visible');
+            } else {
+                sensorInput.classList.remove('visible');
+            }
         });
     });
 
@@ -214,6 +119,19 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
             clearTimeout(timer);
             timer = setTimeout(() => fn.apply(this, args), delay);
         };
+    }
+
+    // Show error message to user
+    function showError(message) {
+        const errorContainer = document.getElementById('error-container');
+        errorContainer.textContent = message;
+        errorContainer.style.display = 'block';
+    }
+
+    // Hide error message
+    function hideError() {
+        const errorContainer = document.getElementById('error-container');
+        errorContainer.style.display = 'none';
     }
 
     async function fetchRawYAML(url) {
@@ -233,50 +151,52 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     }
 
     async function generateDynamicYAML() {
-        let devicename = document.getElementById('devicename').value.trim();
-        let friendlyname = document.getElementById('friendlyname').value.trim();
-        if (!devicename) devicename = 'serin-cn105';
-        if (!friendlyname) friendlyname = 'Serin Heat Pump Controller';
-        // New vane and i-See logic
-        const vaneVertical = document.getElementById('vane-vertical').checked;
-        const vaneHorizontal = document.getElementById('vane-horizontal').checked;
-        const isee = document.getElementById('isee-sensor').checked ? 'yes' : 'no';
-        // Determine which YAML to use for vanes
-        let vane;
-        if (vaneVertical && vaneHorizontal) {
-            vane = 'both';
-        } else if (vaneVertical) {
-            vane = 'vertical';
-        } else {
-            vane = 'none';
-        }
-        const board = document.querySelector('input[name="board"]:checked').value;
-        const sensor = document.querySelector('input[name="sensor"]:checked').value;
-        const sensorEntity = document.getElementById('sensor-entity').value.trim();
-        const diagnostic = document.getElementById('diagnostic').checked;
-        const webServer = document.getElementById('web_server').checked;
-        const bluetoothProxy = document.getElementById('bluetooth_proxy').checked;
+        try {
+            hideError();
+            let devicename = document.getElementById('devicename').value.trim();
+            let friendlyname = document.getElementById('friendlyname').value.trim();
+            if (!devicename) devicename = 'serin-cn105';
+            if (!friendlyname) friendlyname = 'Serin Heat Pump Controller';
+            // New vane and i-See logic
+            const vaneVertical = document.getElementById('vane-vertical').checked;
+            const vaneHorizontal = document.getElementById('vane-horizontal').checked;
+            const isee = document.getElementById('isee-sensor').checked ? 'yes' : 'no';
+            // Determine which YAML to use for vanes
+            let vane;
+            if (vaneVertical && vaneHorizontal) {
+                vane = 'both';
+            } else if (vaneVertical) {
+                vane = 'vertical';
+            } else {
+                vane = 'none';
+            }
+            const board = document.querySelector('input[name="board"]:checked').value;
+            const sensor = document.querySelector('input[name="sensor"]:checked').value;
+            const sensorEntity = document.getElementById('sensor-entity').value.trim();
+            const diagnostic = document.getElementById('diagnostic').checked;
+            const webServer = document.getElementById('web_server').checked;
+            const bluetoothProxy = document.getElementById('bluetooth_proxy').checked;
 
-        // URLs for YAML fragments
-        const urls = {
-            'vertical': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105_nh.yaml',
-            'both': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105.yaml',
-            'none': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105_nv_nh.yaml',
-            'esp32-c6': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/esp32c6.yaml',
-            'esp32-s3': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/esp32s3.yaml',
-            'remote_temp': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/remote_temp.yaml',
-            'wifi': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/wifi.yaml',
-            'web_server': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/web_server.yaml',
-        };
+            // URLs for YAML fragments
+            const urls = {
+                'vertical': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105_nh.yaml',
+                'both': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105.yaml',
+                'none': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105_nv_nh.yaml',
+                'esp32-c6': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/esp32c6.yaml',
+                'esp32-s3': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/esp32s3.yaml',
+                'remote_temp': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/remote_temp.yaml',
+                'wifi': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/wifi.yaml',
+                'web_server': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/web_server.yaml',
+            };
 
-        // Fetch YAML fragments
-        let [climateYaml, boardYaml, wifiYaml, webServerYaml, remoteTempYaml] = await Promise.all([
-            fetchRawYAML(urls[vane]),
-            fetchRawYAML(urls[board]),
-            fetchRawYAML(urls['wifi']),
-            webServer ? fetchRawYAML(urls['web_server']) : Promise.resolve(''),
-            (sensor === 'yes' && sensorEntity) ? fetchRawYAML(urls['remote_temp']) : Promise.resolve('')
-        ]);
+            // Fetch YAML fragments
+            let [climateYaml, boardYaml, wifiYaml, webServerYaml, remoteTempYaml] = await Promise.all([
+                fetchRawYAML(urls[vane]),
+                fetchRawYAML(urls[board]),
+                fetchRawYAML(urls['wifi']),
+                webServer ? fetchRawYAML(urls['web_server']) : Promise.resolve(''),
+                (sensor === 'yes' && sensorEntity) ? fetchRawYAML(urls['remote_temp']) : Promise.resolve('')
+            ]);
 
         // Bluetooth proxy: uncomment if enabled
         if (bluetoothProxy) {
@@ -350,6 +270,11 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
         const yamlStr = jsyaml.dump(merged);
         yamlOut += yamlStr.replace(/\n(\w)/g, '\n\n$1');
         document.getElementById('dynamic-yaml-output').value = yamlOut;
+        } catch (error) {
+            console.error('Error generating YAML:', error);
+            showError('Unable to generate YAML configuration. Please check your internet connection and try again. If the problem persists, the configuration server may be temporarily unavailable.');
+            document.getElementById('dynamic-yaml-output').value = '# Error loading configuration templates.\n# Please check your internet connection and refresh the page.';
+        }
     }
 
     // Debounced version for live preview

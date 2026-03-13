@@ -52,7 +52,25 @@
         <label>Which of the following features does your indoor unit support?</label><br>
         <input type="checkbox" name="vane_vertical" id="vane-vertical" checked> <label for="vane-vertical">Vertical Vanes</label><br>
         <input type="checkbox" name="vane_horizontal" id="vane-horizontal"> <label for="vane-horizontal">Horizontal Vanes</label><br>
+        <input type="checkbox" name="swing_mode" id="swing-mode"> <label for="swing-mode">Swing Mode</label><br>
+        <input type="checkbox" name="dual_setpoint" id="dual-setpoint"> <label for="dual-setpoint">Dual Setpoint</label><br>
         <input type="checkbox" name="isee" id="isee-sensor"> <label for="isee-sensor">i-See Sensor</label><br>
+        <label for="fahrenheit-compat">Fahrenheit Compatibility:</label>
+        <select name="fahrenheit_compat" id="fahrenheit-compat">
+            <option value="disabled" selected>Disabled</option>
+            <option value="standard">Standard</option>
+            <option value="alt">Alt</option>
+        </select><br>
+    </fieldset>
+
+    <!-- Optional Controls Section -->
+    <fieldset class="form-card">
+        <legend><span>⚙️</span> Optional Controls</legend>
+        <label>Enable any optional controls your unit supports:</label><br>
+        <input type="checkbox" name="night_mode" id="night-mode"> <label for="night-mode">Night Mode</label><br>
+        <input type="checkbox" name="air_purifier" id="air-purifier"> <label for="air-purifier">Air Purifier</label><br>
+        <input type="checkbox" name="circulator" id="circulator"> <label for="circulator">Circulator</label><br>
+        <input type="checkbox" name="airflow_control" id="airflow-control"> <label for="airflow-control">Airflow Control</label><br>
     </fieldset>
 
     <!-- Sensor Options Section -->
@@ -73,6 +91,7 @@
         <legend><span>🧪</span> Advanced Options</legend>
         <label>Enable any optional features below:</label><br>
         <input type="checkbox" name="diagnostic" id="diagnostic" value="yes"> <label for="diagnostic">Enable advanced diagnostic sensors?</label><br>
+        <input type="checkbox" name="isu_functions" id="isu-functions" value="yes"> <label for="isu-functions">Enable ISU function controls?</label><br>
         <input type="checkbox" name="web_server" id="web_server" value="yes" checked> <label for="web_server">Enable local web server?</label><br>
         <input type="checkbox" name="bluetooth_proxy" id="bluetooth_proxy" value="yes"> <label for="bluetooth_proxy">Enable Bluetooth proxy?</label><br>
     </fieldset>
@@ -141,13 +160,75 @@
     }
 
     function randomKey() {
-        // 32 bytes, base64 encoded
         const arr = new Uint8Array(32);
         window.crypto.getRandomValues(arr);
-        // Convert to base64
         let binary = '';
         for (let i = 0; i < arr.length; i++) binary += String.fromCharCode(arr[i]);
         return btoa(binary);
+    }
+
+    // Uncomment a YAML block identified by its key.
+    // Handles multi-line blocks that are indented under the key.
+    function uncommentBlock(yaml, key) {
+        const lines = yaml.split('\n');
+        const result = [];
+        let inBlock = false;
+        let blockIndent = 0;
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const startMatch = line.match(new RegExp(`^(\\s*)# (${key}:.*)`));
+            if (startMatch && !inBlock) {
+                inBlock = true;
+                blockIndent = startMatch[1].length;
+                result.push(startMatch[1] + startMatch[2]);
+                continue;
+            }
+            if (inBlock) {
+                const contMatch = line.match(/^(\s*)# (.*)$/);
+                if (contMatch && contMatch[1].length > blockIndent) {
+                    result.push(contMatch[1] + contMatch[2]);
+                    continue;
+                }
+                if (line.match(/^\s*#\s*$/)) {
+                    result.push('');
+                    continue;
+                }
+                inBlock = false;
+            }
+            result.push(line);
+        }
+        return result.join('\n');
+    }
+
+    // Comment out an active YAML block identified by its key.
+    function commentBlock(yaml, key) {
+        const lines = yaml.split('\n');
+        const result = [];
+        let inBlock = false;
+        let blockIndent = 0;
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const startMatch = line.match(new RegExp(`^(\\s*)(${key}:.*)`));
+            if (startMatch && !inBlock && !line.trimStart().startsWith('#')) {
+                inBlock = true;
+                blockIndent = startMatch[1].length;
+                result.push(startMatch[1] + '# ' + startMatch[2]);
+                continue;
+            }
+            if (inBlock) {
+                const trimmed = line.trimStart();
+                const currentIndent = line.length - trimmed.length;
+                if (currentIndent > blockIndent && trimmed.length > 0) {
+                    result.push(line.substring(0, blockIndent) + '# ' + line.substring(blockIndent));
+                    continue;
+                }
+                inBlock = false;
+            }
+            result.push(line);
+        }
+        return result.join('\n');
     }
 
     async function generateDynamicYAML() {
@@ -157,19 +238,9 @@
             let friendlyname = document.getElementById('friendlyname').value.trim();
             if (!devicename) devicename = 'serin-cn105';
             if (!friendlyname) friendlyname = 'Serin Heat Pump Controller';
-            // New vane and i-See logic
             const vaneVertical = document.getElementById('vane-vertical').checked;
             const vaneHorizontal = document.getElementById('vane-horizontal').checked;
             const isee = document.getElementById('isee-sensor').checked ? 'yes' : 'no';
-            // Determine which YAML to use for vanes
-            let vane;
-            if (vaneVertical && vaneHorizontal) {
-                vane = 'both';
-            } else if (vaneVertical) {
-                vane = 'vertical';
-            } else {
-                vane = 'none';
-            }
             const board = document.querySelector('input[name="board"]:checked').value;
             const sensor = document.querySelector('input[name="sensor"]:checked').value;
             const sensorEntity = document.getElementById('sensor-entity').value.trim();
@@ -179,19 +250,17 @@
 
             // URLs for YAML fragments
             const urls = {
-                'vertical': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105_nh.yaml',
-                'both': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105.yaml',
-                'none': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/cn105_nv_nh.yaml',
-                'esp32-c6': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/esp32c6.yaml',
-                'esp32-s3': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/esp32s3.yaml',
-                'remote_temp': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/remote_temp.yaml',
-                'wifi': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/wifi.yaml',
-                'web_server': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/local/esphome/common/web_server.yaml',
+                'cn105':       'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/esphome/common/cn105.yaml',
+                'esp32-c6':    'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/esphome/common/esp32c6.yaml',
+                'esp32-s3':    'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/esphome/common/esp32s3.yaml',
+                'remote_temp': 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/esphome/common/remote_temp.yaml',
+                'wifi':        'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/esphome/common/wifi.yaml',
+                'web_server':  'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/esphome/common/web_server.yaml',
             };
 
             // Fetch YAML fragments
             let [climateYaml, boardYaml, wifiYaml, webServerYaml, remoteTempYaml] = await Promise.all([
-                fetchRawYAML(urls[vane]),
+                fetchRawYAML(urls['cn105']),
                 fetchRawYAML(urls[board]),
                 fetchRawYAML(urls['wifi']),
                 webServer ? fetchRawYAML(urls['web_server']) : Promise.resolve(''),
@@ -201,20 +270,86 @@
         // Bluetooth proxy: uncomment if enabled
         if (bluetoothProxy) {
             boardYaml = boardYaml.replace(/# ?bluetooth_proxy:\s*#?\s*\n#\s+id:\s+bluetooth_proxy/, 'bluetooth_proxy:\n  id: bluetooth_proxy');
-        }        
-        // Remove isee_sensor if not needed or if diagnostic is enabled
-        if (isee === 'no') {
-            climateYaml = climateYaml.replace(/(^|\n)\s*isee_sensor:[\s\S]*?(?=\n\s*#|$)/, '');
         }
-        // Enable diagnostic sensors if checked
+
+        // --- Vane Controls ---
+        // Both vane selects are active by default in cn105.yaml.
+        // Comment out the ones the user doesn't want.
+        if (!vaneVertical) {
+            climateYaml = commentBlock(climateYaml, 'vertical_vane_select');
+        }
+        if (!vaneHorizontal) {
+            climateYaml = commentBlock(climateYaml, 'horizontal_vane_select');
+        }
+
+        // --- Fahrenheit Compatibility ---
+        const fahrenheitCompat = document.getElementById('fahrenheit-compat').value;
+        if (fahrenheitCompat !== 'disabled') {
+            climateYaml = climateYaml.replace(
+                /# fahrenheit_compatibility:\s*\S+/,
+                'fahrenheit_compatibility: ' + fahrenheitCompat
+            );
+        }
+
+        // --- Swing Mode ---
+        if (document.getElementById('swing-mode').checked) {
+            climateYaml = uncommentBlock(climateYaml, 'swing_mode');
+        }
+
+        // --- Dual Setpoint ---
+        if (document.getElementById('dual-setpoint').checked) {
+            climateYaml = climateYaml.replace(
+                /# dual_setpoint:\s*\S+/,
+                'dual_setpoint: true'
+            );
+        }
+
+        // --- Optional Controls ---
+        if (document.getElementById('night-mode').checked) {
+            climateYaml = uncommentBlock(climateYaml, 'night_mode_switch');
+        }
+        if (document.getElementById('air-purifier').checked) {
+            climateYaml = uncommentBlock(climateYaml, 'air_purifier_switch');
+        }
+        if (document.getElementById('circulator').checked) {
+            climateYaml = uncommentBlock(climateYaml, 'circulator_switch');
+        }
+        if (document.getElementById('airflow-control').checked) {
+            climateYaml = uncommentBlock(climateYaml, 'airflow_control_select');
+        }
+
+        // --- i-See Sensor ---
+        if (isee === 'yes') {
+            climateYaml = uncommentBlock(climateYaml, 'isee_sensor');
+        }
+
+        // --- Diagnostic Sensors ---
         if (diagnostic) {
-            // Uncomment all lines between '# compressor_frequency_sensor:' and the next non-comment line or end of block
-            climateYaml = climateYaml.replace(/# (compressor_frequency_sensor:[\s\S]*?)(?=\n[^#\s]|\n\s*\n|$)/g, (match) => {
-                return match.replace(/# ?/g, '');
-            });
+            climateYaml = uncommentBlock(climateYaml, 'compressor_frequency_sensor');
+            climateYaml = uncommentBlock(climateYaml, 'outside_air_temperature_sensor');
+            climateYaml = uncommentBlock(climateYaml, 'input_power_sensor');
+            climateYaml = uncommentBlock(climateYaml, 'kwh_sensor');
+            climateYaml = uncommentBlock(climateYaml, 'runtime_hours_sensor');
+            climateYaml = uncommentBlock(climateYaml, 'hp_uptime_connection_sensor');
+            climateYaml = uncommentBlock(climateYaml, 'stage_sensor');
+            climateYaml = uncommentBlock(climateYaml, 'sub_mode_sensor');
+            climateYaml = uncommentBlock(climateYaml, 'auto_sub_mode_sensor');
         }
-        // Remove 'disabled_by_default: true' if present
+
+        // --- ISU Function Controls ---
+        if (document.getElementById('isu-functions').checked) {
+            climateYaml = uncommentBlock(climateYaml, 'functions_get_button');
+            climateYaml = uncommentBlock(climateYaml, 'functions_set_button');
+            climateYaml = uncommentBlock(climateYaml, 'functions_set_code');
+            climateYaml = uncommentBlock(climateYaml, 'functions_set_value');
+            climateYaml = uncommentBlock(climateYaml, 'functions_sensor');
+        }
+
+        // Remove 'disabled_by_default: true' from enabled sensors
         climateYaml = climateYaml.replace(/\n\s*disabled_by_default:\s*true/g, '');
+
+        // Remove section header comments from output
+        climateYaml = climateYaml.replace(/\n\s*# ---.*---/g, '');
 
         // Parse YAML fragments
         const docList = [boardYaml, climateYaml, wifiYaml, webServerYaml, remoteTempYaml]
@@ -248,7 +383,6 @@
         if (sensor === 'yes' && sensorEntity) {
             substitutions += `\n  remote_temp_sensor: ${sensorEntity}`;
         }
-        // Add wifi and api encryption key after substitutions
         const apiKey = randomKey();
         let wifiBlock = `\nwifi:\n  ssid: !secret wifi_ssid\n  password: !secret wifi_password\n  ap:\n    ssid: \"Serin Setup\"\n    password: \"serinsetup\"`;
         let apiBlock = `\napi:\n  encryption:\n    key: ${apiKey}`;
@@ -257,7 +391,7 @@
         merged.logger = merged.logger || { level: 'INFO' };
         merged.ota = merged.ota || [{ platform: 'esphome' }];
         merged.external_components = merged.external_components || [
-            { source: 'github://akifbayram/MitsubishiCN105ESPHome' }
+            { source: 'github://echavet/MitsubishiCN105ESPHome' }
         ];
         // Remove wifi, api, captive_portal, improv_serial from merged if present (to avoid duplicate keys)
         delete merged.wifi;

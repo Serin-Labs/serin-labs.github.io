@@ -422,14 +422,14 @@ nav .dropdown-menu a:hover {
   height: 64px;
 }
 .platform-card h3 {
-  margin-top: 0;
+  margin: 0;
 }
 .platform-card p {
   color: var(--secondary);
   font-size: 0.95em;
 }
 .platform-card .btn {
-  margin-top: 0.75rem;
+  margin: 0;
 }
 
 /* Flash page platform toggle */

@@ -1,0 +1,32 @@
+<header>
+  <div class="container">
+    <h1><a href="{{ '/' | relative_url }}">serin labs</a></h1>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav>
+      <ul>
+        <li><a href="{{ '/' | relative_url }}" {% if page.nav_active == "home" %}class="active"{% endif %}>Home</a></li>
+        <li><a href="{{ '/flash' | relative_url }}" {% if page.nav_active == "flash" %}class="active"{% endif %}>Flash</a></li>
+        <li><a href="{{ '/wiring' | relative_url }}" {% if page.nav_active == "wiring" %}class="active"{% endif %}>Wiring</a></li>
+        <li class="dropdown">
+          <a href="{{ '/esphome/setup' | relative_url }}" {% if page.nav_active == "esphome" %}class="active"{% endif %}>ESPHome</a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ '/esphome/setup' | relative_url }}">Setup</a></li>
+            <li><a href="{{ '/esphome/generate-yaml' | relative_url }}">YAML Generator</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="{{ '/homekit/setup' | relative_url }}" {% if page.nav_active == "homekit" %}class="active"{% endif %}>HomeKit</a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ '/homekit/setup' | relative_url }}">Setup</a></li>
+            <li><a href="{{ '/homekit/features' | relative_url }}">Features</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

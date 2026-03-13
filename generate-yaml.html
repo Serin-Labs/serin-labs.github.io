@@ -186,7 +186,8 @@
             }
             if (inBlock) {
                 const contMatch = line.match(/^(\s*)# (.*)$/);
-                if (contMatch && contMatch[1].length > blockIndent) {
+                if (contMatch && (contMatch[1].length > blockIndent ||
+                    (contMatch[1].length === blockIndent && contMatch[2].startsWith(' ')))) {
                     result.push(contMatch[1] + contMatch[2]);
                     continue;
                 }

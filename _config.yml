@@ -1,8 +1,8 @@
 title: Serin Heat Pump Controller Kit
 email: akifbayram+serin@gmail.com
 description: >-
-  A simple and easy-to-use kit for Mitsubishi heat pumps.
-  The kit is packaged to be user-friendly and easy to install, making it accessible for anyone looking to improve access to their Mitsubishi HVAC system.
+  Local, cloud-free control for Mitsubishi heat pumps.
+  Choose ESPHome for Home Assistant or native HomeKit for Apple Home.
 baseurl: ""  # the subpath of your site, e.g. /blog
 url: ""  # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: username
@@ -26,3 +26,4 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - docs/

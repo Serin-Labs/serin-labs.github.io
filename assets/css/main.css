@@ -387,6 +387,35 @@ nav .dropdown-menu a:hover {
   background: rgba(255,255,255,0.1);
 }
 
+/* Platform chooser cards */
+.platform-chooser {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.platform-card {
+  flex: 1;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.platform-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.platform-card h3 {
+  margin-top: 0;
+}
+.platform-card p {
+  color: var(--secondary);
+  font-size: 0.95em;
+}
+.platform-card .btn {
+  margin-top: 0.75rem;
+}
+
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   header .container {
@@ -485,5 +514,9 @@ nav .dropdown-menu a:hover {
   .action-btn {
     padding: 0.5em 1em;
     font-size: 0.9em;
+  }
+
+  .platform-chooser {
+    flex-direction: column;
   }
 }

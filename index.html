@@ -5,33 +5,44 @@ nav_active: home
 ---
 
 <div class="home">
-  <h1 id="serin-mitsubishi-esp32-wifi-adapter">Mitsubishi HVAC Controller</h1>
-  <p><strong>This package aims to make it simpler to make your Mitsubishi HVAC unit smarter, more private, and easier to control.</strong> This package brings local, cloud-free control to your HVAC system using community driven open source software.</p>
+  <h1>Mitsubishi HVAC Controller</h1>
+  <p><strong>Local, cloud-free control for your Mitsubishi mini split.</strong> This project brings smart, private HVAC control to your home using open source firmware.</p>
 
-  <h2 id="why-serin">Why?</h2>
+  <h2>Why Serin?</h2>
   <ul>
     <li><strong>100% Local Control</strong> – Your data stays in your home. No cloud, no fees, no privacy worries.</li>
-    <li><strong>Open Source</strong> – Powered by ESPHome and the community. Inspect, modify, and contribute.</li>
+    <li><strong>Open Source</strong> – Inspect, modify, and contribute.</li>
     <li><strong>Compact & Clean</strong> – Installs inside your mini-split for a seamless look.</li>
     <li><strong>DIY or Pre-Assembled</strong> – Build it yourself or order a ready-to-go kit (shop coming soon).</li>
   </ul>
-  <p>Find full <a href="/esphome/setup">setup guides</a> and a <a href="/esphome/generate-yaml">YAML config generator</a> so you can customize your device for features like remote temperature sensors, vane control, and advanced diagnostics.</p>
 
-  <h2 id="get-started">Quick Start</h2>
+  <h2>Choose Your Platform</h2>
+  <div class="platform-chooser">
+    <div class="platform-card">
+      <h3>ESPHome</h3>
+      <p>Best for <strong>Home Assistant</strong> users. Integrates with Home Assistant, MQTT, and other automation platforms. Configurable via YAML.</p>
+      <a href="/flash" class="btn">Flash Firmware</a>
+      <a href="/esphome/setup">Setup Guide</a>
+    </div>
+    <div class="platform-card">
+      <h3>HomeKit</h3>
+      <p>Best for <strong>Apple Home</strong> users. Native HomeKit pairing — no hub, no bridge, no Home Assistant required. Built-in web UI.</p>
+      <a href="/flash" class="btn">Flash Firmware</a>
+      <a href="/homekit/setup">Setup Guide</a>
+    </div>
+  </div>
+
+  <h2>Quick Start</h2>
   <ol>
-    <li><strong>Pick Your Hardware:</strong> Choose from <a href="https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit" target="_blank">M5Stack Atom S3 Lite</a> or <a href="https://shop.m5stack.com/products/m5stack-nanoc6-dev-kit" target="_blank">NanoC6</a>. Pre-assembled kits coming soon.</li>
-    <li><strong>Optional: Flash the Firmware:</strong> Use the <a href="/esphome/generate-yaml">YAML generator</a> and ESPHome Dashboard, or flash via <a href="https://web.esphome.io/" target="_blank">ESPHome Web</a>.</li>
-    <li><strong>Connect to Wi-Fi:</strong> Plug in via USB-C and use the <a href="/esphome/setup">Wi-Fi setup tool</a>, or join the device's Wi-Fi and visit <a href="http://192.168.4.1" target="_blank">192.168.4.1</a>. Enter your Wi-Fi credentials.</li>
-    <li><strong>Install in Your HVAC:</strong> Power off, connect the CN105-to-Grove cable, tuck the device inside, and restore power.</li>
-    <li><strong>Web UI:</strong> Access the device's local IP for direct control. If you don't desire further integration, you can stop here!</li>
-    <li><strong>Integrate with Home Assistant:</strong> The device will appear in ESPHome and be auto-discovered by Home Assistant.</li>
+    <li><strong>Get the Hardware:</strong> <a href="https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit" target="_blank">M5Stack Atom S3 Lite</a> or <a href="https://shop.m5stack.com/products/m5stack-nanoc6-dev-kit" target="_blank">NanoC6</a>, plus a CN105-to-Grove cable. Pre-assembled kits coming soon.</li>
+    <li><strong>Flash the Firmware:</strong> Use the <a href="/flash">flash tool</a> to install ESPHome or HomeKit firmware from your browser.</li>
+    <li><strong>Follow Your Setup Guide:</strong> <a href="/esphome/setup">ESPHome setup</a> or <a href="/homekit/setup">HomeKit setup</a> — connect to Wi-Fi and configure your platform.</li>
+    <li><strong>Install in Your HVAC:</strong> Power off, connect the <a href="/wiring">CN105-to-Grove cable</a>, tuck the device inside, and restore power.</li>
   </ol>
 
-  For more detailed instructions, visit the <a href="/esphome/setup">setup guide</a>.
-
-  <h2 id="disclaimer">Disclaimer & Safety</h2>
+  <h2>Disclaimer & Safety</h2>
   <p>Working on HVAC systems can be risky and may void warranties. Proceed only if you're confident. This project is provided as-is, without warranty or liability.</p>
 
-  <h2 id="gratitude">Gratitude</h2>
-  <p>Special thanks to <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">echavet</a>, the ESPHome community, <a href="https://github.com/SwiCago/HeatPump" target="_blank">SwiCago</a>, and <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank">geoffdavis</a> for their foundational work.</p>
+  <h2>Gratitude</h2>
+  <p>Special thanks to <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">echavet</a>, the ESPHome community, <a href="https://github.com/SwiCago/HeatPump" target="_blank">SwiCago</a>, <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank">geoffdavis</a>, and <a href="https://github.com/HomeSpan/HomeSpan" target="_blank">HomeSpan</a> for their foundational work.</p>
 </div>

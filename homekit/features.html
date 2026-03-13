@@ -1,0 +1,75 @@
+---
+layout: default
+title: "HomeKit Features | Serin Labs"
+nav_active: homekit
+---
+
+<div class="home">
+  <h1>HomeKit Firmware Features</h1>
+  <p>The HomeKit firmware provides native Apple Home integration with a full-featured web UI. No hub, no bridge, no Home Assistant required.</p>
+  <hr>
+
+  <h2>Climate Control</h2>
+  <ul>
+    <li><strong>Modes:</strong> Off, Heat, Cool, Auto, Dry, Fan</li>
+    <li><strong>Temperature:</strong> 0.5&deg;C precision with +/&minus; step buttons</li>
+    <li><strong>Dual Setpoints:</strong> Independent heat/cool thresholds in Auto mode, persisted to flash</li>
+    <li><strong>Fan Speed:</strong> Auto, Quiet, Speed 1&ndash;4</li>
+  </ul>
+  <hr>
+
+  <h2>Vane Control</h2>
+  <ul>
+    <li>Vertical vane positions with swing mode</li>
+    <li>Wide (horizontal) vane positions</li>
+    <li>Controllable via HomeKit or the web UI</li>
+  </ul>
+  <hr>
+
+  <h2>Diagnostics</h2>
+  <ul>
+    <li>Compressor frequency</li>
+    <li>Outside temperature</li>
+    <li>Runtime hours</li>
+    <li>Error codes</li>
+    <li>Sub mode and stage information</li>
+  </ul>
+  <hr>
+
+  <h2>OTA Updates</h2>
+  <ul>
+    <li>Firmware upload via web UI or curl</li>
+    <li>SHA256 integrity verification before applying</li>
+    <li>Automatic rollback if validation fails after update</li>
+  </ul>
+  <hr>
+
+  <h2>Web UI</h2>
+  <p>A single-page interface at <code>http://&lt;device-ip&gt;:8080</code> for full control without Apple devices:</p>
+  <ul>
+    <li>Thermostat mode and temperature control</li>
+    <li>Fan and vane adjustments</li>
+    <li>HomeKit pairing status and QR code</li>
+    <li>Device settings (name, poll interval, log level, &deg;C/&deg;F toggle)</li>
+    <li>Real-time log streaming via WebSocket</li>
+  </ul>
+  <hr>
+
+  <h2>Supported Boards</h2>
+  <table>
+    <thead>
+      <tr><th>Board</th><th>Tested</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>M5Stack NanoC6 (ESP32-C6)</td><td>Yes</td></tr>
+      <tr><td>M5Stack Atom S3 Lite (ESP32-S3)</td><td>Yes</td></tr>
+      <tr><td>Generic ESP32 DevKit</td><td>No</td></tr>
+      <tr><td>ESP32-S3-DevKitC-1</td><td>No</td></tr>
+      <tr><td>ESP32-C3 SuperMini / XIAO</td><td>No</td></tr>
+    </tbody>
+  </table>
+  <hr>
+
+  <h2>Source Code</h2>
+  <p>The HomeKit firmware is open source. See the <a href="https://github.com/akifbayram/mitsubishi-cn105-homekit" target="_blank">GitHub repository</a> for protocol documentation, project structure, and build instructions.</p>
+</div>

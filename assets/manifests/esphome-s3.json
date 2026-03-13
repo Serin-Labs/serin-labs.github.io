@@ -1,0 +1,11 @@
+{
+  "name": "Serin ESPHome (Atom S3 Lite)",
+  "builds": [
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        { "path": "../firmware/esphome/m5atoms3-lite.bin", "offset": 0 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+---
+layout: default
+title: "Flash Firmware | Serin Labs"
+nav_active: flash
+---
+
+<div class="home">
+  <h1>Flash Firmware</h1>
+  <p>Flash ESPHome or HomeKit firmware to your device directly from the browser using a USB cable. No software installation needed.</p>
+
+  <h2>1. Select Your Platform</h2>
+  <div class="platform-toggle">
+    <button id="toggle-esphome" class="active" onclick="selectPlatform('esphome')">ESPHome</button>
+    <button id="toggle-homekit" onclick="selectPlatform('homekit')">HomeKit</button>
+  </div>
+
+  <h2>2. Select Your Board</h2>
+  <label>
+    <input type="radio" name="board" value="s3" checked onchange="updateManifest()">
+    M5Stack Atom S3 Lite (ESP32-S3)
+  </label><br>
+  <label>
+    <input type="radio" name="board" value="c6" onchange="updateManifest()">
+    M5Stack NanoC6 (ESP32-C6)
+  </label>
+
+  <h2>3. Flash</h2>
+  <p>Connect your device via USB-C, then click the button below.</p>
+
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <esp-web-install-button id="flash-button" manifest="/assets/manifests/esphome-s3.json">
+    <button slot="activate" class="btn">Install Firmware</button>
+  </esp-web-install-button>
+
+  <div id="esphome-section" class="flash-section active">
+    <p><em>This installs a default ESPHome configuration with basic climate control, web server, and OTA support. For a custom configuration with remote sensors, vane control, or diagnostics, use the <a href="/esphome/generate-yaml">YAML generator</a> after initial setup.</em></p>
+  </div>
+
+  <div id="homekit-section" class="flash-section">
+    <p><em>This installs the native HomeKit firmware. After flashing, the device creates a Wi-Fi access point for setup — no additional software needed.</em></p>
+  </div>
+
+  <h2>4. Next Steps</h2>
+  <p id="next-steps">
+    <a id="next-steps-link" href="/esphome/setup" class="btn">Continue to ESPHome Setup</a>
+  </p>
+
+  <hr>
+  <h3>Notes</h3>
+  <ul>
+    <li>Requires a Chromium-based browser (Chrome, Edge, Brave) with Web Serial support.</li>
+    <li>Use a USB <strong>data</strong> cable, not a charge-only cable.</li>
+    <li>If your device isn't detected, you may need to install <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank">USB drivers</a>.</li>
+  </ul>
+</div>
+
+<script>
+  var currentPlatform = 'esphome';
+
+  function selectPlatform(platform) {
+    currentPlatform = platform;
+    document.getElementById('toggle-esphome').classList.toggle('active', platform === 'esphome');
+    document.getElementById('toggle-homekit').classList.toggle('active', platform === 'homekit');
+    document.getElementById('esphome-section').classList.toggle('active', platform === 'esphome');
+    document.getElementById('homekit-section').classList.toggle('active', platform === 'homekit');
+    updateManifest();
+    updateNextSteps();
+  }
+
+  function updateManifest() {
+    var board = document.querySelector('input[name="board"]:checked').value;
+    var manifest = '/assets/manifests/' + currentPlatform + '-' + board + '.json';
+    document.getElementById('flash-button').setAttribute('manifest', manifest);
+  }
+
+  function updateNextSteps() {
+    var link = document.getElementById('next-steps-link');
+    if (currentPlatform === 'esphome') {
+      link.href = '/esphome/setup';
+      link.textContent = 'Continue to ESPHome Setup';
+    } else {
+      link.href = '/homekit/setup';
+      link.textContent = 'Continue to HomeKit Setup';
+    }
+  }
+</script>

@@ -1,0 +1,11 @@
+{
+  "name": "Serin ESPHome (NanoC6)",
+  "builds": [
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [
+        { "path": "../firmware/esphome/nanoc6.bin", "offset": 0 }
+      ]
+    }
+  ]
+}

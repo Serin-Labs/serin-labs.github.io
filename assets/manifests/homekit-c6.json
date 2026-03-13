@@ -1,0 +1,11 @@
+{
+  "name": "Serin HomeKit (NanoC6)",
+  "builds": [
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [
+        { "path": "../firmware/homekit/nanoc6.bin", "offset": 0 }
+      ]
+    }
+  ]
+}

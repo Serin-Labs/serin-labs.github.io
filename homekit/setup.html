@@ -1,0 +1,87 @@
+---
+layout: default
+title: "HomeKit Setup | Serin Labs"
+nav_active: homekit
+---
+
+<div class="home">
+  <h1>HomeKit Setup</h1>
+  <p>After flashing the HomeKit firmware, follow these steps to connect your device and pair with Apple Home.</p>
+  <hr>
+
+  <h2>1. Connect to Wi-Fi</h2>
+  <p>On first boot, the device creates a Wi-Fi access point:</p>
+  <ol>
+    <li>Connect to the <strong>Serin-XXXX</strong> network (XXXX = last 4 hex digits of Wi-Fi MAC, password: <code>serinlabs</code>).</li>
+    <li>A captive portal appears — enter your Wi-Fi SSID and password.</li>
+    <li>The device saves credentials and reboots.</li>
+  </ol>
+  <hr>
+
+  <h2>2. Connect to Your HVAC Unit</h2>
+  <ol>
+    <li>Turn off power to your HVAC unit and open the cover to locate the red <strong>CN105 connector</strong>.</li>
+    <li>Plug the <a href="/wiring">CN105 connector into the HVAC unit and Grove connector</a> into the device.</li>
+    <li>Place the device safely inside the unit if needed, reinstall the cover, and restore power.</li>
+  </ol>
+  <hr>
+
+  <h2>3. Pair with Apple Home</h2>
+  <p>Once connected to Wi-Fi:</p>
+  <h3>Option A: Scan QR Code (recommended)</h3>
+  <ol>
+    <li>Open a browser and go to <code>http://&lt;device-ip&gt;:8080</code>.</li>
+    <li>Scan the QR code shown in the HomeKit panel with your iPhone or iPad.</li>
+  </ol>
+  <h3>Option B: Manual Setup Code</h3>
+  <ol>
+    <li>Open the <strong>Home</strong> app on your iPhone or iPad.</li>
+    <li>Tap <strong>+</strong> &gt; <strong>Add Accessory</strong>.</li>
+    <li>Select <strong>Mini Split XXXX</strong> (or tap <strong>More options...</strong>).</li>
+    <li>Enter the setup code shown in the web UI (HomeKit panel &gt; Setup Code).</li>
+  </ol>
+  <hr>
+
+  <h2>4. Access Web UI</h2>
+  <p>The built-in web interface at <code>http://&lt;device-ip&gt;:8080</code> provides:</p>
+  <ul>
+    <li>Thermostat control (mode, temperature, fan speed)</li>
+    <li>Vane control (vertical and wide vane positions)</li>
+    <li>Diagnostics (compressor frequency, outside temp, error codes)</li>
+    <li>Settings (device name, poll interval, temperature unit)</li>
+    <li>Real-time log streaming</li>
+  </ul>
+  <hr>
+
+  <h2>5. OTA Updates</h2>
+  <p>Update firmware over the air without USB access:</p>
+  <ul>
+    <li><strong>Via Web UI:</strong> Navigate to Settings &gt; Firmware Update. The browser verifies integrity before uploading.</li>
+    <li><strong>Via curl:</strong></li>
+  </ul>
+  <pre><code>pio run
+curl --data-binary @.pio/build/nanoc6/firmware.bin \
+     -H "Content-Type: application/octet-stream" \
+     http://&lt;device-ip&gt;:8080/upload</code></pre>
+  <p>After an OTA update, the device validates Wi-Fi and UART communication before confirming the new firmware. If validation fails, it automatically rolls back.</p>
+  <hr>
+
+  <h2>6. Troubleshooting</h2>
+  <h3>Wi-Fi Recovery</h3>
+  <table>
+    <thead>
+      <tr><th>Method</th><th>Details</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Auto AP</strong></td><td>Fallback AP activates after 5 min disconnect. Disables when Wi-Fi reconnects.</td></tr>
+      <tr><td><strong>Recovery page</strong></td><td>Connect to AP, navigate to <code>192.168.4.1:8080</code> for new credentials.</td></tr>
+      <tr><td><strong>Button reset</strong></td><td>10-second long-press on board button erases stored Wi-Fi credentials.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Re-pairing HomeKit</h3>
+  <p>If you need to re-pair, open the web UI and use the "Reset Pairing" button in the HomeKit panel, then pair again from the Home app.</p>
+
+  <h2>Disclaimer</h2>
+  <p>Modifying HVAC systems may void warranties and carries risks. Proceed with care. This project is provided as-is, with no warranties or liability.</p>
+</div>

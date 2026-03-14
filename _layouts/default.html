@@ -4,8 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title | default: site.title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌡️</text></svg>">
+  <link rel="icon" type="image/x-icon" href="{{ '/assets/favicon.ico' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/favicon-16x16.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+  {% seo %}
+  {% feed_meta %}
 </head>
 <body>
   {% include nav.html %}
@@ -16,7 +24,22 @@
 
   <footer>
     <div class="container">
-      <p>serin labs.</p>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <strong><img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" class="brand-icon"> serin labs</strong>
+          <p>Local control for Mitsubishi heat pumps.</p>
+        </div>
+        <div class="footer-links">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/flash' | relative_url }}">Flash</a>
+          <a href="{{ '/wiring' | relative_url }}">Wiring</a>
+          <a href="https://github.com/Serin-Labs" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; {{ 'now' | date: '%Y' }} serin labs. Open source, provided as-is.</p>
+        <p class="trademark-notice">Apple, HomeKit, and Apple Home are trademarks of Apple Inc. This project is not certified by, endorsed by, or affiliated with Apple Inc.</p>
+      </div>
     </div>
   </footer>
 

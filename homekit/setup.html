@@ -1,21 +1,23 @@
 ---
 layout: default
-title: "HomeKit Setup | Serin Labs"
+title: "HomeKit-Compatible Setup | Serin Labs"
+description: "Step-by-step guide to set up HomeKit-compatible firmware and add your Serin controller to Apple Home."
 nav_active: homekit
 ---
 
-<div class="home">
-  <h1>HomeKit Setup</h1>
-  <p>After flashing the HomeKit firmware, follow these steps to connect your device and pair with Apple Home.</p>
+<div class="home theme-homekit">
+  <h1>HomeKit-Compatible Setup</h1>
+  <p>After <a href="/flash">flashing</a> the HomeKit-compatible firmware, follow these steps to connect your device and add it to Apple Home.</p>
   <hr>
 
-  <h2>1. Connect to Wi-Fi</h2>
-  <p>On first boot, the device creates a Wi-Fi access point:</p>
+  <h2>1. Connect to WiFi</h2>
+  <p>On first boot, the device creates a WiFi access point:</p>
   <ol>
-    <li>Connect to the <strong>Serin-XXXX</strong> network (XXXX = last 4 hex digits of Wi-Fi MAC, password: <code>serinlabs</code>).</li>
-    <li>A captive portal appears — enter your Wi-Fi SSID and password.</li>
+    <li>Connect to the <strong>Serin-XXXX</strong> network (XXXX = last 4 hex digits of WiFi MAC, password: <code>serinlabs</code>).</li>
+    <li>A captive portal appears — enter your WiFi SSID and password.</li>
     <li>The device saves credentials and reboots.</li>
   </ol>
+  <img src="https://raw.githubusercontent.com/akifbayram/mitsubishi-cn105-homekit/main/media/recovery.png" alt="WiFi captive portal for entering network credentials" width="300" class="screenshot">
   <hr>
 
   <h2>2. Connect to Your HVAC Unit</h2>
@@ -26,8 +28,9 @@ nav_active: homekit
   </ol>
   <hr>
 
-  <h2>3. Pair with Apple Home</h2>
-  <p>Once connected to Wi-Fi:</p>
+  <h2>3. Add to Apple Home</h2>
+  <img src="https://raw.githubusercontent.com/akifbayram/mitsubishi-cn105-homekit/main/media/homekit.png" alt="HomeKit pairing screen in Apple Home app" width="300" class="screenshot">
+  <p>Once connected to WiFi:</p>
   <h3>Option A: Scan QR Code (recommended)</h3>
   <ol>
     <li>Open a browser and go to <code>http://&lt;device-ip&gt;:8080</code>.</li>
@@ -43,6 +46,7 @@ nav_active: homekit
   <hr>
 
   <h2>4. Access Web UI</h2>
+  <img src="https://raw.githubusercontent.com/akifbayram/mitsubishi-cn105-homekit/main/media/webui.png" alt="Built-in web UI for thermostat control and diagnostics" height="400" class="screenshot">
   <p>The built-in web interface at <code>http://&lt;device-ip&gt;:8080</code> provides:</p>
   <ul>
     <li>Thermostat control (mode, temperature, fan speed)</li>
@@ -63,25 +67,29 @@ nav_active: homekit
 curl --data-binary @.pio/build/nanoc6/firmware.bin \
      -H "Content-Type: application/octet-stream" \
      http://&lt;device-ip&gt;:8080/upload</code></pre>
-  <p>After an OTA update, the device validates Wi-Fi and UART communication before confirming the new firmware. If validation fails, it automatically rolls back.</p>
+  <p>After an OTA update, the device validates WiFi and UART communication before confirming the new firmware. If validation fails, it automatically rolls back.</p>
   <hr>
 
   <h2>6. Troubleshooting</h2>
-  <h3>Wi-Fi Recovery</h3>
+  <h3>WiFi Recovery</h3>
   <table>
     <thead>
       <tr><th>Method</th><th>Details</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>Auto AP</strong></td><td>Fallback AP activates after 5 min disconnect. Disables when Wi-Fi reconnects.</td></tr>
+      <tr><td><strong>Auto AP</strong></td><td>Fallback AP activates after 5 min disconnect. Disables when WiFi reconnects.</td></tr>
       <tr><td><strong>Recovery page</strong></td><td>Connect to AP, navigate to <code>192.168.4.1:8080</code> for new credentials.</td></tr>
-      <tr><td><strong>Button reset</strong></td><td>10-second long-press on board button erases stored Wi-Fi credentials.</td></tr>
+      <tr><td><strong>Button reset</strong></td><td>10-second long-press on board button erases stored WiFi credentials.</td></tr>
     </tbody>
   </table>
 
-  <h3>Re-pairing HomeKit</h3>
-  <p>If you need to re-pair, open the web UI and use the "Reset Pairing" button in the HomeKit panel, then pair again from the Home app.</p>
+  <h3>Re-pairing</h3>
+  <p>If you need to re-pair, open the web UI and use the "Reset Pairing" button in the pairing panel, then add the accessory again from the Home app.</p>
+
+  <h2>Source Code</h2>
+  <p>The HomeKit-compatible firmware is open source. See the <a href="https://github.com/akifbayram/mitsubishi-cn105-homekit" target="_blank">GitHub repository</a> for protocol documentation, project structure, and build instructions.</p>
+  <hr>
 
   <h2>Disclaimer</h2>
-  <p>Modifying HVAC systems may void warranties and carries risks. Proceed with care. This project is provided as-is, with no warranties or liability.</p>
+  <p>This is an independent open-source project. It is not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. Modifying HVAC systems may void warranties and carries risks. Proceed with care. This project is provided as-is, with no warranties or liability.</p>
 </div>

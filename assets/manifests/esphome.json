@@ -1,10 +1,16 @@
 {
-  "name": "Serin ESPHome (Atom S3 Lite)",
+  "name": "Serin ESPHome",
   "builds": [
     {
       "chipFamily": "ESP32-S3",
       "parts": [
         { "path": "https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/firmware/esphome/m5atoms3lite.bin", "offset": 0 }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C6",
+      "parts": [
+        { "path": "https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/firmware/esphome/nanoc6.bin", "offset": 0 }
       ]
     }
   ]

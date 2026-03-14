@@ -1,50 +1,74 @@
 ---
 layout: default
-title: "serin labs: Mitsubishi HVAC Controller"
+title: "Serin Labs: Mitsubishi Heat Pump Controller"
+description: "Cloud-free smart control for Mitsubishi heat pumps. Open source ESPHome and HomeKit-compatible firmware — no cloud required."
 nav_active: home
 ---
 
-<div class="home">
-  <h1>Mitsubishi HVAC Controller</h1>
-  <p><strong>Local, cloud-free control for your Mitsubishi mini split.</strong> This project brings smart, private HVAC control to your home using open source firmware.</p>
-
-  <h2>Why?</h2>
-  <ul>
-    <li><strong>100% Local Control</strong> – Your data stays in your home. No cloud, no fees, no privacy worries.</li>
-    <li><strong>Open Source</strong> – Inspect, modify, and contribute.</li>
-    <li><strong>Compact & Clean</strong> – Installs inside your mini-split for a seamless look.</li>
-    <li><strong>DIY or Pre-Assembled</strong> – Build it yourself or order a ready-to-go kit (shop coming soon).</li>
-  </ul>
-
-  <h2>Choose Your Platform</h2>
-  <div class="platform-chooser">
-    <div class="platform-card">
-      <img src="/assets/esphome-logo.svg" alt="ESPHome logo" class="platform-logo">
-      <h3>ESPHome</h3>
-      <p>Best for <strong>Home Assistant</strong> users. Integrates with Home Assistant, MQTT, and other automation platforms. Configurable via YAML.</p>
-      <a href="/flash" class="btn">Flash Firmware</a>
-      <a href="/esphome/setup">Setup Guide</a>
-    </div>
-    <div class="platform-card">
-      <img src="/assets/homekit-logo.png" alt="HomeKit logo" class="platform-logo">
-      <h3>HomeKit</h3>
-      <p>Best for <strong>Apple Home</strong> users. Native HomeKit pairing — no hub, no bridge, no Home Assistant required. Built-in web UI.</p>
-      <a href="/flash" class="btn">Flash Firmware</a>
-      <a href="/homekit/setup">Setup Guide</a>
-    </div>
+<div class="hero">
+  <h1>Mitsubishi Heat Pump Controller</h1>
+  <p class="hero-lead">Cloud-free smart control with open source firmware.</p>
+  <p class="hero-sub">ESPHome for Home Assistant. HomeKit for Apple Home.</p>
+  <div class="hero-actions">
+    <a href="/flash" class="btn">Flash Firmware</a>
+    <a href="#platforms" class="btn btn-outline" onclick="event.preventDefault(); document.getElementById('platforms').scrollIntoView({behavior:'smooth'})">Choose Platform</a>
   </div>
+</div>
 
-  <h2>Quick Start</h2>
+<div class="features-grid">
+  <div class="feature-card">
+    <div class="feature-icon">🔒</div>
+    <h3>100% Local Control</h3>
+    <p>Your data stays in your home. No cloud, no fees, no privacy worries.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📖</div>
+    <h3>Open Source</h3>
+    <p>Inspect, modify, and contribute to the firmware and tools.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📦</div>
+    <h3>Compact & Clean</h3>
+    <p>Installs inside your mini-split for a seamless look.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🔧</div>
+    <h3>DIY or Pre-Assembled</h3>
+    <p>Build it yourself or order a ready-to-go kit (shop coming soon).</p>
+  </div>
+</div>
+
+<h2 id="platforms">Choose Your Platform</h2>
+<div class="platform-chooser">
+  <div class="platform-card card-esphome">
+    <img src="/assets/esphome-logo.svg" alt="ESPHome logo" class="platform-logo">
+    <h3>ESPHome</h3>
+    <p>Best for <strong>Home Assistant</strong> users. Integrates with Home Assistant, MQTT, and other automation platforms. Configurable via YAML.</p>
+    <a href="/flash" class="btn btn-esphome">Flash Firmware</a>
+    <a href="/esphome/setup" class="setup-link">Setup Guide &rarr;</a>
+  </div>
+  <div class="platform-card card-homekit">
+    <img src="/assets/homekit-logo.svg" alt="Home icon" class="platform-logo">
+    <h3>HomeKit-Compatible</h3>
+    <p>Best for <strong>Apple Home</strong> users. Compatible with Apple Home via the HomeKit protocol — no hub, no bridge, no Home Assistant required.</p>
+    <a href="/flash" class="btn btn-homekit">Flash Firmware</a>
+    <a href="/homekit/setup" class="setup-link">Setup Guide &rarr;</a>
+  </div>
+</div>
+
+<h2>Quick Start</h2>
+<div class="quick-start">
   <ol>
     <li><strong>Get the Hardware:</strong> <a href="https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit" target="_blank">M5Stack Atom S3 Lite</a> or <a href="https://shop.m5stack.com/products/m5stack-nanoc6-dev-kit" target="_blank">NanoC6</a>, plus a CN105-to-Grove cable. Pre-assembled kits coming soon.</li>
     <li><strong>Flash the Firmware:</strong> Use the <a href="/flash">flash tool</a> to install ESPHome or HomeKit firmware from your browser.</li>
-    <li><strong>Follow Your Setup Guide:</strong> <a href="/esphome/setup">ESPHome setup</a> or <a href="/homekit/setup">HomeKit setup</a> — connect to Wi-Fi and configure your platform.</li>
+    <li><strong>Follow Your Setup Guide:</strong> <a href="/esphome/setup">ESPHome setup</a> or <a href="/homekit/setup">HomeKit-compatible setup</a> — connect to WiFi and configure your platform.</li>
     <li><strong>Install in Your HVAC:</strong> Power off, connect the <a href="/wiring">CN105-to-Grove cable</a>, tuck the device inside, and restore power.</li>
   </ol>
-
-  <h2>Disclaimer & Safety</h2>
-  <p>Working on HVAC systems can be risky and may void warranties. Proceed only if you're confident. This project is provided as-is, without warranty or liability.</p>
-
-  <h2>Gratitude</h2>
-  <p>Special thanks to <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">echavet</a>, the ESPHome community, <a href="https://github.com/SwiCago/HeatPump" target="_blank">SwiCago</a>, <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank">geoffdavis</a>, and <a href="https://github.com/HomeSpan/HomeSpan" target="_blank">HomeSpan</a> for their foundational work.</p>
 </div>
+
+<h2>Disclaimer & Safety</h2>
+<p>This is an independent open-source project. It is not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. Working on HVAC systems can be risky and may void warranties. Proceed only if you're confident. This project is provided as-is, without warranty or liability.</p>
+
+<h2>Gratitude</h2>
+<p>Special thanks to <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">echavet</a>, the ESPHome community, <a href="https://github.com/SwiCago/HeatPump" target="_blank">SwiCago</a>, <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank">geoffdavis</a>, and <a href="https://github.com/HomeSpan/HomeSpan" target="_blank">HomeSpan</a> for their foundational work.</p>
+<p>Source code: <a href="https://github.com/akifbayram/mitsubishi-cn105-homekit" target="_blank">HomeKit firmware</a> · <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">ESPHome firmware</a></p>

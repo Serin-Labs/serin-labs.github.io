@@ -1,38 +1,39 @@
 ---
 layout: default
 title: "ESPHome Setup | Serin Labs"
+description: "Step-by-step guide to set up ESPHome firmware on your Serin controller and integrate with Home Assistant."
 nav_active: esphome
 ---
 
-<div class="home">
+<div class="home theme-esphome">
   <h1>ESPHome Setup</h1>
-  <p>After flashing the ESPHome firmware, follow these steps to connect your device and integrate with Home Assistant.</p>
+  <p>After <a href="/flash">flashing</a> the ESPHome firmware, follow these steps to connect your device and integrate with Home Assistant.</p>
   <hr>
 
-  <h2>1. Connect to Wi-Fi</h2>
-  <p>Power up the device and connect it to your Wi-Fi network using either method:</p>
+  <h2>1. Connect to WiFi</h2>
+  <p>Power up the device and connect it to your WiFi network using either method:</p>
 
   <h3>Option A: USB-C</h3>
   <ol>
     <li>Plug the device into your computer.</li>
-    <li>Click the button below to launch browser-based Wi-Fi setup.</li>
+    <li>Click the button below to launch browser-based WiFi setup.</li>
   </ol>
   <script type="module" src="https://cdn.jsdelivr.net/npm/improv-wifi-serial-sdk/dist/web/serial-launch-button.js"></script>
-  <div style="display: flex; justify-content: center; margin: 1em 0;">
+  <div class="widget-center">
     <improv-wifi-serial-launch-button learnMoreUrl="https://www.esphome.io/components/improv_serial.html"></improv-wifi-serial-launch-button>
   </div>
 
-  <h3>Option B: Wi-Fi Access Point</h3>
+  <h3>Option B: WiFi Access Point</h3>
   <ol>
     <li>Plug the device into USB power.</li>
-    <li>Connect to the temporary Wi-Fi network (<code>serin-cn105-XXXX</code>).</li>
+    <li>Connect to the temporary WiFi network (<code>serin-cn105-XXXX</code>).</li>
     <li>If not automatically prompted, go to <a href="http://192.168.4.1">http://192.168.4.1</a>.</li>
-    <li>Enter your Wi-Fi credentials.</li>
+    <li>Enter your WiFi credentials.</li>
   </ol>
   <hr>
 
   <h2>2. Adopt in Home Assistant</h2>
-  <p>Once connected to Wi-Fi, the device will appear in your ESPHome dashboard, ready to adopt.</p>
+  <p>Once connected to WiFi, the device will appear in your ESPHome dashboard, ready to adopt.</p>
   <hr>
 
   <h2>3. Connect to Your HVAC Unit</h2>
@@ -53,6 +54,10 @@ nav_active: esphome
   <h2>5. Customize</h2>
   <p>Use the <a href="/esphome/generate-yaml">YAML generator</a> to create a custom configuration with remote temperature sensors, vane control, and advanced diagnostics.</p>
 
+  <h2>Source Code</h2>
+  <p>The ESPHome firmware is built on the <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a> project. See the repository for configuration options, component documentation, and contributing guidelines.</p>
+  <hr>
+
   <h2>Disclaimer</h2>
-  <p>Modifying HVAC systems may void warranties and carries risks. Proceed with care. This project is provided as-is, with no warranties or liability.</p>
+  <p>This is an independent open-source project. It is not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. Modifying HVAC systems may void warranties and carries risks. Proceed with care. This project is provided as-is, with no warranties or liability.</p>
 </div>

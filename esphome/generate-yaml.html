@@ -1,10 +1,11 @@
 ---
 layout: default
-title: "YAML Generator | Serin Labs"
+title: "ESPHome YAML Generator | Serin Labs"
+description: "Generate a ready-to-use ESPHome YAML configuration for your Mitsubishi heat pump controller."
 nav_active: esphome
 ---
 
-<div class="home">
+<div class="home theme-esphome">
 <!-- Main Heading and Description -->
 <h1>Mitsubishi HVAC Controller YAML</h1>
 <p>Select your choices below to create a ready-to-use ESPHome configuration to use with your Mitsubishi unit.</p>
@@ -36,12 +37,6 @@ nav_active: esphome
         <input type="checkbox" name="swing_mode" id="swing-mode"> <label for="swing-mode">Swing Mode</label><br>
         <input type="checkbox" name="dual_setpoint" id="dual-setpoint"> <label for="dual-setpoint">Dual Setpoint</label><br>
         <input type="checkbox" name="isee" id="isee-sensor"> <label for="isee-sensor">i-See Sensor</label><br>
-        <label for="fahrenheit-compat">Fahrenheit Compatibility:</label>
-        <select name="fahrenheit_compat" id="fahrenheit-compat">
-            <option value="disabled" selected>Disabled</option>
-            <option value="standard">Standard</option>
-            <option value="alt">Alt</option>
-        </select><br>
     </fieldset>
 
     <!-- Optional Controls Section -->
@@ -75,6 +70,12 @@ nav_active: esphome
         <input type="checkbox" name="isu_functions" id="isu-functions" value="yes"> <label for="isu-functions">Enable ISU function controls?</label><br>
         <input type="checkbox" name="web_server" id="web_server" value="yes" checked> <label for="web_server">Enable local web server?</label><br>
         <input type="checkbox" name="bluetooth_proxy" id="bluetooth_proxy" value="yes"> <label for="bluetooth_proxy">Enable Bluetooth proxy?</label><br>
+        <label for="fahrenheit-compat">Fahrenheit Compatibility:</label>
+        <select name="fahrenheit_compat" id="fahrenheit-compat">
+            <option value="disabled" selected>Disabled</option>
+            <option value="standard">Standard</option>
+            <option value="alt">Alt</option>
+        </select><br>
     </fieldset>
 </form>
 
@@ -91,11 +92,6 @@ nav_active: esphome
 <!-- YAML Output -->
 <textarea id="dynamic-yaml-output" rows="22" readonly aria-label="Generated YAML configuration"></textarea>
 
-<style>
-.hidden-field { display: none; }
-.hidden-field.visible { display: block; margin-top: 0.5em; }
-.hidden-field small { display: block; color: #666; font-size: 0.85em; margin-top: 0.25em; }
-</style>
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>

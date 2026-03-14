@@ -1,45 +1,28 @@
 ---
 layout: default
 title: "Flash Firmware | Serin Labs"
+description: "Flash ESPHome or HomeKit-compatible firmware to your ESP32 directly from the browser. No software installation needed."
 nav_active: flash
 ---
 
 <div class="home">
   <h1>Flash Firmware</h1>
-  <p>Flash ESPHome or HomeKit firmware to your device directly from the browser using a USB cable. No software installation needed.</p>
+  <p>Flash ESPHome or HomeKit-compatible firmware to your device directly from the browser using a USB cable. No software installation needed.</p>
 
   <h2>1. Select Your Platform</h2>
   <div class="platform-toggle">
-    <button id="toggle-esphome" class="active" onclick="selectPlatform('esphome')">ESPHome</button>
-    <button id="toggle-homekit" onclick="selectPlatform('homekit')">HomeKit</button>
+    <button id="toggle-esphome" onclick="selectPlatform('esphome')">ESPHome</button>
+    <button id="toggle-homekit" class="active" onclick="selectPlatform('homekit')">HomeKit</button>
   </div>
 
-  <div id="esphome-section" class="flash-section active">
-    <p><em>ESPHome integration for Mitsubishi mini splits via CN105. Supports Home Assistant with full climate control, diagnostics, and OTA updates.</em></p>
+  <h3>Supported Boards</h3>
+  <ul>
+    <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
+    <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
+  </ul>
+  <p>The correct firmware is selected automatically based on your connected device.</p>
 
-    <h2>2. Select Your Board</h2>
-    <label>
-      <input type="radio" name="board" value="s3" checked onchange="updateManifest()">
-      M5Stack Atom S3 Lite (ESP32-S3)
-    </label><br>
-    <label>
-      <input type="radio" name="board" value="c6" onchange="updateManifest()">
-      M5Stack NanoC6 (ESP32-C6)
-    </label>
-  </div>
-
-  <div id="homekit-section" class="flash-section">
-    <p><em>Native HomeKit control for Mitsubishi mini splits via CN105.</em></p>
-
-    <h3>Supported Boards</h3>
-    <ul>
-      <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
-      <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
-    </ul>
-    <p>The correct firmware is selected automatically based on your connected device.</p>
-  </div>
-
-  <h2 id="flash-step-number">3. Flash</h2>
+  <h2>2. Flash</h2>
 
   <h3>Instructions</h3>
   <ol>
@@ -49,22 +32,22 @@ nav_active: flash
   </ol>
 
   <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
-  <esp-web-install-button id="flash-button" manifest="/assets/manifests/esphome-s3.json">
-    <button slot="activate" class="btn">Install Firmware</button>
+  <esp-web-install-button id="flash-button" manifest="https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/firmware/homekit/manifest.json">
+    <button slot="activate" class="btn btn-homekit" id="install-btn">Install Firmware</button>
     <span slot="unsupported">Your browser does not support Web Serial. Use Chrome or Edge.</span>
   </esp-web-install-button>
 
-  <div id="esphome-note" class="flash-section active">
+  <div id="esphome-note" class="flash-section">
     <p><em>This installs a default ESPHome configuration with basic climate control, web server, and OTA support. For a custom configuration with remote sensors, vane control, or diagnostics, use the <a href="/esphome/generate-yaml">YAML generator</a> after initial setup.</em></p>
   </div>
 
-  <div id="homekit-note" class="flash-section">
-    <p><em>This installs the native HomeKit firmware. After flashing, the device creates a Wi-Fi access point for setup — no additional software needed.</em></p>
+  <div id="homekit-note" class="flash-section active">
+    <p><em>This installs the HomeKit-compatible firmware. After flashing, the device creates a WiFi access point for setup.</em></p>
   </div>
 
   <h2>Next Steps</h2>
   <p>
-    <a id="next-steps-link" href="/esphome/setup" class="btn">Continue to ESPHome Setup</a>
+    <a id="next-steps-link" href="/homekit/setup" class="btn btn-homekit">Continue to HomeKit-Compatible Setup</a>
   </p>
 
   <hr>
@@ -77,20 +60,21 @@ nav_active: flash
 </div>
 
 <script>
-  var currentPlatform = 'esphome';
+  var currentPlatform = 'homekit';
 
   function selectPlatform(platform) {
     currentPlatform = platform;
     document.getElementById('toggle-esphome').classList.toggle('active', platform === 'esphome');
     document.getElementById('toggle-homekit').classList.toggle('active', platform === 'homekit');
-    document.getElementById('esphome-section').classList.toggle('active', platform === 'esphome');
-    document.getElementById('homekit-section').classList.toggle('active', platform === 'homekit');
     document.getElementById('esphome-note').classList.toggle('active', platform === 'esphome');
     document.getElementById('homekit-note').classList.toggle('active', platform === 'homekit');
-
-    // Update step number since HomeKit has no board selection step
-    document.getElementById('flash-step-number').textContent = platform === 'esphome' ? '3. Flash' : '2. Flash';
-
+    // Swap button colors
+    var installBtn = document.getElementById('install-btn');
+    var nextBtn = document.getElementById('next-steps-link');
+    installBtn.classList.toggle('btn-esphome', platform === 'esphome');
+    installBtn.classList.toggle('btn-homekit', platform === 'homekit');
+    nextBtn.classList.toggle('btn-esphome', platform === 'esphome');
+    nextBtn.classList.toggle('btn-homekit', platform === 'homekit');
     updateManifest();
     updateNextSteps();
   }
@@ -100,8 +84,7 @@ nav_active: flash
     if (currentPlatform === 'homekit') {
       btn.setAttribute('manifest', 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/firmware/homekit/manifest.json');
     } else {
-      var board = document.querySelector('input[name="board"]:checked').value;
-      btn.setAttribute('manifest', '/assets/manifests/esphome-' + board + '.json');
+      btn.setAttribute('manifest', '/assets/manifests/esphome.json');
     }
   }
 
@@ -112,7 +95,7 @@ nav_active: flash
       link.textContent = 'Continue to ESPHome Setup';
     } else {
       link.href = '/homekit/setup';
-      link.textContent = 'Continue to HomeKit Setup';
+      link.textContent = 'Continue to HomeKit-Compatible Setup';
     }
   }
 </script>

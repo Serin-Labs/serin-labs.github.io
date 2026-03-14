@@ -2,11 +2,10 @@ title: Serin Heat Pump Controller Kit
 email: akifbayram+serin@gmail.com
 description: >-
   Local, cloud-free control for Mitsubishi heat pumps.
-  Choose ESPHome for Home Assistant or native HomeKit for Apple Home.
+  Choose ESPHome for Home Assistant or HomeKit-compatible firmware for Apple Home.
 baseurl: ""  # the subpath of your site, e.g. /blog
-url: ""  # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: username
-github_username:  username
+url: "https://serin-labs.github.io"
+github_username: akifbayram
 
 # Build settings
 markdown: GFM
@@ -16,6 +15,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Exclude from processing.
 exclude:

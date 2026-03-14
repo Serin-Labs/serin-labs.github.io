@@ -4,7 +4,7 @@
     {
       "chipFamily": "ESP32-S3",
       "parts": [
-        { "path": "https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/firmware/esphome/m5atoms3-lite.bin", "offset": 0 }
+        { "path": "https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/firmware/esphome/m5atoms3lite.bin", "offset": 0 }
       ]
     }
   ]

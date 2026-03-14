@@ -14,34 +14,56 @@ nav_active: flash
     <button id="toggle-homekit" onclick="selectPlatform('homekit')">HomeKit</button>
   </div>
 
-  <h2>2. Select Your Board</h2>
-  <label>
-    <input type="radio" name="board" value="s3" checked onchange="updateManifest()">
-    M5Stack Atom S3 Lite (ESP32-S3)
-  </label><br>
-  <label>
-    <input type="radio" name="board" value="c6" onchange="updateManifest()">
-    M5Stack NanoC6 (ESP32-C6)
-  </label>
+  <div id="esphome-section" class="flash-section active">
+    <p><em>ESPHome integration for Mitsubishi mini splits via CN105. Supports Home Assistant with full climate control, diagnostics, and OTA updates.</em></p>
 
-  <h2>3. Flash</h2>
-  <p>Connect your device via USB-C, then click the button below.</p>
+    <h2>2. Select Your Board</h2>
+    <label>
+      <input type="radio" name="board" value="s3" checked onchange="updateManifest()">
+      M5Stack Atom S3 Lite (ESP32-S3)
+    </label><br>
+    <label>
+      <input type="radio" name="board" value="c6" onchange="updateManifest()">
+      M5Stack NanoC6 (ESP32-C6)
+    </label>
+  </div>
+
+  <div id="homekit-section" class="flash-section">
+    <p><em>Native HomeKit control for Mitsubishi mini splits via CN105.</em></p>
+
+    <h3>Supported Boards</h3>
+    <ul>
+      <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
+      <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
+    </ul>
+    <p>The correct firmware is selected automatically based on your connected device.</p>
+  </div>
+
+  <h2 id="flash-step-number">3. Flash</h2>
+
+  <h3>Instructions</h3>
+  <ol>
+    <li>Connect your device to your computer via USB-C.</li>
+    <li>Click <strong>Install Firmware</strong> below and select the serial port.</li>
+    <li>Wait for flashing to complete, then reset the device.</li>
+  </ol>
 
   <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
   <esp-web-install-button id="flash-button" manifest="/assets/manifests/esphome-s3.json">
     <button slot="activate" class="btn">Install Firmware</button>
+    <span slot="unsupported">Your browser does not support Web Serial. Use Chrome or Edge.</span>
   </esp-web-install-button>
 
-  <div id="esphome-section" class="flash-section active">
+  <div id="esphome-note" class="flash-section active">
     <p><em>This installs a default ESPHome configuration with basic climate control, web server, and OTA support. For a custom configuration with remote sensors, vane control, or diagnostics, use the <a href="/esphome/generate-yaml">YAML generator</a> after initial setup.</em></p>
   </div>
 
-  <div id="homekit-section" class="flash-section">
+  <div id="homekit-note" class="flash-section">
     <p><em>This installs the native HomeKit firmware. After flashing, the device creates a Wi-Fi access point for setup — no additional software needed.</em></p>
   </div>
 
-  <h2>4. Next Steps</h2>
-  <p id="next-steps">
+  <h2>Next Steps</h2>
+  <p>
     <a id="next-steps-link" href="/esphome/setup" class="btn">Continue to ESPHome Setup</a>
   </p>
 
@@ -63,14 +85,24 @@ nav_active: flash
     document.getElementById('toggle-homekit').classList.toggle('active', platform === 'homekit');
     document.getElementById('esphome-section').classList.toggle('active', platform === 'esphome');
     document.getElementById('homekit-section').classList.toggle('active', platform === 'homekit');
+    document.getElementById('esphome-note').classList.toggle('active', platform === 'esphome');
+    document.getElementById('homekit-note').classList.toggle('active', platform === 'homekit');
+
+    // Update step number since HomeKit has no board selection step
+    document.getElementById('flash-step-number').textContent = platform === 'esphome' ? '3. Flash' : '2. Flash';
+
     updateManifest();
     updateNextSteps();
   }
 
   function updateManifest() {
-    var board = document.querySelector('input[name="board"]:checked').value;
-    var manifest = '/assets/manifests/' + currentPlatform + '-' + board + '.json';
-    document.getElementById('flash-button').setAttribute('manifest', manifest);
+    var btn = document.getElementById('flash-button');
+    if (currentPlatform === 'homekit') {
+      btn.setAttribute('manifest', 'https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/firmware/homekit/manifest.json');
+    } else {
+      var board = document.querySelector('input[name="board"]:checked').value;
+      btn.setAttribute('manifest', '/assets/manifests/esphome-' + board + '.json');
+    }
   }
 
   function updateNextSteps() {

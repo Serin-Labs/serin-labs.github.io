@@ -1,0 +1,257 @@
+---
+layout: default
+title: "Troubleshooting | Serin Labs"
+description: "Solutions to common issues during flashing, setup, and operation of your Serin Mitsubishi heat pump controller."
+nav_active: troubleshooting
+---
+
+<div class="home">
+  <h1>Troubleshooting</h1>
+  <p>Solutions to common issues during flashing, setup, and operation.</p>
+
+  <h2>Flashing & USB</h2>
+
+  <details>
+    <summary>Device not detected on USB / no serial port appears</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Use a USB <strong>data</strong> cable, not a charge-only cable. Test the cable by transferring files to a phone or another device.</li>
+        <li>Install the <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank">SiLabs USB-to-UART drivers</a> if your OS does not detect the device.</li>
+        <li>Try a different USB port — preferably directly on the computer, not through a hub.</li>
+        <li>Ensure you are using Chrome, Edge, or Brave. Web Serial is not supported in Safari or Firefox.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Flash fails or times out</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Hold the <strong>BOOT</strong> button on the board while initiating the flash.</li>
+        <li>Try a shorter USB cable — long cables can cause communication issues.</li>
+        <li>Close any other serial monitors or programs that may be using the port.</li>
+        <li>Refresh the <a href="/flash">flash page</a> and try again.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>"Browser does not support Web Serial" message</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Use a Chromium-based browser: <strong>Chrome</strong>, <strong>Edge</strong>, or <strong>Brave</strong>.</li>
+        <li>Safari and Firefox do not support Web Serial.</li>
+        <li>On Chrome, ensure the Web Serial API is enabled at <code>chrome://flags/#enable-experimental-web-platform-features</code> if needed.</li>
+      </ul>
+    </div>
+  </details>
+
+  <h2>WiFi & Connectivity</h2>
+
+  <details>
+    <summary>WiFi access point does not appear</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Wait at least 60 seconds after powering on — the AP may take time to start on first boot.</li>
+        <li>Ensure the device is powered by a stable 5V source (at least 1A).</li>
+        <li><strong>ESPHome:</strong> AP name is <code>serin-cn105-XXXX</code> (no password).</li>
+        <li><strong>HomeKit:</strong> AP name is <code>Serin-XXXX</code> (password: <code>serinlabs</code>).</li>
+        <li>If the device was previously configured, it may already be connected to your WiFi. Check your router's DHCP client list.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Device connected to WiFi but cannot find its IP address</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Check your router's DHCP client list for a device named <code>serin-cn105</code> or similar.</li>
+        <li>Use a network scanner like <a href="https://www.fing.com/" target="_blank">Fing</a> or <code>nmap</code>.</li>
+        <li><strong>ESPHome:</strong> The ESPHome dashboard in Home Assistant shows the device IP automatically.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Device keeps disconnecting from WiFi</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Check signal strength — the device may be too far from your access point, especially when installed inside the HVAC unit.</li>
+        <li>Use a <strong>2.4 GHz</strong> network. ESP32 devices do not support 5 GHz WiFi.</li>
+        <li>Avoid DFS channels on your router, which can cause intermittent drops.</li>
+        <li><strong>HomeKit:</strong> The fallback AP activates automatically after 5 minutes of disconnect.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Cannot access captive portal at 192.168.4.1</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Disable mobile data on your phone — it may route traffic away from the AP.</li>
+        <li>Forget other WiFi networks temporarily to ensure your device stays connected to the setup AP.</li>
+        <li><strong>ESPHome:</strong> Try <code>http://192.168.4.1</code> manually in a browser.</li>
+        <li><strong>HomeKit:</strong> Try <code>http://192.168.4.1:8080</code>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <h2>ESPHome / Home Assistant</h2>
+
+  <details>
+    <summary>Device not showing in ESPHome dashboard or Home Assistant</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Ensure the device and Home Assistant are on the <strong>same subnet/VLAN</strong>.</li>
+        <li>Check that mDNS is not blocked by your router or firewall.</li>
+        <li>Try adding the device manually by IP address in the ESPHome dashboard.</li>
+        <li>Verify the device is connected to WiFi (check router DHCP list).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Climate entity shows as "unavailable" in Home Assistant</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Check that the <a href="/wiring">CN105 cable</a> is firmly connected on both ends.</li>
+        <li>Verify the HVAC unit power is on — the device communicates via the unit's control board.</li>
+        <li>Check ESPHome logs for UART communication errors (visit the device IP in a browser or use the ESPHome dashboard logs).</li>
+        <li>Ensure TX/RX wires are not swapped — refer to the <a href="/wiring">wiring reference</a>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>OTA update fails in ESPHome</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Ensure the device is reachable on the network — try pinging its IP.</li>
+        <li>Check available flash space — very large configurations may exceed memory.</li>
+        <li>As a fallback, connect via USB and use the <a href="/flash">flash page</a> to re-flash.</li>
+      </ul>
+    </div>
+  </details>
+
+  <h2>HomeKit / Apple Home</h2>
+
+  <details>
+    <summary>Device not appearing in Apple Home for pairing</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Ensure your iPhone/iPad is on the <strong>same WiFi network</strong> as the device.</li>
+        <li>Try scanning the QR code from the web UI at <code>http://&lt;device-ip&gt;:8080</code>.</li>
+        <li>If the device was previously paired, use <strong>Reset Pairing</strong> in the web UI first.</li>
+        <li>Restart the Home app and try again.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>"Accessory Not Found" or pairing fails</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Reset pairing from the web UI, then try adding the accessory again.</li>
+        <li>Ensure no firewall is blocking mDNS/Bonjour traffic on your network.</li>
+        <li>Reboot the device by unplugging and re-plugging power.</li>
+        <li>Force-close and reopen the Home app on your iPhone/iPad.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Web UI at port 8080 not loading</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Confirm the device IP address in your router's DHCP list.</li>
+        <li>Use <code>http://</code> (not <code>https://</code>) — the device does not support SSL.</li>
+        <li>If the device lost WiFi, it may be in AP mode — connect to the <code>Serin-XXXX</code> network and try <code>http://192.168.4.1:8080</code>.</li>
+      </ul>
+    </div>
+  </details>
+
+  <h2>HVAC / CN105 Connection</h2>
+
+  <details>
+    <summary>CN105 connected but no data / climate entity unavailable</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Verify cable orientation — check the <a href="/wiring">wiring reference</a> for correct pin mapping.</li>
+        <li>Ensure the HVAC unit power is on at the breaker.</li>
+        <li>Confirm your unit has a <strong>CN105</strong> port (not CN110). Not all models have one.</li>
+        <li>Check device logs for UART communication errors.</li>
+        <li>Try reseating the cable on both the CN105 and Grove connector ends.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Temperature readings are wrong or missing</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Some units report 0&deg;C until the compressor runs for the first time — this is normal.</li>
+        <li>For more accurate room temperature, use a <a href="/esphome/generate-yaml">remote temperature sensor</a> from Home Assistant instead of the unit's built-in sensor.</li>
+        <li>Check that the unit is compatible and communicating (other climate controls should work).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Commands sent but HVAC does not respond</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Check TX/RX wiring — they may be swapped. Refer to the <a href="/wiring">wiring reference</a>.</li>
+        <li>Verify the device is receiving 5V power from the CN105 port (a multimeter helps).</li>
+        <li>Some units need 30+ seconds after power-on before accepting serial commands.</li>
+      </ul>
+    </div>
+  </details>
+
+  <h2>Firmware & Recovery</h2>
+
+  <details>
+    <summary>How to factory reset the device</summary>
+    <div class="faq-body">
+      <ul>
+        <li><strong>ESPHome:</strong> Re-flash via USB using the <a href="/flash">flash page</a>. This resets all settings.</li>
+        <li><strong>HomeKit:</strong> A 10-second long-press on the board button erases stored WiFi credentials. To fully reset, re-flash via USB.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>How to switch between ESPHome and HomeKit firmware</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Connect the device via USB-C to your computer.</li>
+        <li>Go to the <a href="/flash">flash page</a> and select the other platform.</li>
+        <li>Flash the firmware — this completely overwrites the existing firmware.</li>
+        <li>WiFi credentials will need to be re-entered after switching.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>OTA update fails or device appears bricked</summary>
+    <div class="faq-body">
+      <ul>
+        <li><strong>USB flash always works as recovery.</strong> Connect via USB-C and use the <a href="/flash">flash page</a>.</li>
+        <li><strong>HomeKit:</strong> The firmware has automatic rollback — if validation fails after an OTA update, it reverts to the previous firmware.</li>
+        <li>If the device is unresponsive, hold the BOOT button while plugging in USB, then flash.</li>
+      </ul>
+    </div>
+  </details>
+
+  <h2>Still Need Help?</h2>
+  <p>If your issue is not listed above:</p>
+  <ul>
+    <li>ESPHome issues: <a href="https://github.com/echavet/MitsubishiCN105ESPHome/issues" target="_blank" rel="noopener">MitsubishiCN105ESPHome issues</a></li>
+    <li>HomeKit issues: <a href="https://github.com/akifbayram/mitsubishi-cn105-homekit/issues" target="_blank" rel="noopener">mitsubishi-cn105-homekit issues</a></li>
+    <li>General questions: <a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">Serin Labs issues</a></li>
+  </ul>
+  <p>When opening an issue, include your device logs, board type, and firmware version to help with diagnosis.</p>
+  <hr>
+
+  <h2>Disclaimer</h2>
+  <p>This is an independent open-source project. It is not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. Modifying HVAC systems may void warranties and carries risks. Proceed with care. This project is provided as-is, with no warranties or liability.</p>
+</div>

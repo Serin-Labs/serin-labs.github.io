@@ -124,13 +124,13 @@ header .container {
   justify-content: space-between;
   align-items: center;
 }
-header h1 {
+header .brand {
   margin: 0;
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
-header h1 a {
+header .brand a {
   color: #fff;
   text-decoration: none;
   display: inline-flex;

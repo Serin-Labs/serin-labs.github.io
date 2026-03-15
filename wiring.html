@@ -7,74 +7,148 @@ nav_active: wiring
 
 <div class="home">
   <h1>Wiring Reference: CN105 to Grove</h1>
-  <img src="https://github.com/akifbayram/mitsubishi-cn105-homekit/raw/main/media/wiring.png" alt="M5Stack NanoC6 with CN105-to-Grove wiring" width="300" class="screenshot">
-  <p>This page provides a reference for wiring an ESP32-based controller (e.g. M5Stack NanoC6) to the CN105 port on a Mitsubishi mini-split heat pump. You can find links to purchase the parts needed to assemble a custom cable below. Pre-assembled cables coming soon.</p>
+  <p>Pinout and wiring reference for connecting an M5Stack Atom S3, S3 Lite, or NanoC6 to a Mitsubishi mini-split CN105 port.</p>
+
+  <section>
+    <h2>Wiring Diagram</h2>
+    <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;width:100%;font-family:'Manrope',system-ui,sans-serif;" role="img">
+      <title>CN105 to Grove Wiring Diagram</title>
+      <desc>Wiring diagram showing connections between the CN105 5-pin JST connector on a Mitsubishi HVAC unit and the 4-pin Grove HY2.0 connector on an ESP32 controller. Black wire: GND to GND. Red wire: 5V to 5V. White wire: CN105 TX to Grove RX (GPIO 2). Yellow wire: CN105 RX to Grove TX (GPIO 1).</desc>
+
+      <!-- Background -->
+      <rect width="700" height="340" fill="#FAFAF8" rx="12"/>
+
+      <!-- CN105 Connector (left) -->
+      <g transform="translate(40,40)">
+        <text x="60" y="-8" text-anchor="middle" fill="#666" font-size="11" font-weight="600">CN105 (HVAC Side)</text>
+        <!-- Connector housing -->
+        <rect x="0" y="0" width="120" height="260" rx="8" fill="#E8E8E4" stroke="#CCC" stroke-width="1.5"/>
+        <rect x="10" y="10" width="100" height="240" rx="4" fill="#F5F5F2" stroke="#DDD" stroke-width="1"/>
+        <!-- Pin 1 indicator -->
+        <g transform="translate(-8, 41)">
+          <polygon points="8,0 0,-5 0,5" fill="#F09A28"/>
+        </g>
+        <text x="-12" y="45" text-anchor="end" fill="#F09A28" font-size="9" font-weight="700">Pin 1</text>
+        <!-- Pin 1 - 12V (greyed out, not used) -->
+        <rect x="25" y="25" width="70" height="32" rx="4" fill="#EAEAEA" stroke="#CCC" stroke-width="1" stroke-dasharray="4,2"/>
+        <text x="60" y="46" text-anchor="middle" fill="#AAA" font-size="11">Pin 1 · 12V</text>
+        <text x="135" y="46" fill="#AAA" font-size="10" font-style="italic">not used</text>
+        <!-- Pin 2 - GND -->
+        <rect x="25" y="70" width="70" height="32" rx="4" fill="#333" stroke="#222" stroke-width="1"/>
+        <text x="60" y="91" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Pin 2 · GND</text>
+        <!-- Pin 3 - 5V -->
+        <rect x="25" y="115" width="70" height="32" rx="4" fill="#E53935" stroke="#C62828" stroke-width="1"/>
+        <text x="60" y="136" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Pin 3 · 5V</text>
+        <!-- Pin 4 - TX -->
+        <rect x="25" y="160" width="70" height="32" rx="4" fill="#F5F5F5" stroke="#CCC" stroke-width="1"/>
+        <text x="60" y="181" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Pin 4 · TX</text>
+        <!-- Pin 5 - RX -->
+        <rect x="25" y="205" width="70" height="32" rx="4" fill="#FFD600" stroke="#F9A825" stroke-width="1"/>
+        <text x="60" y="226" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Pin 5 · RX</text>
+      </g>
+      <text x="100" y="320" text-anchor="middle" fill="#888" font-size="10">JST-PAP-05V-S</text>
+
+      <!-- Grove Connector (right) -->
+      <g transform="translate(540,85)">
+        <text x="60" y="-8" text-anchor="middle" fill="#666" font-size="11" font-weight="600">Grove (Device Side)</text>
+        <!-- Connector housing -->
+        <rect x="0" y="0" width="120" height="215" rx="8" fill="#E8E8E4" stroke="#CCC" stroke-width="1.5"/>
+        <rect x="10" y="10" width="100" height="195" rx="4" fill="#F5F5F2" stroke="#DDD" stroke-width="1"/>
+        <!-- Pin 1 indicator -->
+        <g transform="translate(128, 41)">
+          <polygon points="-8,0 0,-5 0,5" fill="#F09A28"/>
+        </g>
+        <text x="132" y="45" fill="#F09A28" font-size="9" font-weight="700">Pin 1</text>
+        <!-- Pin 1 - GND -->
+        <rect x="25" y="25" width="70" height="32" rx="4" fill="#333" stroke="#222" stroke-width="1"/>
+        <text x="60" y="46" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Pin 1 · GND</text>
+        <!-- Pin 2 - 5V -->
+        <rect x="25" y="70" width="70" height="32" rx="4" fill="#E53935" stroke="#C62828" stroke-width="1"/>
+        <text x="60" y="91" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Pin 2 · 5V</text>
+        <!-- Pin 3 - RX (G2) -->
+        <rect x="25" y="115" width="70" height="32" rx="4" fill="#F5F5F5" stroke="#CCC" stroke-width="1"/>
+        <text x="60" y="136" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Pin 3 · RX</text>
+        <!-- Pin 4 - TX (G1) -->
+        <rect x="25" y="160" width="70" height="32" rx="4" fill="#FFD600" stroke="#F9A825" stroke-width="1"/>
+        <text x="60" y="181" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Pin 4 · TX</text>
+      </g>
+      <text x="600" y="320" text-anchor="middle" fill="#888" font-size="10">HY2.0-4P (Grove)</text>
+
+      <!-- Wiring Lines -->
+      <!-- GND (Black) - CN105 Pin 2 → Grove Pin 1 -->
+      <line x1="135" y1="126" x2="565" y2="130" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+      <rect x="310" y="118" width="80" height="20" rx="4" fill="#333"/>
+      <text x="350" y="132" text-anchor="middle" fill="#FFF" font-size="10" font-weight="600">Black</text>
+
+      <!-- 5V (Red) - CN105 Pin 3 → Grove Pin 2 -->
+      <line x1="135" y1="171" x2="565" y2="175" stroke="#E53935" stroke-width="3" stroke-linecap="round"/>
+      <rect x="310" y="163" width="80" height="20" rx="4" fill="#E53935"/>
+      <text x="350" y="177" text-anchor="middle" fill="#FFF" font-size="10" font-weight="600">Red</text>
+
+      <!-- TX→RX (White) - CN105 Pin 4 → Grove Pin 3 -->
+      <line x1="135" y1="216" x2="565" y2="216" stroke="#999" stroke-width="3" stroke-linecap="round"/>
+      <rect x="310" y="205" width="80" height="20" rx="4" fill="#F0F0F0" stroke="#BBB" stroke-width="1"/>
+      <text x="350" y="219" text-anchor="middle" fill="#555" font-size="10" font-weight="600">White</text>
+
+      <!-- RX→TX (Yellow) - CN105 Pin 5 → Grove Pin 4 -->
+      <line x1="135" y1="261" x2="565" y2="261" stroke="#F9A825" stroke-width="3" stroke-linecap="round"/>
+      <rect x="310" y="250" width="80" height="20" rx="4" fill="#FFD600" stroke="#F9A825" stroke-width="1"/>
+      <text x="350" y="264" text-anchor="middle" fill="#333" font-size="10" font-weight="600">Yellow</text>
+
+      <!-- Data direction labels -->
+      <text x="350" y="150" text-anchor="middle" fill="#888" font-size="9">Ground</text>
+      <text x="350" y="195" text-anchor="middle" fill="#888" font-size="9">Power</text>
+      <text x="350" y="240" text-anchor="middle" fill="#888" font-size="9">HVAC TX → ESP RX</text>
+      <text x="350" y="283" text-anchor="middle" fill="#888" font-size="9">ESP TX → HVAC RX</text>
+    </svg>
+  </section>
 
   <section>
     <h2>Connectors</h2>
-    <ul>
-      <li><strong>JST-PAP-05V-S</strong> – Plugs into the CN105 port on the indoor Mitsubishi HVAC unit</li>
-      <li><strong>HY2.0-4P (Grove connector)</strong> – Connects to the ESP32 controller</li>
-    </ul>
     <img src="/assets/jst_hy20.png" alt="JST PAP-05V-S connector (5-pin white housing) on left and HY2.0-4P Grove connector (4-pin white housing) on right" class="connector-image" />
   </section>
 
   <section>
-    <h2>CN105 (JST-PAP-05V-S) Pinout</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Pin</th>
-          <th>Signal</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>12V</td><td><em>Not used</em></td></tr>
-        <tr><td>2</td><td>GND</td><td>Ground</td></tr>
-        <tr><td>3</td><td>5V</td><td>5V Power</td></tr>
-        <tr><td>4</td><td>TX</td><td>Data output from HVAC (5V logic)</td></tr>
-        <tr><td>5</td><td>RX</td><td>Data input to HVAC (5V logic)</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Grove (HY2.0-4P) Pinout for M5Stack Atom S3, S3 Lite, and NanoC6</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Pin</th>
-          <th>Signal</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>G</td><td>Ground (connects to ESP32 GND)</td></tr>
-        <tr><td>2</td><td>5V</td><td>5V Power (connects to ESP32 5V/VCC)</td></tr>
-        <tr><td>3</td><td>G2</td><td>RX (connects to ESP32 UART RX pin)</td></tr>
-        <tr><td>4</td><td>G1</td><td>TX (connects to ESP32 UART TX pin)</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Pin Mapping (from left to right)</h2>
+    <h2>Connection Reference</h2>
     <table class="pin-mapping-table">
       <thead>
         <tr>
-          <th>Wire Color</th>
-          <th>Grove Pin</th>
-          <th>Signal</th>
+          <th>Wire</th>
           <th>CN105 Pin</th>
+          <th>Signal</th>
+          <th>Grove Pin</th>
           <th>Signal</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="wire-black"><td>Black</td><td>1</td><td>GND</td><td>2</td><td>GND</td></tr>
-        <tr class="wire-red"><td>Red</td><td>2</td><td>5V</td><td>3</td><td>5V</td></tr>
-        <tr class="wire-white"><td>White</td><td>3</td><td>GPIO 2 (RX)</td><td>4</td><td>TX</td></tr>
-        <tr class="wire-yellow"><td>Yellow</td><td>4</td><td>GPIO 1 (TX)</td><td>5</td><td>RX</td></tr>
+        <tr class="wire-black">
+          <td><span style="display:inline-block;width:12px;height:12px;background:#3a3a3a;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Black</td>
+          <td>Pin 2</td>
+          <td>GND</td>
+          <td>Pin 1</td>
+          <td>GND</td>
+        </tr>
+        <tr class="wire-red">
+          <td><span style="display:inline-block;width:12px;height:12px;background:#dc3545;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Red</td>
+          <td>Pin 3</td>
+          <td>5V</td>
+          <td>Pin 2</td>
+          <td>5V</td>
+        </tr>
+        <tr class="wire-white">
+          <td><span style="display:inline-block;width:12px;height:12px;background:#fff;border:1px solid #ccc;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> White</td>
+          <td>Pin 4</td>
+          <td>TX</td>
+          <td>Pin 3</td>
+          <td>RX (GPIO 2)</td>
+        </tr>
+        <tr class="wire-yellow">
+          <td><span style="display:inline-block;width:12px;height:12px;background:#ffc107;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> Yellow</td>
+          <td>Pin 5</td>
+          <td>RX</td>
+          <td>Pin 4</td>
+          <td>TX (GPIO 1)</td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -87,6 +161,48 @@ nav_active: wiring
       <li><a href="https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/110990027/5482567" target="_blank">Grove HY2.0-4P (device side)</a></li>
     </ul>
     <p>Pre-assembled cables coming soon.</p>
+  </section>
+
+  <section>
+    <details>
+      <summary>Detailed Pinout Reference</summary>
+      <div class="faq-body">
+        <h3>CN105 (JST-PAP-05V-S) Pinout</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Pin</th>
+              <th>Signal</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>12V</td><td><em>Not used</em></td></tr>
+            <tr><td>2</td><td>GND</td><td>Ground</td></tr>
+            <tr><td>3</td><td>5V</td><td>5V Power</td></tr>
+            <tr><td>4</td><td>TX</td><td>Data output from HVAC (5V logic)</td></tr>
+            <tr><td>5</td><td>RX</td><td>Data input to HVAC (5V logic)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Grove (HY2.0-4P) Pinout for M5Stack Atom S3, S3 Lite, and NanoC6</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Pin</th>
+              <th>Signal</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>G</td><td>Ground (connects to ESP32 GND)</td></tr>
+            <tr><td>2</td><td>5V</td><td>5V Power (connects to ESP32 5V/VCC)</td></tr>
+            <tr><td>3</td><td>G2</td><td>RX (connects to ESP32 UART RX pin)</td></tr>
+            <tr><td>4</td><td>G1</td><td>TX (connects to ESP32 UART TX pin)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
   </section>
 
   <section>

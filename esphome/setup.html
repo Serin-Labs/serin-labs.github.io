@@ -69,6 +69,15 @@ nav_active: esphome
   <p>Use the <a href="/esphome/generate-yaml">YAML generator</a> to create a custom configuration with remote temperature sensors, vane control, and advanced diagnostics.</p>
   <hr>
 
+  <h2>6. Multiple Indoor Units</h2>
+  <p>If you have more than one indoor head (e.g., a multi-zone system with 3-5 units), you need <strong>one controller per indoor unit</strong> — each unit has its own CN105 port.</p>
+  <ul>
+    <li><strong>Unique names:</strong> Give each device a distinct name in the <a href="/esphome/generate-yaml">YAML generator</a>, such as <code>living-room</code>, <code>bedroom-1</code>, <code>office</code>. The friendly name appears in Home Assistant (e.g., "Living Room", "Bedroom 1").</li>
+    <li><strong>Repeat the setup:</strong> Flash, connect to WiFi, and adopt each device individually. The process is the same for every unit.</li>
+    <li><strong>ESPHome Dashboard:</strong> All your devices appear in a single ESPHome dashboard in Home Assistant, making it easy to manage updates and configurations across your fleet.</li>
+  </ul>
+  <hr>
+
   <h2>Troubleshooting</h2>
   <p>Running into issues? See the <a href="/troubleshooting">troubleshooting guide</a> for solutions to common problems with flashing, WiFi, Home Assistant integration, and HVAC communication.</p>
   <hr>

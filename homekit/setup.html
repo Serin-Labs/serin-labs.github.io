@@ -86,6 +86,15 @@ curl --data-binary @.pio/build/nanoc6/firmware.bin \
   <h3>Re-pairing</h3>
   <p>If you need to re-pair, open the web UI and use the "Reset Pairing" button in the pairing panel, then add the accessory again from the Home app.</p>
   <p>For more troubleshooting tips, see the <a href="/troubleshooting">full troubleshooting guide</a>.</p>
+  <hr>
+
+  <h2>Multiple Indoor Units</h2>
+  <p>If your system has multiple indoor heads, you need <strong>one controller per unit</strong> — each has its own CN105 port.</p>
+  <ul>
+    <li><strong>Independent pairing:</strong> Each device pairs separately to Apple Home. Open the Home app and add each accessory one at a time.</li>
+    <li><strong>Naming:</strong> After pairing, rename each accessory in Apple Home to match the room (e.g., "Living Room AC", "Bedroom AC"). You can also assign each to its corresponding room in the Home app.</li>
+    <li><strong>Repeat the setup:</strong> Flash, connect to WiFi, wire, and pair each device individually. The process is the same for every unit.</li>
+  </ul>
 
   <h2>Source Code</h2>
   <p>The HomeKit-compatible firmware is open source. See the <a href="https://github.com/akifbayram/mitsubishi-cn105-homekit" target="_blank">GitHub repository</a> for protocol documentation, project structure, and build instructions.</p>

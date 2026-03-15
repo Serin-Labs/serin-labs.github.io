@@ -815,6 +815,13 @@ main {
 .hidden-field { display: none; }
 .hidden-field.visible { display: block; margin-top: 0.5em; }
 .hidden-field small { display: block; color: var(--muted); font-size: 0.85em; margin-top: 0.25em; }
+.field-hint {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85em;
+  margin-top: -0.3em;
+  margin-bottom: 0.6em;
+}
 
 /* ===== FAQ / TROUBLESHOOTING ACCORDION ===== */
 details {

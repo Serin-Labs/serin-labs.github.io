@@ -20,7 +20,7 @@ This controller communicates over the **CN105 serial port** found on most Mitsub
 |---|---|---|
 | **Best for** | Home Assistant users | Apple Home users |
 | **Built on** | [MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome) by echavet | [HomeSpan](https://github.com/HomeSpan/HomeSpan) |
-| **Hub required** | Home Assistant | None |
+| **Hub required** | Home Assistant | Apple Home Hub (Apple TV or HomePod) |
 | **Setup guide** | [ESPHome setup](https://serin-labs.github.io/esphome/setup) | [HomeKit setup](https://serin-labs.github.io/homekit/setup) |
 
 ## Quick Start

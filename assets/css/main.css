@@ -501,6 +501,22 @@ th {
   color: var(--secondary);
 }
 
+/* Comparison table */
+.compare-intro {
+  color: var(--secondary);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+.compare-table th.compare-highlight,
+.compare-table td.compare-highlight {
+  background: var(--accent-light);
+  font-weight: 600;
+}
+.compare-table th.compare-highlight {
+  color: var(--accent-hover);
+  font-weight: 700;
+}
+
 .pin-mapping-table {
   width: 100%;
   border-collapse: collapse;

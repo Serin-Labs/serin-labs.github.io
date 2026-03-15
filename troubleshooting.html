@@ -267,3 +267,68 @@ nav_active: troubleshooting
   <h2>Disclaimer</h2>
   <p>This is an independent open-source project. It is not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. Modifying HVAC systems may void warranties and carries risks. Proceed with care. This project is provided as-is, with no warranties or liability.</p>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Device not detected on USB / no serial port appears",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use a USB data cable (not charge-only). Install SiLabs USB-to-UART drivers if your OS does not detect the device. Try a different USB port directly on the computer. Use Chrome, Edge, or Brave — Web Serial is not supported in Safari or Firefox."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Flash fails or times out",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hold the BOOT button on the board while initiating the flash. Try a shorter USB cable. Close any other serial monitors or programs that may be using the port. Refresh the flash page and try again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "WiFi access point does not appear",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wait at least 60 seconds after powering on. Ensure stable 5V power (at least 1A). ESPHome AP name is serin-XXXX (password: serinlabs). HomeKit AP name is Serin-XXXX (password: serinlabs). If previously configured, the device may already be connected to your WiFi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Device keeps disconnecting from WiFi",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check signal strength — the device may be too far from your access point, especially inside the HVAC unit. Use a 2.4 GHz network (ESP32 does not support 5 GHz). Avoid DFS channels on your router."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CN105 connected but no data / climate entity unavailable",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Verify cable orientation using the wiring reference. Ensure the HVAC unit power is on at the breaker. Confirm your unit has a CN105 port (not CN110). Check device logs for UART communication errors. Try reseating the cable on both ends."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to factory reset the device",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ESPHome: Re-flash via USB using the flash page — this resets all settings. HomeKit: A 10-second long-press on the board button erases stored WiFi credentials. To fully reset, re-flash via USB."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How to switch between ESPHome and HomeKit firmware",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Connect the device via USB-C, go to the flash page, select the other platform, and flash. This completely overwrites the existing firmware. WiFi credentials will need to be re-entered after switching."
+      }
+    }
+  ]
+}
+</script>

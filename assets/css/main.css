@@ -965,7 +965,7 @@ details[open] summary::before {
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-  header h1 { font-size: 1.2rem; }
+  header .brand { font-size: 1.2rem; }
 
   .nav-toggle-label { display: block !important; }
   nav {

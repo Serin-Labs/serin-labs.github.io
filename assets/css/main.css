@@ -441,6 +441,55 @@ nav .dropdown-menu a:hover {
   color: var(--secondary);
 }
 
+/* ===== BOARD CHOOSER ===== */
+.board-chooser {
+  display: flex;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.board-card {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--surface);
+  transition: all var(--transition);
+}
+.board-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(240,154,40,0.1);
+}
+.board-card h3 { margin: 0; font-size: 1.1rem; }
+.board-card p {
+  color: var(--secondary);
+  font-size: 0.88em;
+  line-height: 1.5;
+  margin: 0;
+}
+.board-card .btn { margin-top: 0.5rem; }
+.board-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2em 0.7em;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.board-specs {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0;
+}
+
 /* ===== PLATFORM TOGGLE (Flash page) ===== */
 .platform-toggle {
   display: flex;
@@ -970,6 +1019,7 @@ details[open] summary::before {
 
   .features-grid { grid-template-columns: 1fr; }
   .platform-chooser { flex-direction: column; }
+  .board-chooser { flex-direction: column; }
 
   .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table { min-width: 100%; }

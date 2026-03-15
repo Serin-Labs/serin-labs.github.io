@@ -103,10 +103,55 @@ nav_active: home
   </div>
 </div>
 
+<h2 id="boards">Choose Your Board</h2>
+<p class="compare-intro">Both boards are fully supported with ESPHome and HomeKit firmware. Pick the one that fits your priorities.</p>
+<div class="board-chooser">
+  <div class="board-card">
+    <h3>M5Stack NanoC6</h3>
+    <span class="board-badge">Recommended</span>
+    <p>Smallest option with WiFi 6 for better range through HVAC enclosures.</p>
+    <p class="board-specs">ESP32-C6 &middot; WiFi 6 &middot; 23.5 &times; 12 mm &middot; ~$7</p>
+    <a href="https://shop.m5stack.com/products/m5stack-nanoc6-dev-kit" target="_blank" rel="noopener" class="btn">Buy NanoC6</a>
+  </div>
+  <div class="board-card">
+    <h3>M5Stack Atom S3 Lite</h3>
+    <p>More powerful dual-core chip. Widely available.</p>
+    <p class="board-specs">ESP32-S3 &middot; WiFi 4 &middot; 24 &times; 24 mm &middot; ~$8</p>
+    <a href="https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit" target="_blank" rel="noopener" class="btn btn-outline">Buy Atom S3 Lite</a>
+  </div>
+</div>
+<details>
+  <summary>Detailed spec comparison</summary>
+  <div class="faq-body">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>NanoC6</th>
+          <th>Atom S3 Lite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Chip</strong></td><td>ESP32-C6 (RISC-V, 160 MHz)</td><td>ESP32-S3 (dual-core, 240 MHz)</td></tr>
+        <tr><td><strong>WiFi</strong></td><td>WiFi 6 (802.11ax, 2.4 GHz)</td><td>WiFi 4 (802.11n, 2.4 GHz)</td></tr>
+        <tr><td><strong>Size</strong></td><td>23.5 &times; 12 &times; 12.5 mm</td><td>24 &times; 24 &times; 13 mm</td></tr>
+        <tr><td><strong>USB</strong></td><td>USB-C</td><td>USB-C</td></tr>
+        <tr><td><strong>Grove port</strong></td><td>HY2.0-4P</td><td>HY2.0-4P</td></tr>
+        <tr><td><strong>Button</strong></td><td>Yes</td><td>Yes</td></tr>
+        <tr><td><strong>Price</strong></td><td>~$7</td><td>~$8</td></tr>
+        <tr><td><strong>ESPHome</strong></td><td>Full support</td><td>Full support</td></tr>
+        <tr><td><strong>HomeKit</strong></td><td>Full support</td><td>Full support</td></tr>
+      </tbody>
+    </table>
+    <p>Both boards have more than enough processing power for this firmware. The NanoC6 is recommended for most setups due to its smaller size and WiFi 6 radio, which provides better signal through the sheet metal of HVAC enclosures.</p>
+  </div>
+</details>
+<p>For a complete shopping list including cables, see <a href="/parts">What You Need</a>.</p>
+
 <h2>Quick Start</h2>
 <div class="quick-start">
   <ol>
-    <li><strong>Get the Hardware:</strong> <a href="https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit" target="_blank">M5Stack Atom S3 Lite</a> or <a href="https://shop.m5stack.com/products/m5stack-nanoc6-dev-kit" target="_blank">NanoC6</a>, plus a CN105-to-Grove cable. <a href="/compatibility">Check compatibility</a> first. Pre-assembled kits coming soon.</li>
+    <li><strong>Get the Hardware:</strong> <a href="/parts">Board + cable</a> (~$15&ndash;20 total). <a href="/compatibility">Check compatibility</a> first.</li>
     <li><strong>Flash the Firmware:</strong> Use the <a href="/flash">flash tool</a> to install ESPHome or HomeKit firmware from your browser.</li>
     <li><strong>Follow Your Setup Guide:</strong> <a href="/esphome/setup">ESPHome setup</a> or <a href="/homekit/setup">HomeKit-compatible setup</a> — connect to WiFi and configure your platform.</li>
     <li><strong>Install in Your HVAC:</strong> Power off, connect the <a href="/wiring">CN105-to-Grove cable</a>, tuck the device inside, and restore power.</li>

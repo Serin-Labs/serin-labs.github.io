@@ -1,0 +1,135 @@
+---
+layout: default
+title: "What You Need | Serin Labs"
+description: "Complete parts list for the Serin Mitsubishi heat pump controller. One board, one cable — about $15-20 total."
+nav_active: parts
+---
+
+<div class="home">
+  <h1>What You Need</h1>
+  <p>One board, one cable — about $15&ndash;20 total per unit. Everything you need to build a Serin controller.</p>
+
+  <h2>1. ESP32 Board (Required)</h2>
+  <p>Choose one of the two supported boards. Both work with ESPHome and HomeKit firmware.</p>
+
+  <div class="board-chooser">
+    <div class="board-card">
+      <h3>M5Stack NanoC6</h3>
+      <span class="board-badge">Recommended</span>
+      <p>Smallest option with WiFi 6.</p>
+      <p class="board-specs">ESP32-C6 &middot; 23.5 &times; 12 mm &middot; ~$7</p>
+      <a href="https://shop.m5stack.com/products/m5stack-nanoc6-dev-kit" target="_blank" rel="noopener" class="btn">M5Stack Store</a>
+    </div>
+    <div class="board-card">
+      <h3>M5Stack Atom S3 Lite</h3>
+      <p>More powerful dual-core chip.</p>
+      <p class="board-specs">ESP32-S3 &middot; 24 &times; 24 mm &middot; ~$8</p>
+      <a href="https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit" target="_blank" rel="noopener" class="btn btn-outline">M5Stack Store</a>
+    </div>
+  </div>
+  <p>Not sure which board? See the <a href="/#boards">board comparison</a> on the home page.</p>
+
+  <h2>2. CN105-to-Grove Cable (Required)</h2>
+  <p>This cable connects the ESP32 board to your Mitsubishi unit's CN105 port.</p>
+
+  <div class="form-card">
+    <h3>Option A: Pre-assembled Cable</h3>
+    <p>Pre-assembled cables coming soon. Check <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">Discussions</a> for updates.</p>
+  </div>
+
+  <div class="form-card">
+    <h3>Option B: Build Your Own</h3>
+    <p>You can assemble a cable from these parts. See the <a href="/wiring">wiring reference</a> for the pinout.</p>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Part</th>
+            <th>Description</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>JST PAP-05V-S</strong></td>
+            <td>5-pin connector housing (CN105 / HVAC side)</td>
+            <td><a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/pap-05v-s/759977" target="_blank" rel="noopener">DigiKey</a></td>
+          </tr>
+          <tr>
+            <td><strong>Grove HY2.0-4P cable</strong></td>
+            <td>4-pin connector with wire (device side)</td>
+            <td><a href="https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/110990027/5482567" target="_blank" rel="noopener">DigiKey</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>You will also need crimp terminals (JST SPHD-002T-P0.5) and a crimping tool, or you can solder the wires directly.</p>
+  </div>
+
+  <h2>3. USB-C Data Cable (For Flashing)</h2>
+  <p>Needed once to <a href="/flash">flash the firmware</a>. You probably already have one.</p>
+  <ul>
+    <li>Must be a <strong>data</strong> cable, not a charge-only cable.</li>
+    <li>Test it by connecting a phone — if your computer detects it, the cable works.</li>
+  </ul>
+
+  <h2>Shopping List</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>~Price (USD)</th>
+          <th>Where to Buy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ESP32 Board</strong> (NanoC6 or Atom S3 Lite)</td>
+          <td>$7&ndash;8</td>
+          <td><a href="https://shop.m5stack.com/" target="_blank" rel="noopener">M5Stack Store</a></td>
+        </tr>
+        <tr>
+          <td><strong>CN105-to-Grove Cable</strong></td>
+          <td>$5&ndash;10</td>
+          <td><a href="https://www.digikey.com/" target="_blank" rel="noopener">DigiKey</a> (DIY parts)</td>
+        </tr>
+        <tr>
+          <td><strong>USB-C Data Cable</strong></td>
+          <td>&mdash;</td>
+          <td>You likely have one</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align: right; font-weight: 700; background: var(--surface-alt);">Total: ~$15&ndash;20 per unit</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-card">
+    <h3>Multiple Indoor Units?</h3>
+    <p>You need <strong>one board and one cable per indoor head</strong>. Each indoor unit has its own CN105 port. A 3-zone system needs 3 of everything above.</p>
+  </div>
+
+  <details>
+    <summary>Optional accessories</summary>
+    <div class="faq-body">
+      <ul>
+        <li><strong>USB-C data cable</strong> — only needed for initial flashing; after that, updates are done over WiFi (OTA).</li>
+        <li><strong>Label maker or tape</strong> — helpful for labeling cables in multi-unit installations.</li>
+        <li><strong>Multimeter</strong> — useful for verifying 5V power on the CN105 port if troubleshooting.</li>
+      </ul>
+    </div>
+  </details>
+
+  <h2>Next Steps</h2>
+  <ol>
+    <li><a href="/compatibility">Check compatibility</a> — verify your Mitsubishi unit has a CN105 port.</li>
+    <li><a href="/flash">Flash the firmware</a> — install ESPHome or HomeKit firmware from your browser.</li>
+    <li><a href="/wiring">Wire it up</a> — connect the cable to your HVAC unit.</li>
+  </ol>
+
+  <hr>
+  <h2>Disclaimer</h2>
+  <p>Prices are approximate and may vary by region and seller. Links are provided for convenience and are not affiliate links. This project is provided as-is, with no warranties or liability.</p>
+</div>

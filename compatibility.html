@@ -1,0 +1,459 @@
+---
+layout: default
+title: "Compatibility | Serin Labs"
+description: "Check if your Mitsubishi heat pump works with the Serin CN105 controller. Compatible models, unit types, and how to find the CN105 port."
+nav_active: compatibility
+---
+
+<div class="home">
+  <h1>Compatibility</h1>
+  <p>Check whether your Mitsubishi unit is compatible with this controller before you buy.</p>
+
+  <div class="form-card">
+    <h3>Quick Answer</h3>
+    <p>This controller communicates over the <strong>CN105 serial port</strong> found on most <strong>Mitsubishi Electric</strong> indoor units. If your unit has a CN105 connector on its control board, it is almost certainly compatible.</p>
+    <p>A good proxy: if your unit is compatible with <strong>Kumo Cloud</strong> (North America) or <strong>MELCloud</strong> (Europe/global), it has a CN105 port and will work with this project.</p>
+  </div>
+
+  <h2>How to Check Your Unit</h2>
+  <ol>
+    <li><strong>Check your model number.</strong> It is on a label on the indoor unit (usually on the right side behind the front panel). Mitsubishi Electric models start with prefixes like MSZ, MSY, MFZ, MLZ, SLZ, SEZ, SVZ, PEAD, PVA, PKA, PCA, PLA, or PEFY.</li>
+    <li><strong>Look for the CN105 port.</strong> Open the front panel and locate the main control board. The CN105 port is a small white 5-pin connector, usually labeled "CN105" on the PCB. See the <a href="/wiring">wiring reference</a> for what it looks like.</li>
+    <li><strong>Check below.</strong> If your model series is in the compatible table, you are good to go.</li>
+  </ol>
+
+  <h2>Compatible Unit Types</h2>
+  <p>The following Mitsubishi Electric product families have CN105 ports and are compatible. This covers the vast majority of residential and light commercial units.</p>
+
+  <h3>Wall-Mounted (MSZ / MSY Series)</h3>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>Examples</th>
+          <th>Regions</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MSZ-FX, MSZ-GX, MSZ-HX, MSZ-WX, MSZ-EX, MSZ-JX</td>
+          <td>MSZ-FX15NL, MSZ-GX12NL</td>
+          <td>NA (R454B)</td>
+          <td>Newest 2025 low-GWP models</td>
+        </tr>
+        <tr>
+          <td>MSZ-FS</td>
+          <td>MSZ-FS06NA, MSZ-FS09NA, MSZ-FS12NA, MSZ-FS18NA</td>
+          <td>NA</td>
+          <td>Widely confirmed</td>
+        </tr>
+        <tr>
+          <td>MSZ-GS</td>
+          <td>MSZ-GS06NA, MSZ-GS09NA, MSZ-GS12NA, MSZ-GS15NA</td>
+          <td>NA</td>
+          <td>Widely confirmed</td>
+        </tr>
+        <tr>
+          <td>MSZ-GL</td>
+          <td>MSZ-GL06NA, MSZ-GL09NA, MSZ-GL12NA, MSZ-GL15NA, MSZ-GL18NA, MSZ-GL24NA</td>
+          <td>NA, AU</td>
+          <td>Widely confirmed</td>
+        </tr>
+        <tr>
+          <td>MSZ-FH</td>
+          <td>MSZ-FH06NA, MSZ-FH09NA, MSZ-FH12NA, MSZ-FH15NA, MSZ-FH18NA</td>
+          <td>NA, EU</td>
+          <td>Widely confirmed; Hyper-Heat</td>
+        </tr>
+        <tr>
+          <td>MSZ-EF</td>
+          <td>MSZ-EF09NA, MSZ-EF15NA, MSZ-EF25VGK, MSZ-EF42VE</td>
+          <td>NA, EU</td>
+          <td>Designer series</td>
+        </tr>
+        <tr>
+          <td>MSZ-AP</td>
+          <td>MSZ-AP20VGK, MSZ-AP25VGK, MSZ-AP35VGD, MSZ-AP50VGK</td>
+          <td>EU, AU/NZ</td>
+          <td>Widely confirmed</td>
+        </tr>
+        <tr>
+          <td>MSZ-AY</td>
+          <td>MSZ-AY20VGK, MSZ-AY25VGK, MSZ-AY35VGK, MSZ-AY50VGK</td>
+          <td>EU</td>
+          <td>Confirmed</td>
+        </tr>
+        <tr>
+          <td>MSZ-LN</td>
+          <td>MSZ-LN25VG2, MSZ-LN35VGW, MSZ-LN50VG2W</td>
+          <td>EU, NZ</td>
+          <td>Kirigamine Style; some have built-in WiFi on CN110 — CN105 is separate and available</td>
+        </tr>
+        <tr>
+          <td>MSZ-HR</td>
+          <td>MSZ-HR25VF, MSZ-HR35VF, MSZ-HR45VF, MSZ-HR50VF</td>
+          <td>EU</td>
+          <td>Widely confirmed</td>
+        </tr>
+        <tr>
+          <td>MSZ-SF</td>
+          <td>MSZ-SF25VE, MSZ-SF35VE3, MSZ-SF50VE3</td>
+          <td>EU</td>
+          <td>Confirmed</td>
+        </tr>
+        <tr>
+          <td>MSZ-BT, MSZ-DM, MSZ-RW, MSZ-FT, MSZ-GF, MSZ-FD, MSZ-FE, MSZ-GE, MSZ-WR, MSZ-HM, MSZ-JP, MSZ-D</td>
+          <td>Various</td>
+          <td>Various</td>
+          <td>All confirmed via Kumo Cloud / MELCloud / community reports</td>
+        </tr>
+        <tr>
+          <td>MSY (cooling-only)</td>
+          <td>MSY-GL09NA, MSY-GE10VA, MSY-GX18NL</td>
+          <td>NA, Asia</td>
+          <td>Same control board as MSZ equivalents</td>
+        </tr>
+        <tr>
+          <td>MSXY (Asia-Pacific)</td>
+          <td>MSXY-FN10VE, MSXY-FN13VE, MSXY-FP10VG</td>
+          <td>Singapore, Asia</td>
+          <td>Starmex-branded; confirmed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Floor-Mounted (MFZ Series)</h3>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>Examples</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MFZ-KX (R454B), MFZ-KJ, MFZ-KA, MFZ-KT</td>
+          <td>MFZ-KA09NA, MFZ-KJ18NA, MFZ-KT25VG, MFZ-KT35VG</td>
+          <td>Confirmed; some MFZ-KT models report CN104 only — verify CN105 is present</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Ceiling Cassette (MLZ / SLZ Series)</h3>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>Examples</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MLZ-KX (R454B), MLZ-KP, MLZ-KY, MLZ-KA</td>
+          <td>MLZ-KP09NA, MLZ-KP12NA, MLZ-KP18NA, MLZ-KA50VA</td>
+          <td>Confirmed; horizontal vane not available on all models</td>
+        </tr>
+        <tr>
+          <td>SLZ-NL (R454B), SLZ-KA, SLZ-KF</td>
+          <td>SLZ-KA12NA, SLZ-M50FA</td>
+          <td>Four-way cassette; confirmed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Ducted / Air Handlers</h3>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>Examples</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SEZ-NL (R454B), SEZ-KD, SEZ-M</td>
+          <td>SEZ-KD09NA, SEZ-KD25VAQ, SEZ-M50DAL</td>
+          <td>Confirmed; some older SEZ units may need 9600 baud</td>
+        </tr>
+        <tr>
+          <td>SVZ-NL (R454B), SVZ-KP, MVZ-A</td>
+          <td>SVZ-KP18NA, SVZ-KP24NA, SVZ-KP30NA, SVZ-KP36NA</td>
+          <td>Multi-position air handler; confirmed</td>
+        </tr>
+        <tr>
+          <td>PEAD-NL (R454B), PEAD-M, PEAD-RP, PEAD-SP, PEAD-A</td>
+          <td>PEAD-A18AA7, PEAD-M100JAAR1, PEAD-RP100EA2</td>
+          <td>Mid-static ducted; confirmed. Some models have quirks — see notes below.</td>
+        </tr>
+        <tr>
+          <td>PVA-NL (R454B), PVA-A</td>
+          <td>PVA-A18AA7, PVA-A36AA7, PVA-A42AA7</td>
+          <td>Multi-position air handler; confirmed</td>
+        </tr>
+        <tr>
+          <td>PVFY-NAMU</td>
+          <td>PVFY-P36NAMU, PVFY-P54NAMU</td>
+          <td>City Multi air handler; confirmed</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>P-Series (Light Commercial)</h3>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>Examples</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>PKA, PCA, PLA, PEA, PAA</td>
+          <td>PKA-A36KA7, PCA-A30, PLA-A18BA</td>
+          <td>All P-Series indoor units have CN105; confirmed via Kumo Cloud</td>
+        </tr>
+        <tr>
+          <td>PEFY (City Multi)</td>
+          <td>PEFY-P32VMA-E2, PEFY-P100VMA-E</td>
+          <td>Newer City Multi indoor units have native CN105. Older models may need a PAC-IT51AD-E adapter (CN100 → CN105).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Trane / American Standard (Rebranded Mitsubishi)</h3>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Series</th>
+          <th>Examples</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>NAXWST, NTXWPH, NTXMPH, NTXWST</td>
+          <td>NAXWST09A112AB, NTXWPH09B112AA</td>
+          <td>Same hardware as Mitsubishi; confirmed compatible</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Not Compatible</h2>
+  <div class="form-card" style="border-left: 3px solid #E53935;">
+    <h3>Mitsubishi Heavy Industries (SRK, SRC, SRF)</h3>
+    <p><strong>Not compatible.</strong> Mitsubishi Heavy Industries is a <strong>different company</strong> from Mitsubishi Electric. Their units (model numbers starting with SRK, SRC, or SRF) use an entirely different control protocol and do not have CN105 connectors.</p>
+
+    <h3>Ecodan Air-to-Water Heat Pumps</h3>
+    <p><strong>Not compatible with this project.</strong> Ecodan, Zubadan, and Geodan air-to-water units have a CN105 connector physically, but they use a <strong>different serial protocol</strong>. The SwiCago/HeatPump library and this controller do not work with Ecodan units. See <a href="https://github.com/m000c400/Mitsubishi-CN105-Protocol-Decode" target="_blank" rel="noopener">Mitsubishi-CN105-Protocol-Decode</a> for Ecodan-specific projects.</p>
+
+    <h3>Units Without CN105</h3>
+    <ul>
+      <li><strong>Very old units</strong> (pre-2006) may lack the CN105 port entirely.</li>
+      <li><strong>MSZ-HJ series</strong> — CN105 pads exist on the PCB but the connector is not populated. Advanced users have soldered the connector successfully, but this is not recommended for most users.</li>
+      <li><strong>Some China-market models</strong> (MSH-BF, MSZ-ZF) — may lack a populated CN105; soldering required.</li>
+      <li><strong>Lossnay energy recovery ventilators</strong> (LGH series) — not heat pumps; different protocol.</li>
+    </ul>
+  </div>
+
+  <h2>Feature Availability</h2>
+  <p>All compatible units support basic climate control (mode, temperature, fan speed). Some advanced features vary by model.</p>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Availability</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Climate control</strong> (mode, temp, fan)</td>
+          <td>All models</td>
+          <td>Core functionality; always works</td>
+        </tr>
+        <tr>
+          <td><strong>Vertical vane</strong></td>
+          <td>Most wall-mount units</td>
+          <td>Not applicable to ducted units</td>
+        </tr>
+        <tr>
+          <td><strong>Horizontal vane</strong> (wide vane)</td>
+          <td>Some wall-mount units</td>
+          <td>Not all models have motorized horizontal vanes</td>
+        </tr>
+        <tr>
+          <td><strong>Outside air temperature</strong></td>
+          <td>Many models</td>
+          <td>Depends on outdoor unit; may report -63.5&deg;C when compressor is idle (normal). Not available on some multi-zone configurations.</td>
+        </tr>
+        <tr>
+          <td><strong>Compressor frequency</strong></td>
+          <td>Many single-zone systems</td>
+          <td>Often unavailable on multi-split systems. Some models always report 0.</td>
+        </tr>
+        <tr>
+          <td><strong>Input power (W) &amp; energy (kWh)</strong></td>
+          <td>Some models</td>
+          <td>Varies significantly by model. Available on some MSZ-GS, MSZ-HR, MSZ-LN, MSZ-WX models. Not available on many others.</td>
+        </tr>
+        <tr>
+          <td><strong>Runtime hours</strong></td>
+          <td>Some models</td>
+          <td>Available on select models</td>
+        </tr>
+        <tr>
+          <td><strong>i-See sensor</strong></td>
+          <td>Models with i-See hardware</td>
+          <td>Sensor data readable on supported models; direct control not yet available</td>
+        </tr>
+        <tr>
+          <td><strong>Remote temperature sensor</strong></td>
+          <td>Most models (ESPHome only)</td>
+          <td>Override the unit's internal temperature reading with a Home Assistant sensor</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Community Compatibility List</h2>
+  <div class="form-card">
+    <p>The <strong>SwiCago/HeatPump</strong> project maintains the most comprehensive community-verified list of compatible models, with 200+ confirmed units from users worldwide.</p>
+    <p><a href="https://github.com/SwiCago/HeatPump/wiki/Supported-models" target="_blank" rel="noopener"><strong>View the full community compatibility list &rarr;</strong></a></p>
+    <p>Any model confirmed working on the SwiCago wiki will work with this project, since both use the same CN105 serial protocol.</p>
+    <p>Additional model reports can be found in:</p>
+    <ul>
+      <li><a href="https://github.com/SwiCago/HeatPump/issues/13" target="_blank" rel="noopener">SwiCago/HeatPump Issue #13</a> — 260+ community reports</li>
+      <li><a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank" rel="noopener">echavet/MitsubishiCN105ESPHome</a> — ESPHome component with tested model list</li>
+      <li><a href="https://muart-group.github.io/user/supported" target="_blank" rel="noopener">mUART Supported Units</a> — additional confirmed models</li>
+    </ul>
+  </div>
+
+  <h2>Common Questions</h2>
+
+  <details>
+    <summary>I found a CN105 port — is my unit compatible?</summary>
+    <div class="faq-body">
+      <p>Almost certainly yes. If your Mitsubishi Electric indoor unit has a CN105 connector, it uses the same serial protocol that this controller communicates with. Flash the firmware, wire it up, and it should work.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>My unit has CN110 but not CN105 — will it work?</summary>
+    <div class="faq-body">
+      <p>CN110 is where Mitsubishi's own WiFi adapter (MELCloud / Kumo Cloud) connects. It is a <strong>separate port</strong> from CN105. Many newer units have both — CN110 for the factory WiFi module and CN105 for additional serial communication. Look for CN105 elsewhere on the control board. If your unit only has CN110 and no CN105, it is not compatible with this project.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>My unit has CN100 instead of CN105</summary>
+    <div class="faq-body">
+      <p>Some older City Multi (VRF) indoor units have CN100 instead of CN105. You can use a Mitsubishi <strong>PAC-IT51AD-E</strong> or <strong>PAC-IT52AD-E</strong> signal adapter to convert CN100 to a CN105-compatible interface. These adapters are not interchangeable — check which one your unit requires.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>I have a multi-zone system — does it work?</summary>
+    <div class="faq-body">
+      <p>Yes. Each indoor head in a multi-zone system has its own CN105 port. You need <strong>one controller per indoor unit</strong>. The outdoor unit (MXZ series) does not need a controller.</p>
+      <p>Note: some advanced sensors like compressor frequency and outside air temperature may not be available when multiple indoor units share a single outdoor unit.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Is Mitsubishi Heavy Industries the same as Mitsubishi Electric?</summary>
+    <div class="faq-body">
+      <p><strong>No.</strong> They are separate companies within the broader Mitsubishi Group. Mitsubishi Heavy Industries (MHI) makes HVAC units under model numbers starting with SRK, SRC, and SRF. These units use a completely different control protocol and are <strong>not compatible</strong> with this project.</p>
+      <p>This project works only with <strong>Mitsubishi Electric</strong> units (MSZ, MSY, MFZ, MLZ, SLZ, SEZ, SVZ, PEAD, PVA, PKA, PCA, PLA, PEFY prefixes).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>My model is not on any list — can I try it anyway?</summary>
+    <div class="faq-body">
+      <p>If your Mitsubishi Electric unit has a CN105 port, it is worth trying. The serial protocol is standardized across Mitsubishi Electric's product line. If it works, please report your model in the <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">community discussions</a> to help others.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>I have a Trane or American Standard mini-split</summary>
+    <div class="faq-body">
+      <p>Many Trane and American Standard ductless systems are rebranded Mitsubishi Electric units. Models starting with <strong>NAXWST</strong>, <strong>NTXWPH</strong>, <strong>NTXMPH</strong>, or <strong>NTXWST</strong> are Mitsubishi hardware and are compatible.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>What about Ecodan / air-to-water heat pumps?</summary>
+    <div class="faq-body">
+      <p>Mitsubishi Ecodan, Zubadan, and Geodan air-to-water heat pumps have a physical CN105 connector, but they use a <strong>different serial protocol</strong> than air-to-air units. This controller does <strong>not</strong> work with Ecodan units. See the <a href="https://github.com/m000c400/Mitsubishi-CN105-Protocol-Decode" target="_blank" rel="noopener">Mitsubishi-CN105-Protocol-Decode</a> project for Ecodan-specific solutions.</p>
+    </div>
+  </details>
+
+  <h2>Regional Model Numbers</h2>
+  <p>Mitsubishi Electric uses different model suffixes by region for the same hardware. Here is a quick reference:</p>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Region</th>
+          <th>Suffix Pattern</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>North America (R410A)</td>
+          <td>-NA, -NA-U1</td>
+          <td>MSZ-GL09NA, MSZ-EF15NAW-U2</td>
+        </tr>
+        <tr>
+          <td>North America (R454B)</td>
+          <td>-NL</td>
+          <td>MSZ-GX12NL, MSZ-FX15NL</td>
+        </tr>
+        <tr>
+          <td>Europe (R32)</td>
+          <td>-VG, -VGK, -VG2</td>
+          <td>MSZ-AP25VGK, MSZ-LN35VG2W</td>
+        </tr>
+        <tr>
+          <td>Europe (R410A)</td>
+          <td>-VE, -VA, -VF</td>
+          <td>MSZ-SF35VE3, MSZ-HR35VF</td>
+        </tr>
+        <tr>
+          <td>Australia / NZ</td>
+          <td>-VGD, -VGKD, -VAD</td>
+          <td>MSZ-AP35VGD, MSZ-GE25VAD</td>
+        </tr>
+        <tr>
+          <td>Asia / Singapore</td>
+          <td>-VE, -VG (MSXY prefix)</td>
+          <td>MSXY-FN10VE, MSXY-FP13VG</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The regional suffix does not affect CN105 compatibility — the same unit series is compatible across all regions.</p>
+
+  <hr>
+  <h2>Disclaimer</h2>
+  <p>This compatibility information is based on community reports, manufacturer documentation, and open-source project data. It is provided as-is and may not be exhaustive. Compatibility is not guaranteed for every unit. Always verify the presence of a CN105 connector on your specific unit before purchasing hardware. This project is not developed, endorsed, or certified by Mitsubishi Electric Corporation.</p>
+</div>

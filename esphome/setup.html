@@ -8,6 +8,20 @@ nav_active: esphome
 <div class="home theme-esphome">
   <h1>ESPHome Setup</h1>
   <p>After <a href="/flash">flashing</a> the ESPHome firmware, follow these steps to connect your device and integrate with Home Assistant.</p>
+
+  <div class="form-card">
+    <h3>About This Firmware</h3>
+    <p>The ESPHome firmware is powered by echavet's <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a> project, an open source ESPHome component for Mitsubishi heat pumps.</p>
+    <p><strong>Serin Labs adds:</strong></p>
+    <ul>
+      <li>Browser-based flashing — no toolchain required</li>
+      <li>Interactive <a href="/esphome/generate-yaml">YAML generator</a> for custom configurations</li>
+      <li>Pre-built firmware binaries for supported boards</li>
+      <li>Curated default configurations with sensible defaults</li>
+      <li>Wiring guides and setup documentation</li>
+    </ul>
+    <p>In Home Assistant, the device appears as <strong>"Serin Heat Pump Controller"</strong> by default (customizable in the <a href="/esphome/generate-yaml">YAML generator</a>).</p>
+  </div>
   <hr>
 
   <h2>1. Connect to WiFi</h2>
@@ -54,8 +68,6 @@ nav_active: esphome
   <h2>5. Customize</h2>
   <p>Use the <a href="/esphome/generate-yaml">YAML generator</a> to create a custom configuration with remote temperature sensors, vane control, and advanced diagnostics.</p>
 
-  <h2>Source Code</h2>
-  <p>The ESPHome firmware is built on the <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a> project. See the repository for configuration options, component documentation, and contributing guidelines.</p>
   <hr>
 
   <h2>Disclaimer</h2>

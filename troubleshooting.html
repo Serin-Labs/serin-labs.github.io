@@ -54,7 +54,7 @@ nav_active: troubleshooting
       <ul>
         <li>Wait at least 60 seconds after powering on — the AP may take time to start on first boot.</li>
         <li>Ensure the device is powered by a stable 5V source (at least 1A).</li>
-        <li><strong>ESPHome:</strong> AP name is <code>serin-cn105-XXXX</code> (no password).</li>
+        <li><strong>ESPHome:</strong> AP name is <code>serin-XXXX</code> (password: <code>serinlabs</code>).</li>
         <li><strong>HomeKit:</strong> AP name is <code>Serin-XXXX</code> (password: <code>serinlabs</code>).</li>
         <li>If the device was previously configured, it may already be connected to your WiFi. Check your router's DHCP client list.</li>
       </ul>
@@ -65,7 +65,7 @@ nav_active: troubleshooting
     <summary>Device connected to WiFi but cannot find its IP address</summary>
     <div class="faq-body">
       <ul>
-        <li>Check your router's DHCP client list for a device named <code>serin-cn105</code> or similar.</li>
+        <li>Check your router's DHCP client list for a device named <code>serin</code> or similar.</li>
         <li>Use a network scanner like <a href="https://www.fing.com/" target="_blank">Fing</a> or <code>nmap</code>.</li>
         <li><strong>ESPHome:</strong> The ESPHome dashboard in Home Assistant shows the device IP automatically.</li>
       </ul>
@@ -99,13 +99,25 @@ nav_active: troubleshooting
   <h2>ESPHome / Home Assistant</h2>
 
   <details>
-    <summary>Device not showing in ESPHome dashboard or Home Assistant</summary>
+    <summary>Device not showing as "Discovered" in ESPHome dashboard</summary>
     <div class="faq-body">
       <ul>
+        <li>Verify the device is connected to WiFi — check your router's DHCP client list for a device named <code>serin</code>.</li>
         <li>Ensure the device and Home Assistant are on the <strong>same subnet/VLAN</strong>.</li>
-        <li>Check that mDNS is not blocked by your router or firewall.</li>
-        <li>Try adding the device manually by IP address in the ESPHome dashboard.</li>
-        <li>Verify the device is connected to WiFi (check router DHCP list).</li>
+        <li>Check that mDNS is not blocked by your router or firewall. Some enterprise networks and certain UniFi configurations can block mDNS.</li>
+        <li>Try restarting the ESPHome add-on in Home Assistant (Settings → Add-ons → ESPHome → Restart).</li>
+        <li>As a fallback, add the device manually by IP address in the ESPHome dashboard.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details>
+    <summary>Clicked "Adopt" but install fails or times out</summary>
+    <div class="faq-body">
+      <ul>
+        <li>Ensure the device is reachable on the network — try pinging its IP address.</li>
+        <li>Check that the ESPHome add-on has enough resources — the first compile can be memory-intensive.</li>
+        <li>If OTA fails, connect the device via USB and re-flash from the <a href="/flash">flash page</a>, then re-adopt.</li>
       </ul>
     </div>
   </details>

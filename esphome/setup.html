@@ -20,34 +20,47 @@ nav_active: esphome
       <li>Curated default configurations with sensible defaults</li>
       <li>Wiring guides and setup documentation</li>
     </ul>
-    <p>In Home Assistant, the device appears as <strong>"Serin Heat Pump Controller"</strong> by default (customizable in the <a href="/esphome/generate-yaml">YAML generator</a>).</p>
+    <p>In Home Assistant, the device appears as <strong>"Serin"</strong> by default (customizable in the <a href="/esphome/generate-yaml">YAML generator</a>).</p>
   </div>
   <hr>
 
   <h2>1. Connect to WiFi</h2>
-  <p>Power up the device and connect it to your WiFi network using either method:</p>
+  <p>Power up the device and connect it to your WiFi network using one of these methods:</p>
 
-  <h3>Option A: USB-C</h3>
+  <h3>Option A: During Flashing (Recommended)</h3>
+  <p>If you just flashed the firmware from the <a href="/flash">flash page</a>, the flasher prompts you to configure WiFi immediately — enter your credentials and the device connects before you unplug USB. If you already completed this step, skip to <a href="#adopt">Step 2</a>.</p>
+
+  <h3>Option B: USB-C (Improv Serial)</h3>
+  <p>For a device that is already flashed but needs new WiFi credentials:</p>
   <ol>
-    <li>Plug the device into your computer.</li>
-    <li>Click the button below to launch browser-based WiFi setup.</li>
+    <li>Plug the device into your computer via USB-C.</li>
+    <li>Click the button below, select the serial port, and enter your WiFi credentials.</li>
   </ol>
   <script type="module" src="https://cdn.jsdelivr.net/npm/improv-wifi-serial-sdk/dist/web/serial-launch-button.js"></script>
   <div class="widget-center">
     <improv-wifi-serial-launch-button learnMoreUrl="https://www.esphome.io/components/improv_serial.html"></improv-wifi-serial-launch-button>
   </div>
 
-  <h3>Option B: WiFi Access Point</h3>
+  <h3>Option C: WiFi Access Point</h3>
+  <p>If USB is not available, the device creates a temporary WiFi network on first boot:</p>
   <ol>
     <li>Plug the device into USB power.</li>
-    <li>Connect to the temporary WiFi network (<code>serin-cn105-XXXX</code>).</li>
+    <li>Connect to the temporary WiFi network (<code>serin-XXXX</code>).</li>
     <li>If not automatically prompted, go to <a href="http://192.168.4.1">http://192.168.4.1</a>.</li>
     <li>Enter your WiFi credentials.</li>
   </ol>
   <hr>
 
-  <h2>2. Adopt in Home Assistant</h2>
-  <p>Once connected to WiFi, the device will appear in your ESPHome dashboard, ready to adopt.</p>
+  <h2 id="adopt">2. Adopt in ESPHome Dashboard</h2>
+  <p>Once the device connects to WiFi, it broadcasts its presence on your network. The ESPHome Dashboard discovers it automatically.</p>
+  <ol>
+    <li>Open the <strong>ESPHome Dashboard</strong> in Home Assistant (Settings → Add-ons → ESPHome).</li>
+    <li>The device appears as a <strong>Discovered</strong> tile. If you don't see it, check that the device and Home Assistant are on the same network.</li>
+    <li>Click <strong>Adopt</strong> and assign a descriptive name (e.g., <code>living-room</code>).</li>
+    <li>Click <strong>Install</strong> to push a personalized configuration over WiFi. This generates unique encryption keys and takes a few minutes to compile and upload.</li>
+    <li>After installation, the device reboots and shows as <strong>Online</strong> in the dashboard.</li>
+  </ol>
+  <p>Home Assistant then auto-discovers the adopted device — look for a notification under Settings → Devices & Services and click <strong>Configure</strong> to add it.</p>
   <hr>
 
   <h2>3. Connect to Your HVAC Unit</h2>

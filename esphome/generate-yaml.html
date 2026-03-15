@@ -20,9 +20,9 @@ nav_active: esphome
     <fieldset class="form-card">
         <legend><span>🛠️</span> Device</legend>
         <label for="devicename">Name:</label><br>
-        <input type="text" name="devicename" id="devicename" placeholder="serin-cn105"><br>
+        <input type="text" name="devicename" id="devicename" placeholder="serin"><br>
         <label for="friendlyname">Friendly Name:</label><br>
-        <input type="text" name="friendlyname" id="friendlyname" placeholder="Serin Heat Pump Controller"><br>
+        <input type="text" name="friendlyname" id="friendlyname" placeholder="Serin"><br>
         <small class="field-hint">For multi-unit setups, give each device a unique name — e.g., <code>bedroom-1</code> / "Bedroom 1", <code>office</code> / "Office".</small>
         <label>Which board?</label><br>
         <input type="radio" name="board" value="esp32-s3" id="board-s3" checked> <label for="board-s3">M5Stack Atom S3 Lite (ESP32-S3)</label><br>
@@ -258,8 +258,8 @@ nav_active: esphome
             hideError();
             let devicename = document.getElementById('devicename').value.trim();
             let friendlyname = document.getElementById('friendlyname').value.trim();
-            if (!devicename) devicename = 'serin-cn105';
-            if (!friendlyname) friendlyname = 'Serin Heat Pump Controller';
+            if (!devicename) devicename = 'serin';
+            if (!friendlyname) friendlyname = 'Serin';
             const vaneVertical = document.getElementById('vane-vertical').checked;
             const vaneHorizontal = document.getElementById('vane-horizontal').checked;
             const isee = document.getElementById('isee-sensor').checked ? 'yes' : 'no';
@@ -406,7 +406,7 @@ nav_active: esphome
             substitutions += `\n  remote_temp_sensor: ${sensorEntity}`;
         }
         const apiKey = randomKey();
-        let wifiBlock = `\nwifi:\n  ssid: !secret wifi_ssid\n  password: !secret wifi_password\n  ap:\n    ssid: \"Serin Setup\"\n    password: \"serinsetup\"`;
+        let wifiBlock = `\nwifi:\n  ssid: !secret wifi_ssid\n  password: !secret wifi_password\n  ap:\n    ssid: \"Serin Setup\"\n    password: \"serinlabs\"`;
         let apiBlock = `\napi:\n  encryption:\n    key: ${apiKey}`;
 
         // Add logger, ota, external_components if not present

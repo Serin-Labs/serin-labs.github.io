@@ -831,6 +831,15 @@ main {
 .hidden-field { display: none; }
 .hidden-field.visible { display: block; margin-top: 0.5em; }
 .hidden-field small { display: block; color: var(--muted); font-size: 0.85em; margin-top: 0.25em; }
+.option-row { margin-bottom: 0.25em; }
+.option-desc {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82em;
+  line-height: 1.4;
+  margin: -0.1em 0 0.4em 1.75em;
+  padding: 0;
+}
 .field-hint {
   display: block;
   color: var(--muted);

@@ -32,22 +32,49 @@ nav_active: esphome
     <!-- Airflow Features Section -->
     <fieldset class="form-card">
         <legend><span>🌀</span> Indoor HVAC Unit Features</legend>
-        <label>Which of the following features does your indoor unit support?</label><br>
-        <input type="checkbox" name="vane_vertical" id="vane-vertical" checked> <label for="vane-vertical">Vertical Vanes</label><br>
-        <input type="checkbox" name="vane_horizontal" id="vane-horizontal"> <label for="vane-horizontal">Horizontal Vanes</label><br>
-        <input type="checkbox" name="swing_mode" id="swing-mode"> <label for="swing-mode">Swing Mode</label><br>
-        <input type="checkbox" name="dual_setpoint" id="dual-setpoint"> <label for="dual-setpoint">Dual Setpoint</label><br>
-        <input type="checkbox" name="isee" id="isee-sensor"> <label for="isee-sensor">i-See Sensor</label><br>
+        <label>Which of the following features does your indoor unit support?</label>
+        <div class="option-row">
+            <input type="checkbox" name="vane_vertical" id="vane-vertical" checked aria-describedby="vane-vertical-desc"> <label for="vane-vertical">Vertical Vanes</label>
+            <small class="option-desc" id="vane-vertical-desc">Up/down airflow direction control via vertical vane position.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="vane_horizontal" id="vane-horizontal" aria-describedby="vane-horizontal-desc"> <label for="vane-horizontal">Horizontal Vanes</label>
+            <small class="option-desc" id="vane-horizontal-desc">Left/right airflow direction control via horizontal vane position.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="swing_mode" id="swing-mode" aria-describedby="swing-mode-desc"> <label for="swing-mode">Swing Mode</label>
+            <small class="option-desc" id="swing-mode-desc">Continuous vane swing for wider air distribution.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="dual_setpoint" id="dual-setpoint" aria-describedby="dual-setpoint-desc"> <label for="dual-setpoint">Dual Setpoint</label>
+            <small class="option-desc" id="dual-setpoint-desc">Separate heating and cooling temperature targets in Auto mode.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="isee" id="isee-sensor" aria-describedby="isee-sensor-desc"> <label for="isee-sensor">i-See Sensor</label>
+            <small class="option-desc" id="isee-sensor-desc">Mitsubishi's infrared occupancy sensor for directed airflow to detected occupants.</small>
+        </div>
     </fieldset>
 
     <!-- Optional Controls Section -->
     <fieldset class="form-card">
         <legend><span>⚙️</span> Optional Controls</legend>
-        <label>Enable any optional controls your unit supports:</label><br>
-        <input type="checkbox" name="night_mode" id="night-mode"> <label for="night-mode">Night Mode</label><br>
-        <input type="checkbox" name="air_purifier" id="air-purifier"> <label for="air-purifier">Air Purifier</label><br>
-        <input type="checkbox" name="circulator" id="circulator"> <label for="circulator">Circulator</label><br>
-        <input type="checkbox" name="airflow_control" id="airflow-control"> <label for="airflow-control">Airflow Control</label><br>
+        <label>Enable any optional controls your unit supports:</label>
+        <div class="option-row">
+            <input type="checkbox" name="night_mode" id="night-mode" aria-describedby="night-mode-desc"> <label for="night-mode">Night Mode</label>
+            <small class="option-desc" id="night-mode-desc">Reduced fan speed and dimmed display for quiet nighttime operation.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="air_purifier" id="air-purifier" aria-describedby="air-purifier-desc"> <label for="air-purifier">Air Purifier</label>
+            <small class="option-desc" id="air-purifier-desc">Control the unit's built-in air purifier, if your model is equipped.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="circulator" id="circulator" aria-describedby="circulator-desc"> <label for="circulator">Circulator</label>
+            <small class="option-desc" id="circulator-desc">Fan-only circulation mode without heating or cooling.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="airflow_control" id="airflow-control" aria-describedby="airflow-control-desc"> <label for="airflow-control">Airflow Control</label>
+            <small class="option-desc" id="airflow-control-desc">Fine-grained control over airflow direction beyond standard vane positions.</small>
+        </div>
     </fieldset>
 
     <!-- Sensor Options Section -->
@@ -55,7 +82,8 @@ nav_active: esphome
         <legend><span>🌡️</span> Sensor Options</legend>
         <label>Would you like to use a remote temperature sensor from Home Assistant?</label><br>
         <input type="radio" name="sensor" value="no" id="sensor-no" checked> <label for="sensor-no">No</label><br>
-        <input type="radio" name="sensor" value="yes" id="sensor-yes"> <label for="sensor-yes">Yes</label><br>
+        <input type="radio" name="sensor" value="yes" id="sensor-yes"> <label for="sensor-yes">Yes</label>
+        <small class="option-desc">Use a Home Assistant temperature sensor instead of the unit's built-in sensor for more accurate room readings.</small>
         <div id="sensor-entity-input" class="hidden-field">
             <label for="sensor-entity">Sensor entity name in Home Assistant:</label>
             <input type="text" id="sensor-entity" name="sensor-entity" placeholder="e.g. sensor.living_room_temp" aria-describedby="sensor-help">
@@ -66,17 +94,32 @@ nav_active: esphome
     <!-- Advanced Options Section -->
     <fieldset class="form-card">
         <legend><span>🧪</span> Advanced Options</legend>
-        <label>Enable any optional features below:</label><br>
-        <input type="checkbox" name="diagnostic" id="diagnostic" value="yes"> <label for="diagnostic">Enable advanced diagnostic sensors?</label><br>
-        <input type="checkbox" name="isu_functions" id="isu-functions" value="yes"> <label for="isu-functions">Enable ISU function controls?</label><br>
-        <input type="checkbox" name="web_server" id="web_server" value="yes" checked> <label for="web_server">Enable local web server?</label><br>
-        <input type="checkbox" name="bluetooth_proxy" id="bluetooth_proxy" value="yes"> <label for="bluetooth_proxy">Enable Bluetooth proxy?</label><br>
-        <label for="fahrenheit-compat">Fahrenheit Compatibility:</label>
-        <select name="fahrenheit_compat" id="fahrenheit-compat">
-            <option value="disabled" selected>Disabled</option>
-            <option value="standard">Standard</option>
-            <option value="alt">Alt</option>
-        </select><br>
+        <label>Enable any optional features below:</label>
+        <div class="option-row">
+            <input type="checkbox" name="diagnostic" id="diagnostic" value="yes" aria-describedby="diagnostic-desc"> <label for="diagnostic">Advanced Diagnostics</label>
+            <small class="option-desc" id="diagnostic-desc">Exposes compressor frequency, runtime hours, power draw, and error codes.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="isu_functions" id="isu-functions" value="yes" aria-describedby="isu-desc"> <label for="isu-functions">ISU Functions</label>
+            <small class="option-desc" id="isu-desc">Internal Setup Unit controls — advanced installer settings for system configuration. Use with caution.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="web_server" id="web_server" value="yes" checked aria-describedby="web-server-desc"> <label for="web_server">Web Server</label>
+            <small class="option-desc" id="web-server-desc">Built-in web UI for browser-based control and monitoring without Home Assistant.</small>
+        </div>
+        <div class="option-row">
+            <input type="checkbox" name="bluetooth_proxy" id="bluetooth_proxy" value="yes" aria-describedby="bt-proxy-desc"> <label for="bluetooth_proxy">Bluetooth Proxy</label>
+            <small class="option-desc" id="bt-proxy-desc">Use the ESP32 as a Bluetooth proxy for Home Assistant to extend BLE coverage.</small>
+        </div>
+        <div class="option-row">
+            <label for="fahrenheit-compat">Fahrenheit Compatibility:</label>
+            <select name="fahrenheit_compat" id="fahrenheit-compat">
+                <option value="disabled" selected>Disabled</option>
+                <option value="standard">Standard</option>
+                <option value="alt">Alt</option>
+            </select>
+            <small class="option-desc">Enable if your unit uses Fahrenheit. "Standard" for most units; "Alt" for units with non-standard F mapping.</small>
+        </div>
     </fieldset>
 </form>
 

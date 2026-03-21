@@ -256,7 +256,7 @@ nav_active: compatibility
   </div>
 
   <h2>Not Compatible</h2>
-  <div class="form-card" style="border-left: 3px solid #E53935;">
+  <div class="form-card form-card--warning">
     <h3>Mitsubishi Heavy Industries (SRK, SRC, SRF)</h3>
     <p><strong>Not compatible.</strong> Mitsubishi Heavy Industries is a <strong>different company</strong> from Mitsubishi Electric. Their units (model numbers starting with SRK, SRC, or SRF) use an entirely different control protocol and do not have CN105 connectors.</p>
 
@@ -326,8 +326,8 @@ nav_active: compatibility
         </tr>
         <tr>
           <td><strong>Remote temperature sensor</strong></td>
-          <td>Most models (ESPHome only)</td>
-          <td>Override the unit's internal temperature reading with a Home Assistant sensor</td>
+          <td>Most models</td>
+          <td>Override the unit's internal temperature reading with an external sensor (Home Assistant sensor for ESPHome, BLE sensor for HomeKit)</td>
         </tr>
       </tbody>
     </table>

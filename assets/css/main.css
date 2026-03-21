@@ -472,8 +472,8 @@ nav .dropdown-menu a:hover {
   line-height: 1.5;
   margin: 0;
 }
-.board-card .btn { margin-top: 0.5rem; }
 .board-badge {
+  margin-top: 0.5rem;
   display: inline-block;
   background: var(--accent);
   color: #fff;
@@ -601,6 +601,9 @@ th {
   background: var(--surface);
   margin-bottom: 1.25rem;
   box-shadow: var(--shadow-sm);
+}
+.form-card--warning {
+  border-left: 3px solid #E53935;
 }
 legend {
   display: flex;
@@ -767,7 +770,8 @@ textarea#dynamic-yaml-output {
   margin: 1em 0;
 }
 
-#platforms {
+#platforms,
+#boards {
   scroll-margin-top: 4rem;
 }
 

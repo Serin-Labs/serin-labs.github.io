@@ -63,8 +63,8 @@ nav_active: homekit
     <li><strong>Via Web UI:</strong> Navigate to Settings &gt; Firmware Update. The browser verifies integrity before uploading.</li>
     <li><strong>Via curl:</strong></li>
   </ul>
-  <pre><code>pio run
-curl --data-binary @.pio/build/nanoc6/firmware.bin \
+  <pre><code>idf.py build
+curl --data-binary @build/mitsubishi-cn105-homekit.bin \
      -H "Content-Type: application/octet-stream" \
      http://&lt;device-ip&gt;:8080/upload</code></pre>
   <p>After an OTA update, the device validates WiFi and UART communication before confirming the new firmware. If validation fails, it automatically rolls back.</p>

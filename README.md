@@ -19,7 +19,7 @@ This controller communicates over the **CN105 serial port** found on most Mitsub
 | | ESPHome | HomeKit-Compatible |
 |---|---|---|
 | **Best for** | Home Assistant users | Apple Home users |
-| **Built on** | [MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome) by echavet | [HomeSpan](https://github.com/HomeSpan/HomeSpan) |
+| **Built on** | [MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome) by echavet | [esp-homekit-sdk](https://github.com/espressif/esp-homekit-sdk) |
 | **Hub required** | Home Assistant | Apple Home Hub (Apple TV or HomePod) |
 | **Setup guide** | [ESPHome setup](https://serin-labs.github.io/esphome/setup) | [HomeKit setup](https://serin-labs.github.io/homekit/setup) |
 
@@ -66,7 +66,7 @@ The full documentation lives at **[serin-labs.github.io](https://serin-labs.gith
 
 ## Credits & Open Source
 
-The ESPHome integration is built on [echavet’s MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome) — Serin Labs provides curated configs, browser flashing, and a YAML generator on top of that project. The HomeKit-compatible firmware is developed by Serin Labs ([source](https://github.com/akifbayram/mitsubishi-cn105-homekit)), built on [HomeSpan](https://github.com/HomeSpan/HomeSpan).
+The ESPHome integration is built on [echavet’s MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome) — Serin Labs provides curated configs, browser flashing, and a YAML generator on top of that project. The HomeKit-compatible firmware is developed by Serin Labs ([source](https://github.com/akifbayram/mitsubishi-cn105-homekit)), built on Espressif’s [esp-homekit-sdk](https://github.com/espressif/esp-homekit-sdk).
 
 Both platforms build on foundational work by [SwiCago](https://github.com/SwiCago/HeatPump) and [geoffdavis](https://github.com/geoffdavis/esphome-mitsubishiheatpump).
 

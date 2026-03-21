@@ -41,6 +41,25 @@ nav_active: homekit
   </ul>
   <hr>
 
+  <h2>BLE Remote Temperature Sensor</h2>
+  <p>Use a Bluetooth Low Energy thermometer placed at room level for more accurate temperature readings. The firmware auto-detects the sensor type from BLE advertisements — no Bluetooth pairing required.</p>
+  <ul>
+    <li><strong>Supported sensors:</strong> Govee (H5072, H5075, H5074, H5051, H5052, H5071, H510x), Xiaomi PVVX (LYWSD03MMC, CGG1 with custom firmware), BTHome v2 (SwitchBot, Shelly, generic)</li>
+    <li><strong>Live status:</strong> Temperature, humidity, battery level, signal strength, last update</li>
+    <li><strong>Feed toggle:</strong> Enable or disable sending the sensor temperature to the heat pump from the web UI</li>
+    <li><strong>Automatic fallback:</strong> If no BLE data arrives for 90 seconds, the heat pump reverts to its internal thermistor</li>
+  </ul>
+  <hr>
+
+  <h2>Crash Loop Safe Mode</h2>
+  <ul>
+    <li>Detects 5 consecutive crashes and enters safe mode</li>
+    <li>Safe mode runs WiFi and web UI only — skips CN105, HomeKit, and BLE</li>
+    <li>Allows OTA recovery when the device is stuck in a crash loop</li>
+    <li>Counter resets after a successful boot</li>
+  </ul>
+  <hr>
+
   <h2>OTA Updates</h2>
   <ul>
     <li>Firmware upload via web UI or curl</li>
@@ -56,6 +75,7 @@ nav_active: homekit
     <li>Fan and vane adjustments</li>
     <li>Pairing status and QR code</li>
     <li>Device settings (name, poll interval, log level, &deg;C/&deg;F toggle)</li>
+    <li>WiFi network scanner for easy setup</li>
     <li>Real-time log streaming via WebSocket</li>
   </ul>
   <hr>
@@ -68,9 +88,8 @@ nav_active: homekit
     <tbody>
       <tr><td>M5Stack NanoC6 (ESP32-C6)</td><td>Yes</td></tr>
       <tr><td>M5Stack Atom S3 Lite (ESP32-S3)</td><td>Yes</td></tr>
-      <tr><td>Generic ESP32 DevKit</td><td>No</td></tr>
-      <tr><td>ESP32-S3-DevKitC-1</td><td>No</td></tr>
       <tr><td>ESP32-C3 SuperMini / XIAO</td><td>No</td></tr>
+      <tr><td>Generic ESP32 DevKit</td><td>No</td></tr>
     </tbody>
   </table>
   <hr>

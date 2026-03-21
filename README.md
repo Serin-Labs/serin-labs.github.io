@@ -6,7 +6,7 @@ Cloud-free smart control for Mitsubishi heat pumps. Open source ESPHome and Home
 
 - **100% Local Control** – Your data stays in your home. No cloud, no fees, no privacy worries.
 - **Open Source** – Inspect, modify, and contribute to the firmware and tools.
-- **Compact & Clean** – Installs inside your mini-split for a seamless look.
+- **Compact & Clean** – Installs inside your heat pump for a seamless look.
 - **Two Platforms** – ESPHome for Home Assistant. HomeKit-compatible firmware for Apple Home.
 - **DIY or Pre-Assembled** – Build it yourself or order a ready-to-go kit.
 

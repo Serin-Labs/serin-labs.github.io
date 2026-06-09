@@ -6,13 +6,13 @@ Cloud-free smart control for Mitsubishi heat pumps. Open source ESPHome and Home
 
 - **100% Local Control** – Your data stays in your home. No cloud, no fees, no privacy worries.
 - **Open Source** – Inspect, modify, and contribute to the firmware and tools.
-- **Compact & Clean** – Installs inside your heat pump for a seamless look.
+- **Compact** – Installs inside your heat pump, out of sight.
 - **Two Platforms** – ESPHome for Home Assistant. HomeKit-compatible firmware for Apple Home.
 - **DIY or Pre-Assembled** – Build it yourself or order a ready-to-go kit.
 
 ## How It Works
 
-This controller communicates over the **CN105 serial port** found on most Mitsubishi Electric indoor units. Unlike cloud adapters or IR blasters, CN105 serial provides real-time, bidirectional control — fully local, fully open source, for about $15–20 in parts.
+This controller talks to your unit over the **CN105 serial port** found on most Mitsubishi Electric indoor units. Unlike cloud adapters or IR blasters, CN105 gives you real-time, two-way control that runs entirely on your own network — about $15–20 in parts.
 
 ## Choose Your Platform
 
@@ -45,7 +45,7 @@ Both boards work with ESPHome and HomeKit firmware.
 | **Price** | ~$7 | ~$8 |
 | **Buy** | [M5Stack](https://shop.m5stack.com/products/m5stack-nanoc6-dev-kit) | [M5Stack](https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit) |
 
-The NanoC6 is recommended for most setups — its smaller size and WiFi 6 radio provide better signal through HVAC enclosures.
+For most setups the NanoC6 is the better pick: it's smaller, and its WiFi 6 radio holds a stronger signal through metal HVAC enclosures.
 
 ## Site & Documentation
 
@@ -66,7 +66,7 @@ The full documentation lives at **[serin-labs.github.io](https://serin-labs.gith
 
 ## Credits & Open Source
 
-The ESPHome integration is built on [echavet’s MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome) — Serin Labs provides curated configs, browser flashing, and a YAML generator on top of that project. The HomeKit-compatible firmware is developed by Serin Labs ([source](https://github.com/akifbayram/mitsubishi-cn105-homekit)), built on Espressif’s [esp-homekit-sdk](https://github.com/espressif/esp-homekit-sdk).
+The ESPHome integration is built on [echavet's MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome). On top of that, Serin Labs adds curated configs, browser flashing, and a YAML generator. The HomeKit-compatible firmware is developed by Serin Labs ([source](https://github.com/akifbayram/mitsubishi-cn105-homekit)), built on Espressif's [esp-homekit-sdk](https://github.com/espressif/esp-homekit-sdk).
 
 Both platforms build on foundational work by [SwiCago](https://github.com/SwiCago/HeatPump) and [geoffdavis](https://github.com/geoffdavis/esphome-mitsubishiheatpump).
 

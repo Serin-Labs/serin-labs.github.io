@@ -16,9 +16,15 @@ nav_active: flash
   </div>
 
   <h3>Supported Boards</h3>
-  <ul>
+  <ul id="boards-esphome" style="display: none;">
     <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
     <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
+  </ul>
+  <ul id="boards-homekit">
+    <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
+    <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
+    <li><strong>ESP32-C3 SuperMini / XIAO</strong> (ESP32-C3) &mdash; untested</li>
+    <li><strong>Generic ESP32 DevKit</strong> (ESP32) &mdash; untested</li>
   </ul>
   <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts">what you need</a>.</p>
 
@@ -70,6 +76,9 @@ nav_active: flash
     document.getElementById('toggle-homekit').classList.toggle('active', platform === 'homekit');
     document.getElementById('esphome-note').classList.toggle('active', platform === 'esphome');
     document.getElementById('homekit-note').classList.toggle('active', platform === 'homekit');
+    // Swap supported-boards list
+    document.getElementById('boards-esphome').style.display = platform === 'esphome' ? '' : 'none';
+    document.getElementById('boards-homekit').style.display = platform === 'homekit' ? '' : 'none';
     // Swap button colors
     var installBtn = document.getElementById('install-btn');
     var nextBtn = document.getElementById('next-steps-link');

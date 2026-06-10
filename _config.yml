@@ -5,9 +5,15 @@ description: >-
   Choose ESPHome for Home Assistant or HomeKit-compatible firmware for Apple Home.
 baseurl: ""  # the subpath of your site, e.g. /blog
 url: "https://serin-labs.github.io"
-twitter:
-  card: summary
+logo: /assets/icon-512.png
 github_username: akifbayram
+
+# Default social-share image for all pages (jekyll-seo-tag)
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/icon-512.png
 
 # Build settings
 markdown: GFM

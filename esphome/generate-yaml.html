@@ -448,18 +448,30 @@ nav_active: esphome
 
     document.getElementById('copy-yaml-btn').onclick = function () {
         const textarea = document.getElementById('dynamic-yaml-output');
-        textarea.select();
-        document.execCommand('copy');
-        // Show toast
-        const toast = document.getElementById('copy-toast');
-        toast.classList.remove('show');
-        void toast.offsetWidth; // Force reflow to restart animation
-        toast.classList.add('show');
-        // Remove .show after animation so it can be retriggered
-        setTimeout(() => { toast.classList.remove('show'); }, 2000);
-        // Button feedback (optional)
-        this.textContent = 'Copied!';
-        setTimeout(() => { this.textContent = 'Copy to Clipboard'; }, 1200);
+        const btn = this;
+        const showCopied = function () {
+            // Show toast
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('show');
+            void toast.offsetWidth; // Force reflow to restart animation
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 2000);
+            // Button feedback
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = 'Copy to Clipboard'; }, 1200);
+        };
+        // Modern Clipboard API with a fallback for older/non-secure contexts
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(textarea.value).then(showCopied).catch(() => {
+                textarea.select();
+                document.execCommand('copy');
+                showCopied();
+            });
+        } else {
+            textarea.select();
+            document.execCommand('copy');
+            showCopied();
+        }
     };
 
     document.getElementById('download-yaml-btn').onclick = function () {

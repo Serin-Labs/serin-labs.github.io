@@ -39,9 +39,9 @@ nav_active: troubleshooting
     <summary>"Browser does not support Web Serial" message</summary>
     <div class="faq-body">
       <ul>
-        <li>Use a Chromium-based browser: <strong>Chrome</strong>, <strong>Edge</strong>, or <strong>Brave</strong>.</li>
+        <li>Use a Chromium-based browser: <strong>Chrome</strong>, <strong>Edge</strong>, or <strong>Brave</strong> on desktop.</li>
         <li>Safari and Firefox do not support Web Serial.</li>
-        <li>On Chrome, ensure the Web Serial API is enabled at <code>chrome://flags/#enable-experimental-web-platform-features</code> if needed.</li>
+        <li>Web Serial is not available on iOS or Android browsers — flash from a desktop computer.</li>
       </ul>
     </div>
   </details>
@@ -193,6 +193,7 @@ nav_active: troubleshooting
         <li>Confirm your unit has a <strong>CN105</strong> port (not CN110). <a href="/compatibility">Check compatibility</a>.</li>
         <li>Check device logs for UART communication errors.</li>
         <li>Try reseating the cable on both the CN105 and Grove connector ends.</li>
+        <li>If you crimped your own cable, a miswired or cold-soldered pin is a common culprit. Swapping in a <a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener">pre-assembled, tested cable</a> rules out wiring as the cause.</li>
       </ul>
     </div>
   </details>
@@ -215,6 +216,7 @@ nav_active: troubleshooting
         <li>Check TX/RX wiring — they may be swapped. Refer to the <a href="/wiring">wiring reference</a>.</li>
         <li>Verify the device is receiving 5V power from the CN105 port (a multimeter helps).</li>
         <li>Some units need 30+ seconds after power-on before accepting serial commands.</li>
+        <li>Suspect the cable? A <a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener">ready-made CN105-to-Grove cable</a> is assembled and tested, eliminating wiring mistakes.</li>
       </ul>
     </div>
   </details>

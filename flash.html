@@ -10,9 +10,9 @@ nav_active: flash
   <p>Flash ESPHome or HomeKit-compatible firmware to your device directly from the browser using a USB cable. No software installation needed.</p>
 
   <h2>1. Select Your Platform</h2>
-  <div class="platform-toggle">
-    <button id="toggle-esphome" onclick="selectPlatform('esphome')">ESPHome</button>
-    <button id="toggle-homekit" class="active" onclick="selectPlatform('homekit')">HomeKit</button>
+  <div class="platform-toggle" role="group" aria-label="Select firmware platform">
+    <button id="toggle-esphome" onclick="selectPlatform('esphome')" aria-pressed="false">ESPHome</button>
+    <button id="toggle-homekit" class="active" onclick="selectPlatform('homekit')" aria-pressed="true">HomeKit</button>
   </div>
 
   <h3>Supported Boards</h3>
@@ -26,7 +26,7 @@ nav_active: flash
     <li><strong>ESP32-C3 SuperMini / XIAO</strong> (ESP32-C3) &mdash; untested</li>
     <li><strong>Generic ESP32 DevKit</strong> (ESP32) &mdash; untested</li>
   </ul>
-  <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts">what you need</a>.</p>
+  <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts">what you need</a>, or order the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled Serin Controller</a> (ships pre-flashed with the cable included).</p>
 
   <h2>2. Flash</h2>
 
@@ -72,8 +72,12 @@ nav_active: flash
 
   function selectPlatform(platform) {
     currentPlatform = platform;
-    document.getElementById('toggle-esphome').classList.toggle('active', platform === 'esphome');
-    document.getElementById('toggle-homekit').classList.toggle('active', platform === 'homekit');
+    var esphomeBtn = document.getElementById('toggle-esphome');
+    var homekitBtn = document.getElementById('toggle-homekit');
+    esphomeBtn.classList.toggle('active', platform === 'esphome');
+    homekitBtn.classList.toggle('active', platform === 'homekit');
+    esphomeBtn.setAttribute('aria-pressed', platform === 'esphome');
+    homekitBtn.setAttribute('aria-pressed', platform === 'homekit');
     document.getElementById('esphome-note').classList.toggle('active', platform === 'esphome');
     document.getElementById('homekit-note').classList.toggle('active', platform === 'homekit');
     // Swap supported-boards list

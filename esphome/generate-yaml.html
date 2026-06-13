@@ -407,7 +407,10 @@ nav_active: esphome
             substitutions += `\n  remote_temp_sensor: ${sensorEntity}`;
         }
         const apiKey = randomKey();
-        let wifiBlock = `\nwifi:\n  ssid: !secret wifi_ssid\n  password: !secret wifi_password\n  ap:\n    ssid: \"serin-\${name}\"\n    password: \"serinlabs\"`;
+        // No explicit ap.ssid: ESPHome defaults the fallback hotspot to the device
+        // name, which name_add_mac_suffix makes unique per unit (e.g. serin-1ee3f4),
+        // matching the pre-built firmware exactly.
+        let wifiBlock = `\nwifi:\n  ssid: !secret wifi_ssid\n  password: !secret wifi_password\n  ap:\n    password: \"serinlabs\"`;
         let apiBlock = `\napi:\n  encryption:\n    key: ${apiKey}`;
 
         // Add logger, ota, external_components if not present

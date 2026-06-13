@@ -54,7 +54,7 @@ nav_active: troubleshooting
       <ul>
         <li>Wait at least 60 seconds after powering on — the AP may take time to start on first boot.</li>
         <li>Ensure the device is powered by a stable 5V source (at least 1A).</li>
-        <li><strong>ESPHome:</strong> AP name is <code>serin-XXXX</code> (password: <code>serinlabs</code>).</li>
+        <li><strong>ESPHome:</strong> AP name is <code>serin-XXXXXX</code> (last six characters from the device MAC; password: <code>serinlabs</code>).</li>
         <li><strong>HomeKit:</strong> AP name is <code>Serin-XXXX</code> (password: <code>serinlabs</code>).</li>
         <li>If the device was previously configured, it may already be connected to your WiFi. Check your router's DHCP client list.</li>
       </ul>
@@ -296,7 +296,7 @@ nav_active: troubleshooting
       "name": "WiFi access point does not appear",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Wait at least 60 seconds after powering on. Ensure stable 5V power (at least 1A). ESPHome AP name is serin-XXXX (password: serinlabs). HomeKit AP name is Serin-XXXX (password: serinlabs). If previously configured, the device may already be connected to your WiFi."
+        "text": "Wait at least 60 seconds after powering on. Ensure stable 5V power (at least 1A). ESPHome AP name is serin-XXXXXX (password: serinlabs). HomeKit AP name is Serin-XXXX (password: serinlabs). If previously configured, the device may already be connected to your WiFi."
       }
     },
     {

@@ -20,6 +20,7 @@ nav_active: esphome
       <li>Curated default configurations with sensible defaults</li>
       <li>Wiring guides and setup documentation</li>
     </ul>
+    <p>The browser-flashed firmware is one fixed build, the same for every unit: climate control, both vertical and horizontal vane controls, and the web server UI. You can't match it to your specific model at flash time. To drop vanes your unit doesn't have, or to add a remote temperature sensor, i-See sensor, dual setpoint, or diagnostics, use the <a href="/esphome/generate-yaml">YAML generator</a> and push the result over WiFi when you adopt the device (Step 2).</p>
     <p>In Home Assistant, the device appears as <strong>"Serin"</strong> by default (customizable in the <a href="/esphome/generate-yaml">YAML generator</a>).</p>
   </div>
   <hr>
@@ -46,7 +47,7 @@ nav_active: esphome
   <ol>
     <li>Plug the device into USB power.</li>
     <li>Connect to the temporary WiFi network (named <code>serin-XXXXXX</code>, where the last six characters are unique to your device) using the password <code>serinlabs</code>.</li>
-    <li>If not automatically prompted, go to <a href="http://192.168.4.1">http://192.168.4.1</a>.</li>
+    <li>If not automatically prompted, go to <a href="http://192.168.4.1:8080">192.168.4.1:8080</a>.</li>
     <li>Enter your WiFi credentials.</li>
   </ol>
   <hr>

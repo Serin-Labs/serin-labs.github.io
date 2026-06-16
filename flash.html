@@ -44,7 +44,8 @@ nav_active: flash
   </esp-web-install-button>
 
   <div id="esphome-note" class="flash-section">
-    <p><em>This installs a curated ESPHome configuration built on echavet's <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a> component, with basic climate control, web server, and OTA support. For a custom configuration with remote sensors, vane control, or diagnostics, use the <a href="/esphome/generate-yaml">YAML generator</a> after initial setup.</em></p>
+    <p><em>This installs one pre-built ESPHome firmware. Every unit gets the same build, based on echavet's <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a> component. It includes climate control, both vertical and horizontal vane controls, the web server UI, and OTA updates.</em></p>
+    <p><em>You can't choose a build tailored to your unit here. This one always has both vanes and none of the optional features. If your unit has no vanes (or vertical only), or you want a remote temperature sensor, i-See sensor, dual setpoint, diagnostics, or a Bluetooth proxy, build a custom config in the <a href="/esphome/generate-yaml">YAML generator</a> after setup and push it over WiFi from the ESPHome dashboard.</em></p>
     <p><em><strong>After flashing:</strong> The flasher will prompt you to configure WiFi — enter your network credentials to connect the device wirelessly before unplugging USB.</em></p>
   </div>
 

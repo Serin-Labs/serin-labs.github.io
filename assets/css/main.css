@@ -4,7 +4,7 @@
   --fg: #1A1A1A;
   --primary: #1A1A1A;
   --secondary: #5A5A5A;
-  --muted: #888;
+  --muted: #6E6E6E;
   --accent: #F09A28;
   --accent-hover: #D4871A;
   --accent-light: #FEF5E6;
@@ -543,13 +543,41 @@ nav .dropdown-menu a:hover {
 
 .flash-device-banner {
   border: 1px solid var(--border);
-  border-left: 3px solid var(--homekit);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   background: var(--accent-light);
-  padding: 0.85em 1.25em;
-  margin: 1em 0;
+  padding: 1.15em 1.35em 1.3em;
+  margin: 1.5em 0;
 }
 .flash-device-banner p { margin: 0.25em 0; }
+.flash-banner-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+.flash-banner-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  flex-shrink: 0;
+}
+.flash-banner-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+.flash-banner-lead {
+  margin: 0.1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--secondary);
+}
 .flash-step {
   display: flex;
   align-items: flex-start;
@@ -605,37 +633,58 @@ nav .dropdown-menu a:hover {
   flex-shrink: 0;
   margin-top: 0.35rem;
 }
-.flash-step-text {
-  font-size: 0.78rem;
-  color: var(--fg);
-  line-height: 1.5;
-}
 .flash-step-divider {
   border: none;
   border-top: 1px solid var(--border);
   margin: 0.2rem 0;
 }
+.flash-banner-footnote {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  color: var(--secondary);
+  text-align: center;
+}
 .hk-saved-banner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #6EE7B7;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  border: 1px solid #BBE3CC;
   border-radius: var(--radius-md);
-  background: #F0FDF4;
-  padding: 0.55rem 0.85rem;
+  background: #F1FAF4;
+  padding: 0.7rem 0.95rem;
   margin: 0.75rem 0;
   font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--fg);
 }
-.hk-saved-banner button {
-  font-size: 0.75rem;
-  color: var(--secondary);
+.hk-saved-banner__msg {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.hk-saved-banner__check {
+  flex-shrink: 0;
+  margin-top: 0.12em;
+  color: #15803D;
+}
+.hk-saved-banner__clear {
+  flex-shrink: 0;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #15803D;
   text-decoration: underline;
+  text-underline-offset: 2px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  flex-shrink: 0;
+  transition: color var(--transition);
 }
+.hk-saved-banner__clear:hover { color: #0E5B2C; }
 .hk-inline-qr-row {
   display: flex;
   gap: 0.75rem;
@@ -660,6 +709,7 @@ nav .dropdown-menu a:hover {
 .serin-qr-card__head {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 7px;
   width: 100%;
 }
@@ -1086,6 +1136,30 @@ footer {
 main {
   padding: 2rem 0;
   animation: fadeUp 0.4s ease both;
+}
+
+/* ===== ACCESSIBILITY ===== */
+/* Visible, consistent keyboard focus. Inputs keep their own focus ring above. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Toggle lives in an overflow:hidden track, so an offset outline would clip —
+   use an inset ring that reads on both the light and filled states. */
+.platform-toggle button:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ===== HIDDEN FIELD (YAML generator) ===== */

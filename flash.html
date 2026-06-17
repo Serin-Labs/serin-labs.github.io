@@ -38,6 +38,7 @@ nav_active: flash
   </ol>
 
   <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous"></script>
   <esp-web-install-button id="flash-button" manifest="https://raw.githubusercontent.com/Serin-Labs/serin-cn105/main/firmware/homekit/manifest.json">
     <button slot="activate" class="btn btn-homekit" id="install-btn">Install Firmware</button>
     <span slot="unsupported">Your browser does not support Web Serial. Use Chrome or Edge.</span>
@@ -50,7 +51,26 @@ nav_active: flash
   </div>
 
   <div id="homekit-note" class="flash-section active">
-    <p><em>This installs the HomeKit-compatible firmware. After flashing, the device creates a WiFi access point for setup.</em></p>
+    <p><em>This installs the HomeKit-compatible firmware. After flashing, the device creates a WiFi access point named <strong>Serin-XXXX</strong> (XXXX = last 4 hex digits of its WiFi MAC address, password: <code>serinlabs</code>). Look for this network on your phone or computer when connecting during setup.</em></p>
+  </div>
+
+  <div id="flash-device-banner" class="flash-device-banner" style="display:none">
+    <div class="flash-device-banner__body">
+      <div class="flash-device-banner__qr">
+        <div id="wifi-qr"></div>
+        <p class="flash-device-banner__qr-label">WiFi Setup</p>
+      </div>
+      <div class="flash-device-banner__qr">
+        <div id="homekit-qr"></div>
+        <p class="flash-device-banner__qr-label">HomeKit Pair</p>
+      </div>
+      <div>
+        <p><strong>Flash complete!</strong> Connect to your device's setup network:</p>
+        <p>Network: <strong><code id="flash-ap-ssid">Serin-XXXX</code></strong></p>
+        <p>Password: <code>serinlabs</code></p>
+        <p>HomeKit code: <strong><code id="flash-hk-code">XXX-XX-XXX</code></strong></p>
+      </div>
+    </div>
   </div>
 
   <h2>Next Steps</h2>
@@ -115,4 +135,108 @@ nav_active: flash
       link.textContent = 'Continue to HomeKit-Compatible Setup';
     }
   }
+
+  // After flash succeeds, show the device AP name and HomeKit pairing QR.
+  // esp-web-tools fires state-changed inside shadow DOM (not observable from outside),
+  // so we intercept console.log instead: the esptool logger writes MAC and the
+  // connect module writes a bare 'DISCONNECT' string at end-of-flash.
+  (function() {
+    var detectedMac = null;
+    var bannerShown = false;
+
+    function fnv1a32(bytes) {
+      var h = BigInt('2166136261');
+      var p = BigInt('16777619');
+      var mask = BigInt('0xFFFFFFFF');
+      for (var i = 0; i < bytes.length; i++) {
+        h = ((h ^ BigInt(bytes[i])) * p) & mask;
+      }
+      return Number(h);
+    }
+
+    function deriveSetupCode(mac) {
+      var raw = fnv1a32(mac) % 100000000;
+      var digits;
+      do {
+        digits = ('00000000' + raw).slice(-8);
+        var allSame = digits[0] === digits[1] && digits[1] === digits[2] &&
+                      digits[2] === digits[3] && digits[3] === digits[4] &&
+                      digits[4] === digits[5] && digits[5] === digits[6] &&
+                      digits[6] === digits[7];
+        if (allSame || digits === '12345678' || digits === '87654321') {
+          raw = (raw + 1) % 100000000;
+        } else {
+          break;
+        }
+      } while (true);
+      return digits;
+    }
+
+    function toBase36(n) {
+      if (n === 0) return '0';
+      var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var result = '';
+      while (n > 0) {
+        result = chars[n % 36] + result;
+        n = Math.floor(n / 36);
+      }
+      return result;
+    }
+
+    function setupCodeToHapUri(digits) {
+      var code = parseInt(digits, 10);
+      // HAP_CID_BRIDGE=2, HAP_OVER_IP_MASK=0x10000000; category shifted left 31 bits
+      var payload = code + 0x10000000 + 2 * 2147483648;
+      return 'X-HM://00' + toBase36(payload) + 'MCAC';
+    }
+
+    function showBanner() {
+      if (bannerShown || currentPlatform !== 'homekit') return;
+      bannerShown = true;
+
+      var apSuffix = detectedMac
+        ? (('0' + detectedMac[4].toString(16)).slice(-2) +
+           ('0' + detectedMac[5].toString(16)).slice(-2)).toUpperCase()
+        : 'XXXX';
+      var apName = 'Serin-' + apSuffix;
+
+      document.getElementById('flash-ap-ssid').textContent = apName;
+      document.getElementById('flash-device-banner').style.display = '';
+
+      if (typeof QRCode !== 'undefined') {
+        new QRCode(document.getElementById('wifi-qr'), {
+          text: 'WIFI:T:WPA;S:' + apName + ';P:serinlabs;;',
+          width: 128, height: 128,
+          colorDark: '#000000', colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+
+        if (detectedMac) {
+          var digits = deriveSetupCode(detectedMac);
+          var formatted = digits.slice(0, 3) + '-' + digits.slice(3, 5) + '-' + digits.slice(5);
+          document.getElementById('flash-hk-code').textContent = formatted;
+          new QRCode(document.getElementById('homekit-qr'), {
+            text: setupCodeToHapUri(digits),
+            width: 128, height: 128,
+            colorDark: '#000000', colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        }
+      }
+    }
+
+    var origLog = console.log;
+    console.log = function() {
+      origLog.apply(console, arguments);
+      var msg = typeof arguments[0] === 'string' ? arguments[0] : '';
+      if (!detectedMac) {
+        var m = msg.match(/MAC:\s*([\da-fA-F]{2}):([\da-fA-F]{2}):([\da-fA-F]{2}):([\da-fA-F]{2}):([\da-fA-F]{2}):([\da-fA-F]{2})/i);
+        if (m) detectedMac = [
+          parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16),
+          parseInt(m[4], 16), parseInt(m[5], 16), parseInt(m[6], 16)
+        ];
+      }
+      if (msg === 'DISCONNECT') showBanner();
+    };
+  })();
 </script>

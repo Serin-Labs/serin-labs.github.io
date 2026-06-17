@@ -529,6 +529,30 @@ nav .dropdown-menu a:hover {
 .flash-section { display: none; }
 .flash-section.active { display: block; }
 
+.flash-device-banner {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--homekit);
+  border-radius: var(--radius-md);
+  background: var(--accent-light);
+  padding: 0.85em 1.25em;
+  margin: 1em 0;
+}
+.flash-device-banner p { margin: 0.25em 0; }
+.flash-device-banner__body {
+  display: flex;
+  gap: 1.25em;
+  align-items: center;
+}
+.flash-device-banner__qr {
+  flex-shrink: 0;
+  text-align: center;
+}
+.flash-device-banner__qr-label {
+  font-size: 0.78em;
+  color: var(--secondary);
+  margin: 0.3em 0 0;
+}
+
 /* ===== TABLES ===== */
 table {
   width: 100%;

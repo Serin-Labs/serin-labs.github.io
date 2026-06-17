@@ -7,11 +7,24 @@ nav_active: homekit
 
 <div class="home theme-homekit">
   <h1>HomeKit-Compatible Firmware Features</h1>
-  <p>The HomeKit-compatible firmware is a free, open-source build you flash yourself. It works with Apple Home through the HomeKit Accessory Protocol (HAP) and includes a full-featured web UI. No third-party bridge or Home Assistant required — just an <strong>Apple Home Hub</strong> (Apple TV or HomePod) for remote access and automations.</p>
-  <p><strong>Not certified by Apple:</strong> this is not an MFi-certified HomeKit accessory.</p>
+  <p>Free, open-source firmware you flash yourself. Works with Apple Home through the HomeKit Accessory Protocol (HAP) and includes a full-featured web UI. No third-party bridge or Home Assistant required — just an <strong>Apple Home Hub</strong> (Apple TV or HomePod) for remote access and automations.</p>
+  <p class="page-note">Not MFi-certified — this firmware implements HAP independently and is not a certified Apple accessory.</p>
   <div class="demo-gallery">
-    <img src="/assets/media/homekit.gif" alt="HomeKit climate control interface" height="400" loading="lazy">
-    <img src="/assets/media/webui.png" alt="Built-in web UI dashboard" height="400" loading="lazy">
+    <figure>
+      <img src="/assets/media/homekit.gif" alt="HomeKit climate control interface" height="400" loading="lazy">
+      <figcaption>Apple Home — thermostat control</figcaption>
+    </figure>
+    <figure>
+      <video height="400" autoplay muted loop playsinline controls poster="/assets/media/webui_tour.jpg" aria-label="Tour of the built-in web UI: thermostat control, vane control, diagnostics, and settings">
+        <source src="/assets/media/webui_tour.mp4" type="video/mp4">
+        <img src="/assets/media/webui.png" alt="Built-in web UI dashboard" height="400" loading="lazy">
+      </video>
+      <figcaption>Built-in web UI at http://Serin-XXXX.local</figcaption>
+    </figure>
+    <figure>
+      <img src="/assets/media/hk_wifi_connect.gif" alt="First-boot WiFi setup: connecting to the Serin hotspot and entering home WiFi credentials" height="400" loading="lazy">
+      <figcaption>First-boot WiFi setup</figcaption>
+    </figure>
   </div>
   <hr>
 
@@ -85,15 +98,26 @@ nav_active: homekit
   <h2>Supported Boards</h2>
   <table>
     <thead>
-      <tr><th>Board</th><th>Tested</th></tr>
+      <tr><th>Board</th><th>Status</th></tr>
     </thead>
     <tbody>
-      <tr><td>M5Stack NanoC6 (ESP32-C6)</td><td>Yes</td></tr>
-      <tr><td>M5Stack Atom S3 Lite (ESP32-S3)</td><td>Yes</td></tr>
-      <tr><td>ESP32-C3 SuperMini / XIAO</td><td>No</td></tr>
-      <tr><td>Generic ESP32 DevKit</td><td>No</td></tr>
+      <tr><td>M5Stack NanoC6 (ESP32-C6)</td><td>Supported</td></tr>
+      <tr><td>M5Stack Atom S3 Lite (ESP32-S3)</td><td>Supported</td></tr>
+      <tr><td>ESP32-C3 SuperMini / XIAO</td><td>Not tested</td></tr>
+      <tr><td>Generic ESP32 DevKit</td><td>Not tested</td></tr>
     </tbody>
   </table>
+  <hr>
+
+  <div class="page-cta">
+    <p class="page-cta-label">Get started</p>
+    <h2>Flash the Firmware</h2>
+    <p>Use the browser flash tool to install the HomeKit firmware, then follow the setup guide to connect and pair.</p>
+    <div class="page-cta-actions">
+      <a href="/flash" class="btn">Flash Firmware</a>
+      <a href="/homekit/setup" class="btn btn-outline">Setup Guide</a>
+    </div>
+  </div>
   <hr>
 
   <h2>Source Code</h2>

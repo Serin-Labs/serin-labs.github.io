@@ -8,10 +8,10 @@ nav_active: homekit
 <div class="home theme-homekit">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous"></script>
   <h1>HomeKit-Compatible Setup</h1>
-  <p>The HomeKit-compatible firmware is a free, open-source project you flash yourself. After <a href="/flash">flashing</a> it, follow these steps to connect your device and add it to Apple Home. An <strong>Apple Home Hub</strong> (Apple TV or HomePod) is required for remote access and automations.</p>
+  <p>This firmware is free and open-source. You <a href="/flash">flash it yourself</a>, then follow these steps to connect it to WiFi and add it to Apple Home. An <strong>Apple Home Hub</strong> (Apple TV or HomePod) is required for remote access and automations.</p>
   <p><strong>Not certified by Apple:</strong> this is not an MFi-certified HomeKit accessory.</p>
   <div id="hk-saved-banner" class="hk-saved-banner" style="display:none">
-    ✓ Device from last flash: <strong id="hk-saved-device-name"></strong>
+    ✓ Your device <strong id="hk-saved-device-name"></strong>: QR codes are ready in steps 2 &amp; 3 below
     <button onclick="localStorage.removeItem('serin_last_device');location.reload()">clear</button>
   </div>
   <hr>
@@ -23,78 +23,101 @@ nav_active: homekit
     <li>Place the device safely inside the unit if needed, reinstall the cover, and restore power.</li>
   </ol>
   <img src="/assets/media/installation.jpg" alt="The controller mounted inside a ductless mini-split indoor unit with the CN105-to-Grove cable connected" width="400" loading="lazy" class="screenshot">
-  <p class="field-hint">Don't have the cable yet? Grab a <a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener">ready-made CN105-to-Grove cable</a> — assembled and tested, no crimping required.</p>
+  <p class="field-hint">Don't have the cable yet? Grab a <a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener">ready-made CN105-to-Grove cable</a>, assembled and tested, no crimping required.</p>
   <hr>
 
   <h2>2. Connect to WiFi</h2>
   <div id="hk-wifi-qr-block" style="display:none">
-    <div class="hk-inline-qr-row">
-      <div class="serin-qr-card">
-        <div class="serin-qr-card__head">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M1.42 9a16 16 0 0 1 21.16 0M5 12.55a11 11 0 0 1 14.08 0M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1.5"/></svg>
-          <div>
-            <div class="serin-qr-card__name" id="hk-ap-name">Serin-XXXX</div>
-            <div class="serin-qr-card__sub">serinlabs</div>
-          </div>
-        </div>
-        <div id="hk-wifi-qr"></div>
+    <div class="qr-scan-callout">
+      <div class="qr-scan-callout__label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9V5a2 2 0 0 1 2-2h4"/><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M21 15v4a2 2 0 0 1-2 2h-4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/></svg>
+        Join Hotspot
       </div>
-      <div class="hk-inline-qr-text">
-        Scan with your iPhone to connect to your device's hotspot.<br>
-        A captive portal opens &mdash; enter your home WiFi credentials. The device saves them and reboots.
+      <div class="qr-scan-callout__body">
+        <div class="serin-qr-card">
+          <div class="serin-qr-card__head">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M1.42 9a16 16 0 0 1 21.16 0M5 12.55a11 11 0 0 1 14.08 0M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1.5"/></svg>
+            <div>
+              <div class="serin-qr-card__name" id="hk-ap-name">Serin-XXXX</div>
+              <div class="serin-qr-card__sub">serinlabs</div>
+            </div>
+          </div>
+          <div id="hk-wifi-qr"></div>
+        </div>
+        <span class="qr-scan-callout__desc">Scan this QR code to automatically connect to the hotspot. A portal will open for you to enter your home WiFi credentials. If successful, you can skip to the next step.</span>
       </div>
     </div>
   </div>
+  <div id="hk-step2-body">
   <p>On first boot, the device creates a WiFi access point:</p>
   <ol>
-    <li>Connect to the <strong>Serin-XXXX</strong> network (XXXX = last 4 hex digits of WiFi MAC, password: <code>serinlabs</code>).</li>
-    <li>A captive portal appears — enter your WiFi SSID and password.
+    <li>Connect to the <strong id="hk-ap-name-inline">Serin-XXXX</strong> network (XXXX = last 4 characters of the device's WiFi address, password: <code>serinlabs</code>).</li>
+    <li>A setup page opens. Enter your home WiFi name and password.
       <ul>
-        <li>If it doesn't appear automatically, open a browser and go to <code>http://192.168.4.1</code>.</li>
+        <li>If it doesn't open automatically, go to <code>http://192.168.4.1</code> in a browser.</li>
       </ul>
     </li>
-    <li>The device saves credentials and reboots.</li>
+    <li>The device saves your credentials and reboots.</li>
   </ol>
-  <img src="/assets/media/hk_wifi_connect.gif" alt="First-boot captive portal: choosing your WiFi network, entering the password, and the device connecting" width="300" loading="lazy" class="screenshot">
+  </div>
   <hr>
 
   <h2>3. Add to Apple Home</h2>
-  <div id="hk-pair-qr-block" style="display:none">
-    <div class="hk-inline-qr-row">
-      <div class="serin-qr-card">
-        <div class="serin-qr-card__head">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          <span class="serin-qr-card__code" id="hk-setup-code">XXX-XX-XXX</span>
+      <div id="hk-pair-qr-block" style="display:none">
+        <div class="qr-scan-callout">
+          <div class="qr-scan-callout__label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9V5a2 2 0 0 1 2-2h4"/><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M21 15v4a2 2 0 0 1-2 2h-4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/></svg>
+            Add to Apple Home
+          </div>
+          <div class="qr-scan-callout__body">
+            <div class="serin-qr-card">
+              <div class="serin-qr-card__head">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span class="serin-qr-card__code" id="hk-setup-code">XXX-XX-XXX</span>
+              </div>
+              <div id="hk-pair-qr"></div>
+            </div>
+            <span class="qr-scan-callout__desc">Scan this QR code to add the device to Apple Home. If successful, you're done with set up!</span>
+          </div>
         </div>
-        <div id="hk-pair-qr"></div>
       </div>
-      <div class="hk-inline-qr-text">
-        Scan with your iPhone after the device reboots onto your home WiFi.
-      </div>
-    </div>
+  <div id="hk-step3-body">
+      <h3>Option A: Scan QR Code (recommended)</h3>
+      <ol>
+        <li>In a browser, open the device's web UI at <code>http://<span id="hk-local-host">Serin-XXXX</span>.local</code> (<strong>XXXX</strong> = the suffix from Step 2). If <code>.local</code> doesn't resolve, use <code>http://&lt;device-ip&gt;</code> from your router.</li>
+        <li>Scan the QR code shown in the HomeKit panel with your iPhone or iPad.</li>
+      </ol>
+      <h3>Option B: Manual Setup Code</h3>
+      <ol>
+        <li>Open the <strong>Home</strong> app on your iPhone or iPad.</li>
+        <li>Tap <strong>+</strong> &gt; <strong>Add Accessory</strong>.</li>
+        <li>Tap <strong>More options...</strong> and select <strong>Mini Split <span id="hk-device-suffix">XXXX</span></strong>.</li>
+        <li>Enter the setup code shown in the web UI's HomeKit panel.</li>
+      </ol>
   </div>
-  <img src="/assets/media/homekit.png" alt="HomeKit pairing screen in Apple Home app" width="300" loading="lazy" class="screenshot">
-  <p>Once connected to WiFi:</p>
-  <h3>Option A: Scan QR Code (recommended)</h3>
-  <ol>
-    <li>In a browser, open the device's web UI at <code>http://Serin-XXXX.local</code> &mdash; <strong>XXXX</strong> is the same suffix as the <code>Serin-XXXX</code> network from Step 2. If <code>.local</code> addresses don't resolve on your network, use <code>http://&lt;device-ip&gt;</code> with the IP from your router.</li>
-    <li>Scan the QR code shown in the HomeKit panel with your iPhone or iPad.</li>
-  </ol>
-  <h3>Option B: Manual Setup Code</h3>
-  <ol>
-    <li>Open the <strong>Home</strong> app on your iPhone or iPad.</li>
-    <li>Tap <strong>+</strong> &gt; <strong>Add Accessory</strong>.</li>
-    <li>Tap <strong>More options...</strong> and select <strong>Mini Split XXXX</strong>.</li>
-    <li>Enter the setup code shown in the web UI's HomeKit panel.</li>
-  </ol>
   <hr>
 
   <h2>4. Access Web UI</h2>
-  <video class="screenshot" height="400" autoplay muted loop playsinline controls poster="/assets/media/webui_tour.jpg" aria-label="Tour of the built-in web UI: thermostat control, vane control, diagnostics, and settings">
-    <source src="/assets/media/webui_tour.mp4" type="video/mp4">
-    <img src="/assets/media/webui.png" alt="Built-in web UI for thermostat control and diagnostics" height="400" loading="lazy" class="screenshot">
-  </video>
-  <p>The built-in web interface — reachable at <code>http://Serin-XXXX.local</code> or <code>http://&lt;device-ip&gt;</code> — provides:</p>
+  <div id="hk-webui-qr-block" style="display:none">
+    <div class="qr-scan-callout">
+      <div class="qr-scan-callout__label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open in browser
+      </div>
+      <div class="qr-scan-callout__body">
+        <div class="serin-qr-card">
+          <div class="serin-qr-card__head">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="serin-qr-card__name" id="hk-webui-url">Serin-XXXX.local</span>
+          </div>
+          <div id="hk-webui-qr"></div>
+        </div>
+        <span class="qr-scan-callout__desc">Scan this QR code to open the device's web interface in your browser.</span>
+      </div>
+    </div>
+  </div>
+  <div id="hk-step4-body">
+  <p>The built-in web interface is reachable at <code>http://<span id="hk-local-host-4">Serin-XXXX</span>.local</code> or <code>http://&lt;device-ip&gt;</code>. It provides:</p>
   <ul>
     <li>Thermostat control (mode, temperature, fan speed)</li>
     <li>Vane control (vertical and wide vane positions)</li>
@@ -102,12 +125,13 @@ nav_active: homekit
     <li>Settings (device name, poll interval, temperature unit)</li>
     <li>Real-time log streaming</li>
   </ul>
+  </div>
   <hr>
 
   <h2>5. OTA Updates</h2>
   <p>Update firmware over the air without USB access:</p>
   <ul>
-    <li><strong>Check for Updates (easiest):</strong> In the web UI, open Settings &gt; Firmware Update and tap <strong>Check for Updates</strong>. If a newer release is available, tap <strong>Install</strong> &mdash; the device downloads it, verifies the SHA256 checksum, and restarts. No manual download needed.</li>
+    <li><strong>Check for Updates (easiest):</strong> In the web UI, open Settings &gt; Firmware Update and tap <strong>Check for Updates</strong>. If a newer release is available, tap <strong>Install</strong>. The device downloads it, verifies the SHA256 checksum, and restarts. No manual download needed.</li>
     <li><strong>Manual upload:</strong> Upload a firmware <code>.bin</code> in the same Firmware Update section. The browser verifies integrity before uploading.</li>
     <li><strong>Via curl:</strong></li>
   </ul>
@@ -125,20 +149,21 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
       <tr><th>Method</th><th>Details</th></tr>
     </thead>
     <tbody>
-      <tr><td><strong>Auto AP</strong></td><td>Fallback AP activates after 5 min disconnect. Disables when WiFi reconnects.</td></tr>
-      <tr><td><strong>Recovery page</strong></td><td>Connect to AP, navigate to <code>192.168.4.1</code> for new credentials.</td></tr>
-      <tr><td><strong>Button reset</strong></td><td>10-second long-press on board button erases stored WiFi credentials.</td></tr>
+      <tr><td><strong>Auto hotspot</strong></td><td>The device creates a fallback hotspot after 5 minutes without WiFi. It turns off once WiFi reconnects.</td></tr>
+      <tr><td><strong>Recovery page</strong></td><td>Connect to the hotspot, then go to <code>192.168.4.1</code> to enter new WiFi credentials.</td></tr>
+      <tr><td><strong>Button reset</strong></td><td>Hold the board button for 10 seconds to erase stored WiFi credentials.</td></tr>
     </tbody>
   </table>
 
   <h3>Re-pairing</h3>
-  <p>If you need to re-pair to Apple Home, open the web UI and use the "Reset Pairing" button in the pairing panel, then add the accessory again from the Home app.</p>
+  <p>If you need to re-pair to Apple Home, open the web interface and use the "Reset Pairing" button in the HomeKit panel, then add the device again from the Home app.</p>
   <p>For more troubleshooting tips, see the <a href="/troubleshooting">full troubleshooting guide</a>.</p>
   <hr>
 
   <h2>Need Help?</h2>
   <p>Check the <a href="/troubleshooting">troubleshooting guide</a>, browse <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">Discussions</a> for answers, or <a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">open an issue</a> on GitHub.</p>
 
+  <hr>
   <h2>Source Code</h2>
   <p>The HomeKit-compatible firmware is open source. See the <a href="https://github.com/akifbayram/mitsubishi-cn105-homekit" target="_blank">GitHub repository</a> for protocol documentation, project structure, and build instructions.</p>
   <hr>
@@ -159,11 +184,27 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
     document.getElementById('hk-saved-device-name').textContent = data.apName;
     document.getElementById('hk-saved-banner').style.display = '';
 
+    var suffix = data.apName.replace('Serin-', '');
+    var el;
+    el = document.getElementById('hk-ap-name-inline'); if (el) el.textContent = data.apName;
+    el = document.getElementById('hk-local-host');     if (el) el.textContent = data.apName;
+    el = document.getElementById('hk-device-suffix');  if (el) el.textContent = suffix;
+    el = document.getElementById('hk-local-host-4');   if (el) el.textContent = data.apName;
+
     document.getElementById('hk-ap-name').textContent = data.apName;
     document.getElementById('hk-wifi-qr-block').style.display = '';
     new QRCode(document.getElementById('hk-wifi-qr'), {
       text: data.wifiQrData,
-      width: 96, height: 96,
+      width: 128, height: 128,
+      colorDark: '#000000', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+
+    document.getElementById('hk-webui-url').textContent = data.apName + '.local';
+    document.getElementById('hk-webui-qr-block').style.display = '';
+    new QRCode(document.getElementById('hk-webui-qr'), {
+      text: 'http://' + data.apName + '.local',
+      width: 128, height: 128,
       colorDark: '#000000', colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.M
     });
@@ -172,10 +213,26 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
     document.getElementById('hk-pair-qr-block').style.display = '';
     new QRCode(document.getElementById('hk-pair-qr'), {
       text: data.hapUri,
-      width: 96, height: 96,
+      width: 128, height: 128,
       colorDark: '#000000', colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.M
     });
+
+    // Device already flashed: collapse the written steps so the QR callouts stand out.
+    function collapseStep(bodyId, summaryText) {
+      var body = document.getElementById(bodyId);
+      if (!body) return;
+      var details = document.createElement('details');
+      details.className = 'hk-step-collapse';
+      var summary = document.createElement('summary');
+      summary.textContent = summaryText;
+      details.appendChild(summary);
+      body.parentNode.insertBefore(details, body);
+      details.appendChild(body);
+    }
+    collapseStep('hk-step2-body', 'Manual WiFi setup steps');
+    collapseStep('hk-step3-body', 'Other ways to add to Apple Home');
+    collapseStep('hk-step4-body', "What's in the web interface");
   })();
   </script>
 </div>

@@ -72,10 +72,12 @@ nav_active: wiring
         <text x="60" y="91" text-anchor="middle" fill="#FFF" font-size="11" font-weight="500">Pin 2 · 5V</text>
         <!-- Pin 3 - RX (G2) -->
         <rect x="25" y="115" width="70" height="32" rx="4" fill="#F5F5F5" stroke="#CCC" stroke-width="1"/>
-        <text x="60" y="136" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Pin 3 · RX</text>
+        <text x="60" y="132" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Pin 3 · RX</text>
+        <text x="60" y="143" text-anchor="middle" fill="#666" font-size="8" font-weight="600">GPIO 2</text>
         <!-- Pin 4 - TX (G1) -->
         <rect x="25" y="160" width="70" height="32" rx="4" fill="#FFD600" stroke="#F9A825" stroke-width="1"/>
-        <text x="60" y="181" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Pin 4 · TX</text>
+        <text x="60" y="177" text-anchor="middle" fill="#333" font-size="11" font-weight="500">Pin 4 · TX</text>
+        <text x="60" y="188" text-anchor="middle" fill="#555" font-size="8" font-weight="600">GPIO 1</text>
       </g>
       <text x="600" y="320" text-anchor="middle" fill="#888" font-size="10">HY2.0-4P (Grove)</text>
 
@@ -109,63 +111,18 @@ nav_active: wiring
   </section>
 
   <section>
-    <h2>Connectors</h2>
-    <img src="/assets/jst_hy20.png" alt="JST PAP-05V-S connector (5-pin white housing) on left and HY2.0-4P Grove connector (4-pin white housing) on right" class="connector-image" />
-  </section>
-
-  <section>
-    <h2>Connection Reference</h2>
-    <table class="pin-mapping-table">
-      <thead>
-        <tr>
-          <th>Wire</th>
-          <th>CN105 Pin</th>
-          <th>Signal</th>
-          <th>Grove Pin</th>
-          <th>Signal</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="wire-black">
-          <td>Black</td>
-          <td>Pin 2</td>
-          <td>GND</td>
-          <td>Pin 1</td>
-          <td>GND</td>
-        </tr>
-        <tr class="wire-red">
-          <td>Red</td>
-          <td>Pin 3</td>
-          <td>5V</td>
-          <td>Pin 2</td>
-          <td>5V</td>
-        </tr>
-        <tr class="wire-white">
-          <td>White</td>
-          <td>Pin 4</td>
-          <td>TX</td>
-          <td>Pin 3</td>
-          <td>RX (GPIO 2)</td>
-        </tr>
-        <tr class="wire-yellow">
-          <td>Yellow</td>
-          <td>Pin 5</td>
-          <td>RX</td>
-          <td>Pin 4</td>
-          <td>TX (GPIO 1)</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section>
     <h2>Cable Options</h2>
-    <p>You may use the information above to build your own cable using these parts:</p>
-    <ul>
-      <li><a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/pap-05v-s/759977" target="_blank">JST PAP-05V-S (CN105 side)</a></li>
-      <li><a href="https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/110990027/5482567" target="_blank">Grove HY2.0-4P (device side)</a></li>
-    </ul>
-    <p>Prefer not to build one? Buy a <a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener">ready-made CN105-to-Grove cable</a>, or get the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">complete Serin Controller</a> with the cable included. For a full shopping list including boards, see the <a href="/parts">parts list</a>.</p>
+    <div class="cable-options-layout">
+      <div class="cable-options-text">
+        <p>You may use the information above to build your own cable using these parts:</p>
+        <ul>
+          <li><a href="https://www.digikey.com/en/products/detail/jst-sales-america-inc/pap-05v-s/759977" target="_blank">JST PAP-05V-S (CN105 side)</a></li>
+          <li><a href="https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/110990027/5482567" target="_blank">Grove HY2.0-4P (device side)</a></li>
+        </ul>
+        <p>Prefer not to build one? Buy a <a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener">ready-made CN105-to-Grove cable</a>, or get the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">complete Serin Controller</a> with the cable included. For a full shopping list including boards, see the <a href="/parts">parts list</a>.</p>
+      </div>
+      <img src="/assets/jst_hy20.png" alt="JST PAP-05V-S connector (5-pin white housing) on left and HY2.0-4P Grove connector (4-pin white housing) on right" class="cable-options-image" />
+    </div>
   </section>
 
   <section>

@@ -51,7 +51,7 @@ nav_active: flash
   <div id="esphome-note" class="flash-section">
     <p><em>This installs one pre-built ESPHome firmware. Every unit gets the same build, based on echavet's <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a> component. It includes climate control, both vertical and horizontal vane controls, the web server UI, and OTA updates.</em></p>
     <p><em>You can't choose a build tailored to your unit here. This one always has both vanes and none of the optional features. If your unit has no vanes (or vertical only), or you want a remote temperature sensor, i-See sensor, dual setpoint, diagnostics, or a Bluetooth proxy, build a custom config in the <a href="/esphome/generate-yaml">YAML generator</a> after setup and push it over WiFi from the ESPHome dashboard.</em></p>
-    <p><em><strong>After flashing:</strong> The flasher will prompt you to configure WiFi — enter your network credentials to connect the device wirelessly before unplugging USB.</em></p>
+    <p><em><strong>After flashing:</strong> The flasher will prompt you to configure WiFi. Enter your network credentials to connect the device wirelessly before unplugging USB.</em></p>
   </div>
 
   <div id="homekit-note" class="flash-section active">
@@ -62,38 +62,49 @@ nav_active: flash
       <p><strong>Flash complete!</strong> Follow these steps to finish setup:</p>
       <div class="flash-step">
         <span class="flash-step-pill">1</span>
-        <div class="serin-qr-card">
-          <div class="serin-qr-card__head">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M1.42 9a16 16 0 0 1 21.16 0M5 12.55a11 11 0 0 1 14.08 0M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1.5"/></svg>
-            <div>
-              <div class="serin-qr-card__name" id="flash-ap-ssid">Serin-XXXX</div>
-              <div class="serin-qr-card__sub">serinlabs</div>
-            </div>
+        <div class="qr-scan-callout">
+          <div class="qr-scan-callout__label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9V5a2 2 0 0 1 2-2h4"/><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M21 15v4a2 2 0 0 1-2 2h-4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/></svg>
+            Join Hotspot
           </div>
-          <div id="wifi-qr"></div>
+          <div class="qr-scan-callout__body">
+            <div class="serin-qr-card">
+              <div class="serin-qr-card__head">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M1.42 9a16 16 0 0 1 21.16 0M5 12.55a11 11 0 0 1 14.08 0M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1.5"/></svg>
+                <div>
+                  <div class="serin-qr-card__name" id="flash-ap-ssid">Serin-XXXX</div>
+                  <div class="serin-qr-card__sub">serinlabs</div>
+                </div>
+              </div>
+              <div id="wifi-qr"></div>
+            </div>
+            <span class="qr-scan-callout__desc">Scan this QR code to automatically connect to the hotspot. A portal will open for you to enter your home WiFi credentials. If successful, you can skip to the next step.</span>
+          </div>
         </div>
-        <span class="flash-step-text">Scan to join &middot; pw: <code>serinlabs</code></span>
       </div>
       <hr class="flash-step-divider">
       <div class="flash-step">
         <span class="flash-step-pill">2</span>
-        <span class="flash-step-text">A page opens on your phone &mdash; enter your home WiFi credentials</span>
-      </div>
-      <hr class="flash-step-divider">
-      <div class="flash-step">
-        <span class="flash-step-pill">3</span>
-        <div class="serin-qr-card">
-          <div class="serin-qr-card__head">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            <span class="serin-qr-card__code" id="flash-hk-code">XXX-XX-XXX</span>
+        <div class="qr-scan-callout">
+          <div class="qr-scan-callout__label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 9V5a2 2 0 0 1 2-2h4"/><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M21 15v4a2 2 0 0 1-2 2h-4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/></svg>
+            Add to Apple Home
           </div>
-          <div id="homekit-qr"></div>
+          <div class="qr-scan-callout__body">
+            <div class="serin-qr-card">
+              <div class="serin-qr-card__head">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <span class="serin-qr-card__code" id="flash-hk-code">XXX-XX-XXX</span>
+              </div>
+              <div id="homekit-qr"></div>
+            </div>
+            <span class="qr-scan-callout__desc">Scan this QR code to add the device to Apple Home. If successful, you're done with set up!</span>
+          </div>
         </div>
-        <span class="flash-step-text">Scan to add to Apple Home</span>
       </div>
   </div>
 
-  <p><a id="next-steps-link" href="/homekit/setup">Continue to HomeKit-Compatible Setup &rarr;</a></p>
+  <p><a id="next-steps-link" href="/homekit/setup" class="btn btn-homekit">Continue to HomeKit-Compatible Setup &rarr;</a></p>
 
   <hr>
   <h3>Notes</h3>
@@ -237,7 +248,7 @@ nav_active: flash
       if (typeof QRCode !== 'undefined') {
         new QRCode(document.getElementById('wifi-qr'), {
           text: 'WIFI:T:WPA;S:' + apName + ';P:serinlabs;;',
-          width: 96, height: 96,
+          width: 128, height: 128,
           colorDark: '#000000', colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.M
         });
@@ -245,7 +256,7 @@ nav_active: flash
         if (detectedMac) {
           new QRCode(document.getElementById('homekit-qr'), {
             text: hapUri,
-            width: 96, height: 96,
+            width: 128, height: 128,
             colorDark: '#000000', colorLight: '#ffffff',
             correctLevel: QRCode.CorrectLevel.M
           });

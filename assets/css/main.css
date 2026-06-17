@@ -552,6 +552,71 @@ nav .dropdown-menu a:hover {
   color: var(--secondary);
   margin: 0.3em 0 0;
 }
+.flash-step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+}
+.flash-step-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--homekit);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.flash-step-qr {
+  flex-shrink: 0;
+  text-align: center;
+}
+.flash-step-text {
+  font-size: 0.78rem;
+  color: var(--fg);
+  line-height: 1.5;
+}
+.flash-step-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0.2rem 0;
+}
+.hk-saved-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #D1FAE5;
+  border-left: 3px solid #10B981;
+  border-radius: var(--radius-md);
+  background: #F0FDF4;
+  padding: 0.55rem 0.85rem;
+  margin: 0.75rem 0;
+  font-size: 0.88rem;
+}
+.hk-saved-banner button {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+.hk-inline-qr-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin: 0.5rem 0 0.25rem;
+}
+.hk-inline-qr-text {
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
 
 /* ===== TABLES ===== */
 table {

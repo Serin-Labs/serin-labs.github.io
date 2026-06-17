@@ -149,6 +149,7 @@ nav ul {
   margin: 0;
   padding: 0;
   gap: 0.2rem;
+  align-items: center;
 }
 nav li { margin: 0; }
 nav a {
@@ -207,13 +208,7 @@ nav .dropdown-menu a:hover {
 }
 
 /* Nav CTA button */
-.nav-cta { display: flex; align-items: center; margin-left: 0.4rem; }
-.nav-cta-btn {
-  padding: 0.38em 0.9em;
-  font-size: 0.85rem;
-  line-height: 1;
-}
-.nav-cta-btn:hover { transform: none; }
+.nav-cta { display: flex; align-items: center; }
 
 /* Hamburger */
 .nav-toggle {
@@ -304,6 +299,14 @@ nav .dropdown-menu a:hover {
   box-shadow: 0 4px 12px rgba(240,154,40,0.25);
   text-decoration: none;
 }
+.btn.nav-cta-btn {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.92rem;
+  line-height: 1.2;
+  transform: none;
+}
+.btn.nav-cta-btn:hover { transform: none; }
+
 .btn-outline {
   background: transparent;
   color: var(--primary);
@@ -1207,7 +1210,7 @@ details[open] summary::before {
   }
 
   .nav-cta { margin-left: 0; padding: 0.6rem 1rem; }
-  .nav-cta-btn { display: inline-flex; font-size: 0.92rem; padding: 0.5em 1.2em; }
+  .btn.nav-cta-btn { font-size: 0.92rem; padding: 0.5rem 1.2rem; }
 
   .container { width: 95%; padding: 0 12px; }
   main { padding: 1.25rem 0; }

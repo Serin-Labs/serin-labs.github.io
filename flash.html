@@ -28,13 +28,11 @@ nav_active: flash
         <li><strong>ESP32-C3 SuperMini / XIAO</strong> (ESP32-C3) &mdash; untested</li>
         <li><strong>Generic ESP32 DevKit</strong> (ESP32) &mdash; untested</li>
       </ul>
+      <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts">what you need</a>, or order the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled Serin Controller</a> (board and CN105 cable included) and flash it here.</p>
     </div>
   </details>
-  <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts">what you need</a>, or order the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled Serin Controller</a> (board and CN105 cable included) and flash it here.</p>
 
   <h2>2. Flash</h2>
-
-  <h3>Instructions</h3>
   <ol>
     <li>Connect your device to your computer via a data cable.</li>
     <li>Click <strong>Install Firmware</strong> below and select the serial port.</li>
@@ -55,7 +53,6 @@ nav_active: flash
   </div>
 
   <div id="homekit-note" class="flash-section active">
-    <p><em>This installs the HomeKit-compatible firmware. After flashing, the device creates a WiFi access point named <strong>Serin-XXXX</strong> (XXXX = last 4 hex digits of its WiFi MAC address, password: <code>serinlabs</code>). Look for this network on your phone or computer when connecting during setup.</em></p>
   </div>
 
   <div id="flash-device-banner" class="flash-device-banner" style="display:none">
@@ -102,11 +99,15 @@ nav_active: flash
           </div>
         </div>
       </div>
+      <p class="flash-banner-footnote"><em>For more detailed setup instructions, continue to the next page linked below.</em></p>
   </div>
 
-  <p><a id="next-steps-link" href="/homekit/setup" class="btn btn-homekit">Continue to HomeKit-Compatible Setup &rarr;</a></p>
 
   <hr>
+
+  <p><a id="next-steps-link" href="/homekit/setup" class="btn btn-homekit">Continue to HomeKit-Compatible Setup &rarr;</a></p>
+  <hr>
+
   <h3>Notes</h3>
   <ul>
     <li>Requires a Chrome-based browser (Chrome, Edge, Brave).</li>

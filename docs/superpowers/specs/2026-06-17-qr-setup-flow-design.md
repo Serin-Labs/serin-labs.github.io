@@ -67,12 +67,16 @@ If not present (or expired), all steps show the manual path only — no visual c
 
 ### Saved Device Banner
 
-```
-┌ ✓ Device from last flash: Serin-XXXX                [clear] ┐
-└─────────────────────────────────────────────────────────────┘
+```html
+<div id="hk-saved-banner" class="hk-saved-banner" style="display:none">
+  ✓ Device from last flash: <strong id="hk-saved-device-name"></strong>
+  <button onclick="localStorage.removeItem('serin_last_device');location.reload()">clear</button>
+</div>
 ```
 
 - Green left-border callout (`border-left: 3px solid #10B981`, `background: #F0FDF4`)
+- `id="hk-saved-banner"` — hidden by default, shown by JS
+- `id="hk-saved-device-name"` — filled with `data.apName` by JS
 - "clear" button: calls `localStorage.removeItem('serin_last_device')` then `location.reload()`
 
 ### Revised Step Order

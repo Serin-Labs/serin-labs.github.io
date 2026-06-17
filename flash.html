@@ -9,12 +9,6 @@ nav_active: flash
   <h1>Flash Firmware</h1>
   <p>Flash ESPHome or HomeKit-compatible firmware to your device directly from the browser using a USB cable. No software installation needed.</p>
 
-  <h2>1. Select Your Platform</h2>
-  <div class="platform-toggle" role="group" aria-label="Select firmware platform">
-    <button id="toggle-esphome" onclick="selectPlatform('esphome')" aria-pressed="false">ESPHome</button>
-    <button id="toggle-homekit" class="active" onclick="selectPlatform('homekit')" aria-pressed="true">HomeKit</button>
-  </div>
-
   <details>
     <summary>Supported Boards</summary>
     <div class="faq-body">
@@ -31,6 +25,12 @@ nav_active: flash
       <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts">what you need</a>, or order the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled Serin Controller</a> (board and CN105 cable included) and flash it here.</p>
     </div>
   </details>
+
+  <h2>1. Select Your Platform</h2>
+  <div class="platform-toggle" role="group" aria-label="Select firmware platform">
+    <button id="toggle-esphome" onclick="selectPlatform('esphome')" aria-pressed="false">ESPHome</button>
+    <button id="toggle-homekit" class="active" onclick="selectPlatform('homekit')" aria-pressed="true">HomeKit</button>
+  </div>
 
   <h2>2. Flash</h2>
   <ol>

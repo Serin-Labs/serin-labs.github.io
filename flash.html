@@ -55,28 +55,32 @@ nav_active: flash
   </div>
 
   <div id="flash-device-banner" class="flash-device-banner" style="display:none">
-    <div class="flash-device-banner__body">
-      <div class="flash-device-banner__qr">
-        <div id="wifi-qr"></div>
-        <p class="flash-device-banner__qr-label">WiFi Setup</p>
+      <p><strong>Flash complete!</strong> Follow these steps to finish setup:</p>
+      <div class="flash-step">
+        <span class="flash-step-pill">1</span>
+        <div class="flash-step-qr">
+          <div id="wifi-qr"></div>
+          <p class="flash-device-banner__qr-label">WiFi</p>
+        </div>
+        <span class="flash-step-text">Scan to join <strong><code id="flash-ap-ssid">Serin-XXXX</code></strong> &middot; pw: <code>serinlabs</code></span>
       </div>
-      <div class="flash-device-banner__qr">
-        <div id="homekit-qr"></div>
-        <p class="flash-device-banner__qr-label">HomeKit Pair</p>
+      <hr class="flash-step-divider">
+      <div class="flash-step">
+        <span class="flash-step-pill">2</span>
+        <span class="flash-step-text">A page opens on your phone &mdash; enter your home WiFi credentials</span>
       </div>
-      <div>
-        <p><strong>Flash complete!</strong> Connect to your device's setup network:</p>
-        <p>Network: <strong><code id="flash-ap-ssid">Serin-XXXX</code></strong></p>
-        <p>Password: <code>serinlabs</code></p>
-        <p>HomeKit code: <strong><code id="flash-hk-code">XXX-XX-XXX</code></strong></p>
+      <hr class="flash-step-divider">
+      <div class="flash-step">
+        <span class="flash-step-pill">3</span>
+        <div class="flash-step-qr">
+          <div id="homekit-qr"></div>
+          <p class="flash-device-banner__qr-label">HomeKit</p>
+        </div>
+        <span class="flash-step-text">Scan to add to Apple Home &middot; Code: <strong><code id="flash-hk-code">XXX-XX-XXX</code></strong></span>
       </div>
-    </div>
   </div>
 
-  <h2>Next Steps</h2>
-  <p>
-    <a id="next-steps-link" href="/homekit/setup" class="btn btn-homekit">Continue to HomeKit-Compatible Setup</a>
-  </p>
+  <p><a id="next-steps-link" href="/homekit/setup">Continue to HomeKit-Compatible Setup &rarr;</a></p>
 
   <hr>
   <h3>Notes</h3>
@@ -107,11 +111,8 @@ nav_active: flash
     document.getElementById('boards-homekit').style.display = platform === 'homekit' ? '' : 'none';
     // Swap button colors
     var installBtn = document.getElementById('install-btn');
-    var nextBtn = document.getElementById('next-steps-link');
     installBtn.classList.toggle('btn-esphome', platform === 'esphome');
     installBtn.classList.toggle('btn-homekit', platform === 'homekit');
-    nextBtn.classList.toggle('btn-esphome', platform === 'esphome');
-    nextBtn.classList.toggle('btn-homekit', platform === 'homekit');
     updateManifest();
     updateNextSteps();
   }
@@ -203,21 +204,35 @@ nav_active: flash
       document.getElementById('flash-ap-ssid').textContent = apName;
       document.getElementById('flash-device-banner').style.display = '';
 
+      if (detectedMac) {
+        var digits = deriveSetupCode(detectedMac);
+        var formatted = digits.slice(0, 3) + '-' + digits.slice(3, 5) + '-' + digits.slice(5);
+        var hapUri = setupCodeToHapUri(digits);
+        try {
+          localStorage.setItem('serin_last_device', JSON.stringify({
+            mac: detectedMac,
+            apName: apName,
+            setupCode: formatted,
+            hapUri: hapUri,
+            wifiQrData: 'WIFI:T:WPA;S:' + apName + ';P:serinlabs;;',
+            savedAt: Date.now()
+          }));
+        } catch(e) {}
+        document.getElementById('flash-hk-code').textContent = formatted;
+      }
+
       if (typeof QRCode !== 'undefined') {
         new QRCode(document.getElementById('wifi-qr'), {
           text: 'WIFI:T:WPA;S:' + apName + ';P:serinlabs;;',
-          width: 128, height: 128,
+          width: 96, height: 96,
           colorDark: '#000000', colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.M
         });
 
         if (detectedMac) {
-          var digits = deriveSetupCode(detectedMac);
-          var formatted = digits.slice(0, 3) + '-' + digits.slice(3, 5) + '-' + digits.slice(5);
-          document.getElementById('flash-hk-code').textContent = formatted;
           new QRCode(document.getElementById('homekit-qr'), {
-            text: setupCodeToHapUri(digits),
-            width: 128, height: 128,
+            text: hapUri,
+            width: 96, height: 96,
             colorDark: '#000000', colorLight: '#ffffff',
             correctLevel: QRCode.CorrectLevel.M
           });

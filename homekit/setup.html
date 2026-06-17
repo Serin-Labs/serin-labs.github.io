@@ -15,7 +15,11 @@ nav_active: homekit
   <p>On first boot, the device creates a WiFi access point:</p>
   <ol>
     <li>Connect to the <strong>Serin-XXXX</strong> network (XXXX = last 4 hex digits of WiFi MAC, password: <code>serinlabs</code>).</li>
-    <li>A captive portal appears — enter your WiFi SSID and password.</li>
+    <li>A captive portal appears — enter your WiFi SSID and password.
+      <ul>
+        <li>If it doesn't appear automatically, open a browser and go to <code>http://192.168.4.1:8080</code>.</li>
+      </ul>
+    </li>
     <li>The device saves credentials and reboots.</li>
   </ol>
   <img src="/assets/media/recovery.png" alt="WiFi captive portal for entering network credentials" width="300" loading="lazy" class="screenshot">
@@ -42,8 +46,8 @@ nav_active: homekit
   <ol>
     <li>Open the <strong>Home</strong> app on your iPhone or iPad.</li>
     <li>Tap <strong>+</strong> &gt; <strong>Add Accessory</strong>.</li>
-    <li>Select <strong>Heat Pump XXXX</strong> (or tap <strong>More options...</strong>).</li>
-    <li>Enter the setup code shown in the web UI (HomeKit panel &gt; Setup Code).</li>
+    <li>Tap <strong>More options...</strong> and select <strong>Mini Split XXXX</strong>.</li>
+    <li>Enter the setup code shown in the web UI's HomeKit panel at <code>http://&lt;device-ip&gt;:8080</code>.</li>
   </ol>
   <hr>
 
@@ -86,17 +90,9 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
   </table>
 
   <h3>Re-pairing</h3>
-  <p>If you need to re-pair, open the web UI and use the "Reset Pairing" button in the pairing panel, then add the accessory again from the Home app.</p>
+  <p>If you need to re-pair to Apple Home, open the web UI and use the "Reset Pairing" button in the pairing panel, then add the accessory again from the Home app.</p>
   <p>For more troubleshooting tips, see the <a href="/troubleshooting">full troubleshooting guide</a>.</p>
   <hr>
-
-  <h2>Multiple Indoor Units</h2>
-  <p>If your system has multiple indoor heads, you need <strong>one controller per unit</strong> — each has its own CN105 port.</p>
-  <ul>
-    <li><strong>Independent pairing:</strong> Each device pairs separately to Apple Home. Open the Home app and add each accessory one at a time.</li>
-    <li><strong>Naming:</strong> After pairing, rename each accessory in Apple Home to match the room (e.g., "Living Room AC", "Bedroom AC"). You can also assign each to its corresponding room in the Home app.</li>
-    <li><strong>Repeat the setup:</strong> Flash, connect to WiFi, wire, and pair each device individually. The process is the same for every unit.</li>
-  </ul>
 
   <h2>Need Help?</h2>
   <p>Check the <a href="/troubleshooting">troubleshooting guide</a>, browse <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">Discussions</a> for answers, or <a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">open an issue</a> on GitHub.</p>

@@ -1,0 +1,93 @@
+---
+layout: default
+title: "Licenses & Source"
+description: "Source code and license terms for the open-source firmware and components distributed through the Serin Labs browser flasher."
+nav_active: licenses
+---
+
+<div class="home">
+  <h1>Licenses &amp; Source</h1>
+  <p>The <a href="/flash">browser flasher</a> installs pre-compiled firmware binaries onto your device over USB. Because those binaries are distributed here, this page lists the open-source projects bundled into each firmware image, with links to their source code and license terms. Everything is provided as-is; refer to each project for its full terms.</p>
+
+  <h2>ESPHome firmware</h2>
+  <p>The ESPHome <code>.bin</code> images are compiled with the ESPHome toolchain on the ESP-IDF framework, together with the Mitsubishi CN105 component stack.</p>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Component</th><th>License</th><th>Source &amp; license</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ESPHome</td>
+          <td>MIT + GPLv3</td>
+          <td><a href="https://github.com/esphome/esphome" target="_blank" rel="noopener">Source</a> &middot; <a href="https://github.com/esphome/esphome/blob/dev/LICENSE" target="_blank" rel="noopener">License</a></td>
+        </tr>
+        <tr>
+          <td>MitsubishiCN105ESPHome (echavet)</td>
+          <td>None declared</td>
+          <td><a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank" rel="noopener">Source</a></td>
+        </tr>
+        <tr>
+          <td>esphome-mitsubishiheatpump (geoffdavis)</td>
+          <td>BSD-2-Clause</td>
+          <td><a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank" rel="noopener">Source</a> &middot; <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump/blob/master/LICENSE" target="_blank" rel="noopener">License</a></td>
+        </tr>
+        <tr>
+          <td>SwiCago/HeatPump</td>
+          <td>GPL-3.0 / LGPL-3.0</td>
+          <td><a href="https://github.com/SwiCago/HeatPump" target="_blank" rel="noopener">Source</a> &middot; <a href="https://github.com/SwiCago/HeatPump/blob/master/LICENSE" target="_blank" rel="noopener">License</a></td>
+        </tr>
+        <tr>
+          <td>ESP-IDF (build framework)</td>
+          <td>Apache-2.0</td>
+          <td><a href="https://github.com/espressif/esp-idf" target="_blank" rel="noopener">Source</a> &middot; <a href="https://github.com/espressif/esp-idf/blob/master/LICENSE" target="_blank" rel="noopener">License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li>ESPHome is dual-licensed: its Python tooling is MIT, and its C++/runtime code &mdash; compiled into the firmware &mdash; is GPLv3.</li>
+    <li>SwiCago/HeatPump ships the GPL-3.0 license text in its repository, while its README states LGPL-3.0.</li>
+    <li>MitsubishiCN105ESPHome does not include a license file.</li>
+    <li>Corresponding source for the exact ESPHome build is published at <a href="https://github.com/Serin-Labs/serin-cn105" target="_blank" rel="noopener">Serin-Labs/serin-cn105</a>.</li>
+  </ul>
+
+  <h2>HomeKit firmware</h2>
+  <p>The HomeKit-compatible <code>.bin</code> images are built on Espressif's HomeKit SDK and the ESP-IDF framework.</p>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Component</th><th>License</th><th>Source &amp; license</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>esp-homekit-sdk (Espressif)</td>
+          <td>ESPRESSIF MIT License; mu_srp under Apache-2.0</td>
+          <td><a href="https://github.com/espressif/esp-homekit-sdk" target="_blank" rel="noopener">Source</a> &middot; <a href="https://github.com/espressif/esp-homekit-sdk/blob/master/components/homekit/esp_hap_core/src/esp_hap_main.c" target="_blank" rel="noopener">License</a> &middot; <a href="https://github.com/espressif/esp-homekit-sdk/blob/master/components/homekit/mu_srp/LICENSE" target="_blank" rel="noopener">mu_srp</a></td>
+        </tr>
+        <tr>
+          <td>ESP-IDF</td>
+          <td>Apache-2.0</td>
+          <td><a href="https://github.com/espressif/esp-idf" target="_blank" rel="noopener">Source</a> &middot; <a href="https://github.com/espressif/esp-idf/blob/master/LICENSE" target="_blank" rel="noopener">License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Flashing tool</h2>
+  <p>The flash page runs entirely in your browser, using the open-source ESP Web Tools library to write firmware over USB.</p>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr><th>Component</th><th>License</th><th>Source &amp; license</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ESP Web Tools (esp-web-tools)</td>
+          <td>Apache-2.0</td>
+          <td><a href="https://github.com/esphome/esp-web-tools" target="_blank" rel="noopener">Source</a> &middot; <a href="https://github.com/esphome/esp-web-tools/blob/main/LICENSE" target="_blank" rel="noopener">License</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

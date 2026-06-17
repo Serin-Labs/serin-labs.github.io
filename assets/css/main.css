@@ -538,15 +538,6 @@ nav .dropdown-menu a:hover {
   margin: 1em 0;
 }
 .flash-device-banner p { margin: 0.25em 0; }
-.flash-device-banner__body {
-  display: flex;
-  gap: 1.25em;
-  align-items: center;
-}
-.flash-device-banner__qr {
-  flex-shrink: 0;
-  text-align: center;
-}
 .flash-device-banner__qr-label {
   font-size: 0.78em;
   color: var(--secondary);

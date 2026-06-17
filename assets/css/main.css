@@ -545,7 +545,7 @@ nav .dropdown-menu a:hover {
 }
 .flash-step {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.6rem;
   padding: 0.4rem 0;
 }
@@ -567,6 +567,7 @@ nav .dropdown-menu a:hover {
   text-align: center;
 }
 .flash-step-text {
+  flex: 1;
   font-size: 0.78rem;
   color: var(--fg);
   line-height: 1.5;
@@ -605,6 +606,7 @@ nav .dropdown-menu a:hover {
   margin: 0.5rem 0 0.25rem;
 }
 .hk-inline-qr-text {
+  flex: 1;
   font-size: 0.88rem;
   line-height: 1.55;
 }

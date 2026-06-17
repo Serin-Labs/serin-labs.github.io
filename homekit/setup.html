@@ -29,11 +29,11 @@ nav_active: homekit
   <h2>2. Connect to WiFi</h2>
   <div id="hk-wifi-qr-block" style="display:none">
     <div class="hk-inline-qr-row">
-      <div id="hk-wifi-qr"></div>
       <div class="hk-inline-qr-text">
         Scan with your iPhone to join <strong id="hk-ap-name">Serin-XXXX</strong> &middot; pw: <code>serinlabs</code><br>
         A captive portal opens &mdash; enter your home WiFi credentials. The device saves them and reboots.
       </div>
+      <div id="hk-wifi-qr"></div>
     </div>
   </div>
   <p>On first boot, the device creates a WiFi access point:</p>
@@ -52,11 +52,11 @@ nav_active: homekit
   <h2>3. Add to Apple Home</h2>
   <div id="hk-pair-qr-block" style="display:none">
     <div class="hk-inline-qr-row">
-      <div id="hk-pair-qr"></div>
       <div class="hk-inline-qr-text">
         Scan with your iPhone after the device reboots onto your home WiFi.<br>
         Code: <code id="hk-setup-code">XXX-XX-XXX</code>
       </div>
+      <div id="hk-pair-qr"></div>
     </div>
   </div>
   <img src="/assets/media/homekit.png" alt="HomeKit pairing screen in Apple Home app" width="300" loading="lazy" class="screenshot">
@@ -149,7 +149,7 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
     document.getElementById('hk-wifi-qr-block').style.display = '';
     new QRCode(document.getElementById('hk-wifi-qr'), {
       text: data.wifiQrData,
-      width: 96, height: 96,
+      width: 120, height: 120,
       colorDark: '#000000', colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.M
     });
@@ -158,7 +158,7 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
     document.getElementById('hk-pair-qr-block').style.display = '';
     new QRCode(document.getElementById('hk-pair-qr'), {
       text: data.hapUri,
-      width: 96, height: 96,
+      width: 120, height: 120,
       colorDark: '#000000', colorLight: '#ffffff',
       correctLevel: QRCode.CorrectLevel.M
     });

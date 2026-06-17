@@ -15,17 +15,21 @@ nav_active: flash
     <button id="toggle-homekit" class="active" onclick="selectPlatform('homekit')" aria-pressed="true">HomeKit</button>
   </div>
 
-  <h3>Supported Boards</h3>
-  <ul id="boards-esphome" style="display: none;">
-    <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
-    <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
-  </ul>
-  <ul id="boards-homekit">
-    <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
-    <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
-    <li><strong>ESP32-C3 SuperMini / XIAO</strong> (ESP32-C3) &mdash; untested</li>
-    <li><strong>Generic ESP32 DevKit</strong> (ESP32) &mdash; untested</li>
-  </ul>
+  <details>
+    <summary>Supported Boards</summary>
+    <div class="faq-body">
+      <ul id="boards-esphome" style="display: none;">
+        <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
+        <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
+      </ul>
+      <ul id="boards-homekit">
+        <li><strong>M5Stack NanoC6</strong> (ESP32-C6)</li>
+        <li><strong>M5Stack Atom S3 Lite</strong> (ESP32-S3)</li>
+        <li><strong>ESP32-C3 SuperMini / XIAO</strong> (ESP32-C3) &mdash; untested</li>
+        <li><strong>Generic ESP32 DevKit</strong> (ESP32) &mdash; untested</li>
+      </ul>
+    </div>
+  </details>
   <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts">what you need</a>, or order the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled Serin Controller</a> (board and CN105 cable included) and flash it here.</p>
 
   <h2>2. Flash</h2>
@@ -58,11 +62,11 @@ nav_active: flash
       <p><strong>Flash complete!</strong> Follow these steps to finish setup:</p>
       <div class="flash-step">
         <span class="flash-step-pill">1</span>
+        <span class="flash-step-text">Scan to join <strong><code id="flash-ap-ssid">Serin-XXXX</code></strong> &middot; pw: <code>serinlabs</code></span>
         <div class="flash-step-qr">
           <div id="wifi-qr"></div>
           <p class="flash-device-banner__qr-label">WiFi</p>
         </div>
-        <span class="flash-step-text">Scan to join <strong><code id="flash-ap-ssid">Serin-XXXX</code></strong> &middot; pw: <code>serinlabs</code></span>
       </div>
       <hr class="flash-step-divider">
       <div class="flash-step">
@@ -72,11 +76,11 @@ nav_active: flash
       <hr class="flash-step-divider">
       <div class="flash-step">
         <span class="flash-step-pill">3</span>
+        <span class="flash-step-text">Scan to add to Apple Home &middot; Code: <strong><code id="flash-hk-code">XXX-XX-XXX</code></strong></span>
         <div class="flash-step-qr">
           <div id="homekit-qr"></div>
           <p class="flash-device-banner__qr-label">HomeKit</p>
         </div>
-        <span class="flash-step-text">Scan to add to Apple Home &middot; Code: <strong><code id="flash-hk-code">XXX-XX-XXX</code></strong></span>
       </div>
   </div>
 
@@ -224,7 +228,7 @@ nav_active: flash
       if (typeof QRCode !== 'undefined') {
         new QRCode(document.getElementById('wifi-qr'), {
           text: 'WIFI:T:WPA;S:' + apName + ';P:serinlabs;;',
-          width: 96, height: 96,
+          width: 120, height: 120,
           colorDark: '#000000', colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.M
         });
@@ -232,7 +236,7 @@ nav_active: flash
         if (detectedMac) {
           new QRCode(document.getElementById('homekit-qr'), {
             text: hapUri,
-            width: 96, height: 96,
+            width: 120, height: 120,
             colorDark: '#000000', colorLight: '#ffffff',
             correctLevel: QRCode.CorrectLevel.M
           });

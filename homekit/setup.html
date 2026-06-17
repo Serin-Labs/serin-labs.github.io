@@ -36,7 +36,6 @@ nav_active: homekit
       </div>
     </div>
   </div>
-  <p id="hk-wifi-fallback-label" style="display:none"><em>Prefer to connect manually:</em></p>
   <p>On first boot, the device creates a WiFi access point:</p>
   <ol>
     <li>Connect to the <strong>Serin-XXXX</strong> network (XXXX = last 4 hex digits of WiFi MAC, password: <code>serinlabs</code>).</li>
@@ -61,21 +60,19 @@ nav_active: homekit
     </div>
   </div>
   <img src="/assets/media/homekit.png" alt="HomeKit pairing screen in Apple Home app" width="300" loading="lazy" class="screenshot">
-  <div id="hk-manual-options">
-    <p>Once connected to WiFi:</p>
-    <h3>Option A: Scan QR Code (recommended)</h3>
-    <ol>
-      <li>In a browser, open the device's web UI at <code>http://Serin-XXXX.local</code> &mdash; <strong>XXXX</strong> is the same suffix as the <code>Serin-XXXX</code> network from Step 2. If <code>.local</code> addresses don't resolve on your network, use <code>http://&lt;device-ip&gt;</code> with the IP from your router.</li>
-      <li>Scan the QR code shown in the HomeKit panel with your iPhone or iPad.</li>
-    </ol>
-    <h3>Option B: Manual Setup Code</h3>
-    <ol>
-      <li>Open the <strong>Home</strong> app on your iPhone or iPad.</li>
-      <li>Tap <strong>+</strong> &gt; <strong>Add Accessory</strong>.</li>
-      <li>Tap <strong>More options...</strong> and select <strong>Mini Split XXXX</strong>.</li>
-      <li>Enter the setup code shown in the web UI's HomeKit panel.</li>
-    </ol>
-  </div>
+  <p>Once connected to WiFi:</p>
+  <h3>Option A: Scan QR Code (recommended)</h3>
+  <ol>
+    <li>In a browser, open the device's web UI at <code>http://Serin-XXXX.local</code> &mdash; <strong>XXXX</strong> is the same suffix as the <code>Serin-XXXX</code> network from Step 2. If <code>.local</code> addresses don't resolve on your network, use <code>http://&lt;device-ip&gt;</code> with the IP from your router.</li>
+    <li>Scan the QR code shown in the HomeKit panel with your iPhone or iPad.</li>
+  </ol>
+  <h3>Option B: Manual Setup Code</h3>
+  <ol>
+    <li>Open the <strong>Home</strong> app on your iPhone or iPad.</li>
+    <li>Tap <strong>+</strong> &gt; <strong>Add Accessory</strong>.</li>
+    <li>Tap <strong>More options...</strong> and select <strong>Mini Split XXXX</strong>.</li>
+    <li>Enter the setup code shown in the web UI's HomeKit panel.</li>
+  </ol>
   <hr>
 
   <h2>4. Access Web UI</h2>
@@ -150,7 +147,6 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
 
     document.getElementById('hk-ap-name').textContent = data.apName;
     document.getElementById('hk-wifi-qr-block').style.display = '';
-    document.getElementById('hk-wifi-fallback-label').style.display = '';
     new QRCode(document.getElementById('hk-wifi-qr'), {
       text: data.wifiQrData,
       width: 96, height: 96,
@@ -160,7 +156,6 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
 
     document.getElementById('hk-setup-code').textContent = data.setupCode;
     document.getElementById('hk-pair-qr-block').style.display = '';
-    document.getElementById('hk-manual-options').style.display = 'none';
     new QRCode(document.getElementById('hk-pair-qr'), {
       text: data.hapUri,
       width: 96, height: 96,

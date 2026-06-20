@@ -7,13 +7,14 @@ nav_active: homekit
 
 <div class="home theme-homekit">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/improv-wifi-serial-sdk@2.5.1/+esm" integrity="sha384-YC9Yhecx7py3i0NsbnzM3Yyv6njuvqNLCPb3m2S3razxJ4jCpacDtZJp8WJ859y6" crossorigin="anonymous"></script>
   <h1>HomeKit-Compatible Setup</h1>
   <p>This firmware is free and open-source. You <a href="/flash">flash it yourself</a>, then follow these steps to connect it to WiFi and add it to Apple Home. An <strong>Apple Home Hub</strong> (Apple TV or HomePod) is required for remote access and automations.</p>
   <p><strong>Not certified by Apple:</strong> this is not an MFi-certified HomeKit accessory.</p>
   <div id="hk-saved-banner" class="hk-saved-banner" style="display:none">
     <span class="hk-saved-banner__msg">
       <svg class="hk-saved-banner__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
-      <span>Your device, <strong id="hk-saved-device-name"></strong>, was flashed succesfully. Steps 2, 3 &amp; 4 below have custom generated QR codes ready for you to scan to quickly connect the controller to your WiFi and add it to your Apple Home.</span>
+      <span>Your device, <strong id="hk-saved-device-name"></strong>, was flashed successfully. Steps 2, 3 &amp; 4 below have custom QR codes ready to scan &mdash; connect it to Wi-Fi, add it to Apple Home, and open its web UI.</span>
     </span>
     <button type="button" class="hk-saved-banner__clear" onclick="localStorage.removeItem('serin_last_device');location.reload()">Clear</button>
   </div>
@@ -47,12 +48,12 @@ nav_active: homekit
           </div>
           <div id="hk-wifi-qr" aria-hidden="true"></div>
         </div>
-        <span class="qr-scan-callout__desc">Scan this QR code to automatically connect to the hotspot. A portal will open for you to enter your home WiFi credentials. If successful, you can skip to the next step.</span>
+        <span class="qr-scan-callout__desc">Scan this QR code to join the device's hotspot. A portal opens for you to enter your home Wi-Fi credentials. Once it connects, continue to Step 3.</span>
       </div>
     </div>
   </div>
   <div id="hk-step2-body">
-  <p>On first boot, the device creates a WiFi access point:</p>
+  <p>On first boot (or after 5 minutes without Wi-Fi), the device creates a Wi-Fi access point:</p>
   <ol>
     <li>Connect to the <strong id="hk-ap-name-inline">Serin-XXXX</strong> network (XXXX = last 4 characters of the device's WiFi address, password: <code>serinlabs</code>).</li>
     <li>A setup page opens. Enter your home WiFi name and password.
@@ -63,6 +64,16 @@ nav_active: homekit
     <li>The device saves your credentials and reboots.</li>
   </ol>
   </div>
+  <details class="hk-step-collapse">
+    <summary>Connect over USB instead (Improv Serial)</summary>
+    <div>
+      <p>On a computer using Chrome or Edge, plug the device in over USB to set up Wi-Fi straight from this page &mdash; pick your network, enter the password, done. No hotspot needed. (Not available on phones or in Safari/Firefox, which lack Web Serial.)</p>
+      <improv-wifi-serial-launch-button>
+        <button slot="activate" class="btn btn-homekit">Connect over USB</button>
+        <span slot="unsupported" class="field-hint">Web Serial isn't available in this browser &mdash; use desktop Chrome or Edge.</span>
+      </improv-wifi-serial-launch-button>
+    </div>
+  </details>
   <hr>
 
   <h2>3. Add to Apple Home</h2>
@@ -233,7 +244,7 @@ curl --data-binary @build/mitsubishi-cn105-homekit.bin \
       body.parentNode.insertBefore(details, body);
       details.appendChild(body);
     }
-    collapseStep('hk-step2-body', 'Manual WiFi setup steps');
+    collapseStep('hk-step2-body', 'Manual hotspot setup steps');
     collapseStep('hk-step3-body', 'Other ways to add to Apple Home');
     collapseStep('hk-step4-body', "What's in the web UI");
   })();

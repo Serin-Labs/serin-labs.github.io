@@ -4,7 +4,7 @@ description: >-
   Local, cloud-free control for Mitsubishi heat pumps.
   Choose ESPHome for Home Assistant or HomeKit-compatible firmware for Apple Home.
 baseurl: ""  # the subpath of your site, e.g. /blog
-url: "https://serin-labs.github.io"
+url: "https://serin-labs.com"
 logo: /assets/icon-512.png
 github_username: akifbayram
 

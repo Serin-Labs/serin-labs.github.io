@@ -19,12 +19,20 @@ umami_website_id: "9710f45a-daac-46aa-8a52-aebf6c4026fb"
 logo: /assets/icon-512.png
 github_username: akifbayram
 
-# Default social-share image for all pages (jekyll-seo-tag)
+# Default social-share image for all pages (jekyll-seo-tag). A 1200x630 branded
+# card (product photo + wordmark) — replaces the square logo so link/social/AI
+# previews render as a proper wide card instead of a tiny icon.
 defaults:
   - scope:
       path: ""
     values:
-      image: /assets/icon-512.png
+      image: /assets/og-cover.jpg
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /blog/:title.html
 
 # Build settings
 markdown: GFM

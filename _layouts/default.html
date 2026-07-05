@@ -39,6 +39,34 @@ links keep resolving.
   <meta name="google-site-verification" content="sLi6CNvtGLlrHcdFMxY2h4c2WqU-r-hf0Klx4hJw84o" />
   {% seo %}
   {% feed_meta %}
+  {%- comment -%} Sitewide brand entity for Knowledge Graph + AI attribution {%- endcomment -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "{{ '/#organization' | absolute_url }}",
+        "name": "Serin Labs",
+        "url": "{{ '/' | absolute_url }}",
+        "logo": "{{ site.logo | absolute_url }}",
+        "description": {{ site.description | strip_newlines | strip | jsonify }},
+        "sameAs": [
+          "https://github.com/Serin-Labs",
+          "https://serinlabs.etsy.com"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "{{ '/#website' | absolute_url }}",
+        "url": "{{ '/' | absolute_url }}",
+        "name": "Serin Labs",
+        "description": {{ site.description | strip_newlines | strip | jsonify }},
+        "publisher": { "@id": "{{ '/#organization' | absolute_url }}" }
+      }
+    ]
+  }
+  </script>
   {%- if site.umami_website_id and site.umami_website_id != "" -%}
   <script defer src="/t/script.js" data-website-id="{{ site.umami_website_id }}"></script>
   {%- endif -%}
@@ -61,12 +89,13 @@ links keep resolving.
           <div class="footer-col">
             <strong>Project</strong>
             <a href="{{ '/' | relative_url }}">Home</a>
-            <a href="{{ '/parts' | relative_url }}">Parts</a>
-            <a href="{{ '/flash' | relative_url }}">Flash</a>
-            <a href="{{ '/wiring' | relative_url }}">Wiring</a>
-            <a href="{{ '/compatibility' | relative_url }}">Compatibility</a>
-            <a href="{{ '/troubleshooting' | relative_url }}">Help</a>
-            <a href="{{ '/licenses' | relative_url }}">Licenses</a>
+            <a href="{{ '/parts.html' | relative_url }}">Parts</a>
+            <a href="{{ '/flash.html' | relative_url }}">Flash</a>
+            <a href="{{ '/wiring.html' | relative_url }}">Wiring</a>
+            <a href="{{ '/compatibility.html' | relative_url }}">Compatibility</a>
+            <a href="{{ '/troubleshooting.html' | relative_url }}">Help</a>
+            <a href="{{ '/blog.html' | relative_url }}">Blog</a>
+            <a href="{{ '/licenses.html' | relative_url }}">Licenses</a>
           </div>
           <div class="footer-col">
             <strong>Store</strong>
@@ -84,7 +113,7 @@ links keep resolving.
       </div>
       <div class="footer-bottom">
         <p>&copy; {{ 'now' | date: '%Y' }} serin labs. Open source, provided as-is.</p>
-        <p class="trademark-notice">Apple, HomeKit, and Apple Home are trademarks of Apple Inc. This project is not certified by, endorsed by, or affiliated with Apple Inc.</p>
+        <p class="trademark-notice">Independent open-source project — not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. Working on HVAC systems carries risk and may void warranties; proceed at your own risk. Apple, HomeKit, and Apple Home are trademarks of Apple Inc.</p>
       </div>
     </div>
   </footer>

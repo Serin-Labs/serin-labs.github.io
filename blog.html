@@ -1,0 +1,63 @@
+---
+layout: default
+title: "Blog — Mitsubishi Mini-Split Smart Control Guides"
+description: "Guides on smart control for Mitsubishi mini-splits: ESPHome, HomeKit, Home Assistant, and local CN105 control without the cloud."
+permalink: /blog.html
+---
+
+<div class="home">
+  <div class="blog-index-header">
+    <p class="blog-eyebrow">Serin Labs Blog</p>
+    <h1>Local Mitsubishi Mini-Split Guides</h1>
+    <p class="blog-index-subtitle">Comparisons and how-tos for controlling Mitsubishi heat pumps locally &mdash; ESPHome, Apple Home, Home Assistant, and the CN105 port. No cloud required.</p>
+  </div>
+
+  {%- assign featured = site.posts | first -%}
+  {%- if featured -%}
+  <a href="{{ featured.url | relative_url }}" class="blog-featured" aria-label="Latest post: {{ featured.title }}">
+    {%- if featured.cover -%}
+    <div class="blog-featured-cover">
+      <img src="{{ featured.cover | relative_url }}" alt="{{ featured.title }}" loading="eager" width="720" height="405">
+    </div>
+    {%- endif -%}
+    <div class="blog-featured-body">
+      <span class="blog-badge">Latest</span>
+      <h2>{{ featured.title }}</h2>
+      <p class="blog-meta">
+        <time datetime="{{ featured.date | date_to_xmlschema }}">{{ featured.date | date: "%B %-d, %Y" }}</time>
+        <span class="blog-dot">&middot;</span>
+        <span>{{ featured.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+      </p>
+      <p class="blog-featured-desc">{{ featured.description | default: featured.excerpt | strip_html | strip_newlines | strip }}</p>
+    </div>
+  </a>
+  {%- endif -%}
+
+  {%- assign rest = site.posts | slice: 1, 9999 -%}
+  {%- if rest.size > 0 -%}
+  {%- assign by_year = rest | group_by_exp: "p", "p.date | date: '%Y'" -%}
+  {%- for year in by_year %}
+  <h2 class="blog-year">{{ year.name }}</h2>
+  {%- for post in year.items %}
+  <a href="{{ post.url | relative_url }}" class="blog-entry">
+    <article>
+      {%- if post.cover -%}
+      <div class="blog-entry-cover">
+        <img src="{{ post.cover | relative_url }}" alt="{{ post.title }}" loading="lazy" width="416" height="234">
+      </div>
+      {%- endif -%}
+      <div class="blog-entry-body">
+        <h3 class="blog-entry-title">{{ post.title }}</h3>
+        <p class="blog-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+          <span class="blog-dot">&middot;</span>
+          <span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+        </p>
+        <p class="blog-entry-desc">{{ post.description | default: post.excerpt | strip_html | strip_newlines | strip }}</p>
+      </div>
+    </article>
+  </a>
+  {%- endfor %}
+  {%- endfor %}
+  {%- endif -%}
+</div>

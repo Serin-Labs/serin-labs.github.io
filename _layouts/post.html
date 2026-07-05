@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<div class="home">
+  <article class="post">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span class="sep">/</span>
+      <a href="{{ '/blog.html' | relative_url }}">Blog</a>
+      <span class="sep">/</span>
+      <span aria-current="page">{{ page.title }}</span>
+    </nav>
+    <h1>{{ page.title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      &middot; Serin Labs
+    </p>
+
+    {{ content }}
+
+    <h2>Related</h2>
+    <ul>
+      {%- if page.related -%}
+      {%- for item in page.related %}
+      <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+      {%- endfor %}
+      {%- else %}
+      <li><a href="{{ '/flash.html' | relative_url }}">Flash the firmware</a></li>
+      <li><a href="{{ '/compatibility.html' | relative_url }}">Check compatibility</a></li>
+      <li><a href="{{ '/parts.html' | relative_url }}">Parts &amp; hardware</a></li>
+      {%- endif %}
+    </ul>
+  </article>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: page.excerpt | strip_html | strip_newlines | strip | jsonify }},
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "author": { "@id": "{{ '/#organization' | absolute_url }}" },
+  "publisher": { "@id": "{{ '/#organization' | absolute_url }}" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ page.url | absolute_url }}" },
+  "image": "{{ page.image | default: '/assets/og-cover.jpg' | absolute_url }}"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Serin Labs", "item": "{{ '/' | absolute_url }}" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "{{ '/blog.html' | absolute_url }}" },
+    { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }}, "item": "{{ page.url | absolute_url }}" }
+  ]
+}
+</script>

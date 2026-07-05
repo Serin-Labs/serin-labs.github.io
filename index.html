@@ -2,7 +2,6 @@
 layout: default
 title: "Mitsubishi Heat Pump Smart Controller — ESPHome & HomeKit"
 description: "Open-source ESP32 controller for Mitsubishi heat pumps via CN105. Cloud-free climate control with ESPHome (Home Assistant) or HomeKit-compatible firmware."
-nav_active: home
 ---
 
 <div class="hero">
@@ -10,8 +9,8 @@ nav_active: home
   <p class="hero-lead">Cloud-free smart control with open source firmware.</p>
   <p class="hero-sub">ESPHome for Home Assistant. HomeKit for Apple Home.</p>
   <div class="hero-actions">
-    <a href="/flash" class="btn">Flash Firmware</a>
-    <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener" class="btn">Buy Controller</a>
+    <a href="/flash.html" class="btn">Flash Firmware</a>
+    <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener" class="btn">Buy Controller</a>
     <a href="#platforms" class="btn btn-outline" onclick="event.preventDefault(); document.getElementById('platforms').scrollIntoView({behavior:'smooth'})">Choose Platform</a>
   </div>
 </div>
@@ -35,7 +34,7 @@ nav_active: home
   <div class="feature-card">
     <div class="feature-icon">🔧</div>
     <h3>DIY or Pre-Assembled</h3>
-    <p>Build it yourself or <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">order a pre-assembled controller</a> &mdash; board and CN105 cable included.</p>
+    <p>Build it yourself or <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">order a pre-assembled controller</a> &mdash; board and CN105 cable included.</p>
   </div>
 </div>
 
@@ -56,7 +55,7 @@ nav_active: home
         <td><strong>Cost</strong></td>
         <td>~$180</td>
         <td>~$15</td>
-        <td class="compare-highlight">~$15&ndash;20 DIY<br>or <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled</a></td>
+        <td class="compare-highlight">~$15&ndash;20 DIY<br>or <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">pre-assembled</a></td>
       </tr>
       <tr>
         <td><strong>Connection</strong></td>
@@ -91,68 +90,26 @@ nav_active: home
   <div class="platform-card card-esphome">
     <img src="/assets/esphome-logo.svg" alt="ESPHome logo" class="platform-logo">
     <h3>ESPHome</h3>
-    <p>Built on <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a>. Serin Labs provides curated configs, browser flashing, and a <a href="/esphome/generate-yaml">YAML generator</a>.</p>
-    <a href="/flash" class="btn btn-esphome">Flash Firmware</a>
-    <a href="/esphome/setup" class="setup-link">Setup Guide &rarr;</a>
+    <p>Built on <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a>. Serin Labs provides curated configs, browser flashing, and a <a href="/esphome/generate-yaml.html">YAML generator</a>.</p>
+    <a href="/flash.html" class="btn btn-esphome">Flash Firmware</a>
+    <a href="/esphome/setup.html" class="setup-link">Setup Guide &rarr;</a>
   </div>
   <div class="platform-card card-homekit">
     <img src="/assets/house.svg" alt="House icon" class="platform-logo">
     <h3>HomeKit-Compatible</h3>
-    <p>For use with the <strong>Apple Home</strong> app. No additional app, cloud, or subscription is required.</p>
-    <a href="/flash" class="btn btn-homekit">Flash Firmware</a>
-    <a href="/homekit/setup" class="setup-link">Setup Guide &rarr;</a>
+    <p>For use with the <strong>Apple Home</strong> app — no extra app, cloud, or subscription. See the <a href="/homekit/features.html">full feature list</a>.</p>
+    <a href="/flash.html" class="btn btn-homekit">Flash Firmware</a>
+    <a href="/homekit/setup.html" class="setup-link">Setup Guide &rarr;</a>
   </div>
 </div>
-
-<h2 id="boards">Choose Your Board</h2>
-<p class="compare-intro">Both boards are fully supported with ESPHome and HomeKit firmware. Pick the one that fits your priorities.</p>
-<div class="board-chooser">
-  <div class="board-card">
-    <h3>M5Stack NanoC6</h3>
-    <p>Smallest option with WiFi 6 for better range through HVAC enclosures.</p>
-    <p class="board-specs">ESP32-C6 &middot; WiFi 6 &middot; 23.5 &times; 12 mm</p>
-    <span class="board-badge">Recommended</span>
-  </div>
-  <div class="board-card">
-    <h3>M5Stack Atom S3 Lite</h3>
-    <p>More powerful dual-core chip. Widely available.</p>
-    <p class="board-specs">ESP32-S3 &middot; WiFi 4 &middot; 24 &times; 24 mm</p>
-  </div>
-</div>
-<details>
-  <summary>Detailed spec comparison</summary>
-  <div class="faq-body">
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>NanoC6</th>
-          <th>Atom S3 Lite</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td><strong>Chip</strong></td><td>ESP32-C6 (RISC-V, 160 MHz)</td><td>ESP32-S3 (dual-core, 240 MHz)</td></tr>
-        <tr><td><strong>WiFi</strong></td><td>WiFi 6 (802.11ax, 2.4 GHz)</td><td>WiFi 4 (802.11n, 2.4 GHz)</td></tr>
-        <tr><td><strong>Size</strong></td><td>23.5 &times; 12 &times; 12.5 mm</td><td>24 &times; 24 &times; 13 mm</td></tr>
-        <tr><td><strong>USB</strong></td><td>USB-C</td><td>USB-C</td></tr>
-        <tr><td><strong>Grove port</strong></td><td>HY2.0-4P</td><td>HY2.0-4P</td></tr>
-        <tr><td><strong>Button</strong></td><td>Yes</td><td>Yes</td></tr>
-        <tr><td><strong>ESPHome</strong></td><td>Full support</td><td>Full support</td></tr>
-        <tr><td><strong>HomeKit</strong></td><td>Full support</td><td>Full support</td></tr>
-      </tbody>
-    </table>
-    <p>Both boards have more than enough processing power for this firmware. The NanoC6 is recommended for most setups due to its smaller size and WiFi 6 radio, which provides better signal through the sheet metal of HVAC enclosures.</p>
-  </div>
-</details>
-<p>For a complete shopping list including cables, see <a href="/parts">What You Need</a>.</p>
 
 <h2>Quick Start</h2>
 <div class="quick-start">
   <ol>
-    <li><strong>Get the Hardware:</strong> <a href="/parts">Board + cable</a>, or a <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled controller</a>. <a href="/compatibility">Check compatibility</a> first.</li>
-    <li><strong>Flash the Firmware:</strong> Use the <a href="/flash">flash tool</a> to install ESPHome or HomeKit firmware from your browser.</li>
-    <li><strong>Follow Your Setup Guide:</strong> <a href="/esphome/setup">ESPHome setup</a> or <a href="/homekit/setup">HomeKit-compatible setup</a>.</li>
-    <li><strong>Install in Your HVAC:</strong> Power off, connect the <a href="/wiring">CN105-to-Grove cable</a>, tuck the device inside, and restore power.</li>
+    <li><strong>Get the Hardware:</strong> <a href="/parts.html">Board + cable</a>, or a <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">pre-assembled controller</a>. <a href="/compatibility.html">Check compatibility</a> first.</li>
+    <li><strong>Flash the Firmware:</strong> Use the <a href="/flash.html">flash tool</a> to install ESPHome or HomeKit firmware from your browser.</li>
+    <li><strong>Follow Your Setup Guide:</strong> <a href="/esphome/setup.html">ESPHome setup</a> or <a href="/homekit/setup.html">HomeKit-compatible setup</a>.</li>
+    <li><strong>Install in Your HVAC:</strong> Power off, connect the <a href="/wiring.html">CN105-to-Grove cable</a>, tuck the device inside, and restore power.</li>
     <li><strong>Multiple Indoor Units?</strong> You need one controller per indoor head — each unit has its own CN105 port. Repeat the steps above for each unit, giving each device a unique name.</li>
   </ol>
 </div>
@@ -160,20 +117,5 @@ nav_active: home
 <h2>Disclaimer & Safety</h2>
 <p>This is an independent open-source project. It is not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. Working on HVAC systems can be risky and may void warranties. Proceed only if you're confident. This project is provided as-is, without warranty or liability.</p>
 
-<h2>Need Help?</h2>
-<div class="features-grid">
-  <div class="feature-card">
-    <h3>Discussions</h3>
-    <p>Ask questions, share your setup, or suggest features.</p>
-    <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener" class="setup-link">Join the conversation &rarr;</a>
-  </div>
-  <div class="feature-card">
-    <h3>Report an Issue</h3>
-    <p>Found a bug or something not working? Open a GitHub issue.</p>
-    <a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener" class="setup-link">File an issue &rarr;</a>
-  </div>
-</div>
-
 <h2>Credits & Open Source</h2>
-<p>The ESPHome integration is powered by <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">echavet's MitsubishiCN105ESPHome</a> project. The HomeKit-compatible firmware (<a href="https://github.com/akifbayram/mitsubishi-cn105-homekit" target="_blank">source</a>) is built on Espressif's <a href="https://github.com/espressif/esp-homekit-sdk" target="_blank">esp-homekit-sdk</a>.</p>
-<p>This project also builds on foundational work by <a href="https://github.com/SwiCago/HeatPump" target="_blank">SwiCago</a> and <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank">geoffdavis</a>.</p>
+<p>Built on open-source work by <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">echavet</a> (ESPHome component), Espressif's <a href="https://github.com/espressif/esp-homekit-sdk" target="_blank">esp-homekit-sdk</a> (HomeKit firmware), and foundational protocol work by <a href="https://github.com/SwiCago/HeatPump" target="_blank">SwiCago</a> and <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank">geoffdavis</a>. <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">Ask a question</a> or <a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">report an issue</a> on GitHub.</p>

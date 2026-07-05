@@ -1,6 +1,6 @@
 <header>
   <div class="container">
-    <div class="brand"><a href="{{ '/' | relative_url }}"><img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" class="brand-icon">serin labs</a></div>
+    <div class="brand"><a href="{{ '/' | relative_url }}" aria-label="Serin Labs — home"><img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" class="brand-icon">serin labs</a></div>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
       <span></span>
@@ -9,32 +9,30 @@
     </label>
     <nav>
       <ul>
-        <li><a href="{{ '/' | relative_url }}" {% if page.nav_active == "home" %}class="active"{% endif %}>Home</a></li>
+        <li><a href="{{ '/parts.html' | relative_url }}" {% if page.nav_active == "get-started" or page.nav_active == "parts" %}class="active"{% endif %}>Get Started</a></li>
+        <li class="nav-cta"><a href="{{ '/flash.html' | relative_url }}" class="btn nav-cta-btn">Flash</a></li>
         <li class="dropdown">
-          <a href="{{ '/parts' | relative_url }}" {% if page.nav_active == "get-started" or page.nav_active == "parts" or page.nav_active == "compatibility" or page.nav_active == "wiring" %}class="active"{% endif %}>Get Started</a>
+          <a href="{{ '/esphome/setup.html' | relative_url }}" {% if page.nav_active == "esphome" %}class="active"{% endif %}>ESPHome</a>
           <ul class="dropdown-menu">
-            <li><a href="{{ '/parts' | relative_url }}">Parts</a></li>
-            <li><a href="{{ '/compatibility' | relative_url }}">Compatibility</a></li>
-            <li><a href="{{ '/flash' | relative_url }}">Flash</a></li>
-            <li><a href="{{ '/wiring' | relative_url }}">Wiring</a></li>
-          </ul>
-        </li>
-        <li class="nav-cta"><a href="{{ '/flash' | relative_url }}" class="btn nav-cta-btn">Flash</a></li>
-        <li class="dropdown">
-          <a href="{{ '/esphome/setup' | relative_url }}" {% if page.nav_active == "esphome" %}class="active"{% endif %}>ESPHome</a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ '/esphome/setup' | relative_url }}">Setup</a></li>
-            <li><a href="{{ '/esphome/generate-yaml' | relative_url }}">YAML Generator</a></li>
+            <li><a href="{{ '/esphome/setup.html' | relative_url }}">Setup</a></li>
+            <li><a href="{{ '/esphome/generate-yaml.html' | relative_url }}">YAML Generator</a></li>
           </ul>
         </li>
         <li class="dropdown">
-          <a href="{{ '/homekit/setup' | relative_url }}" {% if page.nav_active == "homekit" %}class="active"{% endif %}>HomeKit</a>
+          <a href="{{ '/homekit/setup.html' | relative_url }}" {% if page.nav_active == "homekit" %}class="active"{% endif %}>HomeKit</a>
           <ul class="dropdown-menu">
-            <li><a href="{{ '/homekit/setup' | relative_url }}">Setup</a></li>
-            <li><a href="{{ '/homekit/features' | relative_url }}">Features</a></li>
+            <li><a href="{{ '/homekit/setup.html' | relative_url }}">Setup</a></li>
+            <li><a href="{{ '/homekit/features.html' | relative_url }}">Features</a></li>
           </ul>
         </li>
-        <li><a href="{{ '/troubleshooting' | relative_url }}" {% if page.nav_active == "troubleshooting" %}class="active"{% endif %}>Help</a></li>
+        <li class="dropdown">
+          <a href="{{ '/troubleshooting.html' | relative_url }}" {% if page.nav_active == "troubleshooting" or page.nav_active == "compatibility" or page.nav_active == "wiring" %}class="active"{% endif %}>Help</a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ '/troubleshooting.html' | relative_url }}">Troubleshooting</a></li>
+            <li><a href="{{ '/compatibility.html' | relative_url }}">Compatibility</a></li>
+            <li><a href="{{ '/wiring.html' | relative_url }}">Wiring</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>

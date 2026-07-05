@@ -10,18 +10,18 @@ nav_active: parts
   <p>One board, one cable per unit. Everything you need to build a Serin controller.</p>
 
   <div class="form-card form-card--media">
-    <a class="form-card__media" href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener" aria-label="View the pre-assembled Serin Controller on Etsy">
+    <a class="form-card__media" href="https://serinlabs.etsy.com/" target="_blank" rel="noopener" aria-label="View the pre-assembled Serin Controller on Etsy">
       <img src="/assets/serin_cn105_controller.jpg" alt="The pre-assembled Serin Controller — an M5Stack ESP32 board with the CN105-to-Grove cable attached" loading="lazy" />
     </a>
     <div class="form-card__body">
       <h3>Shortcut: Buy the Complete Controller</h3>
       <p class="product-rating">
-        <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener" aria-label="Rated 5.0 out of 5 stars from 1 review — read reviews on Etsy">
+        <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener" aria-label="Rated 5.0 out of 5 stars from 1 review — read reviews on Etsy">
           <span class="stars" aria-hidden="true">★★★★★</span>
           <span class="rating-count">5.0 · 1 review</span>
         </a>
       </p>
-      <p>Want to skip the parts list? The <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">Serin Controller</a> ships pre-assembled with the CN105 cable included, ready to <a href="/flash">flash the firmware of your choice</a>: ESPHome or HomeKit. The rest of this page covers building your own.</p>
+      <p>Want to skip the parts list? The <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Serin Controller</a> ships pre-assembled with the CN105 cable included, ready to <a href="/flash.html">flash the firmware of your choice</a>: ESPHome or HomeKit. The rest of this page covers building your own.</p>
     </div>
   </div>
 
@@ -43,30 +43,54 @@ nav_active: parts
       <a href="https://shop.m5stack.com/products/atoms3-lite-esp32s3-dev-kit" target="_blank" rel="noopener" class="btn btn-outline">M5Stack Store</a>
     </div>
   </div>
-  <p>Not sure which board? See the <a href="/#boards">board comparison</a> on the home page.</p>
+  <details>
+    <summary>Detailed spec comparison</summary>
+    <div class="faq-body">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>NanoC6</th>
+            <th>Atom S3 Lite</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Chip</strong></td><td>ESP32-C6 (RISC-V, 160 MHz)</td><td>ESP32-S3 (dual-core, 240 MHz)</td></tr>
+          <tr><td><strong>WiFi</strong></td><td>WiFi 6 (802.11ax, 2.4 GHz)</td><td>WiFi 4 (802.11n, 2.4 GHz)</td></tr>
+          <tr><td><strong>Size</strong></td><td>23.5 &times; 12 &times; 12.5 mm</td><td>24 &times; 24 &times; 13 mm</td></tr>
+          <tr><td><strong>USB</strong></td><td>USB-C</td><td>USB-C</td></tr>
+          <tr><td><strong>Grove port</strong></td><td>HY2.0-4P</td><td>HY2.0-4P</td></tr>
+          <tr><td><strong>Button</strong></td><td>Yes</td><td>Yes</td></tr>
+          <tr><td><strong>ESPHome</strong></td><td>Full support</td><td>Full support</td></tr>
+          <tr><td><strong>HomeKit</strong></td><td>Full support</td><td>Full support</td></tr>
+        </tbody>
+      </table>
+      <p>Both boards have more than enough processing power for this firmware. The NanoC6 is recommended for most setups due to its smaller size and WiFi 6 radio, which provides better signal through the sheet metal of HVAC enclosures.</p>
+    </div>
+  </details>
 
   <h2>2. CN105-to-Grove Cable (Required)</h2>
   <p>This cable connects the ESP32 board to your Mitsubishi unit's CN105 port.</p>
 
   <div class="form-card form-card--media">
-    <a class="form-card__media" href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener" aria-label="View the ready-made CN105-to-Grove cable on Etsy">
+    <a class="form-card__media" href="https://serinlabs.etsy.com/" target="_blank" rel="noopener" aria-label="View the ready-made CN105-to-Grove cable on Etsy">
       <img src="/assets/cn105_cable.jpg" alt="Assembled CN105-to-Grove cable, ready to plug in" loading="lazy" />
     </a>
     <div class="form-card__body">
       <h3>Option A: Pre-assembled Cable</h3>
       <p class="product-rating">
-        <a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener" aria-label="Rated 5.0 out of 5 stars from 2 reviews — read reviews on Etsy">
+        <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener" aria-label="Rated 5.0 out of 5 stars from 2 reviews — read reviews on Etsy">
           <span class="stars" aria-hidden="true">★★★★★</span>
           <span class="rating-count">5.0 · 2 reviews</span>
         </a>
       </p>
-      <p>Buy a <a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener">ready-made CN105-to-Grove cable</a> — assembled and tested, no crimping or soldering required.</p>
+      <p>Buy a <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">ready-made CN105-to-Grove cable</a> — assembled and tested, no crimping or soldering required.</p>
     </div>
   </div>
 
   <div class="form-card">
     <h3>Option B: Build Your Own</h3>
-    <p>You can assemble a cable from these parts. See the <a href="/wiring">wiring reference</a> for the pinout.</p>
+    <p>You can assemble a cable from these parts. See the <a href="/wiring.html">wiring reference</a> for the pinout.</p>
     <div class="table-wrapper">
       <table>
         <thead>
@@ -93,8 +117,14 @@ nav_active: parts
     <p>You will also need crimp terminals (JST SPHD-002T-P0.5) and a crimping tool, or you can solder the wires directly.</p>
   </div>
 
+  <div class="form-card">
+    <h3>Cable Length: Metal-Bodied Air Handlers</h3>
+    <p>Multi-position ducted air handlers (SVZ, MVZ, PEAD, PVA) have a sheet-metal cabinet that can weaken WiFi. A longer cable &mdash; 50&nbsp;cm rather than the standard length &mdash; lets you route the connection out of the cabinet and mount the controller on the insulated plenum or ductwork outside it, where the signal is stronger. The <a href="/wiring.html">pinout</a> is identical; only the length changes.</p>
+    <img src="/assets/serin_cn105_mvz_aa7_2.webp" alt="The Serin controller mounted on the insulated plenum above a Mitsubishi MVZ-A18AA7 air handler, outside the metal cabinet, connected by a 50 cm CN105-to-Grove cable" class="screenshot" loading="lazy" width="1400" height="1400" />
+  </div>
+
   <h2>3. USB-C Data Cable (For Flashing)</h2>
-  <p>Needed once to <a href="/flash">flash the firmware</a>. You probably already have one.</p>
+  <p>Needed once to <a href="/flash.html">flash the firmware</a>. You probably already have one.</p>
   <ul>
     <li>Must be a <strong>data</strong> cable, not a charge-only cable.</li>
     <li>Test it by connecting a phone — if your computer detects it, the cable works.</li>
@@ -116,7 +146,7 @@ nav_active: parts
         </tr>
         <tr>
           <td><strong>CN105-to-Grove Cable</strong></td>
-          <td><a href="https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20" target="_blank" rel="noopener">Etsy</a> (ready-made) or <a href="https://www.digikey.com/" target="_blank" rel="noopener">DigiKey</a> (DIY parts)</td>
+          <td><a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Etsy</a> (ready-made) or <a href="https://www.digikey.com/" target="_blank" rel="noopener">DigiKey</a> (DIY parts)</td>
         </tr>
         <tr>
           <td><strong>USB-C Data Cable</strong></td>
@@ -126,15 +156,9 @@ nav_active: parts
     </table>
   </div>
 
-  <div class="form-card form-card--media">
-    <a class="form-card__media" href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener" aria-label="View the pre-assembled Serin Controller on Etsy">
-      <img src="/assets/serin_cn105_controller.jpg" alt="The pre-assembled Serin Controller with CN105-to-Grove cable" loading="lazy" />
-    </a>
-    <div class="form-card__body">
-      <h3>Multiple Indoor Units?</h3>
-      <p>You need <strong>one board and one cable per indoor head</strong>. Each indoor unit has its own CN105 port. A 3-zone system needs 3 of everything above.</p>
-      <p>To skip the assembly for every zone, order one <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled Serin Controller</a> per indoor unit.</p>
-    </div>
+  <div class="form-card">
+    <h3>Multiple Indoor Units?</h3>
+    <p>You need <strong>one board and one cable per indoor head</strong> — each indoor unit has its own CN105 port. A 3-zone system needs three of everything above.</p>
   </div>
 
   <details>
@@ -150,17 +174,16 @@ nav_active: parts
 
   <h2>Next Steps</h2>
   <ol>
-    <li><a href="/compatibility">Check compatibility</a> — verify your Mitsubishi unit has a CN105 port.</li>
-    <li><a href="/flash">Flash the firmware</a> — install ESPHome or HomeKit firmware from your browser.</li>
-    <li><a href="/wiring">Wire it up</a> — connect the cable to your HVAC unit.</li>
+    <li><a href="/compatibility.html">Check compatibility</a> — verify your Mitsubishi unit has a CN105 port.</li>
+    <li><a href="/flash.html">Flash the firmware</a> — install ESPHome or HomeKit firmware from your browser.</li>
+    <li><a href="/wiring.html">Wire it up</a> — connect the cable to your HVAC unit.</li>
   </ol>
   <p>
-    <a href="/flash" class="btn">Flash the Firmware</a>
+    <a href="/flash.html" class="btn">Flash the Firmware</a>
   </p>
 
   <hr>
-  <h2>Disclaimer</h2>
-  <p>Links are provided for convenience and are not affiliate links. This project is provided as-is, with no warranties or liability.</p>
+  <p class="field-hint">Links are provided for convenience and are not affiliate links.</p>
 </div>
 
 {%- comment -%}
@@ -176,7 +199,7 @@ nav_active: parts
   "@graph": [
     {
       "@type": "Product",
-      "@id": "{{ '/parts#serin-controller' | absolute_url }}",
+      "@id": "{{ '/parts.html#serin-controller' | absolute_url }}",
       "name": "Serin Controller — Smart Mini-Split Wi-Fi Controller",
       "description": "Pre-assembled ESP32 Wi-Fi controller for Mitsubishi mini-split heat pumps. Ships with the CN105-to-Grove cable attached, ready to flash with ESPHome (for Home Assistant) or HomeKit-compatible firmware for local, cloud-free control.",
       "image": "{{ '/assets/serin_cn105_controller.jpg' | absolute_url }}",
@@ -220,7 +243,7 @@ nav_active: parts
     },
     {
       "@type": "Product",
-      "@id": "{{ '/parts#cn105-cable' | absolute_url }}",
+      "@id": "{{ '/parts.html#cn105-cable' | absolute_url }}",
       "name": "CN105-to-Grove Cable (PAP-05V-S to HY2.0)",
       "description": "Ready-made CN105-to-Grove cable (JST PAP-05V-S to Grove HY2.0) connecting an ESP32 board to the CN105 port on Mitsubishi mini-split heat pumps. Assembled and tested — no crimping or soldering required.",
       "image": "{{ '/assets/cn105_cable.jpg' | absolute_url }}",

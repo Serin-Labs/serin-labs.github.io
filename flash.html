@@ -22,7 +22,7 @@ nav_active: flash
         <li><strong>ESP32-C3 SuperMini / XIAO</strong> (ESP32-C3) &mdash; untested</li>
         <li><strong>Generic ESP32 DevKit</strong> (ESP32) &mdash; untested</li>
       </ul>
-      <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts">what you need</a>, or order the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled Serin Controller</a> (board and CN105 cable included) and flash it here.</p>
+      <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts.html">what you need</a>, or order the <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">pre-assembled Serin Controller</a> (board and CN105 cable included) and flash it here.</p>
     </div>
   </details>
 
@@ -47,9 +47,14 @@ nav_active: flash
   </esp-web-install-button>
 
   <div id="esphome-note" class="flash-section">
-    <p><em>This installs one pre-built ESPHome firmware. Every unit gets the same build, based on echavet's <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a> component. It includes climate control, both vertical and horizontal vane controls, the web server UI, and OTA updates.</em></p>
-    <p><em>You can't choose a build tailored to your unit here. This one always has both vanes and none of the optional features. If your unit has no vanes (or vertical only), or you want a remote temperature sensor, i-See sensor, dual setpoint, diagnostics, or a Bluetooth proxy, build a custom config in the <a href="/esphome/generate-yaml">YAML generator</a> after setup and push it over WiFi from the ESPHome dashboard.</em></p>
-    <p><em><strong>After flashing:</strong> The flasher will prompt you to configure WiFi. Enter your network credentials to connect the device wirelessly before unplugging USB.</em></p>
+    <p><em><strong>After flashing:</strong> The flasher prompts you to configure WiFi — enter your network credentials to connect the device before unplugging USB.</em></p>
+    <details>
+      <summary>What's in this build?</summary>
+      <div class="faq-body">
+        <p>One pre-built firmware, the same for every unit, based on echavet's <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a> component: climate control, both vertical and horizontal vane controls, the web server UI, and OTA updates.</p>
+        <p>You can't tailor it to your unit at flash time. To drop vanes your unit lacks, or add a remote temperature sensor, i-See sensor, dual setpoint, diagnostics, or a Bluetooth proxy, build a custom config in the <a href="/esphome/generate-yaml.html">YAML generator</a> after setup and push it over WiFi from the ESPHome dashboard.</p>
+      </div>
+    </details>
   </div>
 
   <div id="homekit-note" class="flash-section active">
@@ -112,7 +117,7 @@ nav_active: flash
 
   <hr>
 
-  <p><a id="next-steps-link" href="/homekit/setup" class="btn btn-homekit">Continue to HomeKit-Compatible Setup &rarr;</a></p>
+  <p><a id="next-steps-link" href="/homekit/setup.html" class="btn btn-homekit">Continue to HomeKit-Compatible Setup &rarr;</a></p>
   <hr>
 
   <h3>Notes</h3>
@@ -120,8 +125,8 @@ nav_active: flash
     <li>Requires a Chrome-based browser (Chrome, Edge, Brave).</li>
     <li>Use a USB <strong>data</strong> cable, not a charge-only cable.</li>
     <li>If your device isn't detected, you may need to install <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers" target="_blank">USB drivers</a>.</li>
-    <li>Having trouble? See the <a href="/troubleshooting">troubleshooting guide</a>.</li>
-    <li>Source and license terms for the firmware flashed here are listed on the <a href="/licenses">Licenses &amp; source</a> page.</li>
+    <li>Having trouble? See the <a href="/troubleshooting.html">troubleshooting guide</a>.</li>
+    <li>Source and license terms for the firmware flashed here are listed on the <a href="/licenses.html">Licenses &amp; source</a> page.</li>
   </ul>
 </div>
 
@@ -161,10 +166,10 @@ nav_active: flash
   function updateNextSteps() {
     var link = document.getElementById('next-steps-link');
     if (currentPlatform === 'esphome') {
-      link.href = '/esphome/setup';
+      link.href = '/esphome/setup.html';
       link.textContent = 'Continue to ESPHome Setup';
     } else {
-      link.href = '/homekit/setup';
+      link.href = '/homekit/setup.html';
       link.textContent = 'Continue to HomeKit-Compatible Setup';
     }
   }

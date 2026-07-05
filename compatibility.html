@@ -5,6 +5,63 @@ description: "Check if your Mitsubishi heat pump has a CN105 port. Compatible wa
 nav_active: compatibility
 ---
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "I found a CN105 port — is my unit compatible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost certainly yes. If your Mitsubishi Electric indoor unit has a CN105 connector, it uses the same serial protocol that this controller communicates with. Flash the firmware, wire it up, and it should work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My unit has CN110 but not CN105 — will it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CN110 is where Mitsubishi's own WiFi adapter (MELCloud / Kumo Cloud) connects. It is a separate port from CN105. Many newer units have both — CN110 for the factory WiFi module and CN105 for additional serial communication. Look for CN105 elsewhere on the control board. If your unit only has CN110 and no CN105, it is not compatible with this project."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My unit has CN100 instead of CN105",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some older City Multi (VRF) indoor units have CN100 instead of CN105. You can use a Mitsubishi PAC-IT51AD-E or PAC-IT52AD-E signal adapter to convert CN100 to a CN105-compatible interface. These adapters are not interchangeable — check which one your unit requires."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I have a multi-zone system — does it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each indoor head in a multi-zone system has its own CN105 port. You need one controller per indoor unit. The outdoor unit (MXZ series) does not need a controller. Note: some advanced sensors like compressor frequency and outside air temperature may not be available when multiple indoor units share a single outdoor unit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My model is not on any list — can I try it anyway?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your Mitsubishi Electric unit has a CN105 port, it is worth trying. The serial protocol is standardized across Mitsubishi Electric's product line. If it works, please report your model in the community discussions to help others."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I have a Trane or American Standard heat pump",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many Trane and American Standard ductless systems are rebranded Mitsubishi Electric units. Models starting with NAXWST, NTXWPH, NTXMPH, or NTXWST are Mitsubishi hardware and are compatible."
+      }
+    }
+  ]
+}
+</script>
+
 <div class="home">
   <h1>Compatibility</h1>
   <p>Check whether your Mitsubishi unit is compatible with this controller before you buy.</p>
@@ -13,17 +70,13 @@ nav_active: compatibility
     <h3>Quick Answer</h3>
     <p>This controller communicates over the <strong>CN105 serial port</strong> found on most <strong>Mitsubishi Electric</strong> indoor units. If your unit has a CN105 connector on its control board, it is almost certainly compatible.</p>
     <p>A good proxy: if your unit is compatible with <strong>Kumo Cloud</strong> (North America) or <strong>MELCloud</strong> (Europe/global), it has a CN105 port and will work with this project.</p>
-  </div>
-
-  <div class="form-card">
-    <h3>Confirmed Compatible?</h3>
-    <p>Once you've verified your unit has a CN105 port, get the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">pre-assembled Serin Controller</a> (ships pre-flashed with the cable included), or <a href="/parts">build your own</a> from the parts list.</p>
+    <p>Once you've confirmed a CN105 port, head to <a href="/parts.html">What You Need</a> to get the hardware.</p>
   </div>
 
   <h2 id="how-to-check">How to Check Your Unit</h2>
   <ol>
     <li><strong>Check your model number.</strong> It is on a label on the indoor unit (usually on the right side behind the front panel). Mitsubishi Electric models start with prefixes like MSZ, MSY, MFZ, MLZ, SLZ, SEZ, SVZ, PEAD, PVA, PKA, PCA, PLA, or PEFY.</li>
-    <li><strong>Look for the CN105 port.</strong> Open the front panel and locate the main control board. The CN105 port is a small 5-pin connector — usually red, sometimes white — labeled "CN105" on the PCB. See the <a href="/wiring">wiring reference</a> for what it looks like.</li>
+    <li><strong>Look for the CN105 port.</strong> Open the front panel and locate the main control board. The CN105 port is a small 5-pin connector — usually red, sometimes white — labeled "CN105" on the PCB. See the <a href="/wiring.html">wiring reference</a> for what it looks like.</li>
     <li><strong>Check below.</strong> If your model series is in the compatible table, you are good to go.</li>
   </ol>
 
@@ -411,14 +464,6 @@ nav_active: compatibility
   </details>
 
   <details>
-    <summary>Is Mitsubishi Heavy Industries the same as Mitsubishi Electric?</summary>
-    <div class="faq-body">
-      <p><strong>No.</strong> They are separate companies within the broader Mitsubishi Group. Mitsubishi Heavy Industries (MHI) makes HVAC units under model numbers starting with SRK, SRC, and SRF. These units use a completely different control protocol and are <strong>not compatible</strong> with this project.</p>
-      <p>This project works only with <strong>Mitsubishi Electric</strong> units (MSZ, MSY, MFZ, MLZ, SLZ, SEZ, SVZ, PEAD, PVA, PKA, PCA, PLA, PEFY prefixes).</p>
-    </div>
-  </details>
-
-  <details>
     <summary>My model is not on any list — can I try it anyway?</summary>
     <div class="faq-body">
       <p>If your Mitsubishi Electric unit has a CN105 port, it is worth trying. The serial protocol is standardized across Mitsubishi Electric's product line. If it works, please report your model in the <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">community discussions</a> to help others.</p>
@@ -429,13 +474,6 @@ nav_active: compatibility
     <summary>I have a Trane or American Standard heat pump</summary>
     <div class="faq-body">
       <p>Many Trane and American Standard ductless systems are rebranded Mitsubishi Electric units. Models starting with <strong>NAXWST</strong>, <strong>NTXWPH</strong>, <strong>NTXMPH</strong>, or <strong>NTXWST</strong> are Mitsubishi hardware and are compatible.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>What about Ecodan / air-to-water heat pumps?</summary>
-    <div class="faq-body">
-      <p>Mitsubishi Ecodan, Zubadan, and Geodan air-to-water heat pumps have a physical CN105 connector, but they use a <strong>different serial protocol</strong> than air-to-air units. This controller does <strong>not</strong> work with Ecodan units. See the <a href="https://github.com/m000c400/Mitsubishi-CN105-Protocol-Decode" target="_blank" rel="noopener">Mitsubishi-CN105-Protocol-Decode</a> project for Ecodan-specific solutions.</p>
     </div>
   </details>
 
@@ -490,6 +528,5 @@ nav_active: compatibility
   </details>
 
   <hr>
-  <h2>Disclaimer</h2>
-  <p>This compatibility information is based on community reports, manufacturer documentation, and open-source project data. It is provided as-is and may not be exhaustive. Compatibility is not guaranteed for every unit. Always verify the presence of a CN105 connector on your specific unit before purchasing hardware. This project is not developed, endorsed, or certified by Mitsubishi Electric Corporation.</p>
+  <p class="field-hint">Compatibility information is based on community reports, manufacturer documentation, and open-source project data. It may not be exhaustive and is not guaranteed for every unit — always verify a CN105 connector is present on your unit before buying hardware.</p>
 </div>

@@ -1,0 +1,32 @@
+# Serin Labs
+
+> Open-source ESP32 controller that adds local, cloud-free smart control to Mitsubishi Electric mini-split heat pumps through the CN105 serial port. Flash it with ESPHome (for Home Assistant) or HomeKit-compatible firmware (for Apple Home) — no cloud account, app, or subscription required. Available as a DIY parts list or a pre-assembled controller.
+
+## Docs
+
+- [What You Need (Parts)](https://serin-labs.com/parts.html): ESP32 board (M5Stack NanoC6 or Atom S3 Lite) plus the CN105-to-Grove cable.
+- [Compatibility](https://serin-labs.com/compatibility.html): Which Mitsubishi Electric models have a CN105 port (wall-mount, floor, cassette, ducted, P-series, rebranded Trane/American Standard) and how to check your unit.
+- [Flash Firmware](https://serin-labs.com/flash.html): Browser-based ESP32 flasher over USB — ESPHome or HomeKit, no software install.
+- [ESPHome Setup](https://serin-labs.com/esphome/setup.html): Connect the controller to Home Assistant.
+- [ESPHome YAML Generator](https://serin-labs.com/esphome/generate-yaml.html): Build a ready-to-use ESPHome config for your board and sensors.
+- [HomeKit Setup](https://serin-labs.com/homekit/setup.html): Add the controller to Apple Home and Siri.
+- [HomeKit Firmware Features](https://serin-labs.com/homekit/features.html): Native HAP pairing, built-in web UI, Siri control.
+- [Wiring Reference](https://serin-labs.com/wiring.html): CN105-to-Grove pinout and cable assembly.
+- [Troubleshooting](https://serin-labs.com/troubleshooting.html): Flashing, WiFi, and CN105 communication fixes.
+
+## Store
+
+- [Serin Controller (Etsy)](https://serinlabs.etsy.com/): Pre-assembled controller with the CN105-to-Grove cable included.
+- [CN105-to-Grove Cable (Etsy)](https://serinlabs.etsy.com/): Ready-made cable, no crimping or soldering.
+
+## Source & Community
+
+- [Serin Labs on GitHub](https://github.com/Serin-Labs)
+- [Discussions](https://github.com/Serin-Labs/serin-cn105/discussions)
+- [Licenses & upstream credits](https://serin-labs.com/licenses.html): Built on echavet/MitsubishiCN105ESPHome, Espressif esp-homekit-sdk, and SwiCago/HeatPump.
+
+## Notes
+
+- Independent open-source project — not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation.
+- One controller is required per indoor unit; each indoor head has its own CN105 port.
+- Mitsubishi Heavy Industries (SRK/SRC/SRF) and Ecodan air-to-water units are NOT compatible.

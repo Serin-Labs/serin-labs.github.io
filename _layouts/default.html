@@ -39,6 +39,9 @@ links keep resolving.
   <meta name="google-site-verification" content="sLi6CNvtGLlrHcdFMxY2h4c2WqU-r-hf0Klx4hJw84o" />
   {% seo %}
   {% feed_meta %}
+  {%- if site.umami_website_id and site.umami_website_id != "" -%}
+  <script defer src="/t/script.js" data-website-id="{{ site.umami_website_id }}"></script>
+  {%- endif -%}
 </head>
 <body>
   {% include nav.html %}

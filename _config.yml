@@ -10,6 +10,12 @@ url: "https://serin-labs.com"
 # content normally (soft-canonical phase). Set to "https://serin-labs.com" to
 # turn every page into a redirect to the same path on the new domain.
 redirect_to: ""
+
+# Umami analytics website id (serin-labs.com property). Loaded first-party via
+# the Caddy /t/ proxy on serin-labs.com (see _layouts/default.html). On
+# github.io there is no /t/ proxy, so /t/script.js 404s and only serin-labs.com
+# traffic is tracked -- which is what we want during the migration.
+umami_website_id: "9710f45a-daac-46aa-8a52-aebf6c4026fb"
 logo: /assets/icon-512.png
 github_username: akifbayram
 

@@ -1,3 +1,28 @@
+{%- comment -%}
+serin-labs.github.io -> serin-labs.com migration redirect (DORMANT).
+While `redirect_to` is empty in _config.yml this branch is skipped and every
+page renders normally. Set `redirect_to: "https://serin-labs.com"` in
+_config.yml to turn EVERY page into a meta-refresh + canonical redirect to the
+same path on the new domain. Keep this repo published permanently so inbound
+links keep resolving.
+{%- endcomment -%}
+{%- if site.redirect_to and site.redirect_to != "" -%}
+{%- assign redirect_target = site.redirect_to | append: page.url -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url={{ redirect_target }}">
+  <link rel="canonical" href="{{ redirect_target }}">
+  <meta name="robots" content="noindex, follow">
+  <title>Moved to serin-labs.com</title>
+  <script>window.location.replace({{ redirect_target | jsonify }});</script>
+</head>
+<body>
+  <p>This page has moved to <a href="{{ redirect_target }}">{{ redirect_target }}</a>.</p>
+</body>
+</html>
+{%- else -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,3 +116,4 @@
   </script>
 </body>
 </html>
+{%- endif -%}

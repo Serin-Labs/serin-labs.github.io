@@ -5,6 +5,11 @@ description: >-
   Choose ESPHome for Home Assistant or HomeKit-compatible firmware for Apple Home.
 baseurl: ""  # the subpath of your site, e.g. /blog
 url: "https://serin-labs.com"
+
+# Migration toggle (serin-labs.github.io -> serin-labs.com). Empty = serve
+# content normally (soft-canonical phase). Set to "https://serin-labs.com" to
+# turn every page into a redirect to the same path on the new domain.
+redirect_to: ""
 logo: /assets/icon-512.png
 github_username: akifbayram
 

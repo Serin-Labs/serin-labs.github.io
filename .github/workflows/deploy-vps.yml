@@ -1,0 +1,58 @@
+name: Deploy site to VPS
+
+# Builds the Jekyll site and rsyncs the static output to the self-hosted origin
+# for serin-labs.com (/opt/openbin/serin-site on the VPS, served by Caddy
+# file_server). No server-side Ruby, no container restart — Caddy serves the new
+# files on the next request. Runs alongside the GitHub Pages build, which still
+# serves serin-labs.github.io during the domain migration.
+#
+# SECURITY: SERIN_DEPLOY_SSH_KEY is locked down on the VPS to a forced rrsync
+# write-only command scoped to /opt/openbin/serin-site. A leaked key can only
+# overwrite serin's static files — it gets no shell and cannot touch OpenBin,
+# secrets, or anything else on the box. Host/known_hosts are secrets too so the
+# CF-proxied origin IP isn't published in this public repo.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-serin-vps
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Ruby (+ bundler cache)
+        uses: ruby/setup-ruby@d45b1a4e94b71acab930e56e79c6aa188764e7f9 # v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
+
+      - name: Deploy _site to VPS (restricted rsync)
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.SERIN_DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.SERIN_DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          rsync -az --delete \
+            -e "ssh -i $HOME/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" \
+            _site/ "${DEPLOY_USER}@${DEPLOY_HOST}:"

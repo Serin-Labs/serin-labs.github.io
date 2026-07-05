@@ -501,6 +501,29 @@ nav .dropdown-menu a:hover {
   color: var(--muted);
   margin: 0;
 }
+.product-rating {
+  margin: 0.1rem 0 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.product-rating a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  text-decoration: none;
+  color: inherit;
+}
+.product-rating a:hover .rating-count {
+  text-decoration: underline;
+}
+.product-rating .stars {
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+.product-rating .rating-count {
+  color: var(--muted);
+  font-weight: 400;
+}
 
 /* ===== PLATFORM TOGGLE (Flash page) ===== */
 .platform-toggle {
@@ -791,7 +814,7 @@ th {
 }
 .form-card__media {
   flex: 0 0 auto;
-  width: 130px;
+  width: 190px;
   align-self: stretch;
   display: block;
   overflow: hidden;

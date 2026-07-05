@@ -150,3 +150,80 @@ nav_active: parts
   <h2>Disclaimer</h2>
   <p>Links are provided for convenience and are not affiliate links. This project is provided as-is, with no warranties or liability.</p>
 </div>
+
+{%- comment -%}
+  Product/Offer structured data for the two Serin-branded products sold on Etsy.
+  MAINTENANCE: the `price` values below are hardcoded — update them here if the
+  Etsy listing prices change (priceValidUntil auto-updates from site.time).
+  The M5Stack boards and DIY cable parts are third-party and intentionally not
+  marked up as Serin products.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "@id": "{{ '/parts#serin-controller' | absolute_url }}",
+      "name": "Serin Controller — Smart Mini-Split Wi-Fi Controller",
+      "description": "Pre-assembled ESP32 Wi-Fi controller for Mitsubishi mini-split heat pumps. Ships with the CN105-to-Grove cable attached, ready to flash with ESPHome (for Home Assistant) or HomeKit-compatible firmware for local, cloud-free control.",
+      "image": "{{ '/assets/serin_cn105_controller.jpg' | absolute_url }}",
+      "category": "Smart Home Controllers",
+      "brand": {
+        "@type": "Brand",
+        "name": "Serin Labs"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller",
+        "priceCurrency": "USD",
+        "price": "35.00",
+        "priceValidUntil": "{{ site.time | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' }}",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": {
+          "@type": "Organization",
+          "name": "Serin Labs"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "USD"
+          },
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "US"
+          }
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "@id": "{{ '/parts#cn105-cable' | absolute_url }}",
+      "name": "CN105-to-Grove Cable (PAP-05V-S to HY2.0)",
+      "description": "Ready-made CN105-to-Grove cable (JST PAP-05V-S to Grove HY2.0) connecting an ESP32 board to the CN105 port on Mitsubishi mini-split heat pumps. Assembled and tested — no crimping or soldering required.",
+      "image": "{{ '/assets/cn105_cable.jpg' | absolute_url }}",
+      "category": "Electrical Cables",
+      "brand": {
+        "@type": "Brand",
+        "name": "Serin Labs"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.etsy.com/listing/4518377332/cn105-to-grove-cable-pap-05v-s-to-hy20",
+        "priceCurrency": "USD",
+        "price": "8.00",
+        "priceValidUntil": "{{ site.time | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' }}",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": {
+          "@type": "Organization",
+          "name": "Serin Labs"
+        }
+      }
+    }
+  ]
+}
+</script>

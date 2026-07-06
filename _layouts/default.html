@@ -146,6 +146,20 @@ links keep resolving.
       }
     });
   </script>
+  {%- if site.umami_website_id and site.umami_website_id != "" -%}
+  <script>
+    // Instrument outbound links for Umami. Umami reads these data attributes at
+    // click time, so tagging every external <a> once on load is enough.
+    document.querySelectorAll('a[href]').forEach(function(a) {
+      if ((a.protocol === 'http:' || a.protocol === 'https:') &&
+          a.host && a.host !== window.location.host &&
+          !a.hasAttribute('data-umami-event')) {
+        a.setAttribute('data-umami-event', 'outbound-link-click');
+        a.setAttribute('data-umami-event-url', a.href);
+      }
+    });
+  </script>
+  {%- endif -%}
 </body>
 </html>
 {%- endif -%}

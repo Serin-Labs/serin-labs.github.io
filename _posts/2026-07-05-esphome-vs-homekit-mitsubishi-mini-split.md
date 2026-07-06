@@ -14,9 +14,20 @@ related:
     title: Flash the firmware
 ---
 
-Two firmwares. Same board. Same port. The only real question is which app you want to open when the room gets cold.
+Two firmwares. Same board. Same port. The only real question is which app you want to control your heat pump from.
 
-If you're weighing ESPHome vs HomeKit for a Mitsubishi mini-split, that's genuinely the whole decision. Both options are free, open source, run on the same ESP32 hardware, plug into the same CN105 port, and keep everything local. No Kumo Cloud, no MELCloud, no accounts. The hardware doesn't care which one you pick, and you can [reflash](/flash.html) from one to the other later. So relax: there's no wrong answer here, only a right one for your house.
+I went local because the factory app kept letting me down. It wasn't reliable, it couldn't reach every setting on the unit, and I was already living in the Apple Home app and didn't want another login for one more device. Cutting out the cloud fixed all three. The next decision was which firmware to flash, and that's the one this post is about.
+
+If you're weighing **ESPHome vs HomeKit** for a Mitsubishi mini-split, here's the reassuring part: both are free, open source, run on the same **ESP32** hardware, plug into the same **CN105** port, and keep everything local. No Kumo Cloud, no MELCloud, no accounts. The hardware doesn't care which one you pick, and you can [reflash](/flash.html) from one to the other later. There's no wrong answer here. Pick the one that fits your house.
+
+**Quick Facts**
+
+- **Cost:** both firmwares are free and open source
+- **Hardware:** M5Stack **NanoC6** or **Atom S3 Lite** (both ESP32); one board and one CN105 cable per indoor unit
+- **Connection:** the **CN105** serial port on most Mitsubishi Electric indoor units
+- **ESPHome:** native Home Assistant climate entity, deepest automations, remote temperature from any HA sensor
+- **Apple Home firmware:** native HAP pairing, Siri, BLE room sensors; an Apple Home Hub covers remote access and automations
+- **Flashing:** browser-based over USB (Web Serial), and you can switch either direction anytime
 
 <img src="/assets/media/installation.jpg" alt="The Serin controller installed inside a Mitsubishi mini-split indoor unit, connected to the CN105 port" class="screenshot" width="480" height="445">
 
@@ -25,9 +36,7 @@ The decision comes down to one question: **where do you want to control your hea
 - **You run Home Assistant, or plan to.** Flash **ESPHome**. Your mini-split becomes a native climate entity with the full weight of HA automations behind it.
 - **You're an Apple household with no Home Assistant** and no desire to run a server. Flash the **Apple Home compatible firmware**. It pairs directly with Apple Home, and Siri works out of the box.
 
-That's the short version. The rest of this post is the stuff that actually trips people up: remote access, temperature sensors, and how automations really work. A few of those details matter more than the feature checklists let on.
-
-Quick note on where I'm coming from. I went local because the factory app kept letting me down. It wasn't reliable, it couldn't touch every setting on the unit, and I was already living in the Apple Home app and didn't want another login for one more device. Cutting out the cloud fixed all three. Which firmware you flash is the next decision, and it's the one this post is about.
+That's the short version. The rest of this post is what actually trips people up: remote access, temperature sensors, and how automations really work. A few of those details matter more than the feature checklists let on.
 
 ## What's the Same on Both
 

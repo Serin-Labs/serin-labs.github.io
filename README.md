@@ -8,7 +8,7 @@ Cloud-free smart control for Mitsubishi heat pumps. Open source ESPHome and Home
 - **Open Source** – Inspect, modify, and contribute to the firmware and tools.
 - **Compact** – Installs inside your heat pump, out of sight.
 - **Two Platforms** – ESPHome for Home Assistant. HomeKit-compatible firmware for Apple Home.
-- **DIY or Pre-Assembled** – Build it yourself or order a ready-to-go kit.
+- **DIY or Pre-Assembled** – Build it yourself or [order a ready-to-go kit](https://serinlabs.etsy.com/).
 
 ## How It Works
 
@@ -21,15 +21,15 @@ This controller talks to your unit over the **CN105 serial port** found on most 
 | **Best for** | Home Assistant users | Apple Home users |
 | **Built on** | [MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome) by echavet | [esp-homekit-sdk](https://github.com/espressif/esp-homekit-sdk) |
 | **Hub required** | Home Assistant | Apple Home Hub (Apple TV or HomePod) |
-| **Setup guide** | [ESPHome setup](https://serin-labs.github.io/esphome/setup) | [HomeKit setup](https://serin-labs.github.io/homekit/setup) |
+| **Setup guide** | [ESPHome setup](https://serin-labs.com/esphome/setup) | [HomeKit setup](https://serin-labs.com/homekit/setup) |
 
 ## Quick Start
 
-1. **Check compatibility.** Confirm your unit has a CN105 port — see the [compatibility list](https://serin-labs.github.io/compatibility).
-2. **Get the hardware.** One board + one cable, about $15–20 total — see [what you need](https://serin-labs.github.io/parts).
-3. **Flash the firmware.** Use the [browser flash tool](https://serin-labs.github.io/flash) to install ESPHome or HomeKit firmware directly from your browser.
-4. **Follow your setup guide.** [ESPHome](https://serin-labs.github.io/esphome/setup) or [HomeKit](https://serin-labs.github.io/homekit/setup) — connect to WiFi and configure your platform.
-5. **Install in your HVAC.** Power off, connect the [CN105-to-Grove cable](https://serin-labs.github.io/wiring), tuck the device inside, and restore power.
+1. **Check compatibility.** Confirm your unit has a CN105 port — see the [compatibility list](https://serin-labs.com/compatibility).
+2. **Get the hardware.** One board + one cable, about $15–20 total — see [what you need](https://serin-labs.com/parts), or order the [pre-assembled Serin Controller](https://serinlabs.etsy.com/).
+3. **Flash the firmware.** Use the [browser flash tool](https://serin-labs.com/flash) to install ESPHome or HomeKit firmware directly from your browser.
+4. **Follow your setup guide.** [ESPHome](https://serin-labs.com/esphome/setup) or [HomeKit](https://serin-labs.com/homekit/setup) — connect to WiFi and configure your platform.
+5. **Install in your HVAC.** Power off, connect the [CN105-to-Grove cable](https://serin-labs.com/wiring), tuck the device inside, and restore power.
 
 Multiple indoor units? You need one controller per indoor head — repeat the steps above for each unit.
 
@@ -49,15 +49,15 @@ For most setups the NanoC6 is the better pick: it's smaller, and its WiFi 6 radi
 
 ## Site & Documentation
 
-The full documentation lives at **[serin-labs.github.io](https://serin-labs.github.io)**:
+The full documentation lives at **[serin-labs.com](https://serin-labs.com)**:
 
-- [Compatibility](https://serin-labs.github.io/compatibility) – Check if your Mitsubishi unit is supported
-- [What You Need](https://serin-labs.github.io/parts) – Complete parts list
-- [Flash Firmware](https://serin-labs.github.io/flash) – Browser-based firmware installer
-- [Wiring Reference](https://serin-labs.github.io/wiring) – Pinout diagram and cable assembly
-- [YAML Generator](https://serin-labs.github.io/esphome/generate-yaml) – Generate a ready-to-use ESPHome config
-- [HomeKit Features](https://serin-labs.github.io/homekit/features) – HomeKit firmware capabilities
-- [Troubleshooting](https://serin-labs.github.io/troubleshooting) – Solutions to common issues
+- [Compatibility](https://serin-labs.com/compatibility) – Check if your Mitsubishi unit is supported
+- [What You Need](https://serin-labs.com/parts) – Complete parts list
+- [Flash Firmware](https://serin-labs.com/flash) – Browser-based firmware installer
+- [Wiring Reference](https://serin-labs.com/wiring) – Pinout diagram and cable assembly
+- [YAML Generator](https://serin-labs.com/esphome/generate-yaml) – Generate a ready-to-use ESPHome config
+- [HomeKit Features](https://serin-labs.com/homekit/features) – HomeKit firmware capabilities
+- [Troubleshooting](https://serin-labs.com/troubleshooting) – Solutions to common issues
 
 ## Community
 

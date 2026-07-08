@@ -13,3 +13,20 @@ permalink: /404.html
   <li><a href="{{ '/flash.html' | relative_url }}">Flash Firmware</a> — browser-based installer</li>
   <li><a href="{{ '/troubleshooting.html' | relative_url }}">Troubleshooting</a> — common issues and fixes</li>
 </ul>
+
+{%- if site.umami_website_id and site.umami_website_id != "" -%}
+<script>
+  // The server serves this page but the browser keeps the mistyped URL, so the
+  // auto-pageview already records the bad path — this event just flags it as a
+  // 404 (filterable) and captures the referrer to trace broken/stale links.
+  // Umami loads via a deferred script, so wait for it before tracking.
+  window.addEventListener('DOMContentLoaded', function() {
+    if (window.umami) {
+      window.umami.track('404', {
+        path: location.pathname + location.search,
+        referrer: document.referrer || '(direct)'
+      });
+    }
+  });
+</script>
+{%- endif -%}

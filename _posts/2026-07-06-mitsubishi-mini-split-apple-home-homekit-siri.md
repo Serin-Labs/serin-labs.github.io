@@ -101,7 +101,7 @@ Here's the single change that made the biggest comfort difference for me, and it
 
 A mini-split reads temperature up at the indoor unit, near the ceiling, where the air runs a few degrees warmer than where you actually sit. So "72" at the unit can feel like 68 on the couch. The HomeKit firmware fixes this with an optional **BLE room sensor**: a cheap Bluetooth thermometer you place at seating height, and the heat pump regulates off *that* reading instead of the warm air at the ceiling.
 
-It auto-detects the sensor from its Bluetooth advertisements, so there's no pairing dance. Supported thermometers include **Govee** (H5075, H5072, H5074 and similar), **Xiaomi** (LYWSD03MMC, CGG1 running PVVX firmware), and anything speaking **BTHome v2** (SwitchBot, Shelly). If the sensor goes quiet for 90 seconds, the firmware falls back to the unit's internal thermistor on its own, so a dead battery never leaves you without heat.
+It auto-detects the sensor from its Bluetooth advertisements, so there's no pairing dance. Supported thermometers include **Govee** (H5075, H5072, H5074 and similar), **Xiaomi** (LYWSD03MMC, CGG1 running PVVX firmware), **SwitchBot** meters, and anything speaking **BTHome v2** (Shelly and other generic sensors). If the sensor goes quiet, the firmware falls back to the unit's internal thermistor on its own after a stale timeout — 10 minutes by default, adjustable down to 30 seconds — so a dead battery never leaves you without heat.
 
 If you've ever priced a Mitsubishi wall thermostat to get room-height sensing, this is the same benefit for a fraction of the money, and you can put the sensor anywhere in the room, not just on one wall.
 

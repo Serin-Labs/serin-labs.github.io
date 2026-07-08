@@ -68,7 +68,7 @@ links keep resolving.
   }
   </script>
   {%- if site.umami_website_id and site.umami_website_id != "" -%}
-  <script defer src="/t/script.js" data-website-id="{{ site.umami_website_id }}"></script>
+  <script defer src="/t/script.js" data-website-id="{{ site.umami_website_id }}" data-domains="serin-labs.com"></script>
   {%- endif -%}
 </head>
 <body>
@@ -148,8 +148,17 @@ links keep resolving.
   </script>
   {%- if site.umami_website_id and site.umami_website_id != "" -%}
   <script>
-    // Instrument outbound links for Umami. Umami reads these data attributes at
-    // click time, so tagging every external <a> once on load is enough.
+    // Tag store (Etsy) links as their own `store-click` conversion event BEFORE
+    // the generic outbound pass below, so buy-intent doesn't get buried in
+    // `outbound-link-click`. The generic pass skips anything already tagged.
+    // Umami reads these attributes at click time — tagging once on load is enough.
+    document.querySelectorAll('a[href*="etsy.com"]').forEach(function(a) {
+      if (a.hasAttribute('data-umami-event')) return;
+      a.setAttribute('data-umami-event', 'store-click');
+      a.setAttribute('data-umami-event-product', (a.textContent || '').trim() || a.href);
+    });
+
+    // Instrument the remaining outbound links for Umami.
     document.querySelectorAll('a[href]').forEach(function(a) {
       if ((a.protocol === 'http:' || a.protocol === 'https:') &&
           a.host && a.host !== window.location.host &&

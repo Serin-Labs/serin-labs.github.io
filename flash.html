@@ -133,7 +133,15 @@ nav_active: flash
 <script>
   var currentPlatform = 'homekit';
 
+  // Umami is loaded first-party via /t/script.js and only resolves on
+  // serin-labs.com; on github.io it 404s, so window.umami is undefined. Guard
+  // every programmatic event so tracking is a no-op there instead of throwing.
+  function trackFlash(name, data) {
+    if (window.umami) window.umami.track(name, data);
+  }
+
   function selectPlatform(platform) {
+    trackFlash('platform-select', { platform: platform });
     currentPlatform = platform;
     var esphomeBtn = document.getElementById('toggle-esphome');
     var homekitBtn = document.getElementById('toggle-homekit');
@@ -174,6 +182,13 @@ nav_active: flash
     }
   }
 
+  // Flash intent: fires when the user clicks Install (before the serial-port
+  // picker). This is the top of the flash funnel — compare against
+  // flash-device-connected / flash-flow-complete below to see drop-off.
+  document.getElementById('install-btn').addEventListener('click', function() {
+    trackFlash('flash-start', { platform: currentPlatform });
+  });
+
   // After flash succeeds, show the device AP name and HomeKit pairing QR.
   // esp-web-tools fires state-changed inside shadow DOM (not observable from outside),
   // so we intercept console.log instead: the esptool logger writes MAC and the
@@ -184,6 +199,7 @@ nav_active: flash
   (function() {
     var detectedMac = null;
     var bannerShown = false;
+    var flowCompleteTracked = false;
 
     function fnv1a32(bytes) {
       var h = BigInt('2166136261');
@@ -286,12 +302,25 @@ nav_active: flash
       var msg = typeof arguments[0] === 'string' ? arguments[0] : '';
       if (!detectedMac) {
         var m = msg.match(/MAC:\s*([\da-fA-F]{2}):([\da-fA-F]{2}):([\da-fA-F]{2}):([\da-fA-F]{2}):([\da-fA-F]{2}):([\da-fA-F]{2})/i);
-        if (m) detectedMac = [
-          parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16),
-          parseInt(m[4], 16), parseInt(m[5], 16), parseInt(m[6], 16)
-        ];
+        if (m) {
+          detectedMac = [
+            parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16),
+            parseInt(m[4], 16), parseInt(m[5], 16), parseInt(m[6], 16)
+          ];
+          // esptool has connected and read the chip's MAC — a real device is
+          // engaged, distinguishing genuine attempts from port-picker cancels.
+          trackFlash('flash-device-connected', { platform: currentPlatform });
+        }
       }
-      if (msg === 'DISCONNECT') showBanner();
+      if (msg === 'DISCONNECT') {
+        if (!flowCompleteTracked) {
+          flowCompleteTracked = true;
+          // End of the flash + Improv Wi-Fi flow (fires when the serial port is
+          // released). Bottom of the funnel. Guarded — DISCONNECT can log twice.
+          trackFlash('flash-flow-complete', { platform: currentPlatform });
+        }
+        showBanner();
+      }
     };
   })();
 </script>

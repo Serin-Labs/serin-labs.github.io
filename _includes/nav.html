@@ -9,7 +9,13 @@
     </label>
     <nav>
       <ul>
-        <li><a href="{{ '/parts.html' | relative_url }}" {% if page.nav_active == "get-started" or page.nav_active == "parts" %}class="active"{% endif %}>Get Started</a></li>
+        <li class="dropdown">
+          <a href="{{ '/controller.html' | relative_url }}" {% if page.nav_active == "controller" or page.nav_active == "get-started" or page.nav_active == "parts" %}class="active"{% endif %}>Controller</a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ '/controller.html' | relative_url }}">Buy Pre-Assembled</a></li>
+            <li><a href="{{ '/parts.html' | relative_url }}">DIY Parts List</a></li>
+          </ul>
+        </li>
         <li class="nav-cta"><a href="{{ '/flash.html' | relative_url }}" class="btn nav-cta-btn">Flash</a></li>
         <li class="dropdown">
           <a href="{{ '/esphome/setup.html' | relative_url }}" {% if page.nav_active == "esphome" %}class="active"{% endif %}>ESPHome</a>
@@ -26,8 +32,9 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="{{ '/troubleshooting.html' | relative_url }}" {% if page.nav_active == "troubleshooting" or page.nav_active == "compatibility" or page.nav_active == "wiring" %}class="active"{% endif %}>Help</a>
+          <a href="{{ '/support.html' | relative_url }}" {% if page.nav_active == "support" or page.nav_active == "troubleshooting" or page.nav_active == "compatibility" or page.nav_active == "wiring" %}class="active"{% endif %}>Support</a>
           <ul class="dropdown-menu">
+            <li><a href="{{ '/support.html' | relative_url }}">Get Help</a></li>
             <li><a href="{{ '/troubleshooting.html' | relative_url }}">Troubleshooting</a></li>
             <li><a href="{{ '/compatibility.html' | relative_url }}">Compatibility</a></li>
             <li><a href="{{ '/wiring.html' | relative_url }}">Wiring</a></li>

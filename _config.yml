@@ -54,3 +54,4 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - docs/
+  - .playwright-mcp/

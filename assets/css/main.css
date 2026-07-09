@@ -1541,3 +1541,100 @@ details[open] summary::before {
 .breadcrumbs a:hover { color: var(--accent); }
 .breadcrumbs .sep { margin: 0 0.4rem; color: var(--border); }
 .breadcrumbs [aria-current] { color: var(--secondary); font-weight: 600; }
+
+/* ===== PRODUCT PAGE ===== */
+.product-hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 1.75rem 0 2.25rem;
+}
+.product-hero__media {
+  flex: 0 0 44%;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface-alt);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.product-hero__media:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+.product-hero__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.product-hero__body { flex: 1 1 auto; min-width: 0; }
+.product-hero__body h1 { margin: 0 0 0.3rem; font-size: 1.75rem; }
+.product-lead {
+  color: var(--secondary);
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0;
+}
+.product-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 1rem 0 0.25rem;
+}
+.product-price {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+.product-shipping { font-size: 0.85rem; color: var(--muted); }
+.product-buy-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.25rem 0 0.75rem;
+}
+.product-hero__body .page-note { margin-bottom: 0; }
+
+.photo-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.photo-gallery figure { margin: 0; }
+.photo-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.photo-gallery figcaption {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.45rem;
+}
+
+/* ===== SUPPORT HUB ===== */
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+.support-grid .form-card { margin-bottom: 0; }
+.support-grid .form-card h2 { font-size: 1.15rem; margin: 0.5em 0; }
+.support-grid .form-card ul {
+  margin: 0.5em 0 0.25em;
+  padding-left: 1.2em;
+}
+.support-grid .form-card li { margin-bottom: 0.35em; }
+
+@media (max-width: 768px) {
+  .product-hero { flex-direction: column; gap: 1.25rem; }
+  .product-hero__media { flex: none; width: 100%; }
+  .photo-gallery,
+  .support-grid { grid-template-columns: 1fr; }
+}

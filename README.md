@@ -27,7 +27,7 @@ This controller talks to your unit over the **CN105 serial port** found on most 
 
 1. **Check compatibility.** Confirm your unit has a CN105 port — see the [compatibility list](https://serin-labs.com/compatibility).
 2. **Get the hardware.** One board + one cable, about $15–20 total — see [what you need](https://serin-labs.com/parts), or order the [pre-assembled Serin Controller](https://serinlabs.etsy.com/).
-3. **Flash the firmware.** Use the [browser flash tool](https://serin-labs.com/flash) to install ESPHome or HomeKit firmware directly from your browser.
+3. **Flash the firmware.** Use the [browser flash tool](https://serin-labs.com/flash) to install ESPHome or HomeKit-compatible firmware directly from your browser.
 4. **Follow your setup guide.** [ESPHome](https://serin-labs.com/esphome/setup) or [HomeKit](https://serin-labs.com/homekit/setup) — connect to WiFi and configure your platform.
 5. **Install in your HVAC.** Power off, connect the [CN105-to-Grove cable](https://serin-labs.com/wiring), tuck the device inside, and restore power.
 
@@ -35,7 +35,7 @@ Multiple indoor units? You need one controller per indoor head — repeat the st
 
 ## Supported Boards
 
-Both boards work with ESPHome and HomeKit firmware.
+Both boards work with ESPHome and HomeKit-compatible firmware.
 
 | | NanoC6 *(recommended)* | Atom S3 Lite |
 |---|---|---|
@@ -56,7 +56,7 @@ The full documentation lives at **[serin-labs.com](https://serin-labs.com)**:
 - [Flash Firmware](https://serin-labs.com/flash) – Browser-based firmware installer
 - [Wiring Reference](https://serin-labs.com/wiring) – Pinout diagram and cable assembly
 - [YAML Generator](https://serin-labs.com/esphome/generate-yaml) – Generate a ready-to-use ESPHome config
-- [HomeKit Features](https://serin-labs.com/homekit/features) – HomeKit firmware capabilities
+- [HomeKit Features](https://serin-labs.com/homekit/features) – HomeKit-compatible firmware capabilities
 - [Troubleshooting](https://serin-labs.com/troubleshooting) – Solutions to common issues
 
 ## Community
@@ -66,7 +66,7 @@ The full documentation lives at **[serin-labs.com](https://serin-labs.com)**:
 
 ## Credits & Open Source
 
-The ESPHome integration is built on [echavet's MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome). On top of that, Serin Labs adds curated configs, browser flashing, and a YAML generator. The HomeKit-compatible firmware is developed by Serin Labs ([source](https://github.com/akifbayram/mitsubishi-cn105-homekit)), built on Espressif's [esp-homekit-sdk](https://github.com/espressif/esp-homekit-sdk).
+The ESPHome integration is built on [echavet's MitsubishiCN105ESPHome](https://github.com/echavet/MitsubishiCN105ESPHome). On top of that, Serin Labs adds curated configs, browser flashing, and a YAML generator. The HomeKit-compatible firmware is an independent open-source project ([akifbayram/mitsubishi-cn105-homekit](https://github.com/akifbayram/mitsubishi-cn105-homekit)) built on Espressif's [esp-homekit-sdk](https://github.com/espressif/esp-homekit-sdk).
 
 Both platforms build on foundational work by [SwiCago](https://github.com/SwiCago/HeatPump) and [geoffdavis](https://github.com/geoffdavis/esphome-mitsubishiheatpump).
 

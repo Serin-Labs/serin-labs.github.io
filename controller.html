@@ -1,0 +1,188 @@
+---
+layout: default
+title: "Serin Controller — Mitsubishi Mini-Split Control for Apple Home & Home Assistant"
+description: "Pre-assembled Wi-Fi controller for Mitsubishi mini-splits. Control it from the Apple Home app (HomeKit + Siri) or Home Assistant via free open-source firmware. $35, free US shipping."
+image: /assets/serin_cn105_controller.jpg
+nav_active: controller
+---
+
+<div class="home">
+
+  <div class="product-hero">
+    <a class="product-hero__media" href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener" aria-label="View the Serin Controller listing on Etsy">
+      <img src="/assets/serin_cn105_controller.jpg" alt="The Serin Controller — an M5Stack NanoC6 board with the orange braided CN105-to-Grove cable attached" width="480" height="480">
+    </a>
+    <div class="product-hero__body">
+      <h1>Serin Controller</h1>
+      <p class="product-rating">
+        <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener" aria-label="Rated 5.0 out of 5 stars from 3 reviews — read reviews on Etsy">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span class="rating-count">5.0 · 3 reviews on Etsy</span>
+        </a>
+      </p>
+      <p class="product-lead">Pre-assembled Wi-Fi controller for Mitsubishi mini-splits: an M5Stack NanoC6 with the CN105 cable attached. Plugs into the service port inside your indoor unit for local, cloud-free control from <strong>Apple Home</strong> (HomeKit + Siri) or <strong>Home Assistant</strong>.</p>
+      <div class="product-price-row">
+        <span class="product-price">$35</span>
+        <span class="product-shipping">Free U.S. shipping</span>
+      </div>
+      <p><a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener" class="btn">Buy on Etsy</a></p>
+      <p class="product-buy-note">Sold through Etsy. Purchases, shipping, and returns are handled there, covered by <a href="https://www.etsy.com/legal/purchase-protection/" target="_blank" rel="noopener">Etsy's purchase protection</a>.</p>
+    </div>
+  </div>
+
+  <h2>What's in the Box</h2>
+  <ul>
+    <li><strong>M5Stack NanoC6 board</strong> — ESP32-C6 with Wi-Fi 6, small enough to tuck inside the unit.</li>
+    <li><strong>CN105-to-Grove cable, attached</strong> — plugs straight into the CN105 port. No crimping or soldering.</li>
+  </ul>
+  <p>The only thing you supply is a USB-C <strong>data</strong> cable for the one-time flash. After that, updates are over Wi-Fi. A 50&nbsp;cm cable option is available in the <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener">Etsy listing</a> for metal-bodied ducted air handlers, where routing the controller outside the cabinet improves Wi-Fi signal.</p>
+
+  <h2>Specifications</h2>
+  <div class="table-wrapper">
+    <table>
+      <tbody>
+        <tr><th scope="row">Board</th><td>M5Stack NanoC6</td></tr>
+        <tr><th scope="row">Chip</th><td>ESP32-C6 (RISC-V, 160 MHz)</td></tr>
+        <tr><th scope="row">Wi-Fi</th><td>Wi-Fi 6 (802.11ax, 2.4 GHz)</td></tr>
+        <tr><th scope="row">Size</th><td>23.5 &times; 12 &times; 12.5 mm</td></tr>
+        <tr><th scope="row">HVAC connector</th><td>JST PAP-05V-S (CN105)</td></tr>
+        <tr><th scope="row">Power</th><td>5V from the CN105 port — no separate power supply</td></tr>
+        <tr><th scope="row">Flashing</th><td>USB-C, from the browser; OTA updates afterward</td></tr>
+        <tr><th scope="row">Firmware</th><td>ESPHome or HomeKit-compatible — open source</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Installed</h2>
+  <div class="photo-gallery">
+    <figure>
+      <img src="/assets/serin_cn105_mitsubishi_gl06na.jpg" alt="The CN105-to-Grove cable plugged into the CN105 port on the control board of a Mitsubishi wall unit" loading="lazy" width="1600" height="1066">
+      <figcaption>Plugged into the CN105 port of a Mitsubishi wall unit</figcaption>
+    </figure>
+    <figure>
+      <img src="/assets/serin_cn105_mvz_aa7_2.webp" alt="The Serin Controller mounted on the insulated plenum above a Mitsubishi MVZ air handler, connected by a 50 cm cable" loading="lazy" width="1400" height="1400">
+      <figcaption>Mounted outside a metal-bodied MVZ air handler (50&nbsp;cm cable)</figcaption>
+    </figure>
+  </div>
+
+  <div class="form-card">
+    <h3>Before You Buy: Check Compatibility</h3>
+    <p>The controller works with Mitsubishi Electric units that have a <strong>CN105</strong> service port — most wall units, ducted air handlers, and ceiling cassettes. Mitsubishi Heavy Industries (SRK/SRC/SRF) and Ecodan air-to-water systems are not compatible. <a href="/compatibility.html">Check your unit &rarr;</a></p>
+  </div>
+
+  <h2>Good to Know</h2>
+  <details>
+    <summary>Does it work with Apple Home and Siri?</summary>
+    <div class="faq-body">
+      <p>Yes. With the free HomeKit-compatible firmware, the controller appears in the Apple Home app as a thermostat — mode, temperature, and fan control, plus Siri voice commands. Remote access and automations need an Apple Home Hub (Apple TV or HomePod). It's not an MFi-certified accessory, so pairing shows a one-time "Add Anyway" prompt. See the <a href="/homekit/features.html">full feature list</a>.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Does it ship with firmware installed?</summary>
+    <div class="faq-body">
+      <p>No. The controller arrives without firmware so you can pick your platform. Flash ESPHome or HomeKit-compatible firmware free from the <a href="/flash.html">browser flash tool</a> — it takes about five minutes and needs a desktop Chromium browser (Chrome, Edge, or Brave; Safari and Firefox don't support Web Serial).</p>
+    </div>
+  </details>
+  <details>
+    <summary>How many do I need?</summary>
+    <div class="faq-body">
+      <p>One controller per indoor head — each indoor unit has its own CN105 port. A 3-zone system needs three controllers.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Can I switch between ESPHome and HomeKit later?</summary>
+    <div class="faq-body">
+      <p>Yes. Reflash over USB-C anytime from the <a href="/flash.html">flash tool</a> — the hardware is identical for both platforms. Day-to-day updates after setup happen over Wi-Fi.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Is this an official Apple or Mitsubishi product?</summary>
+    <div class="faq-body">
+      <p>No. This is an independent open-source project, not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. The HomeKit-compatible firmware implements the HomeKit Accessory Protocol independently and is not an MFi-certified accessory. Firmware sources and licenses are listed on the <a href="/licenses.html">licenses page</a>.</p>
+    </div>
+  </details>
+  <details>
+    <summary>What else do I need?</summary>
+    <div class="faq-body">
+      <ul>
+        <li>A USB-C <strong>data</strong> cable for the one-time flash.</li>
+        <li>For HomeKit remote access and automations: an Apple Home Hub (Apple TV or HomePod).</li>
+        <li>For ESPHome: a Home Assistant instance.</li>
+        <li>2.4 GHz Wi-Fi coverage near the indoor unit.</li>
+      </ul>
+    </div>
+  </details>
+  <details>
+    <summary>What if something's wrong with my order?</summary>
+    <div class="faq-body">
+      <p>Message the shop through <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Etsy</a>, which handles shipping, returns, and refunds under its purchase protection. For technical help, see the <a href="/support.html">support page</a>.</p>
+    </div>
+  </details>
+
+  <div class="page-cta">
+    <p class="page-cta-label">After it arrives</p>
+    <h2>Flash, Set Up, Install</h2>
+    <p>Three steps from box to working thermostat: flash the firmware, follow your platform's setup guide, and plug it into the unit.</p>
+    <div class="page-cta-actions">
+      <a href="/flash.html" class="btn">Flash Firmware</a>
+      <a href="/support.html" class="btn btn-outline">Get Support</a>
+    </div>
+  </div>
+
+</div>
+
+{%- comment -%}
+  Product/Offer structured data for the Serin Controller (canonical product page).
+  MAINTENANCE: `price` and the review count/rating are hardcoded — update them
+  here AND in the visible .product-rating markup above if the Etsy listing
+  changes (priceValidUntil auto-updates from site.time). The CN105 cable's
+  Product markup lives on /parts.html where that product is presented.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "@id": "{{ '/controller.html#serin-controller' | absolute_url }}",
+  "name": "Serin Controller — Smart Mini-Split Wi-Fi Controller",
+  "description": "Pre-assembled ESP32 Wi-Fi controller for Mitsubishi mini-split heat pumps. Ships with the CN105-to-Grove cable attached, ready to flash with ESPHome (for Home Assistant) or HomeKit-compatible firmware (Apple Home + Siri) for local, cloud-free control.",
+  "image": "{{ '/assets/serin_cn105_controller.jpg' | absolute_url }}",
+  "url": "{{ '/controller.html' | absolute_url }}",
+  "category": "Smart Home Controllers",
+  "brand": {
+    "@type": "Brand",
+    "name": "Serin Labs"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "3",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller",
+    "priceCurrency": "USD",
+    "price": "35.00",
+    "priceValidUntil": "{{ site.time | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' }}",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {
+      "@type": "Organization",
+      "name": "Serin Labs"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "0",
+        "currency": "USD"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "US"
+      }
+    }
+  }
+}
+</script>

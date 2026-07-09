@@ -8,7 +8,7 @@ cover: /assets/serin_cn105_controller.jpg
 related:
   - url: /compatibility.html
     title: Check your unit for a CN105 port
-  - url: /parts.html
+  - url: /controller.html
     title: Get the hardware
   - url: /homekit/setup.html
     title: Apple Home setup guide
@@ -20,7 +20,7 @@ The first thing I tried was searching "Mitsubishi mini-split HomeKit" and hoping
 
 But you *can* get there, fully local, and it's a smaller job than you'd think. I did it to every unit in my house, and my parents' house after that.
 
-The whole thing hinges on a serial port already sitting inside the indoor unit: the **CN105** port. A small **ESP32** board, the [Serin controller](/parts.html), clips onto it and speaks the heat pump's own protocol. Flash it with free, open-source **HomeKit-compatible firmware** and your mini-split shows up in the Apple Home app like any other thermostat. Siri, scenes, automations, the lot. No account, no cloud, nothing between you and the unit but your own Wi-Fi.
+The whole thing hinges on a serial port already sitting inside the indoor unit: the **CN105** port. A small **ESP32** board, the [Serin controller](/controller.html), clips onto it and speaks the heat pump's own protocol. Flash it with free, open-source **HomeKit-compatible firmware** and your mini-split shows up in the Apple Home app like any other thermostat. Siri, scenes, automations, the lot. No account, no cloud, nothing between you and the unit but your own Wi-Fi.
 
 <img src="/assets/serin_cn105_controller.jpg" alt="The pre-assembled Serin controller: an M5Stack ESP32 board with the CN105-to-Grove cable attached" class="screenshot" width="360" height="360">
 
@@ -47,7 +47,7 @@ The result is a native Apple Home tile. Set the temperature, change modes, contr
 
 There's more than one route, and which is right depends on what you already run. All three end with a thermostat tile in the Home app. They differ in what sits behind it.
 
-**1. Direct HomeKit firmware (this guide).** The CN105 board runs firmware that speaks HomeKit's own protocol (HAP), so it pairs straight into Apple Home with nothing in between. No server to keep running, no cloud, no account. It's the simplest local path, and it's what the rest of this post walks through.
+**1. Direct HomeKit-compatible firmware (this guide).** The CN105 board runs firmware that speaks HomeKit's own protocol (HAP), so it pairs straight into Apple Home with nothing in between. No server to keep running, no cloud, no account. It's the simplest local path, and it's what the rest of this post walks through.
 
 **2. Home Assistant's HomeKit Bridge.** Already run Home Assistant? Flash the *same* CN105 board with **ESPHome** instead. Home Assistant picks it up as a climate entity, and its built-in [HomeKit Bridge](https://www.home-assistant.io/integrations/homekit/) exposes that entity to Apple Home. Same hardware, same local-only result, same one-time "Add Anyway" prompt at pairing. The catch is that you need a Home Assistant server running around the clock. Worth it if HA is already your hub and you want everything under one roof. Overkill if Apple Home is all you use.
 
@@ -67,7 +67,7 @@ If Apple Home is your world and you want the least to run and nothing in the clo
 
 Three things, and you probably already have the third.
 
-- **The board and cable.** An ESP32 board (M5Stack NanoC6 or Atom S3 Lite) plus a CN105-to-Grove cable, [one per indoor unit](/parts.html). Buy them separately for around $15–20, or get one pre-assembled.
+- **The board and cable.** An ESP32 board (M5Stack NanoC6 or Atom S3 Lite) plus a CN105-to-Grove cable, [one per indoor unit](/parts.html). Buy them separately for around $15–20, or get one [pre-assembled](/controller.html).
 - **A CN105 port on your unit.** This is the one thing to confirm before you spend a cent. It's built into most Mitsubishi Electric indoor units. A quick proxy: if your unit runs on Kumo Cloud or MELCloud today, it almost certainly has CN105. Still, take five minutes and [check your unit for the port](/compatibility.html) for certain.
 - **An Apple Home Hub, for the full experience.** An Apple TV or a HomePod. On your home Wi-Fi you can control the unit without one, but the Hub is what gives you remote access from outside the house and lets automations run when your phone isn't home. Most Apple households already have one sitting under the TV.
 
@@ -83,7 +83,7 @@ Start to finish this is a coffee's worth of work, not an afternoon. No soldering
 
 **4. Add it to Apple Home.** Open the Home app, tap **Add Accessory**, and scan the pairing QR code from the setup page (or type the setup code). Your mini-split lands in Apple Home as a thermostat.
 
-One thing to expect here, and I'd rather you hear it from me than be surprised by it: this firmware isn't MFi-certified, so Apple Home shows an **"Uncertified Accessory"** notice and asks you to tap **Add Anyway**. That prompt is normal. Tap it and pairing finishes. The device works exactly like a certified one afterward — the certification is a paid Apple licensing program, not a measure of whether the thing works.
+One thing to expect here, and I'd rather you hear it from me than be surprised by it: this firmware isn't MFi-certified, so Apple Home shows an **"Uncertified Accessory"** notice and asks you to tap **Add Anyway**. That prompt is normal. Tap it and pairing finishes. After that the accessory behaves like any other thermostat in the Home app — MFi is Apple's paid licensing and certification program, and this independent open-source project simply isn't enrolled in it.
 
 ## Living With It: Siri and Scenes
 
@@ -99,7 +99,7 @@ Once it's paired, it behaves like any Apple Home thermostat, which is the whole 
 
 Here's the single change that made the biggest comfort difference for me, and it costs about $15.
 
-A mini-split reads temperature up at the indoor unit, near the ceiling, where the air runs a few degrees warmer than where you actually sit. So "72" at the unit can feel like 68 on the couch. The HomeKit firmware fixes this with an optional **BLE room sensor**: a cheap Bluetooth thermometer you place at seating height, and the heat pump regulates off *that* reading instead of the warm air at the ceiling.
+A mini-split reads temperature up at the indoor unit, near the ceiling, where the air runs a few degrees warmer than where you actually sit. So "72" at the unit can feel like 68 on the couch. The firmware fixes this with an optional **BLE room sensor**: a cheap Bluetooth thermometer you place at seating height, and the heat pump regulates off *that* reading instead of the warm air at the ceiling.
 
 It auto-detects the sensor from its Bluetooth advertisements, so there's no pairing dance. Supported thermometers include **Govee** (H5075, H5072, H5074 and similar), **Xiaomi** (LYWSD03MMC, CGG1 running PVVX firmware), **SwitchBot** meters, and anything speaking **BTHome v2** (Shelly and other generic sensors). If the sensor goes quiet, the firmware falls back to the unit's internal thermistor on its own after a stale timeout — 10 minutes by default, adjustable down to 30 seconds — so a dead battery never leaves you without heat.
 
@@ -127,7 +127,7 @@ I want you going in clear-eyed.
 The path is short:
 
 1. [Check that your unit has a CN105 port](/compatibility.html). If it's on Kumo Cloud or MELCloud today, it almost certainly does.
-2. Get the [board and cable](/parts.html), one per indoor unit, or a pre-assembled controller.
-3. [Flash the HomeKit firmware](/flash.html) from your browser and follow the [Apple Home setup guide](/homekit/setup.html).
+2. Get the [board and cable](/parts.html), one per indoor unit, or a [pre-assembled controller](/controller.html).
+3. [Flash the HomeKit-compatible firmware](/flash.html) from your browser and follow the [Apple Home setup guide](/homekit/setup.html).
 
 Same heat pump, now with a real Siri thermostat in front of it, and not a line of it running through anyone's cloud.

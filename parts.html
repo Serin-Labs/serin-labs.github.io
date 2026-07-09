@@ -10,23 +10,23 @@ nav_active: parts
   <p>One board, one cable per unit. Everything you need to build a Serin controller.</p>
 
   <div class="form-card form-card--media">
-    <a class="form-card__media" href="https://serinlabs.etsy.com/" target="_blank" rel="noopener" aria-label="View the pre-assembled Serin Controller on Etsy">
+    <a class="form-card__media" href="/controller.html" aria-label="See the pre-assembled Serin Controller">
       <img src="/assets/serin_cn105_controller.jpg" alt="The pre-assembled Serin Controller — an M5Stack ESP32 board with the CN105-to-Grove cable attached" loading="lazy" />
     </a>
     <div class="form-card__body">
       <h3>Shortcut: Buy the Complete Controller</h3>
       <p class="product-rating">
-        <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener" aria-label="Rated 5.0 out of 5 stars from 1 review — read reviews on Etsy">
+        <a href="https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller" target="_blank" rel="noopener" aria-label="Rated 5.0 out of 5 stars from 3 reviews — read reviews on Etsy">
           <span class="stars" aria-hidden="true">★★★★★</span>
-          <span class="rating-count">5.0 · 1 review</span>
+          <span class="rating-count">5.0 · 3 reviews</span>
         </a>
       </p>
-      <p>Want to skip the parts list? The <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Serin Controller</a> ships pre-assembled with the CN105 cable included, ready to <a href="/flash.html">flash the firmware of your choice</a>: ESPHome or HomeKit. The rest of this page covers building your own.</p>
+      <p>Want to skip the parts list? The <a href="/controller.html">Serin Controller</a> ships pre-assembled with the CN105 cable included, ready to <a href="/flash.html">flash the firmware of your choice</a>: ESPHome or HomeKit. The rest of this page covers building your own.</p>
     </div>
   </div>
 
   <h2>1. ESP32 Board (Required)</h2>
-  <p>Choose one of the two supported boards. Both work with ESPHome and HomeKit firmware.</p>
+  <p>Choose one of the two supported boards. Both work with ESPHome and HomeKit-compatible firmware.</p>
 
   <div class="board-chooser">
     <div class="board-card">
@@ -175,7 +175,7 @@ nav_active: parts
   <h2>Next Steps</h2>
   <ol>
     <li><a href="/compatibility.html">Check compatibility</a> — verify your Mitsubishi unit has a CN105 port.</li>
-    <li><a href="/flash.html">Flash the firmware</a> — install ESPHome or HomeKit firmware from your browser.</li>
+    <li><a href="/flash.html">Flash the firmware</a> — install ESPHome or HomeKit-compatible firmware from your browser.</li>
     <li><a href="/wiring.html">Wire it up</a> — connect the cable to your HVAC unit.</li>
   </ol>
   <p>
@@ -187,9 +187,10 @@ nav_active: parts
 </div>
 
 {%- comment -%}
-  Product/Offer structured data for the two Serin-branded products sold on Etsy.
-  MAINTENANCE: the `price` values below are hardcoded — update them here if the
-  Etsy listing prices change (priceValidUntil auto-updates from site.time).
+  Product/Offer structured data for the CN105 cable sold on Etsy. The Serin
+  Controller's Product markup lives on its canonical page, /controller.html.
+  MAINTENANCE: the `price` value below is hardcoded — update it here if the
+  Etsy listing price changes (priceValidUntil auto-updates from site.time).
   The M5Stack boards and DIY cable parts are third-party and intentionally not
   marked up as Serin products.
 {%- endcomment -%}
@@ -197,50 +198,6 @@ nav_active: parts
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Product",
-      "@id": "{{ '/parts.html#serin-controller' | absolute_url }}",
-      "name": "Serin Controller — Smart Mini-Split Wi-Fi Controller",
-      "description": "Pre-assembled ESP32 Wi-Fi controller for Mitsubishi mini-split heat pumps. Ships with the CN105-to-Grove cable attached, ready to flash with ESPHome (for Home Assistant) or HomeKit-compatible firmware for local, cloud-free control.",
-      "image": "{{ '/assets/serin_cn105_controller.jpg' | absolute_url }}",
-      "category": "Smart Home Controllers",
-      "brand": {
-        "@type": "Brand",
-        "name": "Serin Labs"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "1",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://www.etsy.com/listing/4518217831/serin-smart-mini-split-wi-fi-controller",
-        "priceCurrency": "USD",
-        "price": "35.00",
-        "priceValidUntil": "{{ site.time | date: '%s' | plus: 31536000 | date: '%Y-%m-%d' }}",
-        "availability": "https://schema.org/InStock",
-        "itemCondition": "https://schema.org/NewCondition",
-        "seller": {
-          "@type": "Organization",
-          "name": "Serin Labs"
-        },
-        "shippingDetails": {
-          "@type": "OfferShippingDetails",
-          "shippingRate": {
-            "@type": "MonetaryAmount",
-            "value": "0",
-            "currency": "USD"
-          },
-          "shippingDestination": {
-            "@type": "DefinedRegion",
-            "addressCountry": "US"
-          }
-        }
-      }
-    },
     {
       "@type": "Product",
       "@id": "{{ '/parts.html#cn105-cable' | absolute_url }}",

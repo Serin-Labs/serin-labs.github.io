@@ -9,33 +9,34 @@ description: "Open-source ESP32 controller for Mitsubishi heat pumps via CN105. 
   <p class="hero-lead">Cloud-free smart control with open source firmware.</p>
   <p class="hero-sub">ESPHome for Home Assistant. HomeKit for Apple Home.</p>
   <div class="hero-actions">
-    <a href="/flash.html" class="btn">Flash Firmware</a>
     <a href="/controller.html" class="btn">Buy Controller</a>
+    <a href="/flash.html" class="btn btn-outline">Flash Firmware</a>
     <a href="#platforms" class="btn btn-outline" onclick="event.preventDefault(); document.getElementById('platforms').scrollIntoView({behavior:'smooth'})">Choose Platform</a>
   </div>
 </div>
 
-<div class="features-grid">
-  <div class="feature-card">
-    <div class="feature-icon">🔒</div>
-    <h3>100% Local Control</h3>
-    <p>Your data stays in your home. No cloud, no fees, no privacy worries.</p>
-  </div>
-  <div class="feature-card">
-    <div class="feature-icon">📖</div>
-    <h3>Open Source</h3>
-    <p>Inspect, modify, and contribute to the firmware and tools.</p>
-  </div>
-  <div class="feature-card">
-    <div class="feature-icon">📦</div>
-    <h3>Compact & Clean</h3>
-    <p>Installs inside your heat pump for a seamless look.</p>
-  </div>
-  <div class="feature-card">
-    <div class="feature-icon">🔧</div>
-    <h3>DIY or Pre-Assembled</h3>
-    <p>Build it yourself or <a href="/controller.html">order a pre-assembled controller</a> &mdash; board and CN105 cable included.</p>
-  </div>
+<div class="value-props">
+  <a class="value-props__media" href="/controller.html" aria-label="See the pre-assembled Serin Controller">
+    <img src="/assets/serin_cn105_controller.jpg" alt="The Serin Controller — an M5Stack NanoC6 board with the CN105 cable attached" width="480" height="480">
+  </a>
+  <ul class="value-props__list">
+    <li>
+      <span class="value-props__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+      <div><strong>100% Local Control</strong><span>Your data stays in your home. No cloud, no fees, no privacy worries.</span></div>
+    </li>
+    <li>
+      <span class="value-props__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+      <div><strong>Open Source</strong><span>Inspect, modify, and contribute to the firmware and tools.</span></div>
+    </li>
+    <li>
+      <span class="value-props__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 8z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg></span>
+      <div><strong>Compact &amp; Clean</strong><span>Installs inside your heat pump for a seamless look.</span></div>
+    </li>
+    <li>
+      <span class="value-props__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      <div><strong>DIY or Pre-Assembled</strong><span>Build it yourself or <a href="/controller.html">order a pre-assembled controller</a> &mdash; board and CN105 cable included.</span></div>
+    </li>
+  </ul>
 </div>
 
 <h2>How It Compares</h2>
@@ -45,41 +46,41 @@ description: "Open-source ESP32 controller for Mitsubishi heat pumps via CN105. 
     <thead>
       <tr>
         <th></th>
+        <th class="compare-highlight">CN105 Serial</th>
         <th>Cloud Adapter</th>
         <th>IR Blaster</th>
-        <th class="compare-highlight">CN105 Serial</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td><strong>Cost</strong></td>
+        <td class="compare-highlight">~$15&ndash;20 DIY<br>or <a href="/controller.html">pre-assembled</a></td>
         <td>~$180</td>
         <td>~$15</td>
-        <td class="compare-highlight">~$15&ndash;20 DIY<br>or <a href="/controller.html">pre-assembled</a></td>
       </tr>
       <tr>
         <td><strong>Connection</strong></td>
+        <td class="compare-highlight">Local serial (CN105)</td>
         <td>Cloud-dependent</td>
         <td>Line-of-sight IR</td>
-        <td class="compare-highlight">Local serial (CN105)</td>
       </tr>
       <tr>
         <td><strong>Feedback</strong></td>
+        <td class="compare-highlight">Real-time, bidirectional</td>
         <td>Yes, via cloud</td>
         <td>None — no confirmation</td>
-        <td class="compare-highlight">Real-time, bidirectional</td>
       </tr>
       <tr>
         <td><strong>Privacy</strong></td>
+        <td class="compare-highlight">100% local</td>
         <td>Data sent to cloud</td>
         <td>Local</td>
-        <td class="compare-highlight">100% local</td>
       </tr>
       <tr>
         <td><strong>Source</strong></td>
+        <td class="compare-highlight">Open source</td>
         <td>Proprietary</td>
         <td>Varies</td>
-        <td class="compare-highlight">Open source</td>
       </tr>
     </tbody>
   </table>
@@ -91,14 +92,14 @@ description: "Open-source ESP32 controller for Mitsubishi heat pumps via CN105. 
     <img src="/assets/esphome-logo.svg" alt="ESPHome logo" class="platform-logo">
     <h3>ESPHome</h3>
     <p>Built on <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a>. Serin Labs provides curated configs, browser flashing, and a <a href="/esphome/generate-yaml.html">YAML generator</a>.</p>
-    <a href="/flash.html" class="btn btn-esphome">Flash Firmware</a>
+    <a href="/flash.html?platform=esphome" class="btn btn-esphome">Flash Firmware</a>
     <a href="/esphome/setup.html" class="setup-link">Setup Guide &rarr;</a>
   </div>
   <div class="platform-card card-homekit">
     <img src="/assets/house.svg" alt="House icon" class="platform-logo">
     <h3>HomeKit-Compatible</h3>
     <p>For use with the <strong>Apple Home</strong> app — no extra app, cloud, or subscription. See the <a href="/homekit/features.html">full feature list</a>.</p>
-    <a href="/flash.html" class="btn btn-homekit">Flash Firmware</a>
+    <a href="/flash.html?platform=homekit" class="btn btn-homekit">Flash Firmware</a>
     <a href="/homekit/setup.html" class="setup-link">Setup Guide &rarr;</a>
   </div>
 </div>

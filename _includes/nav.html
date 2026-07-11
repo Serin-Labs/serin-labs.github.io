@@ -13,10 +13,9 @@
           <a href="{{ '/controller.html' | relative_url }}" {% if page.nav_active == "controller" or page.nav_active == "get-started" or page.nav_active == "parts" %}class="active"{% endif %}>Controller</a>
           <ul class="dropdown-menu">
             <li><a href="{{ '/controller.html' | relative_url }}">Buy Pre-Assembled</a></li>
-            <li><a href="{{ '/parts.html' | relative_url }}">DIY Parts List</a></li>
+            <li><a href="{{ '/parts.html' | relative_url }}">Parts List</a></li>
           </ul>
         </li>
-        <li class="nav-cta"><a href="{{ '/flash.html' | relative_url }}" class="btn nav-cta-btn">Flash</a></li>
         <li class="dropdown">
           <a href="{{ '/esphome/setup.html' | relative_url }}" {% if page.nav_active == "esphome" %}class="active"{% endif %}>ESPHome</a>
           <ul class="dropdown-menu">
@@ -40,6 +39,7 @@
             <li><a href="{{ '/wiring.html' | relative_url }}">Wiring</a></li>
           </ul>
         </li>
+        <li class="nav-cta"><a href="{{ '/flash.html' | relative_url }}" class="btn nav-cta-btn{% if page.nav_active == "flash" %} active{% endif %}">Flash</a></li>
       </ul>
     </nav>
   </div>

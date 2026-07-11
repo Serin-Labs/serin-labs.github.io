@@ -16,6 +16,11 @@ layout: default
       &middot; Serin Labs
     </p>
 
+    <nav class="post-toc" id="post-toc" aria-label="Table of contents" hidden>
+      <strong class="post-toc__label">On this page</strong>
+      <ol class="post-toc__list"></ol>
+    </nav>
+
     {{ content }}
 
     <h2>Related</h2>
@@ -32,6 +37,27 @@ layout: default
     </ul>
   </article>
 </div>
+
+<script>
+  // Build the table of contents from the post's own h2s (kramdown gives them
+  // ids; the layout's "Related" h2 has none, so it's excluded). Short posts
+  // with fewer than three sections don't get one.
+  (function () {
+    var toc = document.getElementById('post-toc');
+    var headings = document.querySelectorAll('article.post h2[id]');
+    if (!toc || headings.length < 3) return;
+    var list = toc.querySelector('.post-toc__list');
+    headings.forEach(function (h) {
+      var item = document.createElement('li');
+      var link = document.createElement('a');
+      link.href = '#' + h.id;
+      link.textContent = h.textContent;
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+    toc.hidden = false;
+  })();
+</script>
 
 <script type="application/ld+json">
 {

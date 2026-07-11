@@ -52,7 +52,7 @@ For most setups the NanoC6 is the better pick: it's smaller, and its WiFi 6 radi
 The full documentation lives at **[serin-labs.com](https://serin-labs.com)**:
 
 - [Compatibility](https://serin-labs.com/compatibility) – Check if your Mitsubishi unit is supported
-- [What You Need](https://serin-labs.com/parts) – Complete parts list
+- [Parts List](https://serin-labs.com/parts) – Complete parts list
 - [Flash Firmware](https://serin-labs.com/flash) – Browser-based firmware installer
 - [Wiring Reference](https://serin-labs.com/wiring) – Pinout diagram and cable assembly
 - [YAML Generator](https://serin-labs.com/esphome/generate-yaml) – Generate a ready-to-use ESPHome config

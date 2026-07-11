@@ -22,7 +22,7 @@ nav_active: flash
         <li><strong>ESP32-C3 SuperMini / XIAO</strong> (ESP32-C3) &mdash; untested</li>
         <li><strong>Generic ESP32 DevKit</strong> (ESP32) &mdash; untested</li>
       </ul>
-      <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See <a href="/parts.html">what you need</a>, or order the <a href="/controller.html">pre-assembled Serin Controller</a> (board and CN105 cable included) and flash it here.</p>
+      <p>The correct firmware is selected automatically based on your connected device. Don't have a board yet? See the <a href="/parts.html">parts list</a>, or order the <a href="/controller.html">pre-assembled Serin Controller</a> (board and CN105 cable included) and flash it here.</p>
     </div>
   </details>
 
@@ -47,7 +47,7 @@ nav_active: flash
   </esp-web-install-button>
 
   <div id="esphome-note" class="flash-section">
-    <p><em><strong>After flashing:</strong> The flasher prompts you to configure WiFi — enter your network credentials to connect the device before unplugging USB.</em></p>
+    <p class="page-note"><strong>After flashing:</strong> The flasher prompts you to configure WiFi — enter your network credentials to connect the device before unplugging USB.</p>
     <details>
       <summary>What's in this build?</summary>
       <div class="faq-body">
@@ -58,7 +58,7 @@ nav_active: flash
   </div>
 
   <div id="homekit-note" class="flash-section active">
-    <p><em><strong>After flashing:</strong> The installer prompts you to connect the device to Wi-Fi &mdash; pick your network and enter the password. When it connects, click <strong>Visit Device</strong> to open the web UI, then add it to Apple Home. No Wi-Fi prompt? Use the hotspot fallback shown below after flashing.</em></p>
+    <p class="page-note"><strong>After flashing:</strong> The installer prompts you to connect the device to Wi-Fi &mdash; pick your network and enter the password. When it connects, click <strong>Visit Device</strong> to open the web UI, then add it to Apple Home. No Wi-Fi prompt? Use the hotspot fallback shown below after flashing.</p>
   </div>
 
   <div id="flash-device-banner" class="flash-device-banner" style="display:none">
@@ -117,7 +117,7 @@ nav_active: flash
 
   <hr>
 
-  <p><a id="next-steps-link" href="/homekit/setup.html" class="btn btn-homekit">Continue to HomeKit-Compatible Setup &rarr;</a></p>
+  <p><a id="next-steps-link" href="/homekit/setup.html" class="btn btn-homekit">Continue to HomeKit-Compatible Setup&nbsp;&rarr;</a></p>
   <hr>
 
   <h3>Notes</h3>
@@ -140,8 +140,9 @@ nav_active: flash
     if (window.umami) window.umami.track(name, data);
   }
 
-  function selectPlatform(platform) {
-    trackFlash('platform-select', { platform: platform });
+  function selectPlatform(platform, source) {
+    // URL presets get their own event so they don't skew the click funnel.
+    trackFlash(source === 'url' ? 'platform-preset' : 'platform-select', { platform: platform });
     currentPlatform = platform;
     var esphomeBtn = document.getElementById('toggle-esphome');
     var homekitBtn = document.getElementById('toggle-homekit');
@@ -175,11 +176,18 @@ nav_active: flash
     var link = document.getElementById('next-steps-link');
     if (currentPlatform === 'esphome') {
       link.href = '/esphome/setup.html';
-      link.textContent = 'Continue to ESPHome Setup';
+      link.textContent = 'Continue to ESPHome Setup →';
     } else {
       link.href = '/homekit/setup.html';
-      link.textContent = 'Continue to HomeKit-Compatible Setup';
+      link.textContent = 'Continue to HomeKit-Compatible Setup →';
     }
+  }
+
+  // Deep link: /flash.html?platform=esphome|homekit preselects the toggle so
+  // platform-specific entry points (home cards, setup guides) land configured.
+  var urlPlatform = new URLSearchParams(location.search).get('platform');
+  if (urlPlatform === 'esphome' || urlPlatform === 'homekit') {
+    selectPlatform(urlPlatform, 'url');
   }
 
   // Flash intent: fires when the user clicks Install (before the serial-port

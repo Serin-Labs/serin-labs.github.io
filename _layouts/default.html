@@ -72,9 +72,10 @@ links keep resolving.
   {%- endif -%}
 </head>
 <body>
+  <a class="skip-link" href="#content">Skip to content</a>
   {% include nav.html %}
 
-  <main class="container">
+  <main class="container" id="content">
     {{ content }}
   </main>
 
@@ -89,7 +90,7 @@ links keep resolving.
           <div class="footer-col">
             <strong>Project</strong>
             <a href="{{ '/' | relative_url }}">Home</a>
-            <a href="{{ '/parts.html' | relative_url }}">Parts</a>
+            <a href="{{ '/parts.html' | relative_url }}">Parts List</a>
             <a href="{{ '/flash.html' | relative_url }}">Flash</a>
             <a href="{{ '/wiring.html' | relative_url }}">Wiring</a>
             <a href="{{ '/compatibility.html' | relative_url }}">Compatibility</a>

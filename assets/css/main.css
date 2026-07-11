@@ -13,6 +13,7 @@
   --homekit: #F09A28;
   --homekit-hover: #D4871A;
   --border: #E5E5E2;
+  --link-underline: rgba(26,26,26,0.35);
   --surface: #FFFFFF;
   --surface-alt: #F3F3F0;
   --code-bg: #1C1C2E;
@@ -67,7 +68,7 @@ p { margin: 0.75em 0; }
 
 a {
   color: var(--primary);
-  text-decoration-color: var(--border);
+  text-decoration-color: var(--link-underline);
   text-underline-offset: 3px;
   transition: color var(--transition), text-decoration-color var(--transition);
 }
@@ -173,6 +174,24 @@ nav a.active {
 
 /* Dropdown */
 nav .dropdown { position: relative; }
+nav .dropdown > a::after {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-left: 0.45em;
+  margin-bottom: 2px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.55;
+  transition: transform var(--transition);
+}
+nav .dropdown:hover > a::after,
+nav .dropdown:focus-within > a::after,
+nav .dropdown.open > a::after {
+  transform: translateY(2px) rotate(-135deg);
+}
 nav .dropdown-menu {
   display: none;
   position: absolute;
@@ -306,6 +325,12 @@ nav .dropdown-menu a:hover {
   transform: none;
 }
 .btn.nav-cta-btn:hover { transform: none; }
+/* Current-page state for the nav CTA — darker fill plus an inner ring so it
+   reads as "you are here" without losing its button shape. */
+.btn.nav-cta-btn.active {
+  background: var(--accent-hover);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.45);
+}
 
 .btn-outline {
   background: transparent;
@@ -371,36 +396,67 @@ nav .dropdown-menu a:hover {
   box-shadow: var(--shadow-sm);
 }
 
-/* ===== FEATURE GRID ===== */
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  margin: 1.5rem 0;
+/* ===== VALUE PROPS (homepage) ===== */
+/* Product photo anchors the section; the four claims read as a checklist. */
+.value-props {
+  display: flex;
+  gap: 2.25rem;
+  align-items: center;
+  margin: 1.75rem 0;
 }
-.feature-card {
-  padding: 1.25rem;
+.value-props__media {
+  flex: 0 0 38%;
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--surface);
-  text-align: center;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface-alt);
   transition: border-color var(--transition), box-shadow var(--transition);
 }
-.feature-card:hover {
+.value-props__media:hover {
   border-color: var(--accent);
-  box-shadow: 0 2px 12px rgba(240,154,40,0.08);
+  box-shadow: var(--shadow-md);
 }
-.feature-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.4rem;
+.value-props__media img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
-.feature-card h3 {
-  margin: 0 0 0.25rem;
-  font-size: 0.95rem;
-}
-.feature-card p {
+.value-props__list {
+  list-style: none;
   margin: 0;
-  font-size: 0.88rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+.value-props__list li {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+.value-props__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--accent-light);
+  color: var(--accent-hover);
+  margin-top: 2px;
+}
+.value-props__icon svg {
+  width: 18px;
+  height: 18px;
+}
+.value-props__list strong {
+  display: block;
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+}
+.value-props__list li > div > span {
+  font-size: 0.9rem;
   color: var(--secondary);
   line-height: 1.5;
 }
@@ -993,6 +1049,12 @@ textarea#dynamic-yaml-output {
   max-width: 100%;
   height: auto;
 }
+/* Tall in-card photos: cap height so they illustrate without dominating */
+.screenshot--capped {
+  width: auto;
+  max-height: 420px;
+  border-radius: var(--radius-md);
+}
 
 .demo-gallery {
   display: flex;
@@ -1188,6 +1250,21 @@ main {
 }
 
 /* ===== ACCESSIBILITY ===== */
+/* Skip link: parked off-screen until focused, then pinned above the header. */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 2000;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.6em 1.1em;
+  border-radius: 0 0 var(--radius-sm) 0;
+  text-decoration: none;
+}
+.skip-link:focus { left: 0; }
+
 /* Visible, consistent keyboard focus. Inputs keep their own focus ring above. */
 a:focus-visible,
 button:focus-visible,
@@ -1306,12 +1383,18 @@ details[open] summary::before {
   .nav-toggle:checked ~ nav { max-height: 500px; }
   nav ul {
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
   }
   nav a {
     display: block;
     padding: 0.7rem 1rem;
     border-radius: 0;
+    text-align: left;
+  }
+  nav .dropdown > a::after {
+    float: right;
+    margin-top: 0.55em;
   }
 
   nav .dropdown-menu {
@@ -1333,7 +1416,7 @@ details[open] summary::before {
   }
 
   .nav-cta { margin-left: 0; padding: 0.6rem 1rem; }
-  .btn.nav-cta-btn { font-size: 0.92rem; padding: 0.5rem 1.2rem; }
+  .btn.nav-cta-btn { font-size: 0.92rem; padding: 0.5rem 1.2rem; width: 100%; }
 
   .container { width: 95%; padding: 0 12px; }
   main { padding: 1.25rem 0; }
@@ -1350,7 +1433,8 @@ details[open] summary::before {
     gap: 0.5rem;
   }
 
-  .features-grid { grid-template-columns: 1fr; }
+  .value-props { flex-direction: column; gap: 1.25rem; }
+  .value-props__media { flex: none; width: 100%; max-width: 340px; }
   .platform-chooser { flex-direction: column; }
 
   .cable-options-layout { flex-direction: column; }
@@ -1525,6 +1609,31 @@ details[open] summary::before {
   .blog-entry article { grid-template-columns: 13rem 1fr; }
   .blog-entry-cover { aspect-ratio: auto; height: 100%; min-height: 100%; }
 }
+
+/* Post table of contents (built by post layout JS from the post's h2s) */
+.post-toc {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-alt);
+  padding: 0.9rem 1.25rem 1rem;
+  margin: 1.25rem 0 1.75rem;
+  font-size: 0.9rem;
+}
+.post-toc__label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.post-toc__list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.post-toc__list li { margin: 0.25rem 0; }
+article.post h2[id] { scroll-margin-top: 4.5rem; }
 
 /* Breadcrumbs (post layout) */
 .breadcrumbs {

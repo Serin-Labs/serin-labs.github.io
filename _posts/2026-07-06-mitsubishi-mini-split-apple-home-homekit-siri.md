@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "How to Add Your Mitsubishi Mini-Split to Apple Home (HomeKit + Siri)"
-description: "Mitsubishi mini-splits don't support Apple Home natively. Three ways to add HomeKit and Siri: direct CN105 firmware, Home Assistant's HomeKit Bridge, or Homebridge. Here's the simplest local, cloud-free path."
+title: "Add Your Mitsubishi Mini-Split to Apple Home (HomeKit + Siri)"
+description: "Mitsubishi mini-splits don't support Apple Home natively. Three ways to add HomeKit + Siri: CN105 firmware, HA's HomeKit Bridge, or Homebridge."
 date: 2026-07-06 15:00:00 -0500
 image: /assets/og-cover.jpg
 cover: /assets/serin_cn105_controller.jpg

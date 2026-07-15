@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "A Cheaper Alternative to Mitsubishi's MHK2 and Wired Wall Controllers"
-description: "Mitsubishi's MHK2, MHK1, and PAC-SDW01RC-1 wall controllers run $180–$400 for precise climate control. Here's a local alternative that adds app, Siri, and Home Assistant control on the same CN105 port, for a fraction of the price."
+title: "Cheaper Alternative to the Mitsubishi MHK2 Wall Controller"
+description: "Mitsubishi's MHK2 and PAC-SDW01RC-1 wall controllers cost $180–$400. Here's a local alternative that adds app, Siri, and Home Assistant control for far less."
 date: 2026-07-06 09:00:00 -0500
 image: /assets/og-cover.jpg
 cover: /assets/serin_cn105_mitsubishi_gl06na.jpg

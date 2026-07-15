@@ -1,6 +1,6 @@
-# Serin Labs – Mitsubishi Heat Pump Controller
+# Serin Labs – Smart Controller for Mitsubishi Mini-Splits
 
-Cloud-free smart control for Mitsubishi heat pumps. Open source ESPHome and HomeKit-compatible firmware.
+Cloud-free smart control for Mitsubishi mini-splits. Open source ESPHome and HomeKit-compatible firmware.
 
 ## Why?
 

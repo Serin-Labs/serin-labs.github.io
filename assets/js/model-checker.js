@@ -61,10 +61,83 @@
       ctas: [CTA_CHECK, CTA_PARTS]
     },
 
+    // ---- No CN105 at all, per Mitsubishi's own M-Series controls
+    // compatibility table (Form# M_M-Series_Compatibility-202406): these
+    // series show "NO" for every CN105 accessory option, meaning the port
+    // itself isn't populated. Must beat wall-confirmed/wall-likely below.
+    {
+      id: 'msz-fd', re: /^MSZFD/, tone: 'fail',
+      badge: 'MSZ-FD series — wall-mounted',
+      title: 'No CN105 port on this series',
+      detail: 'Mitsubishi’s own M-Series controls compatibility table shows no CN105 accessory option for MSZ-FD units, meaning this series doesn’t have a usable CN105 port.',
+      ctas: [CTA_ASK]
+    },
+    {
+      id: 'msz-he', re: /^MSZHE/, tone: 'fail',
+      badge: 'MSZ-HE series — wall-mounted',
+      title: 'No CN105 port on this series',
+      detail: 'Mitsubishi’s own M-Series controls compatibility table shows no CN105 accessory option for MSZ-HE units, meaning this series doesn’t have a usable CN105 port.',
+      ctas: [CTA_ASK]
+    },
+    {
+      id: 'ms-wa', re: /^MSWA/, tone: 'fail',
+      badge: 'MS-WA series — wall-mounted',
+      title: 'No CN105 port on this series',
+      detail: 'Mitsubishi’s own M-Series controls compatibility table shows no CN105 accessory option for MS-WA units, meaning this series doesn’t have a usable CN105 port.',
+      ctas: [CTA_ASK]
+    },
+
+    // ---- Suffix-dependent wall-mounted series: only certain trims have
+    // CN105, per the same Mitsubishi compatibility table. Order matters —
+    // the specific "has CN105" pattern must be checked before the
+    // "no CN105" fallback for the same family.
+    {
+      id: 'msz-fe-yes', re: /^MSZFE(09|12)NA8|^MSZFE18NA/, tone: 'success',
+      badge: 'MSZ-FE series — wall-mounted',
+      title: 'Confirmed working (this trim)',
+      detail: 'MSZ-FE18NA and the -8 suffix trims (09NA-8 / 12NA-8) have a CN105 port, per Mitsubishi’s official compatibility table.',
+      ctas: [CTA_BUY, CTA_PARTS]
+    },
+    {
+      id: 'msz-fe-no', re: /^MSZFE(09|12)NA(?!\d)/, tone: 'fail',
+      badge: 'MSZ-FE series — wall-mounted',
+      title: 'This trim has no CN105 port',
+      detail: 'Base MSZ-FE09NA / MSZ-FE12NA (no -8 suffix) have no CN105 port, per Mitsubishi’s official compatibility table. Check the model label for an -8 suffix (e.g. MSZ-FE09NA-8) — that trim does have CN105.',
+      ctas: [CTA_CHECK, CTA_ASK]
+    },
+    {
+      id: 'msz-ge-yes', re: /^MSZGE(06|09|12|15|18)NA[89]|^MSZGE24NA/, tone: 'success',
+      badge: 'MSZ-GE series — wall-mounted',
+      title: 'Confirmed working (this trim)',
+      detail: 'MSZ-GE24NA and the -8/-9 suffix trims have a CN105 port, per Mitsubishi’s official compatibility table.',
+      ctas: [CTA_BUY, CTA_PARTS]
+    },
+    {
+      id: 'msz-ge-no', re: /^MSZGE(06|09|12|15|18)NA(?!\d)/, tone: 'fail',
+      badge: 'MSZ-GE series — wall-mounted',
+      title: 'This trim has no CN105 port',
+      detail: 'Base MSZ-GE06&ndash;18NA (no suffix) has no CN105 port, per Mitsubishi’s official compatibility table. Check the model label for an -8 or -9 suffix, which does have CN105.',
+      ctas: [CTA_CHECK, CTA_ASK]
+    },
+    {
+      id: 'msz-d-yes', re: /^MSZD\d+NA8/, tone: 'success',
+      badge: 'MSZ-D series — wall-mounted',
+      title: 'Confirmed working (this trim)',
+      detail: 'The -8 suffix trim has a CN105 port, per Mitsubishi’s official compatibility table.',
+      ctas: [CTA_BUY, CTA_PARTS]
+    },
+    {
+      id: 'msz-d-no', re: /^MSZD\d+NA(?!\d)/, tone: 'fail',
+      badge: 'MSZ-D series — wall-mounted',
+      title: 'This trim has no CN105 port',
+      detail: 'Base MSZ-D...NA (no suffix) has no CN105 port, per Mitsubishi’s official compatibility table. Check the model label for an -8 suffix, which does have CN105.',
+      ctas: [CTA_CHECK, CTA_ASK]
+    },
+
     // ---- Confirmed compatible: wall-mounted ----
     {
       id: 'wall-confirmed',
-      re: /^MSZ(FX|GX|HX|WX|EX|JX|FS|GS|GL|FH|EF|AP|AY|LN|HR|SF|BT|DM|RW|FT|GF|FD|FE|GE|WR|HM|JP|D(?=\d))/,
+      re: /^MSZ(FX|GX|HX|WX|EX|JX|FS|GS|GL|FH|EF|AP|AY|LN|HR|SF|BT|DM|RW|FT|GF|WR|HM|JP)/,
       tone: 'success',
       badge: 'MSZ series — wall-mounted',
       title: 'Confirmed working',

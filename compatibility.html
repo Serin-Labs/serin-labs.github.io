@@ -117,6 +117,7 @@ nav_active: compatibility
       <li><strong>MSZ-HJ series</strong> — CN105 pads exist on the PCB but the connector is not populated. Advanced users have soldered the connector successfully, but this is not recommended for most users.</li>
       <li><strong>Some China-market models</strong> (MSH-BF, MSZ-ZF) — may lack a populated CN105; soldering required.</li>
       <li><strong>Lossnay energy recovery ventilators</strong> (LGH series) — not heat pumps; different protocol.</li>
+      <li><strong>MSZ-FD, MSZ-HE, MS-WA</strong> — no CN105 remote-control accessory is available for these series on Mitsubishi's official M-Series controls compatibility table, indicating no usable CN105 port.</li>
     </ul>
   </div>
 
@@ -204,10 +205,28 @@ nav_active: compatibility
               <td>Confirmed</td>
             </tr>
             <tr>
-              <td>MSZ-BT, MSZ-DM, MSZ-RW, MSZ-FT, MSZ-GF, MSZ-FD, MSZ-FE, MSZ-GE, MSZ-WR, MSZ-HM, MSZ-JP, MSZ-D</td>
+              <td>MSZ-BT, MSZ-DM, MSZ-RW, MSZ-FT, MSZ-GF, MSZ-WR, MSZ-HM, MSZ-JP</td>
               <td>Various</td>
               <td>Various</td>
               <td>All confirmed via Kumo Cloud / MELCloud / community reports</td>
+            </tr>
+            <tr>
+              <td>MSZ-FE</td>
+              <td>MSZ-FE09NA, MSZ-FE12NA, MSZ-FE18NA</td>
+              <td>NA</td>
+              <td>Suffix-dependent: 09/12NA-8 and 18NA have CN105; base 09/12NA (no suffix) does not, per Mitsubishi's official M-Series controls compatibility table</td>
+            </tr>
+            <tr>
+              <td>MSZ-GE</td>
+              <td>MSZ-GE06NA, MSZ-GE09NA, MSZ-GE12NA, MSZ-GE15NA, MSZ-GE18NA, MSZ-GE24NA</td>
+              <td>NA</td>
+              <td>Suffix-dependent: NA-8, NA-9, and GE24NA have CN105; base 06&ndash;18NA (no suffix) does not, per Mitsubishi's official M-Series controls compatibility table</td>
+            </tr>
+            <tr>
+              <td>MSZ-D</td>
+              <td>Various</td>
+              <td>NA</td>
+              <td>Only the -NA-8 suffix has CN105; base -NA models do not, per Mitsubishi's official M-Series controls compatibility table</td>
             </tr>
             <tr>
               <td>MSY (cooling-only)</td>

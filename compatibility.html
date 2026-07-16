@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Mitsubishi CN105 Compatibility — Supported Models"
-description: "Check if your Mitsubishi heat pump has a CN105 port. Compatible wall-mount, ducted, floor, and ceiling cassette models with confirmed community reports."
+title: "Check Your Model — Mitsubishi CN105 Compatibility"
+description: "Type your Mitsubishi mini-split model number and instantly see if it works with the Serin Controller. Wall-mount, ducted, floor, and cassette models covered."
 nav_active: compatibility
 ---
 
@@ -63,8 +63,31 @@ nav_active: compatibility
 </script>
 
 <div class="home">
-  <h1>Compatibility</h1>
-  <p>Check whether your Mitsubishi unit is compatible with this controller before you buy.</p>
+  <div class="model-checker" id="check">
+    <h1>Check Your Mitsubishi Model</h1>
+    <p class="model-checker-lead">Type your indoor unit&rsquo;s model number to see instantly whether this controller works with it.</p>
+    <form id="model-checker-form" role="search" aria-label="Model compatibility checker">
+      <label for="model-checker-input" class="model-checker-label">Model number</label>
+      <div class="model-checker-inputrow">
+        <input id="model-checker-input" type="text" list="model-checker-suggestions"
+               placeholder="e.g. MSZ-GL06NA" autocomplete="off" autocapitalize="characters"
+               spellcheck="false" enterkeyhint="search" inputmode="text">
+        <button type="submit" class="btn">Check</button>
+      </div>
+      <datalist id="model-checker-suggestions"></datalist>
+      <p class="model-checker-hint">It&rsquo;s on a label on the indoor unit &mdash; usually on the right side behind the front panel.</p>
+      <p class="model-checker-examples" aria-label="Example model numbers">Try:
+        <button type="button" class="model-checker-example" data-model="MSZ-GL06NA">MSZ-GL06NA</button>
+        <button type="button" class="model-checker-example" data-model="SEZ-KD09NA">SEZ-KD09NA</button>
+        <button type="button" class="model-checker-example" data-model="MSZ-AP25VGK">MSZ-AP25VGK</button>
+        <button type="button" class="model-checker-example" data-model="SRK50ZS-W">SRK50ZS-W</button>
+      </p>
+    </form>
+    <div id="model-checker-result" class="model-checker-result" role="status" aria-live="polite" hidden></div>
+    <noscript>
+      <p class="field-hint">The instant checker needs JavaScript &mdash; no problem, everything it knows is in the tables and FAQ below.</p>
+    </noscript>
+  </div>
 
   <div class="form-card">
     <h3>Quick Answer</h3>
@@ -530,3 +553,5 @@ nav_active: compatibility
   <hr>
   <p class="field-hint">Compatibility information is based on community reports, manufacturer documentation, and open-source project data. It may not be exhaustive and is not guaranteed for every unit — always verify a CN105 connector is present on your unit before buying hardware.</p>
 </div>
+
+<script src="/assets/js/model-checker.js" defer></script>

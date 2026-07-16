@@ -7,7 +7,7 @@ image: /assets/og-cover.jpg
 cover: /assets/cn105_cable.jpg
 related:
   - url: /compatibility.html
-    title: Full CN105 compatibility list
+    title: Check your model — instant compatibility answer
   - url: /parts.html
     title: Get the hardware
   - url: /blog/kumo-cloud-alternative-local-mitsubishi-control.html
@@ -23,7 +23,7 @@ The good news: you can usually answer this in about a minute, no screwdriver req
 **The 60-Second Check**
 
 *   **Run Kumo Cloud or MELCloud today?** Yes → you have CN105. Done.
-*   **No app?** Read the model number behind the front flap. Prefixes **MSZ, MSY, MFZ, MLZ, SLZ, SEZ, SVZ, PEAD, PVA, PKA, PCA, PLA, PEFY** → almost certainly CN105.
+*   **No app?** Read the model number behind the front flap and [type it into the model checker](/compatibility.html) for an instant answer. Prefixes **MSZ, MSY, MFZ, MLZ, SLZ, SEZ, SVZ, PEAD, PVA, PKA, PCA, PLA, PEFY** → almost certainly CN105.
 *   **Want certainty?** Pop the front panel and look for the red **CN105** connector on the control board.
 *   **Deal-breakers:** Mitsubishi *Heavy Industries* (SRK/SRC/SRF) and air-to-water (Ecodan) units → not compatible.
 

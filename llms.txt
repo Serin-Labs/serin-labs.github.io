@@ -5,7 +5,7 @@
 ## Docs
 
 - [What You Need (Parts)](https://serin-labs.com/parts.html): ESP32 board (M5Stack NanoC6 or Atom S3 Lite) plus the CN105-to-Grove cable.
-- [Compatibility](https://serin-labs.com/compatibility.html): Which Mitsubishi Electric models have a CN105 port (wall-mount, floor, cassette, ducted, P-series, rebranded Trane/American Standard) and how to check your unit.
+- [Check Your Model](https://serin-labs.com/compatibility.html): Instant compatibility checker — type a Mitsubishi model number for a verdict, or deep-link a result with ?model=MSZ-GL06NA. Covers wall-mount, floor, cassette, ducted, P-series, and rebranded Trane/American Standard units, plus full series tables and how to find the CN105 port.
 - [Flash Firmware](https://serin-labs.com/flash.html): Browser-based ESP32 flasher over USB — ESPHome or HomeKit, no software install.
 - [ESPHome Setup](https://serin-labs.com/esphome/setup.html): Connect the controller to Home Assistant.
 - [ESPHome YAML Generator](https://serin-labs.com/esphome/generate-yaml.html): Build a ready-to-use ESPHome config for your board and sensors.

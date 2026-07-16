@@ -25,7 +25,7 @@ This controller talks to your unit over the **CN105 serial port** found on most 
 
 ## Quick Start
 
-1. **Check compatibility.** Confirm your unit has a CN105 port — see the [compatibility list](https://serin-labs.com/compatibility).
+1. **Check your model.** Type your model number into the [instant compatibility checker](https://serin-labs.com/compatibility) to confirm your unit has a CN105 port.
 2. **Get the hardware.** One board + one cable, about $15–20 total — see [what you need](https://serin-labs.com/parts), or order the [pre-assembled Serin Controller](https://serinlabs.etsy.com/).
 3. **Flash the firmware.** Use the [browser flash tool](https://serin-labs.com/flash) to install ESPHome or HomeKit-compatible firmware directly from your browser.
 4. **Follow your setup guide.** [ESPHome](https://serin-labs.com/esphome/setup) or [HomeKit](https://serin-labs.com/homekit/setup) — connect to WiFi and configure your platform.
@@ -51,7 +51,7 @@ For most setups the NanoC6 is the better pick: it's smaller, and its WiFi 6 radi
 
 The full documentation lives at **[serin-labs.com](https://serin-labs.com)**:
 
-- [Compatibility](https://serin-labs.com/compatibility) – Check if your Mitsubishi unit is supported
+- [Check Your Model](https://serin-labs.com/compatibility) – Instant compatibility checker for your Mitsubishi unit
 - [Parts List](https://serin-labs.com/parts) – Complete parts list
 - [Flash Firmware](https://serin-labs.com/flash) – Browser-based firmware installer
 - [Wiring Reference](https://serin-labs.com/wiring) – Pinout diagram and cable assembly

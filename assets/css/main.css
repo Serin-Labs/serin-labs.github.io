@@ -1917,3 +1917,64 @@ article.post h2[id] { scroll-margin-top: 4.5rem; }
   .model-checker { padding: 1.1em 1em 1.2em; }
   .model-checker-inputrow .btn { flex: 1 1 100%; }
 }
+
+/* ===== CONTACT FORM ===== */
+.contact-form label {
+  display: block;
+  font-weight: 600;
+  margin: 1.1rem 0 0.35rem;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form select {
+  max-width: 560px;
+  width: 100%;
+  display: block;
+}
+.contact-form select {
+  padding: 0.65em 0.9em;
+  margin-bottom: 0.6em;
+}
+.contact-form textarea {
+  width: 100%;
+  max-width: 560px;
+  min-height: 180px;
+  resize: vertical;
+  padding: 0.65em 0.9em;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--fg);
+  margin-bottom: 0.6em;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.contact-form textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(240, 154, 40, 0.12);
+}
+/* Honeypot: hidden from humans, present for bots. Not display:none — some
+   bots skip fields they can detect as invisible via computed style alone. */
+.contact-hp {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.form-status {
+  display: none;
+  max-width: 560px;
+  margin-top: 1rem;
+  padding: 0.8rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-alt);
+}
+.form-status.is-visible { display: block; }
+.form-status--ok { border-left: 3px solid #2E7D32; }
+.form-status--err { border-left: 3px solid #E53935; }

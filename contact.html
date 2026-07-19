@@ -1,0 +1,123 @@
+---
+layout: default
+title: "Contact — Serin Labs"
+description: "Get in touch with Serin Labs: order questions via Etsy, bugs and setup questions via GitHub, everything else through the contact form."
+nav_active: contact
+---
+
+<div class="home">
+  <h1>Contact</h1>
+  <p>Most questions get answered fastest through the channel built for them — pick the card that fits, or use the form below for anything else.</p>
+
+  <div class="support-grid">
+    <div class="form-card">
+      <h2>Order Problems</h2>
+      <p>Shipping, returns, refunds, and replacements for Etsy orders go through Etsy, where they're covered by <a href="https://www.etsy.com/legal/purchase-protection/" target="_blank" rel="noopener">purchase protection</a>. See our <a href="/policies.html">store policies</a> for the terms.</p>
+      <ul>
+        <li><a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Message the shop on Etsy</a></li>
+      </ul>
+    </div>
+    <div class="form-card">
+      <h2>Bugs &amp; Setup Questions</h2>
+      <p>Technical questions get answered on GitHub, in the open, so the next person can find the answer too.</p>
+      <ul>
+        <li><a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">GitHub Discussions</a> — ask a question</li>
+        <li><a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">GitHub Issues</a> — report a bug</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Everything Else</h2>
+  <p>Compatibility checks before you buy, wholesale or partnership questions, press, privacy requests, or anything that doesn't fit above — send it here. Replies usually go out within 2 business days.</p>
+
+  <form id="contact-form" class="contact-form" hidden>
+    <label for="cf-name">Name <span aria-hidden="true">(optional)</span></label>
+    <input type="text" id="cf-name" name="name" maxlength="100" autocomplete="name">
+
+    <label for="cf-email">Email</label>
+    <input type="email" id="cf-email" name="email" required maxlength="254" autocomplete="email">
+
+    <label for="cf-topic">Topic</label>
+    <select id="cf-topic" name="topic" required>
+      <option value="general" selected>General question</option>
+      <option value="compatibility">Compatibility check</option>
+      <option value="order">Order question</option>
+      <option value="firmware">Firmware &amp; setup</option>
+      <option value="other">Something else</option>
+    </select>
+
+    <label for="cf-message">Message</label>
+    <textarea id="cf-message" name="message" required minlength="10" maxlength="5000"></textarea>
+
+    <div class="contact-hp" aria-hidden="true">
+      <label for="cf-website">Website</label>
+      <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button type="submit" class="btn" id="cf-submit">Send Message</button>
+
+    <p class="form-status form-status--ok" id="cf-ok" role="status">Message sent. Replies come by email, usually within 2 business days.</p>
+    <p class="form-status form-status--err" id="cf-err" role="alert"></p>
+  </form>
+
+  <noscript>
+    <p>The contact form needs JavaScript. Without it, the best routes are <a href="https://github.com/Serin-Labs/serin-cn105/discussions">GitHub Discussions</a> for questions or a <a href="https://serinlabs.etsy.com/">message to the Etsy shop</a> for order issues.</p>
+  </noscript>
+
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var renderedAt = Date.now();
+      form.hidden = false;
+
+      var okBox = document.getElementById('cf-ok');
+      var errBox = document.getElementById('cf-err');
+      var submit = document.getElementById('cf-submit');
+      var FALLBACK = 'Sending failed. Please try again in a few minutes, or ask on ' +
+        '<a href="https://github.com/Serin-Labs/serin-cn105/discussions">GitHub Discussions</a>' +
+        ' (order issues: <a href="https://serinlabs.etsy.com/">message the Etsy shop</a>).';
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        okBox.classList.remove('is-visible');
+        errBox.classList.remove('is-visible');
+        submit.disabled = true;
+        submit.textContent = 'Sending…';
+
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: form.name.value,
+            email: form.email.value,
+            topic: form.topic.value,
+            message: form.message.value,
+            website: form.website.value,
+            t: renderedAt
+          })
+        })
+          .then(function (r) { return r.json().then(function (b) { return { status: r.status, body: b }; }); })
+          .then(function (r) {
+            if (r.body && r.body.ok) {
+              form.reset();
+              okBox.classList.add('is-visible');
+              if (window.umami) window.umami.track('contact-submit');
+            } else {
+              errBox.innerHTML = (r.status === 400 && r.body && r.body.error)
+                ? 'Couldn’t send: ' + r.body.error + '.'
+                : FALLBACK;
+              errBox.classList.add('is-visible');
+            }
+          })
+          .catch(function () {
+            errBox.innerHTML = FALLBACK;
+            errBox.classList.add('is-visible');
+          })
+          .finally(function () {
+            submit.disabled = false;
+            submit.textContent = 'Send Message';
+          });
+      });
+    })();
+  </script>
+</div>

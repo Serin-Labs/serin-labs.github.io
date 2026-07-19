@@ -31,9 +31,11 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="{{ '/support.html' | relative_url }}" {% if page.nav_active == "support" or page.nav_active == "troubleshooting" or page.nav_active == "compatibility" or page.nav_active == "wiring" %}class="active"{% endif %}>Support</a>
+          <a href="{{ '/support.html' | relative_url }}" {% if page.nav_active == "support" or page.nav_active == "troubleshooting" or page.nav_active == "compatibility" or page.nav_active == "wiring" or page.nav_active == "contact" or page.nav_active == "faq" %}class="active"{% endif %}>Support</a>
           <ul class="dropdown-menu">
             <li><a href="{{ '/support.html' | relative_url }}">Get Help</a></li>
+            <li><a href="{{ '/contact.html' | relative_url }}">Contact</a></li>
+            <li><a href="{{ '/faq.html' | relative_url }}">FAQ</a></li>
             <li><a href="{{ '/troubleshooting.html' | relative_url }}">Troubleshooting</a></li>
             <li><a href="{{ '/compatibility.html' | relative_url }}">Check Your Model</a></li>
             <li><a href="{{ '/wiring.html' | relative_url }}">Wiring</a></li>

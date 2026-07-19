@@ -13,11 +13,19 @@
 - [HomeKit Firmware Features](https://serin-labs.com/homekit/features.html): Native HAP pairing, built-in web UI, Siri control.
 - [Wiring Reference](https://serin-labs.com/wiring.html): CN105-to-Grove pinout and cable assembly.
 - [Troubleshooting](https://serin-labs.com/troubleshooting.html): Flashing, WiFi, and CN105 communication fixes.
+- [FAQ](https://serin-labs.com/faq.html): Short answers on compatibility, what's included, flashing, HomeKit vs ESPHome, orders, and returns.
 
 ## Store
 
 - [Serin Controller (Etsy)](https://serinlabs.etsy.com/): Pre-assembled controller with the CN105-to-Grove cable included.
 - [CN105-to-Grove Cable (Etsy)](https://serinlabs.etsy.com/): Ready-made cable, no crimping or soldering.
+
+## Company
+
+- [About](https://serin-labs.com/about.html): One-person shop in New Jersey; what Serin Labs adds on top of the open-source CN105 community projects.
+- [Contact](https://serin-labs.com/contact.html): Contact form, plus GitHub for technical questions and Etsy messages for orders.
+- [Store Policies](https://serin-labs.com/policies.html): Free US shipping from NJ, 1–2 day processing, 30-day returns, 12-hour cancellations, DOA replacement.
+- [Privacy](https://serin-labs.com/privacy.html): Self-hosted cookie-free analytics, contact-form data handling, Etsy handles payments.
 
 ## Source & Community
 

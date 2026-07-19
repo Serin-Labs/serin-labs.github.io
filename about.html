@@ -1,0 +1,55 @@
+---
+layout: default
+title: "About — Serin Labs"
+description: "The one-person shop behind the Serin controller: why it exists, the open-source community it builds on, and the principles it runs on — local control, no subscriptions, credit where due."
+nav_active: about
+---
+
+<div class="home">
+  <h1>About Serin Labs</h1>
+  <p>Serin Labs is a one-person shop in New Jersey with a deliberately narrow mission: give Mitsubishi mini-split owners the smart control their hardware has always supported — locally, without a cloud account, for a fraction of the official price.</p>
+
+  <h2>Why This Exists</h2>
+  <p>Nearly every Mitsubishi indoor unit made in the last decade has a CN105 connector inside — a simple serial port that speaks the unit's full control protocol. Mitsubishi's official ways to use it are a wall controller that costs $180–$400 per room, or a Kumo Cloud adapter that routes your thermostat through servers you don't control. Meanwhile the port itself will happily talk to a $10 microcontroller.</p>
+  <p>Serin Labs is run by Mehmet, an engineer in New Jersey who started exactly where most of this community starts: one mini-split, one open-source firmware project, one evening of soldering — and a working smart thermostat for less than the price of a takeout dinner. The gap wasn't the software, which the community had already built and battle-tested. It was everything around it: knowing which board to buy, getting a properly-pinned CN105 cable without crimping your own, flashing without a toolchain, and having someone to ask when it doesn't work. Serin Labs exists to close that gap.</p>
+
+  <h2>Built on Open Source — Credit Where Due</h2>
+  <p>The firmware that runs on a Serin controller is not ours, and we want you to know exactly whose it is. Local CN105 control exists because <a href="https://github.com/SwiCago/HeatPump" target="_blank" rel="noopener">SwiCago/HeatPump</a> reverse-engineered the protocol and shared it. The ESPHome integration is <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank" rel="noopener">echavet/MitsubishiCN105ESPHome</a>. The HomeKit-compatible firmware builds on Espressif's <a href="https://github.com/espressif/esp-homekit-sdk" target="_blank" rel="noopener">esp-homekit-sdk</a>. All of it is open source, all of it stays free, and the <a href="/licenses.html">licenses page</a> maps every component to its source and terms.</p>
+  <p>What Serin Labs adds is the hardware and the on-ramp: a tested board, a correctly-pinned cable, a <a href="/flash.html">browser flasher</a> that turns "install a toolchain" into one click, documentation that assumes nothing, and support from someone who has installed these in their own house.</p>
+
+  <h2>What We Run On</h2>
+  <div class="support-grid">
+    <div class="form-card">
+      <h2>Local first</h2>
+      <p>Your thermostat shouldn't stop working because a server far away did. Everything the controller does happens on your network; the cloud is never in the loop.</p>
+    </div>
+    <div class="form-card">
+      <h2>No subscriptions</h2>
+      <p>You buy hardware once. Firmware, updates, and every feature are free — there is nothing to unlock and no monthly anything.</p>
+    </div>
+    <div class="form-card">
+      <h2>Open source, honestly</h2>
+      <p>We don't rebrand community work as our own. Upstream projects are named, linked, and credited everywhere their code is used.</p>
+    </div>
+    <div class="form-card">
+      <h2>Repair-friendly</h2>
+      <p>Standard connectors, documented <a href="/wiring.html">wiring</a>, off-the-shelf boards you can <a href="/parts.html">source yourself</a>. If you'd rather DIY the whole thing, the docs are the same ones we use.</p>
+    </div>
+  </div>
+
+  <h2>What You're Buying</h2>
+  <p>The <a href="/controller.html">pre-assembled controller</a> is a tested board and CN105 cable, ready to plug in — you flash the free firmware of your choice in about five minutes in the browser. It ships from Wood-Ridge, NJ with free US shipping, 30-day returns, and <a href="/support.html">real support</a>. If you'd rather build your own from the <a href="/parts.html">parts list</a>, that's genuinely fine with us — the flasher, docs, and community are free either way.</p>
+
+  <h2>Independence</h2>
+  <p>Serin Labs is an independent project — not affiliated with, endorsed by, or certified by Apple Inc. or Mitsubishi Electric Corporation. Trademarks are used only to describe compatibility. Full details on the <a href="/compliance.html">compliance page</a>.</p>
+
+  <div class="page-cta">
+    <p class="page-cta-label">Questions?</p>
+    <h2>Talk to a human</h2>
+    <p>Compatibility checks, wholesale, press, or anything else — the contact form goes straight to the person who built this.</p>
+    <div class="page-cta-actions">
+      <a href="/contact.html" class="btn">Contact</a>
+      <a href="/controller.html" class="btn btn-outline">See the Controller</a>
+    </div>
+  </div>
+</div>

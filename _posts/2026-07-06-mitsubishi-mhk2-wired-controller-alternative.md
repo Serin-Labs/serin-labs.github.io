@@ -29,6 +29,8 @@ Good news and better news. The good news: those Mitsubishi wall controllers are 
 - **PAC-SDW01RC-1:** wired wall controller, color screen. Ships with a **CN105 adapter**, runs on 18/4 AWG wire. 7-day schedule, dual-setpoint auto changeover, PIN lock. Around **$179**.
 - **Serin controller:** ESP32 board on the same **CN105** port. App, Siri, and Home Assistant control. Around **$15–40**.
 
+<img src="/assets/mitsubishi-mhk2-pac-sdw01rc-wall-controllers.webp" alt="Two Mitsubishi wall controllers mounted side by side: the PAC-SDW01RC-1 wired controller with a color screen and the MHK2 with its Vane, Mode, Menu, and Fan display" class="screenshot" width="820" height="458" loading="lazy">
+
 ## What These Mitsubishi Controllers Actually Are
 
 Let's get the lineup straight, because the names blur together.
@@ -66,6 +68,8 @@ The Serin controller is a small ESP32 board that clips onto CN105 and turns your
 **You control it from your phone, Siri, or Home Assistant.** The MHK2 on its own has *no app*. Want phone or away-from-home control? You bolt on Mitsubishi's separate Wi-Fi adapter, which drops you right back onto Kumo Cloud, account and all. The Serin controller does app and voice control natively, and keeps every command on your own network. (If you're specifically trying to escape Kumo Cloud, that's [its own post](/blog/kumo-cloud-alternative-local-mitsubishi-control.html).)
 
 **You get remote temperature sensing too, for about $15.** Remember the wall controller's best trick, reading temperature where you sit? Serin has an optional remote temperature sensor that does the same job. Feed it any [Home Assistant sensor](/esphome/generate-yaml.html) on the ESPHome side, or a [BLE thermometer](/homekit/features.html) on the Apple Home side, and the heat pump regulates off the temperature where you actually sit instead of the warm air at the ceiling. That erases the wired controller's main advantage at a fraction of the price, and you can place the sensor anywhere, not just on the wall the display happens to hang on.
+
+<img src="/assets/remote-temperature-sensor-mini-split-living-room.webp" alt="A small white wireless temperature sensor on a side table at seated height in a living room" class="screenshot" width="480" height="542" loading="lazy">
 
 **You can actually see the unit.** The built-in web UI shows what no wall puck exposes: compressor frequency, outside air temperature, runtime, live logs, and error codes in plain view. Open the controller's IP in any browser and drive the heat pump directly. No app, no cloud.
 

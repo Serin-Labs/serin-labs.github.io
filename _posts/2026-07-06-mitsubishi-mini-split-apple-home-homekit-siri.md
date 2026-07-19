@@ -71,6 +71,8 @@ Three things, and you probably already have the third.
 - **A CN105 port on your unit.** This is the one thing to confirm before you spend a cent. It's built into most Mitsubishi Electric indoor units. A quick proxy: if your unit runs on Kumo Cloud or MELCloud today, it almost certainly has CN105. Still, take five minutes and [check your unit for the port](/compatibility.html) for certain.
 - **An Apple Home Hub, for the full experience.** An Apple TV or a HomePod. On your home Wi-Fi you can control the unit without one, but the Hub is what gives you remote access from outside the house and lets automations run when your phone isn't home. Most Apple households already have one sitting under the TV.
 
+<img src="/assets/mitsubishi-mini-split-apple-home-thermostat-tile.webp" alt="A Mitsubishi mini-split showing up as a Heat Pump climate tile at 73° in the Apple Home app, alongside fan and light tiles" class="screenshot" width="300" height="652" loading="lazy">
+
 ## Setting It Up, Step by Step
 
 Start to finish this is a coffee's worth of work, not an afternoon. No soldering, nothing to compile.
@@ -83,17 +85,23 @@ Start to finish this is a coffee's worth of work, not an afternoon. No soldering
 
 **4. Add it to Apple Home.** Open the Home app, tap **Add Accessory**, and scan the pairing QR code from the setup page (or type the setup code). Your mini-split lands in Apple Home as a thermostat.
 
+<img src="/assets/apple-home-uncertified-accessory-add-anyway.webp" alt="The Apple Home 'Uncertified Accessory' prompt during pairing, with Add Anyway and Cancel buttons" class="screenshot" width="300" height="652" loading="lazy">
+
 One thing to expect here, and I'd rather you hear it from me than be surprised by it: this firmware isn't MFi-certified, so Apple Home shows an **"Uncertified Accessory"** notice and asks you to tap **Add Anyway**. That prompt is normal. Tap it and pairing finishes. After that the accessory behaves like any other thermostat in the Home app — MFi is Apple's paid licensing and certification program, and this independent open-source project simply isn't enrolled in it.
 
 ## Living With It: Siri and Scenes
 
 Once it's paired, it behaves like any Apple Home thermostat, which is the whole point.
 
+<img src="/assets/mitsubishi-mini-split-apple-home-thermostat-control.webp" alt="The Apple Home thermostat control for the mini-split: a circular dial set to Cool to 76°, showing the current 73° temperature and fan speed" class="screenshot" width="300" height="652" loading="lazy">
+
 **Siri works immediately.** "Hey Siri, set the bedroom to 70." "Hey Siri, turn off the office AC." No extra setup — pairing is all it takes.
 
 **Scenes and automations, if you have a Hub.** Drop the heat pump into a "Good Night" scene that cools the bedroom and dims the lights in one tap. Or automate it: warm the house before your alarm, back it off when everyone leaves, nudge it at sunset. These run on the Apple Home Hub, so they keep working with your phone in your pocket or across the country.
 
 **A tile on every Apple screen.** iPhone, iPad, Mac, Apple Watch, the HomePod you talk to. Because it pairs natively over HAP, there's no separate app to open and no login to remember. It's just there, next to your lights and locks.
+
+<img src="/assets/govee-ble-thermometer-room-temperature.webp" alt="A Govee BLE thermometer on a side table displaying room temperature and humidity for the mini-split to regulate against" class="screenshot" width="480" height="480" loading="lazy">
 
 ## The Upgrade That Actually Matters: A Room Sensor
 

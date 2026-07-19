@@ -29,6 +29,8 @@ So here's the straight comparison. I've written full posts on [the MHK2](/blog/m
 - **Universal IR controllers (Sensibo, Cielo, etc.):** plug-in box, no wiring. Sends infrared commands, doesn't touch CN105. Around **$80–$130**.
 - **Serin controller:** ESP32 board on **CN105**. App, Siri, and Home Assistant, fully local. **$35** pre-assembled, or **$15–20** in parts.
 
+<img src="/assets/mitsubishi-mini-split-smart-control-options-lineup.webp" alt="Four ways to make a Mitsubishi mini-split smart, side by side: the Mitsubishi Wi-Fi adapter, an MHK2-style wall thermostat, a Sensibo IR controller, and the Serin ESP32 controller with its orange CN105 cable" class="screenshot" width="820" height="348" loading="lazy">
+
 ## The Four Ways to Do This
 
 **Mitsubishi's own Wi-Fi adapter** gets you the official app, MELCloud or Kumo Cloud depending on your region, with the manufacturer's full backing and zero setup risk. It also puts your thermostat behind a login screen and a subscription-shaped cloud service for the rest of its life.
@@ -38,6 +40,8 @@ So here's the straight comparison. I've written full posts on [the MHK2](/blog/m
 **Universal IR controllers** like Sensibo and Cielo are the easiest of the four to install: no cover off, no wires, just a box that plugs into an outlet and blasts infrared at your unit like a very persistent remote. Easiest setup, weakest connection to what the unit is actually doing.
 
 **The Serin controller** clips onto the same CN105 port the OEM options use, but skips the cloud and the wall-mount price tag. App, Siri, and Home Assistant, for the cost of a coffee run.
+
+<img src="/assets/mitsubishi-mac-587if-e-wifi-adapter.webp" alt="Mitsubishi's MAC-587IF-E Wi-Fi adapter connected inside a Mitsubishi Electric indoor unit with the front panel opened" class="screenshot" width="820" height="484" loading="lazy">
 
 ## Option 1: Mitsubishi's Own Wi-Fi Adapter
 
@@ -52,6 +56,8 @@ What it costs you: every command leaves your house. I covered this in more detai
 The **MHK2** (wireless, ~$300–$400) and **PAC-SDW01RC-1** (wired, ~$179) put a real screen on your wall instead of a phone in your pocket. Both connect through CN105 too. I go deep on these in a [dedicated comparison](/blog/mitsubishi-mhk2-wired-controller-alternative.html), but the short version: they sense room temperature where you actually sit instead of up at the ceiling near the indoor unit, and they need no network at all, ever. That's genuinely valuable for a rental, a guest room, or anyone who doesn't want a smartphone in the loop.
 
 The catch is that neither one gives you an app on its own. Want phone control with the MHK2? You still buy the Wi-Fi adapter above and land back on Kumo Cloud. And a $179–$400 wall puck is a lot to spend just to avoid using your phone.
+
+<img src="/assets/sensibo-ir-controller-mini-split-wall.webp" alt="A universal IR mini-split controller mounted on the wall beside a light switch, with a wall-mounted mini-split in the background" class="screenshot" width="820" height="447" loading="lazy">
 
 ## Option 3: Universal IR Controllers (Sensibo, Cielo, and Similar)
 

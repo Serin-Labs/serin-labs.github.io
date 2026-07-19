@@ -41,6 +41,8 @@ If yes, your unit has a CN105 port. I'd bet hardware on it. Kumo Cloud and MELCl
 
 Never set up the factory app? That doesn't rule you out. Plenty of people skip it. It just means the next check is the one that matters.
 
+<img src="/assets/mitsubishi-msz-fh12na-model-number-label.webp" alt="The model-number label on a Mitsubishi Electric indoor unit, reading MSZ-FH12NA, a split-system heat pump that carries the CN105 port" class="screenshot" width="820" height="405" loading="lazy">
+
 ## No App? Check the Model Number
 
 Your model number sits on a label on the indoor unit, usually on the right side behind the front flap. Mitsubishi Electric indoor units start with prefixes like **MSZ, MSY, MFZ, MLZ, SLZ, SEZ, SVZ, PEAD, PVA, PKA, PCA, PLA,** or **PEFY**. Begins with one of those? It very likely has CN105.
@@ -52,6 +54,8 @@ One curveball worth knowing: some **Trane** and **American Standard** ductless s
 ## Look Inside for the Connector
 
 Want to be certain before you order? Open it up and look. This is the only check that gives you a flat yes.
+
+<img src="/assets/mitsubishi-cn105-port-control-board.webp" alt="The empty red CN105 serial port on a Mitsubishi indoor unit's control board, with the CN105 label and pins 1 and 5 marked in the silkscreen" class="screenshot" width="460" height="593" loading="lazy">
 
 Pop the front panel off the indoor unit and find the main control board, usually over on the right. CN105 is a small 5-pin connector, often red, sometimes white, with "CN105" printed on the board right beside it. See that label and you're done. The [wiring reference](/wiring.html) shows exactly what it looks like so you know what you're hunting for.
 

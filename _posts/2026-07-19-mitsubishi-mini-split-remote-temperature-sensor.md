@@ -41,9 +41,14 @@ The result is the familiar pattern. In heating, the unit satisfies early and coa
 
 That workaround is what a remote sensor eliminates.
 
+<img src="/assets/mini-split-air-temperature-stratification-diagram.webp" alt="Cross-section of a living room: warm air (red) collects at the ceiling where the mini-split's sensor reads, while cooler air (blue) settles at couch height where a person sits" class="screenshot" width="820" height="638" loading="lazy">
+
+
 ## The Fix Is Built Into CN105
 
 Here's the useful part: the Mitsubishi control protocol already accepts an external temperature. That's not a hack, it's how the **MHK2** and the wired **PAC-SDW01RC-1** work. They measure at the wall and hand the unit that number over the same [CN105 port](/compatibility.html) the Serin controller plugs into. The unit then regulates against the number it's given.
+
+<img src="/assets/cn105-serial-port-mitsubishi-indoor-unit.webp" alt="The red CN105 serial port on a Mitsubishi indoor unit's control board" class="screenshot" width="820" height="458" loading="lazy">
 
 So the only question is what supplies the number. A $300 wall thermostat can. So can a $15 sensor talking to an ESP32 board. The heat pump can't tell the difference, and I covered the full wall-controller comparison in [its own post](/blog/mitsubishi-mhk2-wired-controller-alternative.html).
 
@@ -85,11 +90,17 @@ Supported sensors, per the [feature list](/homekit/features.html):
 - **SwitchBot:** the Meter family
 - **BTHome v2:** Shelly and generic BTHome devices
 
+<img src="/assets/ble-thermometer-mini-split-remote-sensor.webp" alt="A Govee BLE thermometer on a coffee table showing 79.8°F and 60% humidity, with a Mitsubishi mini-split on the wall behind it" class="screenshot" width="820" height="447" loading="lazy">
+
 The Govee H5075 and the little square Xiaomi LYWSD03MMC are the usual picks. Both hover around $10–15, run for many months on their batteries, and have a display, so the sensor doubles as a room thermometer you can glance at.
+
+<img src="/assets/serin-web-ui-ble-remote-sensor.webp" alt="The Serin controller's web UI remote-sensor panel: a Govee BLE thermometer reporting 74.3°F, 54% humidity, 100% battery and -55 dBm signal, with enable, room-temp, and sensor-timeout controls" class="screenshot" width="480" height="595" loading="lazy">
 
 The controller's web UI shows the sensor's live temperature, humidity, battery level, signal strength, and when it last reported. There's a toggle to enable or disable feeding the reading to the heat pump, so you can watch the sensor for a day before you commit.
 
 And there's a safety net I want to call out: if no BLE data arrives for 90 seconds (dead battery, sensor carried out of range), the heat pump automatically falls back to its internal thermistor. Worst case, you're back to stock behavior, not a unit chasing a stale number.
+
+<img src="/assets/remote-temperature-sensor-mini-split-living-room.webp" alt="A small wireless temperature sensor on a side table at seating height, with a Mitsubishi mini-split mounted high on the wall behind" class="screenshot" width="480" height="542" loading="lazy">
 
 ## Where to Put the Sensor
 

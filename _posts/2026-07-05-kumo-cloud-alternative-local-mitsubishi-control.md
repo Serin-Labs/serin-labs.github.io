@@ -32,6 +32,8 @@ This is the **Kumo Cloud alternative** I landed on: a small **ESP32** board, the
 *   **Cloud / account:** none, ever
 *   **Price:** ~$15–20 DIY, or pre-assembled
 
+<img src="/assets/kumo-cloud-app-dashboard.webp" alt="The Kumo Cloud app dashboard showing several Mitsubishi mini-split zones, one heating and the rest powered off" class="screenshot" width="300" height="650" loading="lazy">
+
 ## Why I Ditched Kumo Cloud
 
 Kumo Cloud does the basic job. Set a temperature, pick a mode, done. That's most of what anyone needs on a Tuesday.
@@ -88,6 +90,8 @@ Leaving Kumo Cloud keeps the conveniences. You just get them without the cloud t
 **You finally see the unit.** The built-in web UI shows what the factory app never did: compressor frequency, outside air temperature, runtime, error codes, live logs. Phone off, hub unplugged, doesn't matter. Open the controller's IP in a browser and drive the heat pump directly.
 
 <img src="/assets/media/webui.png" alt="The controller's built-in web interface showing thermostat, fan, and vane controls in a browser with no app or cloud" class="screenshot" width="240" height="489" loading="lazy">
+
+<img src="/assets/ble-thermometer-mini-split-remote-sensor.webp" alt="An inexpensive BLE thermometer on a coffee table at seating height, with a Mitsubishi mini-split on the wall behind it" class="screenshot" width="820" height="447" loading="lazy">
 
 **A real room sensor, if you want one.** A mini-split reads temperature up at the indoor unit, near the ceiling, where the air runs a few degrees warmer than where you sit. Both firmwares support an optional remote temperature sensor at seating height instead: any [Home Assistant sensor](/esphome/generate-yaml.html) on the ESPHome side, or an inexpensive [BLE thermometer](/homekit/features.html) on the Apple Home side. It was the single biggest comfort upgrade I made. Kumo Cloud has no equivalent.
 

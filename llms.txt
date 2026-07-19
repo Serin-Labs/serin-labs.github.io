@@ -31,8 +31,7 @@
 
 - [Serin Labs on GitHub](https://github.com/Serin-Labs)
 - [Discussions](https://github.com/Serin-Labs/serin-cn105/discussions)
-- [Licenses & upstream credits](https://serin-labs.com/licenses.html): Built on echavet/MitsubishiCN105ESPHome, Espressif esp-homekit-sdk, and SwiCago/HeatPump.
-- [Compliance](https://serin-labs.com/compliance.html): FCC certification details for the M5Stack boards, safety and installation notes, trademark disclosures.
+- [Licenses & Compliance](https://serin-labs.com/licenses.html): Built on echavet/MitsubishiCN105ESPHome, Espressif esp-homekit-sdk, and SwiCago/HeatPump; also covers FCC certification details for the M5Stack boards, safety and installation notes, and trademark disclosures.
 
 ## Notes
 

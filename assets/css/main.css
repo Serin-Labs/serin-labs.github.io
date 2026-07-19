@@ -143,7 +143,7 @@ header .brand a {
   height: 34px;
 }
 
-nav ul {
+header nav ul {
   display: flex;
   list-style: none;
   margin: 0;
@@ -151,8 +151,8 @@ nav ul {
   gap: 0.2rem;
   align-items: center;
 }
-nav li { margin: 0; }
-nav a {
+header nav li { margin: 0; }
+header nav a {
   color: rgba(255,255,255,0.7);
   text-decoration: none;
   font-weight: 500;
@@ -161,19 +161,19 @@ nav a {
   border-radius: var(--radius-sm);
   transition: color var(--transition), background var(--transition);
 }
-nav a:hover {
+header nav a:hover {
   color: #fff;
   background: rgba(255,255,255,0.08);
 }
-nav a.active {
+header nav a.active {
   color: #fff;
   font-weight: 700;
   background: rgba(255,255,255,0.1);
 }
 
 /* Dropdown */
-nav .dropdown { position: relative; }
-nav .dropdown > a::after {
+header nav .dropdown { position: relative; }
+header nav .dropdown > a::after {
   content: "";
   display: inline-block;
   width: 5px;
@@ -186,12 +186,12 @@ nav .dropdown > a::after {
   opacity: 0.55;
   transition: transform var(--transition);
 }
-nav .dropdown:hover > a::after,
-nav .dropdown:focus-within > a::after,
-nav .dropdown.open > a::after {
+header nav .dropdown:hover > a::after,
+header nav .dropdown:focus-within > a::after,
+header nav .dropdown.open > a::after {
   transform: translateY(2px) rotate(-135deg);
 }
-nav .dropdown-menu {
+header nav .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
@@ -207,20 +207,20 @@ nav .dropdown-menu {
   box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255,255,255,0.08);
 }
-nav .dropdown:hover .dropdown-menu,
-nav .dropdown:focus-within .dropdown-menu,
-nav .dropdown.open .dropdown-menu {
+header nav .dropdown:hover .dropdown-menu,
+header nav .dropdown:focus-within .dropdown-menu,
+header nav .dropdown.open .dropdown-menu {
   display: block;
 }
-nav .dropdown-menu li { margin: 0; }
-nav .dropdown-menu a {
+header nav .dropdown-menu li { margin: 0; }
+header nav .dropdown-menu a {
   display: block;
   padding: 0.45rem 0.85rem;
   white-space: nowrap;
   border-radius: var(--radius-sm);
   font-size: 0.88rem;
 }
-nav .dropdown-menu a:hover {
+header nav .dropdown-menu a:hover {
   background: rgba(255,255,255,0.1);
   color: #fff;
 }
@@ -1402,30 +1402,30 @@ details[open] summary::before {
   header .brand { font-size: 1.45rem; }
 
   .nav-toggle-label { display: block !important; }
-  nav {
+  header nav {
     width: 100%;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
   .nav-toggle:checked ~ nav { max-height: 500px; }
-  nav ul {
+  header nav ul {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
   }
-  nav a {
+  header nav a {
     display: block;
     padding: 0.7rem 1rem;
     border-radius: 0;
     text-align: left;
   }
-  nav .dropdown > a::after {
+  header nav .dropdown > a::after {
     float: right;
     margin-top: 0.55em;
   }
 
-  nav .dropdown-menu {
+  header nav .dropdown-menu {
     position: static;
     box-shadow: none;
     border: none;
@@ -1434,11 +1434,11 @@ details[open] summary::before {
     transform: none;
     background: transparent;
   }
-  nav .dropdown .dropdown-menu { display: none; }
-  nav .dropdown:hover .dropdown-menu,
-  nav .dropdown:focus-within .dropdown-menu,
-  nav .dropdown.open .dropdown-menu { display: block; }
-  nav .dropdown-menu a {
+  header nav .dropdown .dropdown-menu { display: none; }
+  header nav .dropdown:hover .dropdown-menu,
+  header nav .dropdown:focus-within .dropdown-menu,
+  header nav .dropdown.open .dropdown-menu { display: block; }
+  header nav .dropdown-menu a {
     padding-left: 2.5rem;
     font-size: 0.88rem;
   }

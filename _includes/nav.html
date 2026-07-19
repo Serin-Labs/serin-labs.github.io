@@ -1,6 +1,6 @@
 <header>
   <div class="container">
-    <div class="brand"><a href="{{ '/' | relative_url }}" aria-label="Serin Labs — home"><img src="{{ '/assets/favicon-32x32.png' | relative_url }}" alt="" class="brand-icon">serin labs</a></div>
+    <div class="brand"><a href="{{ '/' | relative_url }}" aria-label="Serin Labs — home"><img src="{{ '/assets/serin_logo.svg' | relative_url }}" alt="" class="brand-icon">serin labs</a></div>
     <input type="checkbox" id="nav-toggle" class="nav-toggle">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
       <span></span>
@@ -10,10 +10,12 @@
     <nav>
       <ul>
         <li class="dropdown">
-          <a href="{{ '/controller.html' | relative_url }}" {% if page.nav_active == "controller" or page.nav_active == "get-started" or page.nav_active == "parts" %}class="active"{% endif %}>Controller</a>
+          <a href="{{ '/controller.html' | relative_url }}" {% if page.nav_active == "controller" or page.nav_active == "get-started" or page.nav_active == "parts" or page.nav_active == "compatibility" or page.nav_active == "wiring" %}class="active"{% endif %}>Controller</a>
           <ul class="dropdown-menu">
             <li><a href="{{ '/controller.html' | relative_url }}">Buy Pre-Assembled</a></li>
             <li><a href="{{ '/parts.html' | relative_url }}">Parts List</a></li>
+            <li><a href="{{ '/compatibility.html' | relative_url }}">Check Your Model</a></li>
+            <li><a href="{{ '/wiring.html' | relative_url }}">Wiring</a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -31,14 +33,11 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="{{ '/support.html' | relative_url }}" {% if page.nav_active == "support" or page.nav_active == "troubleshooting" or page.nav_active == "compatibility" or page.nav_active == "wiring" or page.nav_active == "contact" or page.nav_active == "faq" %}class="active"{% endif %}>Support</a>
+          <a href="{{ '/support.html' | relative_url }}" {% if page.nav_active == "support" or page.nav_active == "troubleshooting" or page.nav_active == "contact" or page.nav_active == "faq" %}class="active"{% endif %}>Help</a>
           <ul class="dropdown-menu">
-            <li><a href="{{ '/support.html' | relative_url }}">Get Help</a></li>
-            <li><a href="{{ '/contact.html' | relative_url }}">Contact</a></li>
-            <li><a href="{{ '/faq.html' | relative_url }}">FAQ</a></li>
             <li><a href="{{ '/troubleshooting.html' | relative_url }}">Troubleshooting</a></li>
-            <li><a href="{{ '/compatibility.html' | relative_url }}">Check Your Model</a></li>
-            <li><a href="{{ '/wiring.html' | relative_url }}">Wiring</a></li>
+            <li><a href="{{ '/faq.html' | relative_url }}">FAQ</a></li>
+            <li><a href="{{ '/contact.html' | relative_url }}">Contact</a></li>
           </ul>
         </li>
         <li class="nav-cta"><a href="{{ '/flash.html' | relative_url }}" class="btn nav-cta-btn{% if page.nav_active == "flash" %} active{% endif %}">Flash</a></li>

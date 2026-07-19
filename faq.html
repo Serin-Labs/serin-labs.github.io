@@ -1,0 +1,161 @@
+---
+layout: default
+title: "FAQ — Serin Controller for Mitsubishi Mini-Splits"
+description: "Answers to the most common questions about the Serin controller: compatibility, what's included, flashing, HomeKit vs ESPHome, orders, shipping, and returns."
+nav_active: faq
+---
+
+<div class="home">
+  <h1>Frequently Asked Questions</h1>
+  <p>The short answers, with links to the full story. Not here? <a href="/contact.html">Ask us directly</a> or search <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">GitHub Discussions</a>.</p>
+
+  <h2>Before You Buy</h2>
+
+  <details>
+    <summary>Will it work with my Mitsubishi unit?</summary>
+    <div class="faq-body">
+      <p>It works with most Mitsubishi units that have an internal CN105 connector — wall-mount, floor, cassette, ducted, and P-series, plus rebranded Trane and American Standard units. Type your model number into the <a href="/compatibility.html">compatibility checker</a> for an instant answer. Mitsubishi Heavy Industries (SRK/SRC/SRF) and Ecodan air-to-water units are not compatible.</p>
+    </div>
+  </details>
+  <details>
+    <summary>What's included with the pre-assembled controller?</summary>
+    <div class="faq-body">
+      <p>The $35 <a href="/controller.html">Serin Controller</a> includes the controller and a Mitsubishi CN105-compatible cable — everything needed to plug into the indoor unit. An optional wireless remote temperature sensor is available at checkout. You'll also need a USB-C data cable for the one-time firmware flash.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Does it ship with firmware installed?</summary>
+    <div class="faq-body">
+      <p>No. The controller arrives without firmware so you pick your platform: flash the free open-source ESPHome or HomeKit-compatible firmware from the <a href="/flash.html">browser flash tool</a> in about five minutes.</p>
+    </div>
+  </details>
+  <details>
+    <summary>HomeKit or ESPHome — which should I choose?</summary>
+    <div class="faq-body">
+      <p>Use the HomeKit-compatible firmware if your home runs on Apple Home and Siri; use ESPHome if you run Home Assistant. Both are free, both are local, and you can <a href="/flash.html">reflash</a> to switch anytime. Full comparison: <a href="/blog/esphome-vs-homekit-mitsubishi-mini-split.html">ESPHome vs HomeKit</a>.</p>
+    </div>
+  </details>
+  <details>
+    <summary>How many controllers do I need?</summary>
+    <div class="faq-body">
+      <p>One per indoor head — each indoor unit has its own CN105 port. A 3-zone system needs three controllers.</p>
+    </div>
+  </details>
+  <details>
+    <summary>How does it compare to the MHK2 or Kumo Cloud?</summary>
+    <div class="faq-body">
+      <p>The $35 controller does what the $180–$400 MHK2 wall controller and the Kumo Cloud adapter do — full mode, temperature, fan, and vane control — but locally, with no cloud account and no subscription. See <a href="/blog/mitsubishi-mini-split-smart-control-comparison.html">every option compared</a>.</p>
+    </div>
+  </details>
+
+  <h2>Setup &amp; Firmware</h2>
+
+  <details>
+    <summary>What do I need to flash the firmware?</summary>
+    <div class="faq-body">
+      <p>A desktop Chromium browser (Chrome, Edge, or Brave — Safari and Firefox don't support Web Serial) and a USB-C data cable. The <a href="/flash.html">flash tool</a> runs entirely in your browser; nothing to install.</p>
+    </div>
+  </details>
+  <details>
+    <summary>How do firmware updates work? Is there a subscription?</summary>
+    <div class="faq-body">
+      <p>Updates are free and open source — no subscription, ever. After the first USB flash they arrive over Wi-Fi: ESPHome pushes them from your dashboard, and the HomeKit-compatible firmware updates from its built-in web UI. Details on the <a href="/support.html">support page</a>.</p>
+    </div>
+  </details>
+  <details>
+    <summary>Does it need the internet to work?</summary>
+    <div class="faq-body">
+      <p>No. Control is local on your network. For control away from home you use your platform's own remote access: an Apple Home hub (Apple TV or HomePod) for HomeKit, or Home Assistant remote access for ESPHome.</p>
+    </div>
+  </details>
+
+  <h2>Orders &amp; Shipping</h2>
+
+  <details>
+    <summary>Where do I buy, and how fast does it ship?</summary>
+    <div class="faq-body">
+      <p>Through our <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Etsy shop</a>. Orders ship from Wood-Ridge, NJ within 1–2 business days, with free US shipping.</p>
+    </div>
+  </details>
+  <details>
+    <summary>What's the return policy?</summary>
+    <div class="faq-body">
+      <p>Returns and exchanges are accepted within 30 days of delivery, and orders can be cancelled within 12 hours of purchase. Defective units are replaced or refunded in full. The details live on the <a href="/policies.html">store policies page</a>.</p>
+    </div>
+  </details>
+  <details>
+    <summary>My controller arrived damaged or won't power on. Now what?</summary>
+    <div class="faq-body">
+      <p>First check the <a href="/troubleshooting.html">troubleshooting guide</a> — most "dead board" reports are a charge-only USB cable. If it's genuinely defective, <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">message the shop on Etsy</a> and we'll replace it or refund you in full, including shipping.</p>
+    </div>
+  </details>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Will it work with my Mitsubishi unit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It works with most Mitsubishi units that have an internal CN105 connector — wall-mount, floor, cassette, ducted, and P-series, plus rebranded Trane and American Standard units. Use the compatibility checker at serin-labs.com/compatibility.html for an instant answer. Mitsubishi Heavy Industries (SRK/SRC/SRF) and Ecodan air-to-water units are not compatible." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's included with the pre-assembled controller?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The $35 Serin Controller includes the controller and a Mitsubishi CN105-compatible cable. An optional wireless remote temperature sensor is available at checkout. A USB-C data cable is needed for the one-time firmware flash." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it ship with firmware installed?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The controller arrives without firmware so you pick your platform: flash the free open-source ESPHome or HomeKit-compatible firmware from the browser flash tool in about five minutes." }
+      },
+      {
+        "@type": "Question",
+        "name": "HomeKit or ESPHome — which should I choose?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use the HomeKit-compatible firmware if your home runs on Apple Home and Siri; use ESPHome if you run Home Assistant. Both are free and local, and you can reflash to switch anytime." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many controllers do I need?",
+        "acceptedAnswer": { "@type": "Answer", "text": "One per indoor head — each indoor unit has its own CN105 port. A 3-zone system needs three controllers." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does it compare to the MHK2 or Kumo Cloud?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The $35 controller offers full mode, temperature, fan, and vane control like the $180–$400 MHK2 wall controller or the Kumo Cloud adapter, but locally, with no cloud account and no subscription." }
+      },
+      {
+        "@type": "Question",
+        "name": "What do I need to flash the firmware?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A desktop Chromium browser (Chrome, Edge, or Brave) and a USB-C data cable. The flash tool runs entirely in the browser; nothing to install." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do firmware updates work? Is there a subscription?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Updates are free and open source — no subscription. After the first USB flash they arrive over Wi-Fi: ESPHome pushes them from your dashboard, and the HomeKit-compatible firmware updates from its built-in web UI." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it need the internet to work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Control is local on your network. Remote control uses your platform's own remote access: an Apple Home hub for HomeKit, or Home Assistant remote access for ESPHome." }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do I buy, and how fast does it ship?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Through the Serin Labs Etsy shop. Orders ship from Wood-Ridge, NJ within 1–2 business days, with free US shipping." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the return policy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Returns and exchanges are accepted within 30 days of delivery, and orders can be cancelled within 12 hours of purchase. Defective units are replaced or refunded in full. Details at serin-labs.com/policies.html." }
+      },
+      {
+        "@type": "Question",
+        "name": "My controller arrived damaged or won't power on. Now what?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Check the troubleshooting guide first — most dead-board reports are a charge-only USB cable. Genuinely defective units are replaced or refunded in full, including shipping; message the shop on Etsy." }
+      }
+    ]
+  }
+  </script>
+</div>

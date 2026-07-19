@@ -113,7 +113,7 @@ header {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: #fff;
-  padding: 0.85rem 0;
+  padding: 0.4rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -127,7 +127,7 @@ header .container {
 }
 header .brand {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.65rem;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
@@ -139,9 +139,8 @@ header .brand a {
   gap: 0.45rem;
 }
 .brand-icon {
-  width: 26px;
-  height: 26px;
-  border-radius: 5px;
+  width: auto;
+  height: 34px;
 }
 
 nav ul {
@@ -618,7 +617,15 @@ nav .dropdown-menu a:hover {
 }
 
 .flash-section { display: none; }
-.flash-section.active { display: block; }
+.flash-section.active { display: block; margin-top: 1.5rem; }
+
+/* CTA hand-off between the flash flow and the setup guide. One divider with
+   balanced breathing room, replacing a double-hr sandwich that read as floaty. */
+.flash-next {
+  margin: 1.75rem 0 2.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+}
 
 .flash-device-banner {
   border: 1px solid var(--border);
@@ -1201,7 +1208,8 @@ footer {
 }
 .footer-columns {
   display: flex;
-  gap: 3rem;
+  flex-wrap: wrap;
+  gap: 2.5rem;
 }
 .footer-col {
   display: flex;
@@ -1223,6 +1231,26 @@ footer {
   transition: color var(--transition);
 }
 .footer-col a:hover { color: #fff; }
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0;
+  margin-bottom: 0.75rem;
+}
+.footer-legal a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.8rem;
+  transition: color var(--transition);
+}
+.footer-legal a:hover { color: #fff; }
+.footer-legal a:not(:last-child)::after {
+  content: "·";
+  margin: 0 0.6rem;
+  color: rgba(255,255,255,0.25);
+}
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 1rem;
@@ -1371,7 +1399,7 @@ details[open] summary::before {
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-  header .brand { font-size: 1.2rem; }
+  header .brand { font-size: 1.45rem; }
 
   .nav-toggle-label { display: block !important; }
   nav {

@@ -106,6 +106,16 @@
       ctas: [CTA_CHECK, CTA_ASK]
     },
     {
+      // European/Asia MSZ-GE trims carry the VA suffix (e.g. MSZ-GE25VA) and
+      // have a populated CN105 port — confirmed by an owner report. The
+      // suffix-dependent "no CN105" caveat below applies only to NA trims.
+      id: 'msz-ge-va-yes', re: /^MSZGE\d+VA/, tone: 'success',
+      badge: 'MSZ-GE series — wall-mounted',
+      title: 'Confirmed working',
+      detail: 'European/Asia MSZ-GE (VA-suffix) units have a CN105 port and are confirmed working. Plug the controller into the CN105 port on the indoor unit’s control board and you’re set.',
+      ctas: [CTA_BUY, CTA_PARTS]
+    },
+    {
       id: 'msz-ge-yes', re: /^MSZGE(06|09|12|15|18)NA[89]|^MSZGE24NA/, tone: 'success',
       badge: 'MSZ-GE series — wall-mounted',
       title: 'Confirmed working (this trim)',
@@ -137,7 +147,7 @@
     // ---- Confirmed compatible: wall-mounted ----
     {
       id: 'wall-confirmed',
-      re: /^MSZ(FX|GX|HX|WX|EX|JX|FS|GS|GL|FH|EF|AP|AY|LN|HR|SF|BT|DM|RW|FT|GF|WR|HM|JP)/,
+      re: /^MSZ(FX|GX|HX|WX|EX|JX|FS|GS|GL|FH|EF|AP|AY|LN|HR|SF|YK|BT|DM|RW|FT|GF|WR|HM|JP)/,
       tone: 'success',
       badge: 'MSZ series — wall-mounted',
       title: 'Confirmed working',

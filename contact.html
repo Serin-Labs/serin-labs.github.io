@@ -7,26 +7,29 @@ nav_active: contact
 
 <div class="home">
   <h1>Contact</h1>
+  <p>Orders and technical questions have faster routes below. For everything else, the form reaches us directly.</p>
 
   <div class="support-grid">
     <div class="form-card">
       <h2>Order Problems</h2>
       <p>Shipping, returns, refunds, and replacements for Etsy orders go through Etsy, where they're covered by <a href="https://www.etsy.com/legal/purchase-protection/" target="_blank" rel="noopener">purchase protection</a>. See our <a href="/policies.html">store policies</a> for the terms.</p>
-      <ul>
-        <li><a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Message the shop on Etsy</a></li>
+      <ul class="route-links">
+        <li><a class="route-link" href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Message the shop on Etsy<span class="route-link-arrow" aria-hidden="true">&nbsp;&rarr;</span></a></li>
       </ul>
     </div>
     <div class="form-card">
       <h2>Bugs &amp; Setup Questions</h2>
-      <p>Technical questions get answered on GitHub, in the open, so the next person can find the answer too.</p>
-      <ul>
-        <li><a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">GitHub Discussions</a> to ask a question</li>
-        <li><a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">GitHub Issues</a> to report a bug</li>
+      <p>We answer technical questions on GitHub, in public, so the next person with the same problem can find the fix too.</p>
+      <ul class="route-links">
+        <li><a class="route-link" href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">Ask on GitHub Discussions<span class="route-link-arrow" aria-hidden="true">&nbsp;&rarr;</span></a></li>
+        <li><a class="route-link" href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">Report a bug on GitHub Issues<span class="route-link-arrow" aria-hidden="true">&nbsp;&rarr;</span></a></li>
       </ul>
     </div>
   </div>
 
+  <div class="form-card panel-card">
   <h2>Everything Else</h2>
+  <p class="panel-lead">Replies come by email, usually within 2 business days.</p>
 
   <form id="contact-form" class="contact-form" hidden>
     <label for="cf-name">Name <span aria-hidden="true">(optional)</span></label>
@@ -43,9 +46,11 @@ nav_active: contact
       <option value="firmware">Firmware &amp; setup</option>
       <option value="other">Something else</option>
     </select>
+    <p class="field-hint" id="cf-order-hint" hidden>Problem with an Etsy order? <a href="https://serinlabs.etsy.com/" target="_blank" rel="noopener">Messaging the shop on Etsy</a> is faster and keeps purchase protection for shipping, returns, and refunds.</p>
 
     <label for="cf-message">Message</label>
-    <textarea id="cf-message" name="message" required minlength="10" maxlength="5000"></textarea>
+    <p class="field-hint" id="cf-message-hint">For compatibility questions, include the full model number from the unit's nameplate sticker.</p>
+    <textarea id="cf-message" name="message" required minlength="10" maxlength="5000" aria-describedby="cf-message-hint"></textarea>
 
     <div class="contact-hp" aria-hidden="true">
       <label for="cf-website">Website</label>
@@ -61,6 +66,7 @@ nav_active: contact
   <noscript>
     <p>The contact form needs JavaScript. Without it, the best routes are <a href="https://github.com/Serin-Labs/serin-cn105/discussions">GitHub Discussions</a> for questions or a <a href="https://serinlabs.etsy.com/">message to the Etsy shop</a> for order issues.</p>
   </noscript>
+  </div>
 
   <script>
     (function () {
@@ -68,9 +74,32 @@ nav_active: contact
       var renderedAt = Date.now();
       form.hidden = false;
 
+      // Deep link from the compatibility checker: ?model=MSZ-XX prefills a
+      // lookup request so the sender only has to add their email.
+      try {
+        var model = new URL(window.location.href).searchParams.get('model');
+        if (model) {
+          form.topic.value = 'compatibility';
+          form.message.value = 'Model number: ' + model +
+            '\n\nThis model isn’t in the compatibility checker — can you look it up?';
+        }
+      } catch (e) { /* older browsers: non-essential */ }
+
+      // Nudge Etsy-order senders back to Etsy messages, where purchase
+      // protection applies; shown only when the topic makes it relevant.
+      var orderHint = document.getElementById('cf-order-hint');
+      function syncOrderHint() { orderHint.hidden = form.topic.value !== 'order'; }
+      form.topic.addEventListener('change', syncOrderHint);
+      syncOrderHint();
+
       var okBox = document.getElementById('cf-ok');
       var errBox = document.getElementById('cf-err');
       var submit = document.getElementById('cf-submit');
+      // On small screens the status renders below the fold of the button.
+      function showStatus(box) {
+        box.classList.add('is-visible');
+        if (box.scrollIntoView) box.scrollIntoView({ block: 'nearest' });
+      }
       var FALLBACK = 'Sending failed. Please try again in a few minutes, or ask on ' +
         '<a href="https://github.com/Serin-Labs/serin-cn105/discussions">GitHub Discussions</a>' +
         ' (order issues: <a href="https://serinlabs.etsy.com/">message the Etsy shop</a>).';
@@ -98,18 +127,22 @@ nav_active: contact
           .then(function (r) {
             if (r.body && r.body.ok) {
               form.reset();
-              okBox.classList.add('is-visible');
+              syncOrderHint();
+              showStatus(okBox);
               if (window.umami) window.umami.track('contact-submit');
             } else {
-              errBox.innerHTML = (r.status === 400 && r.body && r.body.error)
-                ? 'Couldn’t send: ' + r.body.error + '.'
-                : FALLBACK;
-              errBox.classList.add('is-visible');
+              // Server-provided text goes in as text, never markup.
+              if (r.status === 400 && r.body && r.body.error) {
+                errBox.textContent = 'Couldn’t send: ' + r.body.error + '.';
+              } else {
+                errBox.innerHTML = FALLBACK;
+              }
+              showStatus(errBox);
             }
           })
           .catch(function () {
             errBox.innerHTML = FALLBACK;
-            errBox.classList.add('is-visible');
+            showStatus(errBox);
           })
           .finally(function () {
             submit.disabled = false;

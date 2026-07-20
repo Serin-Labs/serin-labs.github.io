@@ -11,7 +11,7 @@ nav_active: troubleshooting
 
   <h2>Flashing & USB</h2>
 
-  <details>
+  <details id="usb-not-detected">
     <summary>Device not detected on USB / no serial port appears</summary>
     <div class="faq-body">
       <ul>
@@ -23,7 +23,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="flash-fails">
     <summary>Flash fails or times out</summary>
     <div class="faq-body">
       <ul>
@@ -35,7 +35,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="web-serial">
     <summary>"Browser does not support Web Serial" message</summary>
     <div class="faq-body">
       <ul>
@@ -48,7 +48,7 @@ nav_active: troubleshooting
 
   <h2>WiFi & Connectivity</h2>
 
-  <details>
+  <details id="ap-missing">
     <summary>WiFi access point does not appear</summary>
     <div class="faq-body">
       <ul>
@@ -61,7 +61,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="find-ip">
     <summary>Device connected to WiFi but cannot find its IP address</summary>
     <div class="faq-body">
       <ul>
@@ -72,7 +72,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="wifi-drops">
     <summary>Device keeps disconnecting from WiFi</summary>
     <div class="faq-body">
       <ul>
@@ -85,7 +85,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="captive-portal">
     <summary>Cannot access captive portal at 192.168.4.1</summary>
     <div class="faq-body">
       <ul>
@@ -99,7 +99,7 @@ nav_active: troubleshooting
 
   <h2>ESPHome / Home Assistant</h2>
 
-  <details>
+  <details id="not-discovered">
     <summary>Device not showing as "Discovered" in ESPHome dashboard</summary>
     <div class="faq-body">
       <ul>
@@ -112,7 +112,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="adopt-fails">
     <summary>Clicked "Adopt" but install fails or times out</summary>
     <div class="faq-body">
       <ul>
@@ -123,7 +123,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="entity-unavailable">
     <summary>Climate entity shows as "unavailable" in Home Assistant</summary>
     <div class="faq-body">
       <ul>
@@ -135,7 +135,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="ota-fails">
     <summary>OTA update fails in ESPHome</summary>
     <div class="faq-body">
       <ul>
@@ -148,7 +148,7 @@ nav_active: troubleshooting
 
   <h2>HomeKit / Apple Home</h2>
 
-  <details>
+  <details id="homekit-pairing">
     <summary>Device not appearing in Apple Home for pairing</summary>
     <div class="faq-body">
       <ul>
@@ -160,7 +160,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="pairing-fails">
     <summary>"Accessory Not Found" or pairing fails</summary>
     <div class="faq-body">
       <ul>
@@ -172,7 +172,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="web-ui">
     <summary>Web UI not loading</summary>
     <div class="faq-body">
       <ul>
@@ -186,7 +186,7 @@ nav_active: troubleshooting
 
   <h2>HVAC / CN105 Connection</h2>
 
-  <details>
+  <details id="cn105-no-data">
     <summary>CN105 connected but no data / climate entity unavailable</summary>
     <div class="faq-body">
       <ul>
@@ -200,7 +200,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="temp-readings">
     <summary>Temperature readings are wrong or missing</summary>
     <div class="faq-body">
       <ul>
@@ -211,7 +211,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="hvac-no-response">
     <summary>Commands sent but HVAC does not respond</summary>
     <div class="faq-body">
       <ul>
@@ -224,7 +224,7 @@ nav_active: troubleshooting
 
   <h2>Firmware & Recovery</h2>
 
-  <details>
+  <details id="factory-reset">
     <summary>How to factory reset the device</summary>
     <div class="faq-body">
       <ul>
@@ -234,7 +234,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="switch-firmware">
     <summary>How to switch between ESPHome and HomeKit-compatible firmware</summary>
     <div class="faq-body">
       <ul>
@@ -246,7 +246,7 @@ nav_active: troubleshooting
     </div>
   </details>
 
-  <details>
+  <details id="ota-recovery">
     <summary>OTA update fails or device appears bricked</summary>
     <div class="faq-body">
       <ul>
@@ -257,14 +257,33 @@ nav_active: troubleshooting
     </div>
   </details>
 
+  <div class="form-card panel-card" id="more-help">
   <h2>Still Need Help?</h2>
-  <p>If your issue is not listed above:</p>
-  <ul>
-    <li>ESPHome issues: <a href="https://github.com/echavet/MitsubishiCN105ESPHome/issues" target="_blank" rel="noopener">MitsubishiCN105ESPHome issues</a></li>
-    <li>HomeKit issues: <a href="https://github.com/akifbayram/mitsubishi-cn105-homekit/issues" target="_blank" rel="noopener">mitsubishi-cn105-homekit issues</a></li>
-    <li>General questions: <a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">Serin Labs issues</a></li>
+  <p class="panel-lead">Include your device logs, board type, and firmware version — it speeds up diagnosis.</p>
+  <ul class="route-links">
+    <li><a class="route-link" href="https://github.com/echavet/MitsubishiCN105ESPHome/issues" target="_blank" rel="noopener">Report an ESPHome firmware issue<span class="route-link-arrow" aria-hidden="true">&nbsp;&rarr;</span></a></li>
+    <li><a class="route-link" href="https://github.com/akifbayram/mitsubishi-cn105-homekit/issues" target="_blank" rel="noopener">Report a HomeKit firmware issue<span class="route-link-arrow" aria-hidden="true">&nbsp;&rarr;</span></a></li>
+    <li><a class="route-link" href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">Ask a general question on GitHub<span class="route-link-arrow" aria-hidden="true">&nbsp;&rarr;</span></a></li>
+    <li><a class="route-link" href="/contact.html">Use the contact form<span class="route-link-arrow" aria-hidden="true">&nbsp;&rarr;</span></a></li>
   </ul>
-  <p>When opening an issue, include your device logs, board type, and firmware version to help with diagnosis.</p>
+  </div>
+
+  <script>
+    // Deep links: /troubleshooting.html#wifi-drops opens that fix directly,
+    // so a shared or bookmarked link lands on the answer, not a closed row.
+    (function () {
+      function openFromHash() {
+        var target = window.location.hash &&
+          document.getElementById(window.location.hash.slice(1));
+        if (target && target.tagName === 'DETAILS') {
+          target.open = true;
+          target.scrollIntoView({ block: 'start' });
+        }
+      }
+      window.addEventListener('hashchange', openFromHash);
+      openFromHash();
+    })();
+  </script>
 </div>
 
 <script type="application/ld+json">

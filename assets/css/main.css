@@ -30,6 +30,9 @@
 /* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; }
 
+/* Anchor jumps must land below the sticky header, on every page. */
+html { scroll-padding-top: 4.5rem; }
+
 body {
   font-family: 'Manrope', system-ui, sans-serif;
   line-height: 1.65;
@@ -316,6 +319,10 @@ header nav .dropdown-menu a:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(240,154,40,0.25);
   text-decoration: none;
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 .btn.nav-cta-btn {
   padding: 0.4rem 0.7rem;
@@ -867,7 +874,8 @@ th {
   box-shadow: var(--shadow-sm);
 }
 .form-card--warning {
-  border-left: 3px solid #E53935;
+  border-color: #FECACA;
+  background: #FEF7F7;
 }
 /* Callout with a product image on the left, stretched to match card height */
 .form-card--media {
@@ -1134,11 +1142,6 @@ textarea#dynamic-yaml-output {
   margin: 1em 0;
 }
 
-#platforms,
-#boards {
-  scroll-margin-top: 4rem;
-}
-
 /* ===== PAGE SECTION ===== */
 .page-section {
   margin-bottom: 2rem;
@@ -1336,6 +1339,8 @@ summary:focus-visible {
   margin-top: -0.3em;
   margin-bottom: 0.6em;
 }
+/* display:block above would otherwise defeat the hidden attribute */
+.field-hint[hidden] { display: none; }
 
 /* ===== FAQ / TROUBLESHOOTING ACCORDION ===== */
 details {
@@ -1661,7 +1666,6 @@ details[open] summary::before {
   padding-left: 1.2rem;
 }
 .post-toc__list li { margin: 0.25rem 0; }
-article.post h2[id] { scroll-margin-top: 4.5rem; }
 
 /* Breadcrumbs (post layout) */
 .breadcrumbs {
@@ -1825,13 +1829,13 @@ article.post h2[id] { scroll-margin-top: 4.5rem; }
 .model-checker-inputrow .btn { min-height: 48px; }
 .model-checker-hint {
   color: var(--muted);
-  font-size: 0.85em;
+  font-size: 0.875em; /* keep ≥14px on mobile */
   margin: 0.6em 0 0.35em;
 }
 .model-checker-examples {
   margin: 0.35em 0 0;
   color: var(--muted);
-  font-size: 0.85em;
+  font-size: 0.875em;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -1855,15 +1859,112 @@ article.post h2[id] { scroll-margin-top: 4.5rem; }
   background: var(--accent-light);
   color: var(--accent-hover);
 }
+@media (pointer: coarse) {
+  .model-checker-example { min-height: 44px; padding: 0.5em 0.85em; }
+}
+
+/* Label locator diagram — a skeleton of the nameplate that points out the
+   model number and the QR code. Overrides the global card-style <details>. */
+.model-checker-labelhelp {
+  margin: 0.9em 0 0;
+  border: none;
+  background: transparent;
+}
+.model-checker-labelhelp:hover,
+.model-checker-labelhelp[open] { box-shadow: none; }
+.model-checker-labelhelp > summary {
+  display: inline-flex;
+  padding: 0.2em 0;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--secondary);
+}
+.model-checker-labelhelp > summary:hover { color: var(--primary); }
+.model-checker-labelhelp > summary::before { width: 1em; }
+.model-checker-labelfig {
+  margin: 0.6em 0 0.2em;
+  max-width: 540px;
+}
+.model-checker-labelfig svg { display: block; width: 100%; height: auto; }
+.lf-plate { fill: #FDFCFA; stroke: var(--border); stroke-width: 1.5; }
+.lf-box { fill: none; stroke: var(--border); stroke-width: 1.5; }
+.lf-bar { fill: #E9E6E1; }
+.lf-brand { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; fill: #2B2B2B; }
+.lf-smalltext { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; fill: var(--muted); }
+.lf-model { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; fill: var(--fg); }
+.lf-hl { fill: var(--accent-light); stroke: var(--accent); stroke-width: 2.5; }
+.lf-hl-ring { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+.lf-qr rect { fill: #2B2B2B; }
+.lf-qr .lf-qr-gap { fill: #FDFCFA; }
+.lf-dot { fill: var(--accent); stroke: #fff; stroke-width: 2; }
+.lf-dotnum {
+  font-size: 13px;
+  font-weight: 700;
+  fill: #fff;
+  text-anchor: middle;
+}
+.model-checker-labelkey {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em 1.5em;
+  margin: 0.7em 0 0;
+  font-size: 0.875em;
+  color: var(--secondary);
+}
+.model-checker-key { display: inline-block; }
+.model-checker-keydot {
+  vertical-align: -0.25em;
+  margin-right: 0.4em;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* QR label scanner */
-.model-checker-scanrow { margin: 0.75em 0 0; }
+.model-checker-scanwrap { position: relative; display: inline-flex; }
+/* The info badge rides the scan button — when the browser can't scan and the
+   button stays hidden, hide the whole wrapper so no badge floats alone. */
+.model-checker-scanwrap:has(> .model-checker-scan[hidden]) { display: none; }
+.model-checker-scan { white-space: nowrap; flex: 1 1 auto; }
 .model-checker-scan svg {
   width: 18px;
   height: 18px;
   vertical-align: -3px;
   margin-right: 0.45em;
 }
+.model-checker-labelinfo {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--secondary);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+/* Invisible halo so the 22px badge still gives a ~40px touch target. */
+.model-checker-labelinfo::after { content: ''; position: absolute; inset: -9px; border-radius: 50%; }
+.model-checker-labelinfo:hover,
+.model-checker-labelinfo:focus-visible,
+.model-checker-labelinfo[aria-expanded="true"] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.model-checker-labelinfo svg { width: 14px; height: 14px; }
 .model-checker-scanner {
   margin-top: 1rem;
   border: 1px solid var(--border);
@@ -1896,7 +1997,17 @@ article.post h2[id] { scroll-margin-top: 4.5rem; }
   gap: 0.6rem;
   margin: 0.75em 0 0;
 }
-.model-checker-scan-privacy { margin: 0.6em 0 0; }
+.model-checker-scan-actions .btn {
+  min-height: 48px;
+  flex: 1 1 auto;
+  max-width: max-content;
+  padding-inline: 1.1em; /* both fit one row beside a 390px-wide keyboard-out phone */
+}
+/* Too narrow for one row: stack as clean full-width buttons instead */
+@media (max-width: 360px) {
+  .model-checker-scan-actions .btn { max-width: none; }
+}
+.model-checker-scan-privacy { margin: 0.6em 0 0; font-size: 0.875em; }
 
 /* Verdict card */
 .model-checker-result { margin-top: 1.1rem; }
@@ -1983,12 +2094,50 @@ article.post h2[id] { scroll-margin-top: 4.5rem; }
   --checker-strong: var(--secondary);
 }
 
+/* Below this the input + both buttons can't share one line: give the input
+   its own row and let Check and Scan split the next. When the scan button
+   is hidden (no JS), Check grows to fill the row alone. */
+@media (max-width: 640px) {
+  .model-checker-inputrow input { flex: 1 1 100%; }
+  .model-checker-inputrow .btn { flex: 1 1 auto; }
+  .model-checker-inputrow .model-checker-scanwrap { flex: 1 1 auto; }
+}
 @media (max-width: 480px) {
   .model-checker { padding: 1.1em 1em 1.2em; }
-  .model-checker-inputrow .btn { flex: 1 1 100%; }
 }
 
 /* ===== CONTACT FORM ===== */
+/* Routing cards: primary actions read as actions, not body-copy links, and
+   keep a comfortable tap height on phones. Specificity must beat the generic
+   .support-grid .form-card ul rule shared with other pages. */
+.support-grid .form-card .route-links,
+.route-links {
+  list-style: none;
+  margin: 0.5em 0 0;
+  padding-left: 0;
+}
+/* Inline flow (not flex) so a wrapped label keeps its arrow attached to the
+   last word instead of stranding it at the far edge; the nbsp in the markup
+   stops the arrow wrapping alone. Padding keeps a ~44px tap height. */
+.route-link {
+  display: inline-block;
+  padding: 0.55em 0;
+  font-weight: 600;
+}
+
+/* Card-with-lead panel shared by the contact form and the troubleshooting
+   "Still Need Help?" hub: heading, muted expectation line, then content. */
+.panel-card {
+  padding: 1.25em 1.5em 1.5em;
+  margin-top: 1.5rem;
+}
+.panel-card h2 { margin: 0; }
+.panel-card .panel-lead {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0.25em 0 0;
+}
+
 .contact-form label {
   display: block;
   font-weight: 600;
@@ -2006,6 +2155,7 @@ article.post h2[id] { scroll-margin-top: 4.5rem; }
   margin-bottom: 0.6em;
 }
 .contact-form textarea {
+  display: block; /* keeps the submit button on its own row, not beside us */
   width: 100%;
   max-width: 560px;
   min-height: 180px;
@@ -2025,6 +2175,10 @@ article.post h2[id] { scroll-margin-top: 4.5rem; }
   outline: none;
   background: var(--surface);
   box-shadow: 0 0 0 3px rgba(240, 154, 40, 0.12);
+}
+.contact-form .btn {
+  margin-top: 0.6rem;
+  min-height: 44px;
 }
 /* Honeypot: hidden from humans, present for bots. Not display:none — some
    bots skip fields they can detect as invisible via computed style alone. */
@@ -2046,5 +2200,24 @@ article.post h2[id] { scroll-margin-top: 4.5rem; }
   background: var(--surface-alt);
 }
 .form-status.is-visible { display: block; }
-.form-status--ok { border-left: 3px solid #2E7D32; }
-.form-status--err { border-left: 3px solid #E53935; }
+/* Same tones as the checker's success/fail verdicts; the sentence carries the
+   meaning, color reinforces it. Links inherit the tone so the panel reads as
+   one voice. */
+.form-status--ok {
+  background: #F0F9F1;
+  border-color: #BCE0C3;
+  color: #1B7A33;
+}
+.form-status--err {
+  background: #FEF2F2;
+  border-color: #FECACA;
+  color: #B91C1C;
+}
+.form-status a {
+  color: inherit;
+  text-decoration-color: currentColor;
+}
+.form-status a:hover {
+  color: inherit;
+  text-decoration-thickness: 2px;
+}

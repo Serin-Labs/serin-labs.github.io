@@ -19,10 +19,15 @@
   var CTA_PARTS = { label: 'See the parts list', href: '/parts.html' };
   var CTA_CHECK = { label: 'How to find the CN105 port', href: '#how-to-check', primary: true };
   var CTA_WIRING = { label: 'Wiring reference', href: '/wiring.html' };
-  var CTA_COMMUNITY = { label: 'Browse the community list', href: 'https://github.com/SwiCago/HeatPump/wiki/Supported-models', external: true };
-  // `report: true` CTAs get their href rebuilt at render time so the typed
-  // model prefills a new GitHub discussion (category slug verified: general).
+  // `report: true` / `lookup: true` CTAs get their href rebuilt at render
+  // time so the typed model prefills a new GitHub discussion (category slug
+  // verified: general) or the contact form.
   var CTA_ASK = { label: 'Ask the community', href: 'https://github.com/Serin-Labs/serin-cn105/discussions', external: true, report: true };
+  var CTA_LOOKUP = { label: 'Ask us to look it up', href: '/contact.html', primary: true, lookup: true };
+
+  function lookupUrl(model) {
+    return '/contact.html' + (model ? '?model=' + encodeURIComponent(model) : '');
+  }
 
   function reportUrl(model) {
     var title = 'Model report: ' + model;
@@ -265,8 +270,11 @@
     },
 
     // ---- Trane / American Standard rebrands ----
+    // NTXWST/NTYWST A112AA trims (06–24k): indoor control boards have CN105,
+    // confirmed via Trane service manual No. OBHT732. NTYWST is the
+    // cooling-only variant (Y = cooling-only, like Mitsubishi's MSY).
     {
-      id: 'trane', re: /^(NAXWST|NTXWPH|NTXMPH|NTXWST)/, tone: 'success',
+      id: 'trane', re: /^(NAXWST|NTXWPH|NTXMPH|NTXWST|NTYWST)/, tone: 'success',
       badge: 'Trane / American Standard — rebranded Mitsubishi',
       title: 'Confirmed working',
       detail: 'This is Mitsubishi Electric hardware sold under the Trane / American Standard brand. It has the same CN105 port and is confirmed working.',
@@ -322,8 +330,8 @@
     id: 'unknown', tone: 'neutral',
     badge: 'Unrecognized model number',
     title: 'Not in our list yet — it may still work',
-    detail: 'That doesn’t mean it won’t work — our list isn’t exhaustive. If it’s a <strong>Mitsubishi Electric</strong> indoor unit, open the front panel and look for a small 5-pin connector labeled <strong>CN105</strong> on the control board (usually red, sometimes white). If it’s there, the controller will almost certainly work. If your unit works, please report it to help others.',
-    ctas: [CTA_CHECK, CTA_COMMUNITY, CTA_ASK]
+    detail: 'Our list doesn’t cover every model, so yours may still work. The easy option: send us the model number and we’ll look it up for you. If you’d rather check yourself, open the front panel on a <strong>Mitsubishi Electric</strong> indoor unit and look for a small 5-pin connector labeled <strong>CN105</strong> on the control board (usually red, sometimes white). If it’s there, the controller will almost certainly work.',
+    ctas: [CTA_LOOKUP, { label: CTA_CHECK.label, href: CTA_CHECK.href }, CTA_ASK]
   };
 
   /**
@@ -395,7 +403,10 @@
       });
     }
 
-    function render() {
+    // `reveal` scrolls the verdict into view when it lands outside the
+    // viewport — used for explicit checks (submit, example chip, QR scan),
+    // never while typing, so the page doesn't jump under the keyboard.
+    function render(reveal) {
       var raw = input.value;
       var verdict = checkModel(raw);
       if (!verdict) {
@@ -439,7 +450,9 @@
         actions.className = 'model-checker-actions';
         verdict.ctas.forEach(function (cta) {
           var a = document.createElement('a');
-          a.href = cta.report ? reportUrl(raw.trim()) : cta.href;
+          a.href = cta.report ? reportUrl(raw.trim())
+            : cta.lookup ? lookupUrl(raw.trim())
+            : cta.href;
           a.textContent = cta.report ? 'Report your model' : cta.label;
           a.className = cta.primary ? 'btn' : 'btn btn-outline';
           if (cta.external) { a.target = '_blank'; a.rel = 'noopener'; }
@@ -450,6 +463,19 @@
 
       result.innerHTML = '';
       result.appendChild(card);
+
+      if (reveal) {
+        var box = result.getBoundingClientRect();
+        var viewH = window.innerHeight || document.documentElement.clientHeight;
+        if (box.bottom > viewH || box.top < 0) {
+          var reduced = window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          result.scrollIntoView({
+            block: 'nearest',
+            behavior: reduced ? 'auto' : 'smooth'
+          });
+        }
+      }
 
       // Shareable URL (?model=…) without polluting history.
       try {
@@ -470,18 +496,35 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       clearTimeout(timer);
-      render();
+      render(true);
     });
 
-    // Example chips fill the input and check immediately.
+    // Example chips fill the input and check immediately. Focus stays on the
+    // chip — focusing the input would pop the keyboard over the verdict.
     document.querySelectorAll('.model-checker-example').forEach(function (btn) {
       btn.addEventListener('click', function () {
         input.value = btn.getAttribute('data-model');
         clearTimeout(timer);
-        render();
-        input.focus();
+        render(true);
       });
     });
+
+    // Info badge on the scan button toggles the label-locator diagram that
+    // lives further down the form.
+    var labelInfo = document.getElementById('model-checker-labelinfo');
+    var labelHelp = document.getElementById('model-checker-labelhelp');
+    if (labelInfo && labelHelp) {
+      labelInfo.addEventListener('click', function () {
+        labelHelp.open = !labelHelp.open;
+        if (labelHelp.open) {
+          labelHelp.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+      });
+      // Sync aria-expanded even when the <summary> is what toggled it.
+      labelHelp.addEventListener('toggle', function () {
+        labelInfo.setAttribute('aria-expanded', labelHelp.open ? 'true' : 'false');
+      });
+    }
 
     // Deep link: /compatibility.html?model=MSZ-GL06NA
     try {

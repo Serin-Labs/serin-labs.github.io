@@ -24,5 +24,9 @@ assert.strictEqual(parseLabelPayload('MITSUBISHI'), null);                // let
 const { checkModel } = require('../assets/js/model-checker.js');
 assert.strictEqual(checkModel(parseLabelPayload('MSZ-GL09NA-U1         18E18169 ')).tone, 'success');
 assert.strictEqual(checkModel(parseLabelPayload('MSZ-FH12NA            8906672 T')).id, 'wall-confirmed');
+// Trane/American Standard rebrands, incl. the cooling-only NTYWST variant
+// (CN105 confirmed via Trane service manual OBHT732).
+assert.strictEqual(checkModel(parseLabelPayload('NTXWST06A112AA        9123456 T')).id, 'trane');
+assert.strictEqual(checkModel(parseLabelPayload('NTYWST24A112AA        9123457 T')).id, 'trane');
 
 console.log('parse-label: all assertions passed');

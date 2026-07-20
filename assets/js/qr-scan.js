@@ -93,16 +93,24 @@
     function closePanel(focusTarget) {
       teardown();
       panel.hidden = true;
+      scanBtn.setAttribute('aria-expanded', 'false');
       setStatus('');
       if (focusTarget) focusTarget.focus();
     }
 
     function succeed(model) {
       input.value = model;
-      // The existing checker listens for input events and renders the
-      // verdict (debounced) — no coupling to model-checker.js internals.
+      // Close first so the verdict's scroll position is measured against the
+      // final layout. Focus returns to the scan button, not the input —
+      // focusing the input would pop the phone keyboard over the verdict.
+      closePanel(scanBtn);
+      // The existing checker listens for input/submit events and renders the
+      // verdict — no coupling to model-checker.js internals. The synthetic
+      // submit makes it render immediately and scroll the verdict into view.
       input.dispatchEvent(new Event('input', { bubbles: true }));
-      closePanel(input);
+      if (input.form) {
+        input.form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+      }
     }
 
     // Returns true when the payload contained a model number. `report`
@@ -113,7 +121,7 @@
       var model = parseLabelPayload(data);
       if (model) { succeed(model); return true; }
       if (report) {
-        setStatus('That QR doesn’t look like the model label — scan the larger QR next to >PET< on the nameplate.');
+        setStatus('That QR doesn’t look like the model label — scan the QR on the nameplate that lists the model number (if there are two, try the bigger one).');
       }
       return false;
     }
@@ -149,6 +157,7 @@
 
     scanBtn.addEventListener('click', function () {
       panel.hidden = false;
+      scanBtn.setAttribute('aria-expanded', 'true');
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         // No camera API at all: go straight to the photo picker while we
         // still have the user gesture.

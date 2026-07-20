@@ -75,14 +75,31 @@ nav_active: compatibility
         <button type="submit" class="btn">Check</button>
       </div>
       <datalist id="model-checker-suggestions"></datalist>
-      <p class="model-checker-hint">It&rsquo;s on a label on the indoor unit &mdash; usually on the right side behind the front panel.</p>
+      <p class="model-checker-hint">It&rsquo;s on a label on the indoor unit &mdash; usually on the right side behind the front panel. Newer labels have a QR code you can scan.</p>
       <p class="model-checker-examples" aria-label="Example model numbers">Try:
         <button type="button" class="model-checker-example" data-model="MSZ-GL06NA">MSZ-GL06NA</button>
         <button type="button" class="model-checker-example" data-model="SEZ-KD09NA">SEZ-KD09NA</button>
         <button type="button" class="model-checker-example" data-model="MSZ-AP25VGK">MSZ-AP25VGK</button>
         <button type="button" class="model-checker-example" data-model="SRK50ZS-W">SRK50ZS-W</button>
       </p>
+      <p class="model-checker-scanrow">
+        <button type="button" id="model-checker-scan" class="btn btn-outline model-checker-scan" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>Scan the label&rsquo;s QR code
+        </button>
+      </p>
     </form>
+    <div id="model-checker-scanner" class="model-checker-scanner" hidden>
+      <div id="model-checker-viewport" class="model-checker-viewport" hidden>
+        <video id="model-checker-video" playsinline muted></video>
+      </div>
+      <p id="model-checker-scan-status" class="model-checker-scan-status" role="status"></p>
+      <p class="model-checker-scan-actions">
+        <button type="button" id="model-checker-photo" class="btn btn-outline">Upload a photo</button>
+        <button type="button" id="model-checker-scan-cancel" class="btn btn-outline">Cancel</button>
+      </p>
+      <input type="file" id="model-checker-file" accept="image/*" hidden>
+      <p class="model-checker-scan-privacy field-hint">Scanning happens on your device &mdash; nothing is uploaded.</p>
+    </div>
     <div id="model-checker-result" class="model-checker-result" role="status" aria-live="polite" hidden></div>
     <noscript>
       <p class="field-hint">The instant checker needs JavaScript &mdash; no problem, everything it knows is in the tables and FAQ below.</p>
@@ -574,3 +591,4 @@ nav_active: compatibility
 </div>
 
 <script src="/assets/js/model-checker.js" defer></script>
+<script src="/assets/js/qr-scan.js" defer></script>

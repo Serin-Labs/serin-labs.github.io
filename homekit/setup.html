@@ -9,14 +9,38 @@ nav_active: homekit
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU" crossorigin="anonymous"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/improv-wifi-serial-sdk@2.5.1/dist/web/serial-launch-button.js" integrity="sha384-vQoEwCtu2mk65WkyXOS24uSRKm/q2390m9ZbTCPbElb2RWSP60/Arl7OkQjp02MG" crossorigin="anonymous"></script>
   <h1>HomeKit-Compatible Setup</h1>
-  <p>This firmware is free and open-source. You <a href="/flash.html?platform=homekit">flash it yourself</a>, then follow these steps to connect it to WiFi and add it to Apple Home. An <strong>Apple Home Hub</strong> (Apple TV or HomePod) is required for remote access and automations. See everything it does on the <a href="/homekit/features.html">features page</a>.</p>
-  <p><strong>Not certified by Apple:</strong> this is not an MFi-certified HomeKit accessory.</p>
+  <p class="hk-lede">In about 15 minutes, your Mitsubishi mini-split answers to the Apple Home app and Siri &mdash; no monthly fees, no cloud account, no Home Assistant. The firmware is free and open-source, and you <a href="/flash.html?platform=homekit">flash it yourself</a> right from your browser.</p>
+  <ol class="hk-stepper" aria-label="Setup at a glance">
+    <li><span class="hk-stepper__num">1</span><span class="hk-stepper__label">Connect to your unit</span></li>
+    <li><span class="hk-stepper__num">2</span><span class="hk-stepper__label">Join Wi-Fi</span></li>
+    <li><span class="hk-stepper__num">3</span><span class="hk-stepper__label">Add to Apple Home</span></li>
+    <li class="hk-stepper__done"><span class="hk-stepper__num" aria-hidden="true">&check;</span><span class="hk-stepper__label">Done</span></li>
+  </ol>
+  <p class="field-hint">You're controlling your unit from your phone after Step&nbsp;3 &mdash; about 15 minutes. Step&nbsp;4 and everything below it (web UI, updates, troubleshooting) is optional reference. See the full feature list on the <a href="/homekit/features.html">features page</a>.</p>
   <div id="hk-saved-banner" class="hk-saved-banner" style="display:none">
     <span class="hk-saved-banner__msg">
       <svg class="hk-saved-banner__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
       <span>Your device, <strong id="hk-saved-device-name"></strong>, was flashed successfully. Steps 2, 3 &amp; 4 below have custom QR codes ready to scan &mdash; connect it to Wi-Fi, add it to Apple Home, and open its web UI.</span>
     </span>
     <button type="button" class="hk-saved-banner__clear" onclick="localStorage.removeItem('serin_last_device');location.reload()">Clear</button>
+  </div>
+  <div class="hk-prep">
+    <div class="hk-prep__col">
+      <p class="hk-prep__title">You'll need</p>
+      <ul>
+        <li>Your <a href="/controller.html">Serin Controller</a> (or an ESP32 board with a CN105 cable)</li>
+        <li>A screwdriver to open the indoor unit's cover</li>
+        <li>An iPhone or iPad, and your home Wi-Fi password</li>
+        <li>For remote access &amp; automations, an Apple Home Hub (Apple TV or HomePod)</li>
+      </ul>
+    </div>
+    <div class="hk-prep__col">
+      <p class="hk-prep__title">Good to know</p>
+      <ul>
+        <li>Pairs with the Apple Home app and Siri through the HomeKit Accessory Protocol (HAP). It's not MFi-certified and isn't an Apple-certified accessory &mdash; it implements HAP independently.</li>
+        <li>No crimping or soldering &mdash; the pre-assembled controller and ready-made cables plug straight into the CN105 port.</li>
+      </ul>
+    </div>
   </div>
   <hr>
 
@@ -95,6 +119,12 @@ nav_active: homekit
           </div>
         </div>
       </div>
+  <div class="demo-gallery hk-add-gallery">
+    <figure>
+      <img src="/assets/mitsubishi-mini-split-apple-home-thermostat-tile.webp" alt="The mini-split shown as a Heat Pump tile at 73 degrees in the Apple Home app" class="screenshot--capped" width="620" height="1348" loading="lazy">
+      <figcaption>Done &mdash; your mini-split now appears as a Heat Pump tile in the Apple Home app, controllable by tap or Siri.</figcaption>
+    </figure>
+  </div>
   <div id="hk-step3-body">
       <h3>Option A: Scan QR Code (recommended)</h3>
       <ol>
@@ -142,36 +172,43 @@ nav_active: homekit
   </div>
   <hr>
 
-  <h2>5. OTA Updates</h2>
-  <p>Update firmware over the air without USB access:</p>
-  <ul>
-    <li><strong>Check for Updates (easiest):</strong> In the web UI, open Settings &gt; Firmware Update and tap <strong>Check for Updates</strong>. If a newer release is available, tap <strong>Install</strong>. The device downloads it, verifies the SHA256 checksum, and restarts. No manual download needed.</li>
-    <li><strong>Manual upload:</strong> Upload a firmware <code>.bin</code> in the same Firmware Update section. The browser verifies integrity before uploading.</li>
-    <li><strong>Via curl:</strong></li>
-  </ul>
-  <pre><code>idf.py build
+  <details class="hk-step-collapse">
+    <summary>Updating the firmware later (OTA)</summary>
+    <div>
+      <p>Update firmware over the air without USB access:</p>
+      <ul>
+        <li><strong>Check for Updates (easiest):</strong> In the web UI, open Settings &gt; Firmware Update and tap <strong>Check for Updates</strong>. If a newer release is available, tap <strong>Install</strong>. The device downloads it, verifies the SHA256 checksum, and restarts. No manual download needed.</li>
+        <li><strong>Manual upload:</strong> Upload a firmware <code>.bin</code> in the same Firmware Update section. The browser verifies integrity before uploading.</li>
+        <li><strong>Via curl:</strong></li>
+      </ul>
+      <pre><code>idf.py build
 curl --data-binary @build/mitsubishi-cn105-homekit.bin \
      -H "Content-Type: application/octet-stream" \
      http://&lt;device-ip&gt;/upload</code></pre>
-  <p>After an OTA update, the device validates WiFi and UART communication before confirming the new firmware. If validation fails, it automatically rolls back.</p>
-  <hr>
+      <p>After an OTA update, the device validates WiFi and UART communication before confirming the new firmware. If validation fails, it automatically rolls back.</p>
+    </div>
+  </details>
 
-  <h2>6. Troubleshooting</h2>
-  <h3>WiFi Recovery</h3>
-  <table>
-    <thead>
-      <tr><th>Method</th><th>Details</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>Auto hotspot</strong></td><td>The device creates a fallback hotspot after 5 minutes without WiFi. It turns off once WiFi reconnects.</td></tr>
-      <tr><td><strong>Recovery page</strong></td><td>Connect to the hotspot, then go to <code>192.168.4.1</code> to enter new WiFi credentials.</td></tr>
-      <tr><td><strong>Button reset</strong></td><td>Hold the board button for 10 seconds to erase stored WiFi credentials.</td></tr>
-    </tbody>
-  </table>
+  <details class="hk-step-collapse">
+    <summary>Troubleshooting &amp; Wi-Fi recovery</summary>
+    <div>
+      <h3>WiFi Recovery</h3>
+      <table>
+        <thead>
+          <tr><th>Method</th><th>Details</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Auto hotspot</strong></td><td>The device creates a fallback hotspot after 5 minutes without WiFi. It turns off once WiFi reconnects.</td></tr>
+          <tr><td><strong>Recovery page</strong></td><td>Connect to the hotspot, then go to <code>192.168.4.1</code> to enter new WiFi credentials.</td></tr>
+          <tr><td><strong>Button reset</strong></td><td>Hold the board button for 10 seconds to erase stored WiFi credentials.</td></tr>
+        </tbody>
+      </table>
 
-  <h3>Re-pairing</h3>
-  <p>If you need to re-pair to Apple Home, open the web UI and use the "Reset Pairing" button in the HomeKit panel, then add the device again from the Home app.</p>
-  <p>For more troubleshooting tips, see the <a href="/troubleshooting.html">full troubleshooting guide</a>.</p>
+      <h3>Re-pairing</h3>
+      <p>If you need to re-pair to Apple Home, open the web UI and use the "Reset Pairing" button in the HomeKit panel, then add the device again from the Home app.</p>
+      <p>For more troubleshooting tips, see the <a href="/troubleshooting.html">full troubleshooting guide</a>.</p>
+    </div>
+  </details>
   <hr>
 
   <h2>Need Help?</h2>

@@ -29,22 +29,22 @@ description: "Open-source ESP32 controller for Mitsubishi mini-splits via the CN
     </li>
     <li>
       <span class="value-props__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 8z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg></span>
-      <div><strong>Compact &amp; Clean</strong><span>Installs inside your heat pump for a seamless look.</span></div>
+      <div><strong>Compact &amp; Clean</strong><span>Installs inside your mini-split for a seamless look.</span></div>
     </li>
     <li>
       <span class="value-props__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-      <div><strong>DIY or Pre-Assembled</strong><span>Build it yourself or <a href="/controller.html">order a pre-assembled controller</a> &mdash; board and CN105 cable included.</span></div>
+      <div><strong>DIY or Pre-Assembled</strong><span>Build it yourself or <a href="/controller.html">order a pre-assembled controller</a> with board and CN105 cable included. It plugs in with no soldering.</span></div>
     </li>
   </ul>
 </div>
 
 <h2>How It Compares</h2>
-<p class="compare-intro">There are several ways to add smart control to a Mitsubishi heat pump. This one uses the CN105 port for direct, two-way control. Here's how they compare.</p>
+<p class="compare-intro">There are several ways to add smart control to a Mitsubishi mini-split. This one uses the CN105 port for direct, two-way control. Here's how they compare.</p>
 <div class="table-wrapper">
   <table class="compare-table">
     <thead>
       <tr>
-        <th></th>
+        <th><span class="visually-hidden">Feature</span></th>
         <th class="compare-highlight">CN105 Serial</th>
         <th>Cloud Adapter</th>
         <th>IR Blaster</th>
@@ -53,7 +53,7 @@ description: "Open-source ESP32 controller for Mitsubishi mini-splits via the CN
     <tbody>
       <tr>
         <td><strong>Cost</strong></td>
-        <td class="compare-highlight">~$15&ndash;20 DIY<br>or <a href="/controller.html">pre-assembled</a></td>
+        <td class="compare-highlight">~$15&ndash;20 DIY<br>$35 <a href="/controller.html">pre-assembled</a></td>
         <td>~$180</td>
         <td>~$15</td>
       </tr>
@@ -90,12 +90,12 @@ description: "Open-source ESP32 controller for Mitsubishi mini-splits via the CN
   <div class="platform-card card-esphome">
     <img src="/assets/esphome-logo.svg" alt="ESPHome logo" class="platform-logo">
     <h3>ESPHome</h3>
-    <p>Built on <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">MitsubishiCN105ESPHome</a>. Serin Labs provides curated configs, browser flashing, and a <a href="/esphome/generate-yaml.html">YAML generator</a>.</p>
+    <p>Built on <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank" rel="noopener">MitsubishiCN105ESPHome</a>. Serin Labs provides curated configs, browser flashing, and a <a href="/esphome/generate-yaml.html">YAML generator</a>.</p>
     <a href="/flash.html?platform=esphome" class="btn btn-esphome">Flash Firmware</a>
     <a href="/esphome/setup.html" class="setup-link">Setup Guide &rarr;</a>
   </div>
   <div class="platform-card card-homekit">
-    <img src="/assets/house.svg" alt="House icon" class="platform-logo">
+    <img src="/assets/house.svg" alt="" class="platform-logo">
     <h3>HomeKit-Compatible</h3>
     <p>For use with the <strong>Apple Home</strong> app — no extra app, cloud, or subscription. See the <a href="/homekit/features.html">full feature list</a>.</p>
     <a href="/flash.html?platform=homekit" class="btn btn-homekit">Flash Firmware</a>
@@ -110,12 +110,11 @@ description: "Open-source ESP32 controller for Mitsubishi mini-splits via the CN
     <li><strong>Flash the Firmware:</strong> Use the <a href="/flash.html">flash tool</a> to install ESPHome or HomeKit-compatible firmware from your browser.</li>
     <li><strong>Follow Your Setup Guide:</strong> <a href="/esphome/setup.html">ESPHome setup</a> or <a href="/homekit/setup.html">HomeKit-compatible setup</a>.</li>
     <li><strong>Install in Your HVAC:</strong> Power off, connect the <a href="/wiring.html">CN105-to-Grove cable</a>, tuck the device inside, and restore power.</li>
-    <li><strong>Multiple Indoor Units?</strong> You need one controller per indoor head — each unit has its own CN105 port. Repeat the steps above for each unit, giving each device a unique name.</li>
   </ol>
+  <p class="quick-start-note">Have multiple indoor units? Each one has its own CN105 port and needs its own controller. Repeat these steps for each unit, giving every device a unique name.</p>
 </div>
 
-<h2>Disclaimer & Safety</h2>
-<p>This is an independent open-source project. It is not developed, endorsed, or certified by Apple Inc. or Mitsubishi Electric Corporation. Working on HVAC systems can be risky and may void warranties. Proceed only if you're confident. This project is provided as-is, without warranty or liability.</p>
-
 <h2>Credits & Open Source</h2>
-<p>Built on open-source work by <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank">echavet</a> (ESPHome component), Espressif's <a href="https://github.com/espressif/esp-homekit-sdk" target="_blank">esp-homekit-sdk</a> (HomeKit-compatible firmware), and foundational protocol work by <a href="https://github.com/SwiCago/HeatPump" target="_blank">SwiCago</a> and <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank">geoffdavis</a>. <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">Ask a question</a> or <a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">report an issue</a> on GitHub.</p>
+<p>Built on open-source work by <a href="https://github.com/echavet/MitsubishiCN105ESPHome" target="_blank" rel="noopener">echavet</a> (ESPHome component), Espressif's <a href="https://github.com/espressif/esp-homekit-sdk" target="_blank" rel="noopener">esp-homekit-sdk</a> (HomeKit-compatible firmware), and foundational protocol work by <a href="https://github.com/SwiCago/HeatPump" target="_blank" rel="noopener">SwiCago</a> and <a href="https://github.com/geoffdavis/esphome-mitsubishiheatpump" target="_blank" rel="noopener">geoffdavis</a>. <a href="https://github.com/Serin-Labs/serin-cn105/discussions" target="_blank" rel="noopener">Ask a question</a> or <a href="https://github.com/Serin-Labs/serin-cn105/issues" target="_blank" rel="noopener">report an issue</a> on GitHub. An independent open-source project, provided as-is. See <a href="/policies.html">policies</a> for the full disclaimer, returns, and warranty terms.</p>
+
+<p class="closing-cta">Ready? <a href="/compatibility.html">Check your model &rarr;</a></p>
